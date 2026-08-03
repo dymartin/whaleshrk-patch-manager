@@ -250,8 +250,9 @@ above-unity gain, narrow width, ignored non-`.wav` media, final-slot
 ## Invariants
 
 - Nothing in a song file is a device identifier.
-- A song file plus `.rig/modules.lock` fully determines the compiled output,
-  including chain-letter assignment — the capacity rules and the
-  declaration-order tie-break are total.
+- A song file plus `.rig/modules.lock` plus `.rig/state/chains/` fully determines
+  the compiled output, including chain-letter assignment — recorded bindings
+  leave the pool first, and the capacity rules and the declaration-order
+  tie-break are total over what remains.
 - Sequencer patterns and morpher banks never appear. They are compiler-owned.
 - Round-tripping preserves comments and formatting (ruamel.yaml round-trip mode).
