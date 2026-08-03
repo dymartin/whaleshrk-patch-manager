@@ -1,0 +1,105 @@
+# Pull
+
+Pull turns drift into reviewable PRs.
+
+1. Read every preset directory on the card.
+2. Diff each `params.json` against `.rig/state/last-pushed/<song>.json`. The
+   stored snapshot is the baseline, not a recompile — otherwise a changed
+   catalog default reports as phantom drift and buries real edits.
+3. Match managed presets to songs by the directory name **recorded** in
+   `<song>.meta.json`, never by reconstructing it from the song file and never
+   by setlist order. Reconstruction breaks on a repo-side rename that has not
+   been pushed yet, and pull-before-push makes that the normal order. Ignore
+   compiler-owned gap placeholders.
+
+   A recorded preset absent from the card produces a warning and nothing else:
+   pull never removes a song file, because the repo is authoritative for song
+   existence and the device only for parameter values. If **every** recorded
+   preset is missing, abort — that is a wiped or foreign card, not news about
+   one song.
+4. Per drifted song: reverse-map only what moved, edit the song YAML in place
+   preserving comments, commit to its own branch, open a PR via `gh`.
+5. Adopt presets with no song file as new songs, one PR each — see
+   [Adoption](#adoption).
+6. Ignore media entirely.
+
+One branch and PR per drifted song; unrelated songs never share reviews.
+
+**Branch identity is deterministic:** `pull/<song-slug>`, a pure function of
+the song, with no timestamp or counter. A later pull force-pushes that branch
+and reuses its open PR, replacing earlier unmerged drift. A timestamped name
+would accumulate stale branches and duplicate PRs instead.
+
+A song that cannot be cleanly reverse-mapped — for example referencing a module
+absent from the catalog — aborts for that song only, with no partial write.
+Every other drifted song still processes.
+
+## What drift covers
+
+Captured: module placement, all module parameters, CC mappings, mod-bus
+routing, router settings including per-chain input gains and MIDI channels.
+
+**Sample *selection* is captured; sample *files* are not.** `samp_source` and
+`samp_select` are ordinary parameters, so a sampler pointed at a different file
+reverse-maps to a changed `sample:` field like any other drift. What pull
+ignores is the media tree itself.
+
+Not captured: sequencer patterns, morpher banks, media files. See
+[../decisions.md](../decisions.md) #1 and #5.
+
+## Adoption
+
+Adoption *mints* a song file. Device presets carry no friendly names, so names
+are derived without exposing device identifiers.
+
+**Song slug.** The preset name, lowercased, non-alphanumerics collapsed to `-`.
+Collisions take `-2`, `-3`. The slug is both the filename and the branch name.
+
+**Program.** A recognised numeric prefix becomes the YAML `program`; otherwise
+adoption assigns the next free value. The PR invites correction before merge.
+
+**Chain and send names.** Each takes the catalog key of its first module with
+the `@source` suffix dropped — a chain starting with `rings@orhack` becomes
+`rings`. Duplicates within a song take `-2`, `-3`. Empty chains and sends are
+omitted rather than named.
+
+**Chain letters must be preserved, not recomputed.** Declaration order alone
+will not reproduce the device's assignment — a 3-module chain on D would be
+reassigned to C by the capacity rule, and the next pull would report drift on a
+song nobody touched. So adoption writes the observed name→letter binding into
+`.rig/state/chains/`, and **the compiler honours a recorded binding instead of
+assigning a letter**. Fresh assignment applies only to unbound chains. If a
+later edit makes a bound chain outgrow its letter, that is a hard compile error.
+
+**MIDI channels likewise.** Device `r-chin-midich-N` values need not match what
+declaration position would produce, so adoption writes an explicit
+`midi: { channel: N }` on any chain whose channel differs from its positional
+default.
+
+**Adoption writes the drift baseline.** The observed `params.json` is
+snapshotted into `.rig/state/last-pushed/<song>.json` and the observed
+directory name into `<song>.meta.json`. Without the snapshot the song has no
+baseline — it is never pushed, being already correct on the device — and the
+next pull reports the whole preset as drift. Without the `.meta.json` the next
+push refuses the directory as a stranger.
+
+**Sample selection is reverse-mapped, not defaulted.** A `samplement` module
+carries `samp_source` and `samp_select`; adoption turns those back into a
+`sample:` field:
+
+1. `samp_source` → folder via the decode table in
+   [../platform/samples.md](../platform/samples.md); `kit-N` → alias by reverse
+   lookup in `.rig/kits.yaml`.
+2. `samp_select` → index by inverting the position formula against the repo
+   folder's current listing. Safe to invert, because push keeps the device and
+   repo folders in lockstep.
+3. `samp_source` of `0` or `-1` means nothing selected — emit no `sample:`
+   field.
+
+Skipping this is silent data loss: with no `sample:` field, decision #13 fills
+`samp_source` from its catalog default of `0`, and the next push replaces a
+working sampler chain with silence.
+
+The PR body states that names were derived and invites renaming before merge.
+Renaming a chain is safe as long as the binding moves with it — see
+[maintenance.md](maintenance.md).
