@@ -1,0 +1,58 @@
+{
+  "category": "instruments/sampler",
+  "category_override": null,
+  "display": "looplay",
+  "key": "looplay@looplay",
+  "moduleType": "instruments/sampler/looplay@looplay",
+  "params": [
+    {
+      "default": 4,
+      "id": "beats",
+      "label": "Beats",
+      "max": 32,
+      "min": 1,
+      "name": "beats",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "s_kit",
+      "label": "Kit",
+      "max": 12,
+      "min": 1,
+      "name": "kit",
+      "type": "int"
+    },
+    {
+      "default": 3,
+      "id": "s_slot1",
+      "label": "Slot",
+      "max": 24,
+      "min": 1,
+      "name": "slot",
+      "type": "int"
+    },
+    {
+      "default": 2,
+      "id": "pb_range",
+      "label": "Pb Range",
+      "max": 48,
+      "min": 0,
+      "name": "pb-range",
+      "type": "pitch"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "looplay",
+  "tags": [
+    "looper",
+    "sampler",
+    "sound"
+  ],
+  "version": {
+    "archive_sha256": "0553f966721a7572a9166cdcf72a50d680e22018b9397da7a0e071f79e2caee5",
+    "file_id": 155101,
+    "updated_at": "2022-07-23T17:57:30+00:00"
+  }
+}

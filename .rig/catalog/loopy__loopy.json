@@ -1,0 +1,243 @@
+{
+  "category": "instruments/sampler",
+  "category_override": null,
+  "display": "Loopy",
+  "key": "loopy@loopy",
+  "moduleType": "instruments/sampler/loopy@loopy",
+  "params": [
+    {
+      "default": 75,
+      "id": "ol_ilevel",
+      "label": "Input Level",
+      "max": 100,
+      "min": 0,
+      "name": "input-level",
+      "type": "pct"
+    },
+    {
+      "default": 75,
+      "id": "ol_rlevel",
+      "label": "Recycle Level",
+      "max": 100,
+      "min": 0,
+      "name": "recycle-level",
+      "type": "pct"
+    },
+    {
+      "default": 10,
+      "id": "ol_delay",
+      "label": "Delay Time",
+      "max": 1000,
+      "min": 10,
+      "name": "delay-time",
+      "type": "time"
+    },
+    {
+      "default": 0,
+      "id": "ol_feedback",
+      "label": "Feedback",
+      "max": 100,
+      "min": 0,
+      "name": "feedback",
+      "type": "pct"
+    },
+    {
+      "default": 16,
+      "id": "a_length",
+      "label": "A Length",
+      "max": 64,
+      "min": 1,
+      "name": "a-length",
+      "type": "int"
+    },
+    {
+      "default": 16,
+      "id": "b_length",
+      "label": "B Length",
+      "max": 64,
+      "min": 1,
+      "name": "b-length",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "temposync",
+      "label": "Tempo Sync",
+      "max": 1,
+      "min": 0,
+      "name": "tempo-sync",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "monitor",
+      "label": "Monitor",
+      "max": 1,
+      "min": 0,
+      "name": "monitor",
+      "type": "bool"
+    },
+    {
+      "default": 2,
+      "id": "channel",
+      "label": "MIDI Channel",
+      "max": 16,
+      "min": -1,
+      "name": "midi-channel",
+      "type": "int"
+    },
+    {
+      "default": 16,
+      "id": "rec_cc",
+      "label": "Record CC",
+      "max": 127,
+      "min": 0,
+      "name": "record-cc",
+      "type": "int"
+    },
+    {
+      "default": 17,
+      "id": "cleara_cc",
+      "label": "Clear A CC",
+      "max": 127,
+      "min": 0,
+      "name": "clear-a-cc",
+      "type": "int"
+    },
+    {
+      "default": 21,
+      "id": "clearb_cc",
+      "label": "Clear B CC",
+      "max": 127,
+      "min": 0,
+      "name": "clear-b-cc",
+      "type": "int"
+    },
+    {
+      "default": 18,
+      "id": "quantstart_cc",
+      "label": "Start CC",
+      "max": 127,
+      "min": 0,
+      "name": "start-cc",
+      "type": "int"
+    },
+    {
+      "default": 19,
+      "id": "quantstop_cc",
+      "label": "Stop CC",
+      "max": 127,
+      "min": 0,
+      "name": "stop-cc",
+      "type": "int"
+    },
+    {
+      "default": 22,
+      "id": "ab_cc",
+      "label": "AB Switch CC",
+      "max": 127,
+      "min": 0,
+      "name": "ab-switch-cc",
+      "type": "int"
+    },
+    {
+      "default": 20,
+      "id": "abrec_cc",
+      "label": "AB Rec CC",
+      "max": 127,
+      "min": 0,
+      "name": "ab-rec-cc",
+      "type": "int"
+    },
+    {
+      "default": 28,
+      "id": "counter_cc",
+      "label": "Counter CC",
+      "max": 127,
+      "min": 0,
+      "name": "counter-cc",
+      "type": "int"
+    },
+    {
+      "default": 29,
+      "id": "recind_cc",
+      "label": "Rec Indicator",
+      "max": 127,
+      "min": 0,
+      "name": "rec-indicator",
+      "type": "int"
+    },
+    {
+      "default": 100,
+      "id": "mastervol",
+      "label": "Master Vol",
+      "max": 200,
+      "min": 0,
+      "name": "master-vol",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "delayvol",
+      "label": "Delay Vol",
+      "max": 100,
+      "min": 0,
+      "name": "delay-vol",
+      "type": "pct"
+    },
+    {
+      "default": -1,
+      "id": "samp_src",
+      "label": "Sample Source",
+      "max": 27,
+      "min": -1,
+      "name": "sample-source",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "samp_select",
+      "label": "Sample Select",
+      "max": 1,
+      "min": 0,
+      "name": "sample-select",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "samp_array",
+      "label": "Sample Array",
+      "max": 1,
+      "min": 0,
+      "name": "sample-array",
+      "type": "int"
+    },
+    {
+      "default": 100,
+      "id": "samp_vol",
+      "label": "Sample Vol",
+      "max": 100,
+      "min": 0,
+      "name": "sample-vol",
+      "type": "pct"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "loopy",
+  "tags": [
+    "composition",
+    "delay",
+    "effect",
+    "looper",
+    "quanitzation",
+    "sampler",
+    "sound",
+    "utility"
+  ],
+  "version": {
+    "archive_sha256": "194c13ad95eddbc0be0aeab8401ea5dc018d42fb7a6e0ac73568bb56668b7d86",
+    "file_id": 162256,
+    "updated_at": "2023-01-23T06:19:04+00:00"
+  }
+}

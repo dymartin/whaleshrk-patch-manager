@@ -1,0 +1,69 @@
+{
+  "category": "utility/audio",
+  "category_override": null,
+  "display": "SSLFO",
+  "key": "sslfo@super-slow-lfo",
+  "moduleType": "utility/audio/sslfo@super-slow-lfo",
+  "params": [
+    {
+      "default": 0,
+      "id": "l_wave",
+      "label": "Wave",
+      "max": 3,
+      "min": 0,
+      "name": "wave",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "l_rate",
+      "label": "Rate",
+      "max": 300000,
+      "min": 0,
+      "name": "rate",
+      "type": "time"
+    },
+    {
+      "default": 10,
+      "id": "l_amt",
+      "label": "Amount",
+      "max": 100,
+      "min": 0,
+      "name": "amount",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "l_offset",
+      "label": "Offset",
+      "max": 100,
+      "min": 0,
+      "name": "offset",
+      "type": "pct"
+    },
+    {
+      "default": 10,
+      "id": "l_bus",
+      "label": "Mod Bus",
+      "max": 20,
+      "min": 0,
+      "name": "mod-bus",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "super-slow-lfo",
+  "tags": [
+    "lfo",
+    "modulation",
+    "other",
+    "slow",
+    "utility"
+  ],
+  "version": {
+    "archive_sha256": "697f843d58bfb89719cf8dcc09998c052838d7f349a1f8ff5de4c870d955b090",
+    "file_id": 154143,
+    "updated_at": "2022-06-27T07:12:41+00:00"
+  }
+}

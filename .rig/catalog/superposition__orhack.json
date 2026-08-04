@@ -1,0 +1,27 @@
+{
+  "category": null,
+  "category_override": null,
+  "display": "Superposition",
+  "key": "superposition@orhack",
+  "moduleType": "effects/mod/superposition",
+  "params": [
+    {
+      "default": 0,
+      "id": "transposition",
+      "label": "Transposition",
+      "max": 24,
+      "min": -24,
+      "name": "transposition",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "orhack",
+  "tags": [],
+  "version": {
+    "archive_sha256": null,
+    "file_id": null,
+    "updated_at": null
+  }
+}

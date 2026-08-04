@@ -1,0 +1,82 @@
+{
+  "category": "instruments/synth",
+  "category_override": null,
+  "display": "4wavefm",
+  "key": "4wavefm@4wavefm-2",
+  "moduleType": "instruments/synth/4wavefm@4wavefm-2",
+  "params": [
+    {
+      "default": 50,
+      "id": "fw_k1",
+      "label": "Sine",
+      "max": 100,
+      "min": 0,
+      "name": "sine-1",
+      "type": "pct"
+    },
+    {
+      "default": 24,
+      "id": "fw_k2",
+      "label": "Sine",
+      "max": 100,
+      "min": 0,
+      "name": "sine-2",
+      "type": "pct"
+    },
+    {
+      "default": 10,
+      "id": "fw_k3",
+      "label": "Clip Sine",
+      "max": 100,
+      "min": 0,
+      "name": "clip-sine",
+      "type": "pct"
+    },
+    {
+      "default": 10,
+      "id": "fw_k4",
+      "label": "Clip Sine x2",
+      "max": 100,
+      "min": 0,
+      "name": "clip-sine-x2",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "fw_t",
+      "label": "Transpose",
+      "max": 24,
+      "min": -24,
+      "name": "transpose",
+      "type": "pitch"
+    },
+    {
+      "default": 1,
+      "id": "fw_a",
+      "label": "Algos",
+      "max": 6,
+      "min": 1,
+      "name": "algos",
+      "type": "pitch"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "4wavefm-2",
+  "tags": [
+    "blender",
+    "fm",
+    "fm-synth",
+    "fm-synthesizer",
+    "mixer",
+    "synth",
+    "synthesizer",
+    "wave",
+    "waveform"
+  ],
+  "version": {
+    "archive_sha256": "502cafe104b4d374580c7f6e45604425389de96b853dba27f7e52e5e14741f75",
+    "file_id": 138258,
+    "updated_at": "2021-03-31T21:24:54+00:00"
+  }
+}

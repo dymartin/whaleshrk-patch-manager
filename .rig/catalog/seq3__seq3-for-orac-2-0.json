@@ -1,0 +1,28 @@
+{
+  "category": "sequencers",
+  "category_override": null,
+  "display": "Seq3",
+  "key": "seq3@seq3-for-orac-2-0",
+  "moduleType": "sequencers/seq3@seq3-for-orac-2-0",
+  "params": [],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "seq3-for-orac-2-0",
+  "tags": [
+    "critter",
+    "guitari",
+    "module",
+    "orac",
+    "overdub",
+    "presets",
+    "seq3",
+    "sequencer",
+    "slots",
+    "undo"
+  ],
+  "version": {
+    "archive_sha256": "10634b32dd5b8a39f2df3d5498bab157678dc17d94d423bd800e6745bc843f92",
+    "file_id": 140863,
+    "updated_at": "2021-05-24T20:20:46+00:00"
+  }
+}

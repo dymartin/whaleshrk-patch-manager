@@ -1,0 +1,63 @@
+{
+  "category": null,
+  "category_override": null,
+  "display": "cvout Note",
+  "key": "cvout-note@orhack",
+  "moduleType": "utility/cv/out-note",
+  "params": [
+    {
+      "default": 10,
+      "id": "m_volt_range",
+      "label": "Volt Range",
+      "max": 10,
+      "min": 0,
+      "name": "volt-range",
+      "type": "int"
+    },
+    {
+      "default": 60,
+      "id": "m_offset_note",
+      "label": "Note Offset",
+      "max": 127,
+      "min": 0,
+      "name": "note-offset",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "m_ch_note",
+      "label": "Note",
+      "max": 16,
+      "min": 0,
+      "name": "note",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "m_ch_gate",
+      "label": "Gate",
+      "max": 16,
+      "min": 0,
+      "name": "gate",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "m_ch_vel",
+      "label": "Vel",
+      "max": 16,
+      "min": 0,
+      "name": "vel",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "orhack",
+  "tags": [],
+  "version": {
+    "archive_sha256": null,
+    "file_id": null,
+    "updated_at": null
+  }
+}

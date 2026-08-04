@@ -1,0 +1,336 @@
+{
+  "category": "instruments/synth",
+  "category_override": null,
+  "display": "Monocle",
+  "key": "monocle@monocle",
+  "moduleType": "instruments/synth/monocle@monocle",
+  "params": [
+    {
+      "default": 0,
+      "id": "transpose",
+      "label": "Semitone Offset",
+      "max": 24,
+      "min": -36,
+      "name": "semitone-offset",
+      "type": "int"
+    },
+    {
+      "default": 70,
+      "id": "volume",
+      "label": "Volume",
+      "max": 100,
+      "min": 0,
+      "name": "volume",
+      "type": "int"
+    },
+    {
+      "default": 50,
+      "id": "attack",
+      "label": "Attack",
+      "max": 3000,
+      "min": 5,
+      "name": "attack-1",
+      "type": "float"
+    },
+    {
+      "default": 50,
+      "id": "decay",
+      "label": "Decay",
+      "max": 3000,
+      "min": 5,
+      "name": "decay-1",
+      "type": "float"
+    },
+    {
+      "default": 1,
+      "id": "sustain",
+      "label": "sustain",
+      "max": 1,
+      "min": 0,
+      "name": "sustain-1",
+      "type": "float"
+    },
+    {
+      "default": 50,
+      "id": "release",
+      "label": "Release",
+      "max": 3000,
+      "min": 5,
+      "name": "release-1",
+      "type": "float"
+    },
+    {
+      "default": 100,
+      "id": "attack-f",
+      "label": "Attack",
+      "max": 3000,
+      "min": 5,
+      "name": "attack-2",
+      "type": "float"
+    },
+    {
+      "default": 200,
+      "id": "decay-f",
+      "label": "Decay",
+      "max": 3000,
+      "min": 5,
+      "name": "decay-2",
+      "type": "float"
+    },
+    {
+      "default": 0.7,
+      "id": "sustain-f",
+      "label": "sustain",
+      "max": 1,
+      "min": 0,
+      "name": "sustain-2",
+      "type": "float"
+    },
+    {
+      "default": 300,
+      "id": "release-f",
+      "label": "Release",
+      "max": 3000,
+      "min": 5,
+      "name": "release-2",
+      "type": "float"
+    },
+    {
+      "default": 0.5,
+      "id": "envfilt",
+      "label": "Filter Env",
+      "max": 1,
+      "min": 0,
+      "name": "filter-env",
+      "type": "float"
+    },
+    {
+      "default": 8,
+      "id": "filt_cutoff",
+      "label": "Cutoff",
+      "max": 32,
+      "min": 0,
+      "name": "cutoff",
+      "type": "float"
+    },
+    {
+      "default": 2,
+      "id": "filt_q",
+      "label": "Resonance",
+      "max": 5,
+      "min": 1,
+      "name": "resonance",
+      "type": "float"
+    },
+    {
+      "default": 2,
+      "id": "lfospeed",
+      "label": "LFO Speed",
+      "max": 15,
+      "min": 0.1,
+      "name": "lfo-speed",
+      "type": "float"
+    },
+    {
+      "default": 2,
+      "id": "bp_wave-osc1",
+      "label": "Wave",
+      "max": 3,
+      "min": 0,
+      "name": "wave-1",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "osc1_tune",
+      "label": "Fine Tune",
+      "max": 100,
+      "min": -100,
+      "name": "fine-tune-1",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "osc1_lfo",
+      "label": "LFO Depth",
+      "max": 10,
+      "min": -10,
+      "name": "lfo-depth-1",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "osc1_fm",
+      "label": "FM Depth",
+      "max": 10,
+      "min": 0,
+      "name": "fm-depth",
+      "type": "float"
+    },
+    {
+      "default": 2,
+      "id": "bp_wave-osc2",
+      "label": "Wave",
+      "max": 3,
+      "min": 0,
+      "name": "wave-2",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "osc2_coarse",
+      "label": "Coarse Tune",
+      "max": 24,
+      "min": -24,
+      "name": "coarse-tune",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "osc2_tune",
+      "label": "Fine Tune",
+      "max": 100,
+      "min": -100,
+      "name": "fine-tune-2",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "osc2_lfo",
+      "label": "LFO Depth",
+      "max": 10,
+      "min": -10,
+      "name": "lfo-depth-2",
+      "type": "float"
+    },
+    {
+      "default": 1,
+      "id": "osc1_mix",
+      "label": "Osc 1",
+      "max": 1,
+      "min": 0,
+      "name": "osc-1",
+      "type": "float"
+    },
+    {
+      "default": 0.5,
+      "id": "osc2_mix",
+      "label": "Osc 2",
+      "max": 1,
+      "min": 0,
+      "name": "osc-2",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "ring_mix",
+      "label": "Ring Mod",
+      "max": 1,
+      "min": 0,
+      "name": "ring-mod",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "amod_depth",
+      "label": "Amp. LFO",
+      "max": 10,
+      "min": -10,
+      "name": "amp-lfo",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "fmod_depth",
+      "label": "Filt. LFO",
+      "max": 10,
+      "min": -10,
+      "name": "filt-lfo",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "noise",
+      "label": "Noise",
+      "max": 1,
+      "min": 0,
+      "name": "noise",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "ext",
+      "label": "Ext. In",
+      "max": 1,
+      "min": 0,
+      "name": "ext-in",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "lfotype",
+      "label": "LFO Type",
+      "max": 5,
+      "min": 0,
+      "name": "lfo-type",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "pwmspeed",
+      "label": "PWM Speed",
+      "max": 5,
+      "min": 0.1,
+      "name": "pwm-speed",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "pwmdepth",
+      "label": "PWM Depth",
+      "max": 1,
+      "min": 0,
+      "name": "pwm-depth",
+      "type": "float"
+    },
+    {
+      "default": 25,
+      "id": "portamento",
+      "label": "Portamento",
+      "max": 500,
+      "min": 0,
+      "name": "portamento",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "lfosync",
+      "label": "Sync",
+      "max": 2,
+      "min": 0,
+      "name": "sync",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "latch",
+      "label": "Latch",
+      "max": 1,
+      "min": 0,
+      "name": "latch",
+      "type": "bool"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "monocle",
+  "tags": [
+    "synth",
+    "synthesizer"
+  ],
+  "version": {
+    "archive_sha256": "b016adebc3a98ff28d992c927c49968798c39531284992d4a5cf70edc7d89930",
+    "file_id": 146074,
+    "updated_at": "2021-11-06T20:34:17+00:00"
+  }
+}

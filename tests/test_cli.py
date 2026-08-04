@@ -1,8 +1,9 @@
-"""CLI command surface: every command is a stub, and the surface is complete.
+"""CLI command surface: every command is reachable, and the surface is complete.
 
-Bodies are filled in later phases; this only pins the argument/option shape
-the brief specifies, and that every stub fails loudly rather than silently
-doing nothing.
+`catalog update` is implemented (Phase 1); every other command is still a
+stub, filled in by a later phase. This pins the argument/option shape the
+brief specifies, and that every stub fails loudly rather than silently doing
+nothing.
 """
 
 from typer.testing import CliRunner
@@ -37,10 +38,14 @@ def test_lint_not_implemented():
     assert "not implemented" in result.output
 
 
-def test_catalog_update_not_implemented():
-    result = runner.invoke(app, ["catalog", "update", "--dry-run"])
-    assert result.exit_code != 0
-    assert "not implemented" in result.output
+def test_catalog_update_help_documents_the_command():
+    # `catalog update` is implemented (Phase 1) and reaches the network for
+    # its live discovery path, so it is not exercised end-to-end here --
+    # tests/conftest.py blocks every socket for the whole session. Just
+    # confirm the command is wired up and documented.
+    result = runner.invoke(app, ["catalog", "update", "--help"])
+    assert result.exit_code == 0
+    assert "--dry-run" in result.output
 
 
 def test_upgrade_not_implemented():

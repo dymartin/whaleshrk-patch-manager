@@ -1,0 +1,324 @@
+{
+  "category": null,
+  "category_override": null,
+  "display": "Braids +",
+  "key": "braids-plus@orhack",
+  "moduleType": "instruments/synth/braids+",
+  "params": [
+    {
+      "default": 0,
+      "id": "transpose",
+      "label": "Transpose",
+      "max": 24,
+      "min": -24,
+      "name": "transpose",
+      "type": "int"
+    },
+    {
+      "default": 50,
+      "id": "attack",
+      "label": "Attack",
+      "max": 3000,
+      "min": 5,
+      "name": "attack-1",
+      "type": "float"
+    },
+    {
+      "default": 50,
+      "id": "decay",
+      "label": "Decay",
+      "max": 3000,
+      "min": 5,
+      "name": "decay-1",
+      "type": "float"
+    },
+    {
+      "default": 1,
+      "id": "sustain",
+      "label": "sustain",
+      "max": 1,
+      "min": 0,
+      "name": "sustain-1",
+      "type": "float"
+    },
+    {
+      "default": 50,
+      "id": "release",
+      "label": "Release",
+      "max": 3000,
+      "min": 5,
+      "name": "release-1",
+      "type": "float"
+    },
+    {
+      "default": 50,
+      "id": "attack-f",
+      "label": "Attack",
+      "max": 3000,
+      "min": 5,
+      "name": "attack-2",
+      "type": "float"
+    },
+    {
+      "default": 50,
+      "id": "decay-f",
+      "label": "Decay",
+      "max": 3000,
+      "min": 5,
+      "name": "decay-2",
+      "type": "float"
+    },
+    {
+      "default": 1,
+      "id": "sustain-f",
+      "label": "sustain",
+      "max": 1,
+      "min": 0,
+      "name": "sustain-2",
+      "type": "float"
+    },
+    {
+      "default": 50,
+      "id": "release-f",
+      "label": "Release",
+      "max": 3000,
+      "min": 5,
+      "name": "release-2",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "envfilt",
+      "label": "Filter Env",
+      "max": 1,
+      "min": 0,
+      "name": "filter-env",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "envpitch",
+      "label": "Pitch Env",
+      "max": 1,
+      "min": 0,
+      "name": "pitch-env",
+      "type": "float"
+    },
+    {
+      "default": 32,
+      "id": "filt_cutoff",
+      "label": "Cutoff",
+      "max": 64,
+      "min": 0,
+      "name": "cutoff",
+      "type": "float"
+    },
+    {
+      "default": 1,
+      "id": "filt_q",
+      "label": "Resonance",
+      "max": 5,
+      "min": 1,
+      "name": "resonance",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "filttype",
+      "label": "FiltType",
+      "max": 3,
+      "min": 0,
+      "name": "filttype",
+      "type": "int"
+    },
+    {
+      "default": 2,
+      "id": "mod_speed",
+      "label": "Mod Speed",
+      "max": 15,
+      "min": 0.1,
+      "name": "mod-speed",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "vibrato_depth",
+      "label": "Vib. Depth",
+      "max": 10,
+      "min": 0,
+      "name": "vib-depth",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "tremolo_depth",
+      "label": "Trem. Depth",
+      "max": 1,
+      "min": 0,
+      "name": "trem-depth",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "fmod_depth",
+      "label": "Filtmod. Depth",
+      "max": 1,
+      "min": 0,
+      "name": "filtmod-depth",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "noise",
+      "label": "Noise",
+      "max": 100,
+      "min": 0,
+      "name": "noise",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "tune",
+      "label": "Fine Tune",
+      "max": 100,
+      "min": -100,
+      "name": "fine-tune",
+      "type": "int"
+    },
+    {
+      "default": 70,
+      "id": "volume",
+      "label": "Volume",
+      "max": 100,
+      "min": 0,
+      "name": "volume",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "shape",
+      "label": "Shape",
+      "max": 47,
+      "min": 0,
+      "name": "shape",
+      "type": "int"
+    },
+    {
+      "default": 50,
+      "id": "timbre",
+      "label": "Timbre",
+      "max": 100,
+      "min": 0,
+      "name": "timbre",
+      "type": "float"
+    },
+    {
+      "default": 50,
+      "id": "colour",
+      "label": "Colour",
+      "max": 100,
+      "min": 0,
+      "name": "colour",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "lfo_timbre",
+      "label": "LFO Timbre",
+      "max": 1,
+      "min": -1,
+      "name": "lfo-timbre",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "lfo_colour",
+      "label": "LFO Colour",
+      "max": 1,
+      "min": -1,
+      "name": "lfo-colour",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "env_timbre",
+      "label": "Env Timbre",
+      "max": 1,
+      "min": -1,
+      "name": "env-timbre",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "env_colour",
+      "label": "Env Colour",
+      "max": 1,
+      "min": -1,
+      "name": "env-colour",
+      "type": "float"
+    },
+    {
+      "default": 2,
+      "id": "lfospeed-colour",
+      "label": "LFO Speed",
+      "max": 15,
+      "min": 0.1,
+      "name": "lfo-speed-1",
+      "type": "float"
+    },
+    {
+      "default": 2,
+      "id": "lfospeed-timbre",
+      "label": "LFO Speed",
+      "max": 15,
+      "min": 0.1,
+      "name": "lfo-speed-2",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "lfotype-colour",
+      "label": "LFO Type",
+      "max": 5,
+      "min": 0,
+      "name": "lfo-type-1",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "lfotype-timbre",
+      "label": "LFO Type",
+      "max": 5,
+      "min": 0,
+      "name": "lfo-type-2",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "lfosync-1",
+      "label": "LFO Sync",
+      "max": 2,
+      "min": 0,
+      "name": "lfo-sync-1",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "lfosync-2",
+      "label": "LFO Sync",
+      "max": 2,
+      "min": 0,
+      "name": "lfo-sync-2",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "orhack",
+  "tags": [],
+  "version": {
+    "archive_sha256": null,
+    "file_id": null,
+    "updated_at": null
+  }
+}

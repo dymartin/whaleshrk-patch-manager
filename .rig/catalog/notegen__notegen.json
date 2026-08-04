@@ -1,0 +1,239 @@
+{
+  "category": "sequencers",
+  "category_override": null,
+  "display": "NoteGen",
+  "key": "notegen@notegen",
+  "moduleType": "sequencers/notegen@notegen",
+  "params": [
+    {
+      "default": 0,
+      "id": "ng_trigger",
+      "label": "Midi Trigger",
+      "max": 1,
+      "min": 0,
+      "name": "midi-trigger",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "ng_beatdiv",
+      "label": "MidiClk Div",
+      "max": 24,
+      "min": 0,
+      "name": "midiclk-div",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "ng_speed",
+      "label": "Speed",
+      "max": 1000,
+      "min": 0,
+      "name": "speed",
+      "type": "time"
+    },
+    {
+      "default": 50,
+      "id": "ng_prob",
+      "label": "Probability",
+      "max": 100,
+      "min": 0,
+      "name": "probability",
+      "type": "float"
+    },
+    {
+      "default": 1,
+      "id": "ng_poly",
+      "label": "Poly Trigger",
+      "max": 8,
+      "min": 1,
+      "name": "poly-trigger",
+      "type": "int"
+    },
+    {
+      "default": -1,
+      "id": "ng_octmin",
+      "label": "Oct Min",
+      "max": 3,
+      "min": -3,
+      "name": "oct-min",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "ng_octmax",
+      "label": "Oct Max",
+      "max": 3,
+      "min": -3,
+      "name": "oct-max",
+      "type": "int"
+    },
+    {
+      "default": 72,
+      "id": "ng_velmin",
+      "label": "Velocity Min",
+      "max": 127,
+      "min": 1,
+      "name": "velocity-min",
+      "type": "int"
+    },
+    {
+      "default": 127,
+      "id": "ng_velmax",
+      "label": "Velocity Max",
+      "max": 127,
+      "min": 1,
+      "name": "velocity-max",
+      "type": "int"
+    },
+    {
+      "default": 200,
+      "id": "ng_lenmin",
+      "label": "Len Min",
+      "max": 3000,
+      "min": 1,
+      "name": "len-min-1",
+      "type": "float"
+    },
+    {
+      "default": 1000,
+      "id": "ng_lenmax",
+      "label": "Len Min",
+      "max": 3000,
+      "min": 1,
+      "name": "len-min-2",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "ng_midithru",
+      "label": "Midi Thru",
+      "max": 1,
+      "min": 0,
+      "name": "midi-thru",
+      "type": "int"
+    },
+    {
+      "default": 50,
+      "id": "ng_note0",
+      "label": "C",
+      "max": 100,
+      "min": 0,
+      "name": "c",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "ng_note1",
+      "label": "Db",
+      "max": 100,
+      "min": 0,
+      "name": "db",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "ng_note2",
+      "label": "D",
+      "max": 100,
+      "min": 0,
+      "name": "d",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "ng_note3",
+      "label": "Eb",
+      "max": 100,
+      "min": 0,
+      "name": "eb",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "ng_note4",
+      "label": "E",
+      "max": 100,
+      "min": 0,
+      "name": "e",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "ng_note5",
+      "label": "F",
+      "max": 100,
+      "min": 0,
+      "name": "f",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "ng_note6",
+      "label": "Gb",
+      "max": 100,
+      "min": 0,
+      "name": "gb",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "ng_note7",
+      "label": "G",
+      "max": 100,
+      "min": 0,
+      "name": "g",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "ng_note8",
+      "label": "Ab",
+      "max": 100,
+      "min": 0,
+      "name": "ab",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "ng_note9",
+      "label": "A",
+      "max": 100,
+      "min": 0,
+      "name": "a",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "ng_note10",
+      "label": "Bb",
+      "max": 100,
+      "min": 0,
+      "name": "bb",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "ng_note11",
+      "label": "B",
+      "max": 100,
+      "min": 0,
+      "name": "b",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "notegen",
+  "tags": [
+    "generative",
+    "other",
+    "sequencer",
+    "utility"
+  ],
+  "version": {
+    "archive_sha256": "afd25f6c50f10f3f738f0749bc0e54691e4a0d9c49d084cd24a60391176eda7c",
+    "file_id": 146092,
+    "updated_at": "2021-11-06T22:04:28+00:00"
+  }
+}

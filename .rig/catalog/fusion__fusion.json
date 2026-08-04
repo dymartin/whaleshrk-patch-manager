@@ -1,0 +1,395 @@
+{
+  "category": "sequencers",
+  "category_override": null,
+  "display": "Fusion",
+  "key": "fusion@fusion",
+  "moduleType": "sequencers/fusion@fusion",
+  "params": [
+    {
+      "default": 0,
+      "id": "semitone",
+      "label": "Frequencies",
+      "max": 12,
+      "min": -12,
+      "name": "frequencies",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "harmonics",
+      "label": "Harmonics",
+      "max": 50,
+      "min": -50,
+      "name": "harmonics-1",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "timbre",
+      "label": "Timbres",
+      "max": 50,
+      "min": -50,
+      "name": "timbres",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "morph",
+      "label": "Morphs",
+      "max": 50,
+      "min": -50,
+      "name": "morphs",
+      "type": "float"
+    },
+    {
+      "default": 50,
+      "id": "decay",
+      "label": "Mod. decay",
+      "max": 100,
+      "min": 0,
+      "name": "mod-decay",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "mod_timbre",
+      "label": "Timbres mod.",
+      "max": 1,
+      "min": -1,
+      "name": "timbres-mod",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "mod_fm",
+      "label": "FM",
+      "max": 1,
+      "min": -1,
+      "name": "fm",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "mod_morph",
+      "label": "Morphs mod",
+      "max": 1,
+      "min": -1,
+      "name": "morphs-mod",
+      "type": "float"
+    },
+    {
+      "default": 18,
+      "id": "kick1_semitone",
+      "label": "Frequency",
+      "max": 48,
+      "min": -48,
+      "name": "frequency-1",
+      "type": "int"
+    },
+    {
+      "default": 50,
+      "id": "kick1_harmonics",
+      "label": "Harmonics",
+      "max": 100,
+      "min": 0,
+      "name": "harmonics-2",
+      "type": "float"
+    },
+    {
+      "default": 75,
+      "id": "kick1_timbre",
+      "label": "Timbre",
+      "max": 100,
+      "min": 0,
+      "name": "timbre-1",
+      "type": "float"
+    },
+    {
+      "default": 50,
+      "id": "kick1_morph",
+      "label": "Morph",
+      "max": 100,
+      "min": 0,
+      "name": "morph-1",
+      "type": "float"
+    },
+    {
+      "default": 30,
+      "id": "kick2_semitone",
+      "label": "Frequency",
+      "max": 48,
+      "min": -48,
+      "name": "frequency-2",
+      "type": "int"
+    },
+    {
+      "default": 50,
+      "id": "kick2_harmonics",
+      "label": "Harmonics",
+      "max": 100,
+      "min": 0,
+      "name": "harmonics-3",
+      "type": "float"
+    },
+    {
+      "default": 50,
+      "id": "kick2_timbre",
+      "label": "Timbre",
+      "max": 100,
+      "min": 0,
+      "name": "timbre-2",
+      "type": "float"
+    },
+    {
+      "default": 75,
+      "id": "kick2_morph",
+      "label": "Morph",
+      "max": 100,
+      "min": 0,
+      "name": "morph-2",
+      "type": "float"
+    },
+    {
+      "default": 48,
+      "id": "snare1_semitone",
+      "label": "Frequency",
+      "max": 48,
+      "min": -48,
+      "name": "frequency-3",
+      "type": "int"
+    },
+    {
+      "default": 50,
+      "id": "snare1_harmonics",
+      "label": "Harmonics",
+      "max": 100,
+      "min": 0,
+      "name": "harmonics-4",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "snare1_timbre",
+      "label": "Timbre",
+      "max": 100,
+      "min": 0,
+      "name": "timbre-3",
+      "type": "float"
+    },
+    {
+      "default": 25,
+      "id": "snare1_morph",
+      "label": "Morph",
+      "max": 100,
+      "min": 0,
+      "name": "morph-3",
+      "type": "float"
+    },
+    {
+      "default": 48,
+      "id": "snare2_semitone",
+      "label": "Frequency",
+      "max": 48,
+      "min": -48,
+      "name": "frequency-4",
+      "type": "int"
+    },
+    {
+      "default": 75,
+      "id": "snare2_harmonics",
+      "label": "Harmonics",
+      "max": 100,
+      "min": 0,
+      "name": "harmonics-5",
+      "type": "float"
+    },
+    {
+      "default": 50,
+      "id": "snare2_timbre",
+      "label": "Timbre",
+      "max": 100,
+      "min": 0,
+      "name": "timbre-4",
+      "type": "float"
+    },
+    {
+      "default": 50,
+      "id": "snare2_morph",
+      "label": "Morph",
+      "max": 100,
+      "min": 0,
+      "name": "morph-4",
+      "type": "float"
+    },
+    {
+      "default": 24,
+      "id": "hihat1_semitone",
+      "label": "Frequency",
+      "max": 48,
+      "min": -48,
+      "name": "frequency-5",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "hihat1_harmonics",
+      "label": "Harmonics",
+      "max": 100,
+      "min": 0,
+      "name": "harmonics-6",
+      "type": "float"
+    },
+    {
+      "default": 100,
+      "id": "hihat1_timbre",
+      "label": "Timbre",
+      "max": 100,
+      "min": 0,
+      "name": "timbre-5",
+      "type": "float"
+    },
+    {
+      "default": 25,
+      "id": "hihat1_morph",
+      "label": "Morph",
+      "max": 100,
+      "min": 0,
+      "name": "morph-5",
+      "type": "float"
+    },
+    {
+      "default": 24,
+      "id": "hihat2_semitone",
+      "label": "Frequency",
+      "max": 48,
+      "min": -48,
+      "name": "frequency-6",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "hihat2_harmonics",
+      "label": "Harmonics",
+      "max": 100,
+      "min": 0,
+      "name": "harmonics-7",
+      "type": "float"
+    },
+    {
+      "default": 100,
+      "id": "hihat2_timbre",
+      "label": "Timbre",
+      "max": 100,
+      "min": 0,
+      "name": "timbre-6",
+      "type": "float"
+    },
+    {
+      "default": 75,
+      "id": "hihat2_morph",
+      "label": "Morph",
+      "max": 100,
+      "min": 0,
+      "name": "morph-6",
+      "type": "float"
+    },
+    {
+      "default": 100,
+      "id": "mixkickaux",
+      "label": "Kick AUX",
+      "max": 100,
+      "min": 0,
+      "name": "kick-aux",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "mixkickout",
+      "label": "Kick OUT",
+      "max": 100,
+      "min": 0,
+      "name": "kick-out",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "mixsnareaux",
+      "label": "Snare AUX",
+      "max": 100,
+      "min": 0,
+      "name": "snare-aux",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "mixsnareout",
+      "label": "Snare OUT",
+      "max": 100,
+      "min": 0,
+      "name": "snare-out",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "mixhihataux",
+      "label": "Hi-hat AUX",
+      "max": 100,
+      "min": 0,
+      "name": "hi-hat-aux",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "mixhihatout",
+      "label": "Hi-hat OUT",
+      "max": 100,
+      "min": 0,
+      "name": "hi-hat-out",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "mixout",
+      "label": "Mix OUT",
+      "max": 100,
+      "min": 0,
+      "name": "mix-out",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "mixaux",
+      "label": "Mix AUX",
+      "max": 100,
+      "min": 0,
+      "name": "mix-aux",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "lpg_colour",
+      "label": "LPG Colour",
+      "max": 100,
+      "min": 0,
+      "name": "lpg-colour",
+      "type": "float"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "fusion",
+  "tags": [
+    "beatbox",
+    "drum-machine",
+    "drum-synthesizer",
+    "drums",
+    "mutable-instruments",
+    "sequencer",
+    "synthesizer"
+  ],
+  "version": {
+    "archive_sha256": "98ab8e66154abcd0957d1fc566bcf2918dfa4a66c0cd7f7d7f4e231b4c230e53",
+    "file_id": 117453,
+    "updated_at": "2020-01-09T23:22:54+00:00"
+  }
+}

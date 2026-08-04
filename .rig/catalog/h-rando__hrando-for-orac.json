@@ -1,0 +1,68 @@
+{
+  "category": "instruments/sampler",
+  "category_override": null,
+  "display": "h Rando",
+  "key": "h-rando@hrando-for-orac",
+  "moduleType": "instruments/sampler/h-rando@hrando-for-orac",
+  "params": [
+    {
+      "default": 100,
+      "id": "r_speed",
+      "label": "Samp Speed",
+      "max": 200,
+      "min": 50,
+      "name": "samp-speed",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "r_decay",
+      "label": "Decay",
+      "max": 100,
+      "min": 0,
+      "name": "decay",
+      "type": "pct"
+    },
+    {
+      "default": 2100,
+      "id": "r_cutoff",
+      "label": "Cutoff",
+      "max": 18100,
+      "min": 100,
+      "name": "cutoff",
+      "type": "freq"
+    },
+    {
+      "default": 50,
+      "id": "r_wet",
+      "label": "Dry / Wet",
+      "max": 100,
+      "min": 0,
+      "name": "dry-wet",
+      "type": "pct"
+    },
+    {
+      "default": 3,
+      "id": "r_dir",
+      "label": "Direction",
+      "max": 3,
+      "min": 0,
+      "name": "direction",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "hrando-for-orac",
+  "tags": [
+    "orac",
+    "organelle",
+    "random",
+    "sampler"
+  ],
+  "version": {
+    "archive_sha256": "ed7ec55cbac860d9edcb5a0972ec02f8add547b369c137a707a3919b6a582e9b",
+    "file_id": 122998,
+    "updated_at": "2023-06-21T20:16:21+00:00"
+  }
+}

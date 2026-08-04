@@ -1,0 +1,45 @@
+{
+  "category": null,
+  "category_override": null,
+  "display": "T3D OSC",
+  "key": "t3d-osc@orhack",
+  "moduleType": "utility/audio/t3dosc",
+  "params": [
+    {
+      "default": 3123,
+      "id": "udpport",
+      "label": "Osc Port",
+      "max": 3130,
+      "min": 3123,
+      "name": "osc-port",
+      "type": "int"
+    },
+    {
+      "default": 48,
+      "id": "pb_range",
+      "label": "Pitchbend",
+      "max": 48,
+      "min": 0,
+      "name": "pitchbend",
+      "type": "pitch"
+    },
+    {
+      "default": 1,
+      "id": "vel_scale",
+      "label": "Vel Scale.",
+      "max": 10,
+      "min": 0,
+      "name": "vel-scale",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "orhack",
+  "tags": [],
+  "version": {
+    "archive_sha256": null,
+    "file_id": null,
+    "updated_at": null
+  }
+}

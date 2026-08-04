@@ -1,0 +1,270 @@
+{
+  "category": null,
+  "category_override": null,
+  "display": "Overflow",
+  "key": "overflow@orhack",
+  "moduleType": "sequencers/overflow",
+  "params": [
+    {
+      "default": 1,
+      "id": "note-select-a",
+      "label": "Note",
+      "max": 8,
+      "min": 1,
+      "name": "note-1",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "metric-a",
+      "label": "Metric",
+      "max": 9,
+      "min": 0,
+      "name": "metric-1",
+      "type": "int"
+    },
+    {
+      "default": 8,
+      "id": "looplength-a",
+      "label": "Loop Length",
+      "max": 16,
+      "min": 1,
+      "name": "loop-length-1",
+      "type": "time"
+    },
+    {
+      "default": 1,
+      "id": "notelength-a",
+      "label": "Note Length",
+      "max": 16,
+      "min": 1,
+      "name": "note-length-1",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "note-select-b",
+      "label": "Note",
+      "max": 8,
+      "min": 1,
+      "name": "note-2",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "metric-b",
+      "label": "Metric",
+      "max": 9,
+      "min": 0,
+      "name": "metric-2",
+      "type": "int"
+    },
+    {
+      "default": 8,
+      "id": "looplength-b",
+      "label": "Loop Length",
+      "max": 16,
+      "min": 1,
+      "name": "loop-length-2",
+      "type": "time"
+    },
+    {
+      "default": 1,
+      "id": "notelength-b",
+      "label": "Note Length",
+      "max": 16,
+      "min": 1,
+      "name": "note-length-2",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "note-select-c",
+      "label": "Note",
+      "max": 8,
+      "min": 1,
+      "name": "note-3",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "metric-c",
+      "label": "Metric",
+      "max": 9,
+      "min": 0,
+      "name": "metric-3",
+      "type": "int"
+    },
+    {
+      "default": 8,
+      "id": "looplength-c",
+      "label": "Loop Length",
+      "max": 16,
+      "min": 1,
+      "name": "loop-length-3",
+      "type": "time"
+    },
+    {
+      "default": 1,
+      "id": "notelength-c",
+      "label": "Note Length",
+      "max": 16,
+      "min": 1,
+      "name": "note-length-3",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "note-select-d",
+      "label": "Note",
+      "max": 8,
+      "min": 1,
+      "name": "note-4",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "metric-d",
+      "label": "Metric",
+      "max": 9,
+      "min": 0,
+      "name": "metric-4",
+      "type": "int"
+    },
+    {
+      "default": 8,
+      "id": "looplength-d",
+      "label": "Loop Length",
+      "max": 16,
+      "min": 1,
+      "name": "loop-length-4",
+      "type": "time"
+    },
+    {
+      "default": 1,
+      "id": "notelength-d",
+      "label": "Note Length",
+      "max": 16,
+      "min": 1,
+      "name": "note-length-4",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "note-select-e",
+      "label": "Note",
+      "max": 8,
+      "min": 1,
+      "name": "note-5",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "metric-e",
+      "label": "Metric",
+      "max": 9,
+      "min": 0,
+      "name": "metric-5",
+      "type": "int"
+    },
+    {
+      "default": 8,
+      "id": "looplength-e",
+      "label": "Loop Length",
+      "max": 16,
+      "min": 1,
+      "name": "loop-length-5",
+      "type": "time"
+    },
+    {
+      "default": 1,
+      "id": "notelength-e",
+      "label": "Note Length",
+      "max": 16,
+      "min": 1,
+      "name": "note-length-5",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "note-select-f",
+      "label": "Note",
+      "max": 8,
+      "min": 1,
+      "name": "note-6",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "metric-f",
+      "label": "Metric",
+      "max": 9,
+      "min": 0,
+      "name": "metric-6",
+      "type": "int"
+    },
+    {
+      "default": 8,
+      "id": "looplength-f",
+      "label": "Loop Length",
+      "max": 16,
+      "min": 1,
+      "name": "loop-length-6",
+      "type": "time"
+    },
+    {
+      "default": 1,
+      "id": "notelength-f",
+      "label": "Note Length",
+      "max": 16,
+      "min": 1,
+      "name": "note-length-6",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "note-select-g",
+      "label": "Note",
+      "max": 8,
+      "min": 1,
+      "name": "note-7",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "metric-g",
+      "label": "Metric",
+      "max": 9,
+      "min": 0,
+      "name": "metric-7",
+      "type": "int"
+    },
+    {
+      "default": 8,
+      "id": "looplength-g",
+      "label": "Loop Length",
+      "max": 16,
+      "min": 1,
+      "name": "loop-length-7",
+      "type": "time"
+    },
+    {
+      "default": 1,
+      "id": "notelength-g",
+      "label": "Note Length",
+      "max": 16,
+      "min": 1,
+      "name": "note-length-7",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "orhack",
+  "tags": [],
+  "version": {
+    "archive_sha256": null,
+    "file_id": null,
+    "updated_at": null
+  }
+}

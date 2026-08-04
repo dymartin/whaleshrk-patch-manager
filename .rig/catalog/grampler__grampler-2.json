@@ -1,0 +1,181 @@
+{
+  "category": "instruments/sampler",
+  "category_override": null,
+  "display": "Grampler",
+  "key": "grampler@grampler-2",
+  "moduleType": "instruments/sampler/grampler@grampler-2",
+  "params": [
+    {
+      "default": 50,
+      "id": "g_speed",
+      "label": "Speed",
+      "max": 100,
+      "min": 0,
+      "name": "speed",
+      "type": "pct"
+    },
+    {
+      "default": 150,
+      "id": "g_length",
+      "label": "Length",
+      "max": 500,
+      "min": 1,
+      "name": "length",
+      "type": "time"
+    },
+    {
+      "default": 66,
+      "id": "g_density",
+      "label": "Density",
+      "max": 100,
+      "min": 0,
+      "name": "density",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "g_width",
+      "label": "Width",
+      "max": 100,
+      "min": 0,
+      "name": "width",
+      "type": "pct"
+    },
+    {
+      "default": 5,
+      "id": "g_startAt",
+      "label": "Start at",
+      "max": 100,
+      "min": 0,
+      "name": "start-at",
+      "type": "pct"
+    },
+    {
+      "default": 95,
+      "id": "g_endAt",
+      "label": "End at",
+      "max": 100,
+      "min": 0,
+      "name": "end-at",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "g_attack",
+      "label": "Attack",
+      "max": 1000,
+      "min": 0,
+      "name": "attack",
+      "type": "time"
+    },
+    {
+      "default": 50,
+      "id": "g_release",
+      "label": "Release",
+      "max": 1000,
+      "min": 0,
+      "name": "release",
+      "type": "time"
+    },
+    {
+      "default": 0,
+      "id": "g_spread",
+      "label": "Spread",
+      "max": 100,
+      "min": 0,
+      "name": "spread",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "g_window",
+      "label": "Window",
+      "max": 2,
+      "min": 0,
+      "name": "window",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "g_latch",
+      "label": "Latch",
+      "max": 1,
+      "min": 0,
+      "name": "latch",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "g_reverse",
+      "label": "Reverse",
+      "max": 1,
+      "min": 0,
+      "name": "reverse",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "g_sample_offset",
+      "label": "Sample offset",
+      "max": 0,
+      "min": 0,
+      "name": "sample-offset",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "s_kit",
+      "label": "Kit",
+      "max": 12,
+      "min": 1,
+      "name": "kit",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "s_slot1",
+      "label": "Slot",
+      "max": 24,
+      "min": 1,
+      "name": "slot",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "g_freeze",
+      "label": "Freeze",
+      "max": 1,
+      "min": 0,
+      "name": "freeze",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "grampler-2",
+  "tags": [
+    "density",
+    "experimental",
+    "grain",
+    "granular",
+    "harvest",
+    "pitch",
+    "polyphonic",
+    "record",
+    "recorder",
+    "reverse",
+    "sampler",
+    "slice",
+    "speed",
+    "synth",
+    "synthesis",
+    "synthesizer",
+    "texture",
+    "wavetable"
+  ],
+  "version": {
+    "archive_sha256": "1569172c6b2feadc90376c75834d987f0d1c8808657229814f187beae90379ad",
+    "file_id": 158418,
+    "updated_at": "2022-10-20T09:39:59+00:00"
+  }
+}

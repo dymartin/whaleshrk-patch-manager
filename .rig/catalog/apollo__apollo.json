@@ -1,0 +1,220 @@
+{
+  "category": "instruments/synth",
+  "category_override": null,
+  "display": "Apollo",
+  "key": "apollo@apollo",
+  "moduleType": "instruments/synth/apollo@apollo",
+  "params": [
+    {
+      "default": 0,
+      "id": "transpose",
+      "label": "Semitone Offset",
+      "max": 24,
+      "min": -24,
+      "name": "semitone-offset",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "waveselect",
+      "label": "Wavetable",
+      "max": 79,
+      "min": 0,
+      "name": "wavetable",
+      "type": "int"
+    },
+    {
+      "default": 50,
+      "id": "attack",
+      "label": "Attack",
+      "max": 3000,
+      "min": 5,
+      "name": "attack-1",
+      "type": "float"
+    },
+    {
+      "default": 50,
+      "id": "decay",
+      "label": "Decay",
+      "max": 3000,
+      "min": 5,
+      "name": "decay-1",
+      "type": "float"
+    },
+    {
+      "default": 1,
+      "id": "sustain",
+      "label": "sustain",
+      "max": 1,
+      "min": 0,
+      "name": "sustain-1",
+      "type": "float"
+    },
+    {
+      "default": 50,
+      "id": "release",
+      "label": "Release",
+      "max": 3000,
+      "min": 5,
+      "name": "release-1",
+      "type": "float"
+    },
+    {
+      "default": 50,
+      "id": "attack-f",
+      "label": "Attack",
+      "max": 3000,
+      "min": 5,
+      "name": "attack-2",
+      "type": "float"
+    },
+    {
+      "default": 50,
+      "id": "decay-f",
+      "label": "Decay",
+      "max": 3000,
+      "min": 5,
+      "name": "decay-2",
+      "type": "float"
+    },
+    {
+      "default": 1,
+      "id": "sustain-f",
+      "label": "sustain",
+      "max": 1,
+      "min": 0,
+      "name": "sustain-2",
+      "type": "float"
+    },
+    {
+      "default": 50,
+      "id": "release-f",
+      "label": "Release",
+      "max": 3000,
+      "min": 5,
+      "name": "release-2",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "envfilt",
+      "label": "Filter Env",
+      "max": 1,
+      "min": 0,
+      "name": "filter-env",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "envpitch",
+      "label": "Pitch Env",
+      "max": 1,
+      "min": 0,
+      "name": "pitch-env",
+      "type": "float"
+    },
+    {
+      "default": 8,
+      "id": "filt_cutoff",
+      "label": "Cutoff",
+      "max": 32,
+      "min": 0,
+      "name": "cutoff",
+      "type": "float"
+    },
+    {
+      "default": 2,
+      "id": "filt_q",
+      "label": "Resonance",
+      "max": 5,
+      "min": 1,
+      "name": "resonance",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "filttype",
+      "label": "FiltType",
+      "max": 3,
+      "min": 0,
+      "name": "filttype",
+      "type": "int"
+    },
+    {
+      "default": 2,
+      "id": "mod_speed",
+      "label": "Mod Speed",
+      "max": 15,
+      "min": 0.1,
+      "name": "mod-speed",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "vibrato_depth",
+      "label": "Vib. Depth",
+      "max": 10,
+      "min": 0,
+      "name": "vib-depth",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "tremolo_depth",
+      "label": "Trem. Depth",
+      "max": 1,
+      "min": 0,
+      "name": "trem-depth",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "fmod_depth",
+      "label": "Filtmod. Depth",
+      "max": 1,
+      "min": 0,
+      "name": "filtmod-depth",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "noise",
+      "label": "Noise",
+      "max": 100,
+      "min": 0,
+      "name": "noise",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "tune",
+      "label": "Fine Tune",
+      "max": 100,
+      "min": -100,
+      "name": "fine-tune",
+      "type": "int"
+    },
+    {
+      "default": 70,
+      "id": "volume",
+      "label": "Volume",
+      "max": 100,
+      "min": 0,
+      "name": "volume",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "apollo",
+  "tags": [
+    "synth",
+    "synthesizer",
+    "wavetable"
+  ],
+  "version": {
+    "archive_sha256": "3506a1be3d2874670c29ae9d46791a24c83f9f4af67b3f30f555275a1706827e",
+    "file_id": 146089,
+    "updated_at": "2021-11-06T20:48:33+00:00"
+  }
+}

@@ -29,12 +29,17 @@ list calls give `updated_at` for every candidate; detail-fetch only what changed
 
 Reject, do not catalogue.
 
+The conditions below are mutually exclusive buckets, and the order the gate
+applies them in is load-bearing — see `../docs/catalog.md` "Reject ordering"
+for the derived sequence, the evidence for it, and which real candidates only
+land in their measured bucket because of it.
+
 **Hard reject:**
 
 | Condition | Note |
 |---|---|
 | Archive lacks `<dir>/module.json` **and** `<dir>/module.pd` | Catches mis-tagged plain Organelle patches — 14 of 145 |
-| `main.pd` at the **package root** | Rack redistribution. All three measured ship `orac/main.pd`; neither module pack ships one. A `main.pd` deeper inside a module directory: **warn**, do not reject |
+| `main.pd` whose directory is neither a module directory nor nested inside one | Rack redistribution. All three measured ship `orac/main.pd`; neither module pack ships one. A `main.pd` in, or nested inside, a module's own directory: **warn**, do not reject — see `../docs/catalog.md` "Reject ordering" for the precise containment test and why "package root" alone under-specifies it |
 | `module.json` does not parse | Real modules ship invalid JSON — at least one has an unquoted property name |
 | Any bundled external fails the ABI check | Table below |
 | Archive traversal, absolute paths, symlinks, case-colliding entries, expanded-size or file-count over configured limits | |
@@ -72,10 +77,16 @@ Scan every `.pd` file in the archive for `read`/`write` messages whose argument
 path contains `presets`. Resolve `$0`/`$1`-style substitutions **textually**. A
 pattern that cannot be resolved counts as unmodelled.
 
-Any pattern that is not one of the five modelled built-in patterns rejects the
-module. The five are `mod-sources/morpher` and `sequencers/{overflow, overdrum,
-polystep, clips}` — full pattern inventory in `../docs/platform/state.md`. A
-module with no such message is stateless and passes.
+Any pattern that does not resolve rejects the module — see
+`../docs/catalog.md` "Detecting preset sidecars" for exactly what "resolved"
+means: a message shaped like `$1/presets/$2/` plus only further `$N` tokens
+and literal filename characters, which is the shape of all five modelled
+built-ins (`mod-sources/morpher` and `sequencers/{overflow, overdrum,
+polystep, clips}` — full pattern inventory in `../docs/platform/state.md`),
+not a whitelist of their literal filenames. A real community module pack
+(`sequencers-bpm`) proves the distinction matters: its members use the same
+shape with novel suffixes and still resolve. A module with no such message is
+stateless and passes.
 
 Deliberately conservative: dynamic path construction that cannot be resolved
 rejects rather than warns. The compiler can only produce a deterministic sidecar
@@ -105,7 +116,11 @@ Two slug rules, both found by measurement:
 ## Parameter derivation
 
 `module.json` parameter tuples are `["<type>", "<id>", "<label>", min, max,
-default]`. Types: `float int bool pct freq time pitch pan`.
+default]` for every type except `bool`, which omits min/max (implicit 0/1):
+`["bool", "<id>", "<label>", default]`. Types: `float int bool pct freq time
+pitch pan`. See `../docs/catalog.md` "Parameter names" for the measured
+exceptions (a spurious extra element on one real `bool`, and a module with no
+`parameters` key at all).
 
 Parameter name = `slug(label)`, with an index suffix following **declaration
 order** where a module repeats a label (`amount-1` … `amount-16`).
@@ -124,9 +139,15 @@ as a reviewable catalog diff, never as silent drift (#13).
 
 ## Category mapping
 
-Community modules install to `<card>/media/orhack/user-modules/<category>/<name>/`
-and **that path is the `moduleType`**. Archives carry no category, so ingest
-assigns it from the upload's Patchstorage category:
+Community modules install to `<card>/media/orhack/user-modules/<category>/<name>/`.
+`userModuleDir` is a search-path prefix, not part of the stored value, so the
+**stored `moduleType` is `<category>/<name>`**, in the same namespace a
+built-in's own relative path lives in — see `../docs/catalog.md` "Install
+layout and category" for why `<name>` must be the catalog key, not the
+archive's own directory name (6 measured community modules reuse a built-in's
+directory name verbatim, which collides on a raw-dirname install path every
+time). Archives carry no category, so ingest assigns it from the upload's
+Patchstorage category:
 
 | Patchstorage | ORHACK folder |
 |---|---|

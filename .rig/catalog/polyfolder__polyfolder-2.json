@@ -1,0 +1,121 @@
+{
+  "category": "instruments/synth",
+  "category_override": null,
+  "display": "Polyfolder",
+  "key": "polyfolder@polyfolder-2",
+  "moduleType": "instruments/synth/polyfolder@polyfolder-2",
+  "params": [
+    {
+      "default": 0,
+      "id": "folder_offset",
+      "label": "Semitone Offset",
+      "max": 24,
+      "min": -24,
+      "name": "semitone-offset",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "folder_type",
+      "label": "Type",
+      "max": 3,
+      "min": 0,
+      "name": "type",
+      "type": "int"
+    },
+    {
+      "default": 50,
+      "id": "folder_vol",
+      "label": "Volume",
+      "max": 100,
+      "min": 0,
+      "name": "volume",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "folder_attack",
+      "label": "Attack",
+      "max": 100,
+      "min": 0,
+      "name": "attack",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "folder_decay",
+      "label": "Decay",
+      "max": 100,
+      "min": 0,
+      "name": "decay",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "folder_sustain",
+      "label": "Sustain",
+      "max": 100,
+      "min": 0,
+      "name": "sustain",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "folder_folding",
+      "label": "Folding",
+      "max": 100,
+      "min": 0,
+      "name": "folding",
+      "type": "pct"
+    },
+    {
+      "default": 1,
+      "id": "folder_vrate",
+      "label": "Vibr Rate",
+      "max": 20,
+      "min": 0.01,
+      "name": "vibr-rate",
+      "type": "freq"
+    },
+    {
+      "default": 0,
+      "id": "folder_vdepth",
+      "label": "Vibr Depth",
+      "max": 20,
+      "min": 0,
+      "name": "vibr-depth",
+      "type": "pct"
+    },
+    {
+      "default": 1,
+      "id": "folder_mrate",
+      "label": "Mod Rate",
+      "max": 10,
+      "min": 0.01,
+      "name": "mod-rate",
+      "type": "freq"
+    },
+    {
+      "default": 0,
+      "id": "folder_mdepth",
+      "label": "Mod Depth",
+      "max": 100,
+      "min": 0,
+      "name": "mod-depth",
+      "type": "pct"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "polyfolder-2",
+  "tags": [
+    "synth",
+    "synthesizer",
+    "wavefolding"
+  ],
+  "version": {
+    "archive_sha256": "615152ecb97b8676573324b50ebea40fe6fdad0bdaee8236d87b34b4f5c03e8b",
+    "file_id": 146086,
+    "updated_at": "2021-11-06T22:03:39+00:00"
+  }
+}

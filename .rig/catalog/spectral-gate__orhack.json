@@ -1,0 +1,72 @@
+{
+  "category": null,
+  "category_override": null,
+  "display": "Spectral Gate",
+  "key": "spectral-gate@orhack",
+  "moduleType": "effects/mod/spectralgate",
+  "params": [
+    {
+      "default": 50,
+      "id": "sg_thresh",
+      "label": "Threshold",
+      "max": 100,
+      "min": 0,
+      "name": "threshold",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "sg_attack",
+      "label": "Attack",
+      "max": 100,
+      "min": 0,
+      "name": "attack",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "sg_decay",
+      "label": "Decay",
+      "max": 100,
+      "min": 0,
+      "name": "decay",
+      "type": "pct"
+    },
+    {
+      "default": 1,
+      "id": "gatemode",
+      "label": "Gate",
+      "max": 1,
+      "min": 0,
+      "name": "gate",
+      "type": "bool"
+    },
+    {
+      "default": 50,
+      "id": "gain",
+      "label": "Audio Gain",
+      "max": 100,
+      "min": 0,
+      "name": "audio-gain",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "thru_gain",
+      "label": "Audio Thru Gain",
+      "max": 100,
+      "min": 0,
+      "name": "audio-thru-gain",
+      "type": "pct"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "orhack",
+  "tags": [],
+  "version": {
+    "archive_sha256": null,
+    "file_id": null,
+    "updated_at": null
+  }
+}

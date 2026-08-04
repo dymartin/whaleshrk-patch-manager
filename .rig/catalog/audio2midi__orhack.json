@@ -1,0 +1,45 @@
+{
+  "category": null,
+  "category_override": null,
+  "display": "audio2midi",
+  "key": "audio2midi@orhack",
+  "moduleType": "utility/midi/audio-midi",
+  "params": [
+    {
+      "default": 0,
+      "id": "midithru",
+      "label": "Midi Thru",
+      "max": 1,
+      "min": 0,
+      "name": "midi-thru",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "passthru_vol",
+      "label": "Passthru Volume",
+      "max": 1,
+      "min": 0,
+      "name": "passthru-volume",
+      "type": "float"
+    },
+    {
+      "default": 40,
+      "id": "threshold",
+      "label": "Threshold",
+      "max": 120,
+      "min": 0,
+      "name": "threshold",
+      "type": "float"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "orhack",
+  "tags": [],
+  "version": {
+    "archive_sha256": null,
+    "file_id": null,
+    "updated_at": null
+  }
+}

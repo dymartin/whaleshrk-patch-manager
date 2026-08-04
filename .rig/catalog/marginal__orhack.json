@@ -1,0 +1,81 @@
+{
+  "category": null,
+  "category_override": null,
+  "display": "Marginal",
+  "key": "marginal@orhack",
+  "moduleType": "effects/filter/marginal",
+  "params": [
+    {
+      "default": 0,
+      "id": "thru_gain",
+      "label": "Audio Thru Gain",
+      "max": 100,
+      "min": 0,
+      "name": "audio-thru-gain",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "lf_boost",
+      "label": "LF Boost",
+      "max": 10,
+      "min": 0,
+      "name": "lf-boost",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "lf_cut",
+      "label": "LF Cut",
+      "max": 10,
+      "min": 0,
+      "name": "lf-cut",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "hf_boost",
+      "label": "HF Boost",
+      "max": 10,
+      "min": 0,
+      "name": "hf-boost",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "hf_cut",
+      "label": "HF Cut",
+      "max": 10,
+      "min": 0,
+      "name": "hf-cut",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "width",
+      "label": "M/S Width",
+      "max": 100,
+      "min": 0,
+      "name": "m-s-width",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "l_hpf",
+      "label": "M/S Highpass",
+      "max": 3,
+      "min": 0,
+      "name": "m-s-highpass",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "orhack",
+  "tags": [],
+  "version": {
+    "archive_sha256": null,
+    "file_id": null,
+    "updated_at": null
+  }
+}

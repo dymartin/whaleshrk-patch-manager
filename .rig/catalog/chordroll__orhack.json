@@ -1,0 +1,45 @@
+{
+  "category": null,
+  "category_override": null,
+  "display": "ChordRoll",
+  "key": "chordroll@orhack",
+  "moduleType": "sequencers/chordroll",
+  "params": [
+    {
+      "default": 50,
+      "id": "croll_speed",
+      "label": "Roll Speed",
+      "max": 200,
+      "min": 0,
+      "name": "roll-speed",
+      "type": "time"
+    },
+    {
+      "default": 0,
+      "id": "croll_chord",
+      "label": "Chord",
+      "max": 12,
+      "min": 0,
+      "name": "chord",
+      "type": "int"
+    },
+    {
+      "default": 200,
+      "id": "croll_length",
+      "label": "Note Length",
+      "max": 1000,
+      "min": 10,
+      "name": "note-length",
+      "type": "time"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "orhack",
+  "tags": [],
+  "version": {
+    "archive_sha256": null,
+    "file_id": null,
+    "updated_at": null
+  }
+}

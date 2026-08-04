@@ -1,0 +1,49 @@
+{
+  "category": "utility/audio",
+  "category_override": null,
+  "display": "Muchord",
+  "key": "muchord@muchord-2",
+  "moduleType": "utility/audio/muchord@muchord-2",
+  "params": [
+    {
+      "default": 0,
+      "id": "muchord_offset",
+      "label": "Semitone Offset",
+      "max": 24,
+      "min": -24,
+      "name": "semitone-offset",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "muchord_harm",
+      "label": "Harmony Type",
+      "max": 13,
+      "min": 0,
+      "name": "harmony-type",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "muchord_inv",
+      "label": "Inversion",
+      "max": 7,
+      "min": 0,
+      "name": "inversion",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "muchord-2",
+  "tags": [
+    "chords",
+    "harmonizer",
+    "utility"
+  ],
+  "version": {
+    "archive_sha256": "ef5a750db0e76ec8e62d5a8c23afb8fde434b1d0e1bc5c55ed8256add3315af9",
+    "file_id": 115401,
+    "updated_at": "2019-11-19T02:09:58+00:00"
+  }
+}

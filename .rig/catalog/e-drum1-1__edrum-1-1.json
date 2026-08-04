@@ -1,0 +1,84 @@
+{
+  "category": "instruments/synth",
+  "category_override": null,
+  "display": "E.Drum1.1",
+  "key": "e-drum1-1@edrum-1-1",
+  "moduleType": "instruments/synth/e-drum1-1@edrum-1-1",
+  "params": [
+    {
+      "default": 100,
+      "id": "k-gain",
+      "label": "Gain",
+      "max": 200,
+      "min": 0,
+      "name": "gain-1",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "s-gain",
+      "label": "Gain",
+      "max": 200,
+      "min": 0,
+      "name": "gain-2",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "h-gain",
+      "label": "Gain",
+      "max": 200,
+      "min": 0,
+      "name": "gain-3",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "s2-gain",
+      "label": "Gain",
+      "max": 200,
+      "min": 0,
+      "name": "gain-4",
+      "type": "pct"
+    },
+    {
+      "default": 400,
+      "id": "s2-decay",
+      "label": "Decay",
+      "max": 800,
+      "min": 0,
+      "name": "decay",
+      "type": "time"
+    },
+    {
+      "default": 0,
+      "id": "s2-freq",
+      "label": "BP frequence",
+      "max": 10000,
+      "min": 0,
+      "name": "bp-frequence",
+      "type": "freq"
+    },
+    {
+      "default": 0,
+      "id": "s2-Qfreq",
+      "label": "BP Q",
+      "max": 10,
+      "min": 0,
+      "name": "bp-q",
+      "type": "pct"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "edrum-1-1",
+  "tags": [
+    "drum-synth",
+    "synthesizer"
+  ],
+  "version": {
+    "archive_sha256": "116efce3669b1a71fbc7273cee326c98e1810f216b9f45cb41f99388ccc0b55e",
+    "file_id": 109902,
+    "updated_at": "2019-07-10T18:10:48+00:00"
+  }
+}

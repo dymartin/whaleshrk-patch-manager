@@ -1,0 +1,863 @@
+{
+  "category": "instruments/sampler",
+  "category_override": null,
+  "display": "Octaloops",
+  "key": "octaloops@octaloops",
+  "moduleType": "instruments/sampler/octaloops@octaloops",
+  "params": [
+    {
+      "default": 100,
+      "id": "speed-1",
+      "label": "Speed 1",
+      "max": 300,
+      "min": -300,
+      "name": "speed-1",
+      "type": "pct"
+    },
+    {
+      "default": 0.8,
+      "id": "vol-1",
+      "label": "Volume 1",
+      "max": 1,
+      "min": 0,
+      "name": "volume-1",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "samp-1",
+      "label": "Sample 1",
+      "max": 1,
+      "min": 0,
+      "name": "sample-1",
+      "type": "float"
+    },
+    {
+      "default": 100,
+      "id": "speed-2",
+      "label": "Speed 2",
+      "max": 300,
+      "min": -300,
+      "name": "speed-2",
+      "type": "pct"
+    },
+    {
+      "default": 0.8,
+      "id": "vol-2",
+      "label": "Volume 2",
+      "max": 1,
+      "min": 0,
+      "name": "volume-2",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "samp-2",
+      "label": "Sample 2",
+      "max": 1,
+      "min": 0,
+      "name": "sample-2",
+      "type": "float"
+    },
+    {
+      "default": 100,
+      "id": "speed-3",
+      "label": "Speed 3",
+      "max": 300,
+      "min": -300,
+      "name": "speed-3",
+      "type": "pct"
+    },
+    {
+      "default": 0.8,
+      "id": "vol-3",
+      "label": "Volume 3",
+      "max": 1,
+      "min": 0,
+      "name": "volume-3",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "samp-3",
+      "label": "Sample 3",
+      "max": 1,
+      "min": 0,
+      "name": "sample-3",
+      "type": "float"
+    },
+    {
+      "default": 100,
+      "id": "speed-4",
+      "label": "Speed 4",
+      "max": 300,
+      "min": -300,
+      "name": "speed-4",
+      "type": "pct"
+    },
+    {
+      "default": 0.8,
+      "id": "vol-4",
+      "label": "Volume 4",
+      "max": 1,
+      "min": 0,
+      "name": "volume-4",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "samp-4",
+      "label": "Sample 4",
+      "max": 1,
+      "min": 0,
+      "name": "sample-4",
+      "type": "float"
+    },
+    {
+      "default": 100,
+      "id": "speed-5",
+      "label": "Speed 5",
+      "max": 300,
+      "min": -300,
+      "name": "speed-5",
+      "type": "pct"
+    },
+    {
+      "default": 0.8,
+      "id": "vol-5",
+      "label": "Volume 5",
+      "max": 1,
+      "min": 0,
+      "name": "volume-5",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "samp-5",
+      "label": "Sample 5",
+      "max": 1,
+      "min": 0,
+      "name": "sample-5",
+      "type": "float"
+    },
+    {
+      "default": 100,
+      "id": "speed-6",
+      "label": "Speed 6",
+      "max": 300,
+      "min": -300,
+      "name": "speed-6",
+      "type": "pct"
+    },
+    {
+      "default": 0.8,
+      "id": "vol-6",
+      "label": "Volume 6",
+      "max": 1,
+      "min": 0,
+      "name": "volume-6",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "samp-6",
+      "label": "Sample 6",
+      "max": 1,
+      "min": 0,
+      "name": "sample-6",
+      "type": "float"
+    },
+    {
+      "default": 100,
+      "id": "speed-7",
+      "label": "Speed 7",
+      "max": 300,
+      "min": -300,
+      "name": "speed-7",
+      "type": "pct"
+    },
+    {
+      "default": 0.8,
+      "id": "vol-7",
+      "label": "Volume 7",
+      "max": 1,
+      "min": 0,
+      "name": "volume-7",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "samp-7",
+      "label": "Sample 7",
+      "max": 1,
+      "min": 0,
+      "name": "sample-7",
+      "type": "float"
+    },
+    {
+      "default": 100,
+      "id": "speed-8",
+      "label": "Speed 8",
+      "max": 300,
+      "min": -300,
+      "name": "speed-8",
+      "type": "pct"
+    },
+    {
+      "default": 0.8,
+      "id": "vol-8",
+      "label": "Volume 8",
+      "max": 1,
+      "min": 0,
+      "name": "volume-8",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "samp-8",
+      "label": "Sample 8",
+      "max": 1,
+      "min": 0,
+      "name": "sample-8",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "pan-1",
+      "label": "Pan 1",
+      "max": 1,
+      "min": -1,
+      "name": "pan-1",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "pan-2",
+      "label": "Pan 2",
+      "max": 1,
+      "min": -1,
+      "name": "pan-2",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "pan-3",
+      "label": "Pan 3",
+      "max": 1,
+      "min": -1,
+      "name": "pan-3",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "pan-4",
+      "label": "Pan 4",
+      "max": 1,
+      "min": -1,
+      "name": "pan-4",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "pan-5",
+      "label": "Pan 5",
+      "max": 1,
+      "min": -1,
+      "name": "pan-5",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "pan-6",
+      "label": "Pan 6",
+      "max": 1,
+      "min": -1,
+      "name": "pan-6",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "pan-7",
+      "label": "Pan 7",
+      "max": 1,
+      "min": -1,
+      "name": "pan-7",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "pan-8",
+      "label": "Pan 8",
+      "max": 1,
+      "min": -1,
+      "name": "pan-8",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "trans-1",
+      "label": "Trans. 1",
+      "max": 12,
+      "min": -12,
+      "name": "trans-1",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "trans-2",
+      "label": "Trans. 2",
+      "max": 12,
+      "min": -12,
+      "name": "trans-2",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "trans-3",
+      "label": "Trans. 3",
+      "max": 12,
+      "min": -12,
+      "name": "trans-3",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "trans-4",
+      "label": "Trans. 4",
+      "max": 12,
+      "min": -12,
+      "name": "trans-4",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "trans-5",
+      "label": "Trans. 5",
+      "max": 12,
+      "min": -12,
+      "name": "trans-5",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "trans-6",
+      "label": "Trans. 6",
+      "max": 12,
+      "min": -12,
+      "name": "trans-6",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "trans-7",
+      "label": "Trans. 7",
+      "max": 12,
+      "min": -12,
+      "name": "trans-7",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "trans-8",
+      "label": "Trans. 8",
+      "max": 12,
+      "min": -12,
+      "name": "trans-8",
+      "type": "int"
+    },
+    {
+      "default": 100,
+      "id": "filt-1",
+      "label": "Filt 1",
+      "max": 100,
+      "min": 0,
+      "name": "filt-1",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "filt-2",
+      "label": "Filt 2",
+      "max": 100,
+      "min": 0,
+      "name": "filt-2",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "filt-3",
+      "label": "Filt 3",
+      "max": 100,
+      "min": 0,
+      "name": "filt-3",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "filt-4",
+      "label": "Filt 4",
+      "max": 100,
+      "min": 0,
+      "name": "filt-4",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "filt-5",
+      "label": "Filt 5",
+      "max": 100,
+      "min": 0,
+      "name": "filt-5",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "filt-6",
+      "label": "Filt 6",
+      "max": 100,
+      "min": 0,
+      "name": "filt-6",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "filt-7",
+      "label": "Filt 7",
+      "max": 100,
+      "min": 0,
+      "name": "filt-7",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "filt-8",
+      "label": "Filt 8",
+      "max": 100,
+      "min": 0,
+      "name": "filt-8",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "start-1",
+      "label": "Start 1",
+      "max": 100,
+      "min": 0,
+      "name": "start-1",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "start-2",
+      "label": "Start 2",
+      "max": 100,
+      "min": 0,
+      "name": "start-2",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "start-3",
+      "label": "Start 3",
+      "max": 100,
+      "min": 0,
+      "name": "start-3",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "start-4",
+      "label": "Start 4",
+      "max": 100,
+      "min": 0,
+      "name": "start-4",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "start-5",
+      "label": "Start 5",
+      "max": 100,
+      "min": 0,
+      "name": "start-5",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "start-6",
+      "label": "Start 6",
+      "max": 100,
+      "min": 0,
+      "name": "start-6",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "start-7",
+      "label": "Start 7",
+      "max": 100,
+      "min": 0,
+      "name": "start-7",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "start-8",
+      "label": "Start 8",
+      "max": 100,
+      "min": 0,
+      "name": "start-8",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "end-1",
+      "label": "End 1",
+      "max": 100,
+      "min": 0,
+      "name": "end-1",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "end-2",
+      "label": "End 2",
+      "max": 100,
+      "min": 0,
+      "name": "end-2",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "end-3",
+      "label": "End 3",
+      "max": 100,
+      "min": 0,
+      "name": "end-3",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "end-4",
+      "label": "End 4",
+      "max": 100,
+      "min": 0,
+      "name": "end-4",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "end-5",
+      "label": "End 5",
+      "max": 100,
+      "min": 0,
+      "name": "end-5",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "end-6",
+      "label": "End 6",
+      "max": 100,
+      "min": 0,
+      "name": "end-6",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "end-7",
+      "label": "End 7",
+      "max": 100,
+      "min": 0,
+      "name": "end-7",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "end-8",
+      "label": "End 8",
+      "max": 100,
+      "min": 0,
+      "name": "end-8",
+      "type": "pct"
+    },
+    {
+      "default": 1,
+      "id": "mode-1",
+      "label": "Mode 1",
+      "max": 3,
+      "min": 1,
+      "name": "mode-1",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "mode-2",
+      "label": "Mode 2",
+      "max": 3,
+      "min": 1,
+      "name": "mode-2",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "mode-3",
+      "label": "Mode 3",
+      "max": 3,
+      "min": 1,
+      "name": "mode-3",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "mode-4",
+      "label": "Mode 4",
+      "max": 3,
+      "min": 1,
+      "name": "mode-4",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "mode-5",
+      "label": "Mode 5",
+      "max": 3,
+      "min": 1,
+      "name": "mode-5",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "mode-6",
+      "label": "Mode 6",
+      "max": 3,
+      "min": 1,
+      "name": "mode-6",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "mode-7",
+      "label": "Mode 7",
+      "max": 3,
+      "min": 1,
+      "name": "mode-7",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "mode-8",
+      "label": "Mode 8",
+      "max": 3,
+      "min": 1,
+      "name": "mode-8",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "attack-1",
+      "label": "Attack 1",
+      "max": 100,
+      "min": 0,
+      "name": "attack-1",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "attack-2",
+      "label": "Attack 2",
+      "max": 100,
+      "min": 0,
+      "name": "attack-2",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "attack-3",
+      "label": "Attack 3",
+      "max": 100,
+      "min": 0,
+      "name": "attack-3",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "attack-4",
+      "label": "Attack 4",
+      "max": 100,
+      "min": 0,
+      "name": "attack-4",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "attack-5",
+      "label": "Attack 5",
+      "max": 100,
+      "min": 0,
+      "name": "attack-5",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "attack-6",
+      "label": "Attack 6",
+      "max": 100,
+      "min": 0,
+      "name": "attack-6",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "attack-7",
+      "label": "Attack 7",
+      "max": 100,
+      "min": 0,
+      "name": "attack-7",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "attack-8",
+      "label": "Attack 8",
+      "max": 100,
+      "min": 0,
+      "name": "attack-8",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "quant-1",
+      "label": "Quant 1",
+      "max": 1,
+      "min": 0,
+      "name": "quant-1",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "quant-2",
+      "label": "Quant 2",
+      "max": 1,
+      "min": 0,
+      "name": "quant-2",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "quant-3",
+      "label": "Quant 3",
+      "max": 1,
+      "min": 0,
+      "name": "quant-3",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "quant-4",
+      "label": "Quant 4",
+      "max": 1,
+      "min": 0,
+      "name": "quant-4",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "quant-5",
+      "label": "Quant 5",
+      "max": 1,
+      "min": 0,
+      "name": "quant-5",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "quant-6",
+      "label": "Quant 6",
+      "max": 1,
+      "min": 0,
+      "name": "quant-6",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "quant-7",
+      "label": "Quant 7",
+      "max": 1,
+      "min": 0,
+      "name": "quant-7",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "quant-8",
+      "label": "Quant 8",
+      "max": 1,
+      "min": 0,
+      "name": "quant-8",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "bounce",
+      "label": "Bounce",
+      "max": 1,
+      "min": 0,
+      "name": "bounce",
+      "type": "bool"
+    },
+    {
+      "default": 1,
+      "id": "rec_in",
+      "label": "Rec. Input",
+      "max": 1,
+      "min": 0,
+      "name": "rec-input",
+      "type": "bool"
+    },
+    {
+      "default": 50,
+      "id": "speedinc",
+      "label": "Spd. Increment",
+      "max": 100,
+      "min": 1,
+      "name": "spd-increment",
+      "type": "int"
+    },
+    {
+      "default": -1,
+      "id": "samp-src",
+      "label": "Sample Source",
+      "max": 27,
+      "min": -1,
+      "name": "sample-source",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [
+    "\\$1/presets/\\$2/\\$3-trans.txt",
+    "\\$1/presets/\\$2/\\$3-pan.txt",
+    "\\$1/presets/\\$2/\\$3-filt.txt",
+    "\\$1/presets/\\$2/\\$3-attack.txt",
+    "\\$1/presets/\\$2/\\$3-shortsamp.txt",
+    "\\$1/presets/\\$2/\\$3-samples.txt",
+    "\\$1/presets/\\$2/\\$3-start.txt",
+    "\\$1/presets/\\$2/\\$3-speed.txt",
+    "\\$1/presets/\\$2/\\$3-end.txt",
+    "\\$1/presets/\\$2/\\$3-mode.txt",
+    "\\$1/presets/\\$2/\\$3-quant.txt",
+    "\\$1/presets/\\$2/\\$3-vol.txt"
+  ],
+  "source": "octaloops",
+  "tags": [
+    "multicore",
+    "orac",
+    "sampler"
+  ],
+  "version": {
+    "archive_sha256": "81095d619d28014ce88e55c6abffc46fd68cdf64ca6bad3305997503ad83a263",
+    "file_id": 168534,
+    "updated_at": "2023-06-20T19:08:41+00:00"
+  }
+}

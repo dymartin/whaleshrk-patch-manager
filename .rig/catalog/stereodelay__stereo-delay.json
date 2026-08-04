@@ -1,0 +1,111 @@
+{
+  "category": "effects/mod",
+  "category_override": null,
+  "display": "stereodelay",
+  "key": "stereodelay@stereo-delay",
+  "moduleType": "effects/mod/stereodelay@stereo-delay",
+  "params": [
+    {
+      "default": 25,
+      "id": "feedback",
+      "label": "Feedback",
+      "max": 100,
+      "min": 0,
+      "name": "feedback",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "volume",
+      "label": "Volume",
+      "max": 100,
+      "min": 0,
+      "name": "volume",
+      "type": "pct"
+    },
+    {
+      "default": 500,
+      "id": "len_raw_l",
+      "label": "Delay L",
+      "max": 5000,
+      "min": 25,
+      "name": "delay-l",
+      "type": "int"
+    },
+    {
+      "default": 500,
+      "id": "len_raw_r",
+      "label": "Delay R ",
+      "max": 5000,
+      "min": 25,
+      "name": "delay-r",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "temposync",
+      "label": "Tempo Sync",
+      "max": 1,
+      "min": 0,
+      "name": "tempo-sync",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "mode",
+      "label": "Mode",
+      "max": 3,
+      "min": 0,
+      "name": "mode",
+      "type": "int"
+    },
+    {
+      "default": 8000,
+      "id": "lopass",
+      "label": "High Cut",
+      "max": 15000,
+      "min": 0,
+      "name": "high-cut",
+      "type": "float"
+    },
+    {
+      "default": 100,
+      "id": "hipass",
+      "label": "Low Cut",
+      "max": 3000,
+      "min": 0,
+      "name": "low-cut",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "len_fine_l",
+      "label": "Delay L Fine",
+      "max": 100,
+      "min": -100,
+      "name": "delay-l-fine",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "len_fine_r",
+      "label": "Delay R Fine",
+      "max": 100,
+      "min": -100,
+      "name": "delay-r-fine",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "stereo-delay",
+  "tags": [
+    "delay",
+    "effect"
+  ],
+  "version": {
+    "archive_sha256": "3bdb8c32f6dd6a7d95688849f90e7b0c2ecb92f915e75404c1a60e275e775431",
+    "file_id": 146080,
+    "updated_at": "2021-11-06T20:41:44+00:00"
+  }
+}

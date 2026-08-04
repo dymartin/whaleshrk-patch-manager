@@ -1,0 +1,54 @@
+{
+  "category": null,
+  "category_override": null,
+  "display": "cvout Audio",
+  "key": "cvout-audio@orhack",
+  "moduleType": "utility/audio/out-audio",
+  "params": [
+    {
+      "default": 100,
+      "id": "m_gain_l",
+      "label": "L Gain",
+      "max": 200,
+      "min": 0,
+      "name": "l-gain",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "m_gain_r",
+      "label": "R Gain",
+      "max": 200,
+      "min": 0,
+      "name": "r-gain",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "m_ch_l",
+      "label": "Ch. L",
+      "max": 16,
+      "min": 0,
+      "name": "ch-l",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "m_ch_r",
+      "label": "Ch. R",
+      "max": 16,
+      "min": 0,
+      "name": "ch-r",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "orhack",
+  "tags": [],
+  "version": {
+    "archive_sha256": null,
+    "file_id": null,
+    "updated_at": null
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "category": "instruments/sampler",
+  "category_override": null,
+  "display": "samplekids",
+  "key": "samplekids@samplekids",
+  "moduleType": "instruments/sampler/samplekids@samplekids",
+  "params": [
+    {
+      "default": 0,
+      "id": "eparam1",
+      "label": "Global Start",
+      "max": 100,
+      "min": 0,
+      "name": "global-start",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "eparam2",
+      "label": "Global Length",
+      "max": 100,
+      "min": 0,
+      "name": "global-length",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "eparam3",
+      "label": "Delay Time",
+      "max": 1000,
+      "min": 0,
+      "name": "delay-time",
+      "type": "time"
+    },
+    {
+      "default": 0,
+      "id": "eparam4",
+      "label": "Delay Fdback",
+      "max": 100,
+      "min": 0,
+      "name": "delay-fdback",
+      "type": "pct"
+    },
+    {
+      "default": -1,
+      "id": "samp_src",
+      "label": "Sample Source",
+      "max": 27,
+      "min": -1,
+      "name": "sample-source",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "samp_select",
+      "label": "Sample Select",
+      "max": 1,
+      "min": 0,
+      "name": "sample-select",
+      "type": "float"
+    },
+    {
+      "default": 100,
+      "id": "samp_vol",
+      "label": "Sample Vol",
+      "max": 100,
+      "min": 0,
+      "name": "sample-vol",
+      "type": "pct"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "samplekids",
+  "tags": [
+    "critterandguitari",
+    "orac",
+    "sampler"
+  ],
+  "version": {
+    "archive_sha256": "6c70a01b07efdc058325c687b0a37d6b9e2f909f44c3c4f81826e02165ed7ddb",
+    "file_id": 161665,
+    "updated_at": "2023-08-03T20:31:59+00:00"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "category": "effects/mod",
+  "category_override": null,
+  "display": "Filtration",
+  "key": "filtration@filtration",
+  "moduleType": "effects/mod/filtration@filtration",
+  "params": [
+    {
+      "default": 0,
+      "id": "thru_gain",
+      "label": "Audio Thru Gain",
+      "max": 100,
+      "min": 0,
+      "name": "audio-thru-gain",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "moog_cut",
+      "label": "Low-pass",
+      "max": 100,
+      "min": 0,
+      "name": "low-pass",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "moog_res",
+      "label": "Resonance",
+      "max": 100,
+      "min": 0,
+      "name": "resonance",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "moog_env",
+      "label": "Envelope",
+      "max": 100,
+      "min": 0,
+      "name": "envelope",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "highpass",
+      "label": "High-pass",
+      "max": 100,
+      "min": 0,
+      "name": "high-pass",
+      "type": "pct"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "filtration",
+  "tags": [
+    "effect",
+    "filters",
+    "high-pass",
+    "low-pass",
+    "organelle"
+  ],
+  "version": {
+    "archive_sha256": "5785009f6d24e6572e3a24d8c8233d5ecf3119a8a5cc1a613f9b0cb76ed77338",
+    "file_id": 117522,
+    "updated_at": "2020-01-11T16:55:16+00:00"
+  }
+}

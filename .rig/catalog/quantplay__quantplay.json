@@ -1,0 +1,186 @@
+{
+  "category": "instruments/sampler",
+  "category_override": null,
+  "display": "Quantplay",
+  "key": "quantplay@quantplay",
+  "moduleType": "instruments/sampler/quantplay@quantplay",
+  "params": [
+    {
+      "default": 50,
+      "id": "volume",
+      "label": "Volume",
+      "max": 100,
+      "min": 0,
+      "name": "volume",
+      "type": "pct"
+    },
+    {
+      "default": 1,
+      "id": "vol-1",
+      "label": "Volume 1",
+      "max": 1.5,
+      "min": 0,
+      "name": "volume-1",
+      "type": "float"
+    },
+    {
+      "default": 1,
+      "id": "samp-1",
+      "label": "Sample 1",
+      "max": 1,
+      "min": 0,
+      "name": "sample-1",
+      "type": "float"
+    },
+    {
+      "default": 1,
+      "id": "vol-2",
+      "label": "Volume 2",
+      "max": 1.5,
+      "min": 0,
+      "name": "volume-2",
+      "type": "float"
+    },
+    {
+      "default": 1,
+      "id": "samp-2",
+      "label": "Sample 2",
+      "max": 1,
+      "min": 0,
+      "name": "sample-2",
+      "type": "float"
+    },
+    {
+      "default": 1,
+      "id": "vol-3",
+      "label": "Volume 3",
+      "max": 1.5,
+      "min": 0,
+      "name": "volume-3",
+      "type": "float"
+    },
+    {
+      "default": 1,
+      "id": "samp-3",
+      "label": "Sample 3",
+      "max": 1,
+      "min": 0,
+      "name": "sample-3",
+      "type": "float"
+    },
+    {
+      "default": 1,
+      "id": "vol-4",
+      "label": "Volume 4",
+      "max": 1.5,
+      "min": 0,
+      "name": "volume-4",
+      "type": "float"
+    },
+    {
+      "default": 1,
+      "id": "samp-4",
+      "label": "Sample 4",
+      "max": 1,
+      "min": 0,
+      "name": "sample-4",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "pan-1",
+      "label": "Pan 1",
+      "max": 1,
+      "min": -1,
+      "name": "pan-1",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "pan-2",
+      "label": "Pan 2",
+      "max": 1,
+      "min": -1,
+      "name": "pan-2",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "pan-3",
+      "label": "Pan 3",
+      "max": 1,
+      "min": -1,
+      "name": "pan-3",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "pan-4",
+      "label": "Pan 4",
+      "max": 1,
+      "min": -1,
+      "name": "pan-4",
+      "type": "float"
+    },
+    {
+      "default": 100,
+      "id": "filt-1",
+      "label": "Filt 1",
+      "max": 100,
+      "min": 0,
+      "name": "filt-1",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "filt-2",
+      "label": "Filt 2",
+      "max": 100,
+      "min": 0,
+      "name": "filt-2",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "filt-3",
+      "label": "Filt 3",
+      "max": 100,
+      "min": 0,
+      "name": "filt-3",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "filt-4",
+      "label": "Filt 4",
+      "max": 100,
+      "min": 0,
+      "name": "filt-4",
+      "type": "pct"
+    },
+    {
+      "default": 27,
+      "id": "samp-src",
+      "label": "Sample Source",
+      "max": 27,
+      "min": -1,
+      "name": "sample-source",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "quantplay",
+  "tags": [
+    "backing-tracks",
+    "quantized",
+    "sampler",
+    "sound",
+    "utility"
+  ],
+  "version": {
+    "archive_sha256": "50a8bf2d600c7797c15cac04360ebb09fe9dac9b8d66d6f8775b0823ea60de1e",
+    "file_id": 169573,
+    "updated_at": "2023-08-04T16:28:18+00:00"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "category": "sequencers",
+  "category_override": null,
+  "display": "Arp Seq",
+  "key": "arp-seq@sequencers-bpm",
+  "moduleType": "sequencers/arp-seq@sequencers-bpm",
+  "params": [
+    {
+      "default": 0,
+      "id": "arpseq_pattern",
+      "label": "Pattern",
+      "max": 7,
+      "min": 0,
+      "name": "pattern",
+      "type": "int"
+    },
+    {
+      "default": 500,
+      "id": "arpseq_length",
+      "label": "Length",
+      "max": 2000,
+      "min": 20,
+      "name": "length",
+      "type": "time"
+    },
+    {
+      "default": 0,
+      "id": "arpseq_swing",
+      "label": "Swing",
+      "max": 100,
+      "min": 0,
+      "name": "swing",
+      "type": "pct"
+    },
+    {
+      "default": 4,
+      "id": "arpseq_beat",
+      "label": "Beat Div.",
+      "max": 5,
+      "min": 1,
+      "name": "beat-div",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [
+    "\\$1/presets/\\$2/\\$3-sequence.txt",
+    "\\$1/presets/\\$2/\\$3-sequence-state.txt"
+  ],
+  "source": "sequencers-bpm",
+  "tags": [
+    "orac",
+    "organelle",
+    "sequencer",
+    "sequencers"
+  ],
+  "version": {
+    "archive_sha256": "ea6fcbb267db01cff9374289bca47090de19fc3ea82f988f8b5af16b0af5b6e4",
+    "file_id": 115032,
+    "updated_at": "2019-11-12T11:56:17+00:00"
+  }
+}

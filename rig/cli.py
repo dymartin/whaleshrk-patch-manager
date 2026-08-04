@@ -7,9 +7,23 @@ or CI job depends on.
 
 from __future__ import annotations
 
+import hashlib
+from pathlib import Path
 from typing import Optional
 
+import httpx
 import typer
+
+from rig.catalog.archive import ZipCandidateArchive
+from rig.catalog.builtins import ingest_pinned_builtins
+from rig.catalog.ingest import CandidateSource, KeyCollisionError, build_catalog
+from rig.catalog.io import write_catalog, write_lock
+from rig.catalog.patchstorage import (
+    PatchstorageError,
+    discover_union,
+    fetch_archive_bytes,
+    fetch_detail,
+)
 
 app = typer.Typer(no_args_is_help=True, add_completion=False)
 catalog_app = typer.Typer(no_args_is_help=True)
@@ -52,8 +66,53 @@ def lint(
 def catalog_update(
     dry_run: bool = typer.Option(False, "--dry-run"),
 ) -> None:
-    """Rebuild .rig/catalog/ and .rig/modules.lock."""
-    _not_implemented("catalog update")
+    """Rebuild .rig/catalog/ and .rig/modules.lock from live Patchstorage data.
+
+    Built-ins come from the pinned ORHACK 0.52b fixture, never a live card
+    (see rig/catalog/builtins.py) -- only community modules are discovered
+    live. This is the one command allowed to reach the network; ordinary
+    builds and pushes only ever read the committed `.rig/catalog/`.
+    """
+    builtin_entries = ingest_pinned_builtins()
+
+    try:
+        with httpx.Client(timeout=30.0) as client:
+            ids = discover_union(client)
+            sources = []
+            for patch_id in ids:
+                detail = fetch_detail(client, patch_id)
+                files = detail.get("files") or []
+                if not files:
+                    continue
+                archive_bytes = fetch_archive_bytes(client, files[0]["url"])
+                sources.append(
+                    CandidateSource(
+                        id=patch_id,
+                        archive=ZipCandidateArchive(archive_bytes),
+                        detail=detail,
+                        archive_sha256=hashlib.sha256(archive_bytes).hexdigest(),
+                    )
+                )
+    except (httpx.HTTPError, PatchstorageError) as exc:
+        typer.echo(f"rig catalog update: could not reach Patchstorage: {exc}", err=True)
+        raise typer.Exit(code=1) from exc
+
+    try:
+        result = build_catalog(builtin_entries, sources)
+    except KeyCollisionError as exc:
+        typer.echo(f"rig catalog update: {exc}", err=True)
+        raise typer.Exit(code=1) from exc
+
+    for reject in result.rejects:
+        typer.echo(f"rejected {reject.candidate_id} ({reject.reason.value}): {reject.message}")
+
+    if dry_run:
+        typer.echo(f"{len(result.entries)} entries, {len(result.rejects)} rejected (dry run)")
+        return
+
+    write_catalog(result.entries, Path(".rig/catalog"))
+    write_lock(result.entries, Path(".rig/modules.lock"))
+    typer.echo(f"{len(result.entries)} entries written, {len(result.rejects)} rejected")
 
 
 @app.command()

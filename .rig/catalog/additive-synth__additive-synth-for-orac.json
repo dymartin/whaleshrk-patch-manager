@@ -1,0 +1,100 @@
+{
+  "category": "utility/audio",
+  "category_override": null,
+  "display": "Additive Synth",
+  "key": "additive-synth@additive-synth-for-orac",
+  "moduleType": "utility/audio/additive-synth@additive-synth-for-orac",
+  "params": [
+    {
+      "default": 0,
+      "id": "add_trans",
+      "label": "Transpose",
+      "max": 32,
+      "min": -48,
+      "name": "transpose",
+      "type": "pitch"
+    },
+    {
+      "default": 5,
+      "id": "add_preset",
+      "label": "Preset",
+      "max": 12,
+      "min": 0,
+      "name": "preset",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "add_reso",
+      "label": "Resonance",
+      "max": 100,
+      "min": 0,
+      "name": "resonance",
+      "type": "pct"
+    },
+    {
+      "default": 45,
+      "id": "add_cutoff",
+      "label": "Cutoff",
+      "max": 100,
+      "min": 0,
+      "name": "cutoff",
+      "type": "pct"
+    },
+    {
+      "default": 2,
+      "id": "add_attack",
+      "label": "Attack",
+      "max": 100,
+      "min": 0,
+      "name": "attack",
+      "type": "pct"
+    },
+    {
+      "default": 45,
+      "id": "add_decay",
+      "label": "Decay",
+      "max": 100,
+      "min": 0,
+      "name": "decay",
+      "type": "pct"
+    },
+    {
+      "default": 90,
+      "id": "add_sustain",
+      "label": "Sustain",
+      "max": 100,
+      "min": 0,
+      "name": "sustain",
+      "type": "pct"
+    },
+    {
+      "default": 25,
+      "id": "add_release",
+      "label": "Release",
+      "max": 100,
+      "min": 0,
+      "name": "release",
+      "type": "pct"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "additive-synth-for-orac",
+  "tags": [
+    "additive",
+    "cg",
+    "critterandguitari",
+    "filter",
+    "orac",
+    "organ",
+    "other",
+    "raphy",
+    "synth"
+  ],
+  "version": {
+    "archive_sha256": "a368603b1778272cb9c70805d7cb81e3862a12968f5dd23b6f9cc0c0e9ccfa48",
+    "file_id": 99508,
+    "updated_at": "2018-08-03T17:10:36+00:00"
+  }
+}

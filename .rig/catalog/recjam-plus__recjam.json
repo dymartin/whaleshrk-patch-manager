@@ -1,0 +1,86 @@
+{
+  "category": "instruments/sampler",
+  "category_override": null,
+  "display": "Recjam+",
+  "key": "recjam-plus@recjam",
+  "moduleType": "instruments/sampler/recjam-plus@recjam",
+  "params": [
+    {
+      "default": 100,
+      "id": "rate",
+      "label": "Rate",
+      "max": 200,
+      "min": -200,
+      "name": "rate",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "mode",
+      "label": "Mode",
+      "max": 2,
+      "min": 0,
+      "name": "mode",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "length",
+      "label": "Len",
+      "max": 100,
+      "min": 0,
+      "name": "len",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "feedback",
+      "label": "Feedback",
+      "max": 100,
+      "min": 0,
+      "name": "feedback",
+      "type": "pct"
+    },
+    {
+      "default": 350,
+      "id": "time",
+      "label": "Time",
+      "max": 5000,
+      "min": 1,
+      "name": "time",
+      "type": "time"
+    },
+    {
+      "default": 0,
+      "id": "temposync",
+      "label": "Tempo Sync",
+      "max": 1,
+      "min": 0,
+      "name": "tempo-sync",
+      "type": "bool"
+    },
+    {
+      "default": 1,
+      "id": "kit",
+      "label": "Kit",
+      "max": 24,
+      "min": 1,
+      "name": "kit",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "recjam",
+  "tags": [
+    "player",
+    "recorder",
+    "sampler",
+    "sound"
+  ],
+  "version": {
+    "archive_sha256": "4c531ab33ac6aa6ecf43a90e09c5877ccf0ae8c557d1b772e02b9ca99a6fb600",
+    "file_id": 171168,
+    "updated_at": "2023-10-05T16:13:05+00:00"
+  }
+}

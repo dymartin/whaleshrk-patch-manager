@@ -1,0 +1,59 @@
+{
+  "category": "utility/audio",
+  "category_override": null,
+  "display": "Drift",
+  "key": "drift@drift",
+  "moduleType": "utility/audio/drift@drift",
+  "params": [
+    {
+      "default": 0,
+      "id": "l_rate",
+      "label": "Speed",
+      "max": 100,
+      "min": 0,
+      "name": "speed",
+      "type": "float"
+    },
+    {
+      "default": 10,
+      "id": "l_min",
+      "label": "Min",
+      "max": 100,
+      "min": 0,
+      "name": "min",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "l_max",
+      "label": "Max",
+      "max": 100,
+      "min": 0,
+      "name": "max",
+      "type": "pct"
+    },
+    {
+      "default": 10,
+      "id": "l_bus",
+      "label": "Mod Bus",
+      "max": 20,
+      "min": 0,
+      "name": "mod-bus",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "drift",
+  "tags": [
+    "lfo",
+    "modulation",
+    "random",
+    "utility"
+  ],
+  "version": {
+    "archive_sha256": "d6ea832ade8a9cda3027582d248b0dbb11d648b6b652badb616ffcd6ebba9e7b",
+    "file_id": 115396,
+    "updated_at": "2019-11-19T02:04:44+00:00"
+  }
+}

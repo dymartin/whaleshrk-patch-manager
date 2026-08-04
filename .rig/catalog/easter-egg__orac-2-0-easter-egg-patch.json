@@ -1,0 +1,21 @@
+{
+  "category": "utility/audio",
+  "category_override": null,
+  "display": "Easter Egg",
+  "key": "easter-egg@orac-2-0-easter-egg-patch",
+  "moduleType": "utility/audio/easter-egg@orac-2-0-easter-egg-patch",
+  "params": [],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "orac-2-0-easter-egg-patch",
+  "tags": [
+    "orac",
+    "organelle",
+    "utility"
+  ],
+  "version": {
+    "archive_sha256": "bceebbc732f475b482c02b83d8ac7d9baca2e7e53599c03bbbfdf93dbf2d71ba",
+    "file_id": 107270,
+    "updated_at": "2019-06-11T11:10:04+00:00"
+  }
+}

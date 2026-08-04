@@ -1,0 +1,85 @@
+{
+  "category": "instruments/sampler",
+  "category_override": null,
+  "display": "sfplayer",
+  "key": "sfplayer@sfplayer",
+  "moduleType": "instruments/sampler/sfplayer@sfplayer",
+  "params": [
+    {
+      "default": 0,
+      "id": "sf_select",
+      "label": "Select",
+      "max": 100,
+      "min": 0,
+      "name": "select",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "sf_semitone",
+      "label": "Semitone",
+      "max": 24,
+      "min": -24,
+      "name": "semitone",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "sf_cent",
+      "label": "Fine Tune",
+      "max": 50,
+      "min": -50,
+      "name": "fine-tune",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "sf_pan",
+      "label": "Pan",
+      "max": 1,
+      "min": -1,
+      "name": "pan",
+      "type": "float"
+    },
+    {
+      "default": 0.7,
+      "id": "sf_vol",
+      "label": "Volume",
+      "max": 3,
+      "min": 0,
+      "name": "volume",
+      "type": "float"
+    },
+    {
+      "default": 1,
+      "id": "sf_prog",
+      "label": "Bank",
+      "max": 128,
+      "min": 1,
+      "name": "bank",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "sf_slot",
+      "label": "Slot",
+      "max": 16,
+      "min": 1,
+      "name": "slot",
+      "type": "float"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "sfplayer",
+  "tags": [
+    "sampler",
+    "sf2",
+    "soundfont"
+  ],
+  "version": {
+    "archive_sha256": "364157aef3c5938c26b4c26ce0d4fe5b2525bce8c6c23c78749a93efba225982",
+    "file_id": 155110,
+    "updated_at": "2022-07-23T20:02:31+00:00"
+  }
+}

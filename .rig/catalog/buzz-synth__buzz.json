@@ -1,0 +1,48 @@
+{
+  "category": "instruments/synth",
+  "category_override": null,
+  "display": "Buzz Synth",
+  "key": "buzz-synth@buzz",
+  "moduleType": "instruments/synth/buzz-synth@buzz",
+  "params": [
+    {
+      "default": 0,
+      "id": "trans",
+      "label": "Transpose",
+      "max": 24,
+      "min": -24,
+      "name": "transpose",
+      "type": "pitch"
+    },
+    {
+      "default": 5,
+      "id": "decay",
+      "label": "Decay Time",
+      "max": 2000,
+      "min": 5,
+      "name": "decay-time",
+      "type": "time"
+    },
+    {
+      "default": 50,
+      "id": "tone",
+      "label": "Tone",
+      "max": 100,
+      "min": 0,
+      "name": "tone",
+      "type": "float"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "buzz",
+  "tags": [
+    "synth",
+    "synthesizer"
+  ],
+  "version": {
+    "archive_sha256": "fd8e7d0e1cb2b26b18814bd1aea0ec9d18b535635c8788a6b7e78d54fe5fccfc",
+    "file_id": 114188,
+    "updated_at": "2019-10-25T01:30:14+00:00"
+  }
+}

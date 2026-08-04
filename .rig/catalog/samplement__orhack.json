@@ -1,0 +1,126 @@
+{
+  "category": null,
+  "category_override": null,
+  "display": "Samplement",
+  "key": "samplement@orhack",
+  "moduleType": "instruments/sampler/samplement",
+  "params": [
+    {
+      "default": 0,
+      "id": "samp_source",
+      "label": "Sample source",
+      "max": 27,
+      "min": -1,
+      "name": "sample-source",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "samp_select",
+      "label": "|`-> select",
+      "max": 100,
+      "min": 0,
+      "name": "select",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "samp_semitone",
+      "label": "Pitch",
+      "max": 48,
+      "min": -48,
+      "name": "pitch",
+      "type": "pitch"
+    },
+    {
+      "default": 0,
+      "id": "samp_cent",
+      "label": "|`-> cents",
+      "max": 50,
+      "min": -50,
+      "name": "cents",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "samp_start",
+      "label": "|`-> start",
+      "max": 100,
+      "min": 0,
+      "name": "start",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "samp_end",
+      "label": "|`-> end",
+      "max": 100,
+      "min": 0,
+      "name": "end",
+      "type": "pct"
+    },
+    {
+      "default": 1,
+      "id": "samp_mode",
+      "label": "Mode",
+      "max": 5,
+      "min": 1,
+      "name": "mode",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "samp_attack",
+      "label": "| Envelope",
+      "max": 100,
+      "min": 0,
+      "name": "envelope",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "samp_decay",
+      "label": "Decay",
+      "max": 1,
+      "min": 0,
+      "name": "decay",
+      "type": "float"
+    },
+    {
+      "default": 0.5,
+      "id": "samp_ctrlsmooth",
+      "label": "|`-> slide",
+      "max": 30,
+      "min": 0.1,
+      "name": "slide",
+      "type": "freq"
+    },
+    {
+      "default": 0,
+      "id": "samp_rc_size",
+      "label": "Grains",
+      "max": 100,
+      "min": 0,
+      "name": "grains",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "samp_rc_env",
+      "label": "|`-> env.",
+      "max": 100,
+      "min": 0,
+      "name": "env",
+      "type": "pct"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "orhack",
+  "tags": [],
+  "version": {
+    "archive_sha256": null,
+    "file_id": null,
+    "updated_at": null
+  }
+}

@@ -1,0 +1,459 @@
+{
+  "category": null,
+  "category_override": null,
+  "display": "SpiralDelay",
+  "key": "spiraldelay@orhack",
+  "moduleType": "effects/delay/spiraldelay",
+  "params": [
+    {
+      "default": 0,
+      "id": "thru_gain",
+      "label": "Audio Thru Gain",
+      "max": 100,
+      "min": 0,
+      "name": "audio-thru-gain",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_semi",
+      "label": "Semitones",
+      "max": 24,
+      "min": -24,
+      "name": "semitones",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_cent",
+      "label": "Cents",
+      "max": 50,
+      "min": -50,
+      "name": "cents",
+      "type": "int"
+    },
+    {
+      "default": 35,
+      "id": "wdelay_feedback",
+      "label": "Feedback",
+      "max": 67,
+      "min": 0,
+      "name": "feedback",
+      "type": "float"
+    },
+    {
+      "default": 50,
+      "id": "wdelay_mix",
+      "label": "Dry/Wet",
+      "max": 100,
+      "min": 0,
+      "name": "dry-wet",
+      "type": "pct"
+    },
+    {
+      "default": 1000,
+      "id": "wdelay_len_raw",
+      "label": "Length ",
+      "max": 10000,
+      "min": 25,
+      "name": "length",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_dir",
+      "label": "FW/RV",
+      "max": 1,
+      "min": 0,
+      "name": "fw-rv",
+      "type": "int"
+    },
+    {
+      "default": 3,
+      "id": "wdelay_heads",
+      "label": "Heads",
+      "max": 3,
+      "min": 1,
+      "name": "heads",
+      "type": "int"
+    },
+    {
+      "default": 12000,
+      "id": "wdelay_pfilt",
+      "label": "Prefilt",
+      "max": 15000,
+      "min": 0,
+      "name": "prefilt",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_midictrl",
+      "label": "MIDI Control",
+      "max": 1,
+      "min": 0,
+      "name": "midi-control",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_midipoly",
+      "label": "Mono/Poly",
+      "max": 1,
+      "min": 0,
+      "name": "mono-poly",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_midigate",
+      "label": "MIDI Gate",
+      "max": 1,
+      "min": 0,
+      "name": "midi-gate",
+      "type": "int"
+    },
+    {
+      "default": 80,
+      "id": "wdelay_gatear",
+      "label": "Gate Speed",
+      "max": 100,
+      "min": 0,
+      "name": "gate-speed",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_quantize",
+      "label": "Pitch Quantize",
+      "max": 5,
+      "min": 0,
+      "name": "pitch-quantize",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_drift",
+      "label": "Drift",
+      "max": 3,
+      "min": 0,
+      "name": "drift",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_exprange",
+      "label": "Expr Range",
+      "max": 36,
+      "min": 0,
+      "name": "expr-range",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "wdelay_exprq",
+      "label": "Expr Quant",
+      "max": 1,
+      "min": 0,
+      "name": "expr-quant",
+      "type": "bool"
+    },
+    {
+      "default": 50,
+      "id": "wdelay_env",
+      "label": "Fade",
+      "max": 100,
+      "min": 0,
+      "name": "fade",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "wdelay_pitchsmooth",
+      "label": "Pitch Smooth",
+      "max": 100,
+      "min": 0.0,
+      "name": "pitch-smooth",
+      "type": "float"
+    },
+    {
+      "default": 50,
+      "id": "wdelay_lensmooth",
+      "label": "Len Smooth",
+      "max": 100,
+      "min": 0.0,
+      "name": "len-smooth",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_semi_1",
+      "label": "Head 1 Tune",
+      "max": 24,
+      "min": -24,
+      "name": "head-1-tune",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_semi_2",
+      "label": "Head 2 Tune",
+      "max": 24,
+      "min": -24,
+      "name": "head-2-tune",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_semi_3",
+      "label": "Head 3 Tune",
+      "max": 24,
+      "min": -24,
+      "name": "head-3-tune",
+      "type": "int"
+    },
+    {
+      "default": 75,
+      "id": "wdelay_gain_1",
+      "label": "Head 1 Gain",
+      "max": 200,
+      "min": 0,
+      "name": "head-1-gain",
+      "type": "pct"
+    },
+    {
+      "default": 75,
+      "id": "wdelay_gain_2",
+      "label": "Head 2 Gain",
+      "max": 200,
+      "min": 0,
+      "name": "head-2-gain",
+      "type": "pct"
+    },
+    {
+      "default": 75,
+      "id": "wdelay_gain_3",
+      "label": "Head 3 Gain",
+      "max": 200,
+      "min": 0,
+      "name": "head-3-gain",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_pan_1",
+      "label": "Head 1 Pan",
+      "max": 1,
+      "min": -1,
+      "name": "head-1-pan",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_pan_2",
+      "label": "Head 2 Pan",
+      "max": 1,
+      "min": -1,
+      "name": "head-2-pan",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_pan_3",
+      "label": "Head 3 Pan",
+      "max": 1,
+      "min": -1,
+      "name": "head-3-pan",
+      "type": "float"
+    },
+    {
+      "default": 100,
+      "id": "wdelay_len_1",
+      "label": "Head 1 Len",
+      "max": 100,
+      "min": 1,
+      "name": "head-1-len",
+      "type": "int"
+    },
+    {
+      "default": 100,
+      "id": "wdelay_len_2",
+      "label": "Head 2 Len",
+      "max": 100,
+      "min": 1,
+      "name": "head-2-len",
+      "type": "int"
+    },
+    {
+      "default": 100,
+      "id": "wdelay_len_3",
+      "label": "Head 3 Len",
+      "max": 100,
+      "min": 1,
+      "name": "head-3-len",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_cent_1",
+      "label": "Head 1 Cents",
+      "max": 50,
+      "min": -50,
+      "name": "head-1-cents",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_cent_2",
+      "label": "Head 2 Cents",
+      "max": 50,
+      "min": -50,
+      "name": "head-2-cents",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_cent_3",
+      "label": "Head 3 Cents",
+      "max": 50,
+      "min": -50,
+      "name": "head-3-cents",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_rev_1",
+      "label": "Head 1 Rev",
+      "max": 1,
+      "min": 0,
+      "name": "head-1-rev",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_rev_2",
+      "label": "Head 2 Rev",
+      "max": 1,
+      "min": 0,
+      "name": "head-2-rev",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_rev_3",
+      "label": "Head 3 Rev",
+      "max": 1,
+      "min": 0,
+      "name": "head-3-rev",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "wdelay_expr_1",
+      "label": "Head 1 Expr",
+      "max": 1,
+      "min": 0,
+      "name": "head-1-expr",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "wdelay_expr_2",
+      "label": "Head 2 Expr",
+      "max": 1,
+      "min": 0,
+      "name": "head-2-expr",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "wdelay_expr_3",
+      "label": "Head 3 Expr",
+      "max": 1,
+      "min": 0,
+      "name": "head-3-expr",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_phase_1",
+      "label": "Head 1 phase",
+      "max": 100,
+      "min": 0,
+      "name": "head-1-phase",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_phase_2",
+      "label": "Head 2 phase",
+      "max": 100,
+      "min": 0,
+      "name": "head-2-phase",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_phase_3",
+      "label": "Head 3 phase",
+      "max": 100,
+      "min": 0,
+      "name": "head-3-phase",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_freezegate",
+      "label": "Delay/Loop",
+      "max": 1,
+      "min": 0,
+      "name": "delay-loop",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "wdelay_gatereset",
+      "label": "Reset on Gate",
+      "max": 1,
+      "min": 0,
+      "name": "reset-on-gate",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_temposync",
+      "label": "Tempo Sync",
+      "max": 1,
+      "min": 0,
+      "name": "tempo-sync",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_overdub",
+      "label": "Overdub",
+      "max": 1,
+      "min": 0,
+      "name": "overdub",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "wdelay_freezeparam",
+      "label": "Freeze",
+      "max": 1,
+      "min": 0,
+      "name": "freeze",
+      "type": "bool"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "orhack",
+  "tags": [],
+  "version": {
+    "archive_sha256": null,
+    "file_id": null,
+    "updated_at": null
+  }
+}

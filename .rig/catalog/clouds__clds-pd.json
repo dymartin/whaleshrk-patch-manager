@@ -1,0 +1,179 @@
+{
+  "category": "effects/mod",
+  "category_override": null,
+  "display": "Clouds",
+  "key": "clouds@clds-pd",
+  "moduleType": "effects/mod/clouds@clds-pd",
+  "params": [
+    {
+      "default": 50,
+      "id": "clds_mix",
+      "label": "Mix",
+      "max": 100,
+      "min": 0,
+      "name": "mix",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "clds_freeze",
+      "label": "Freeze",
+      "max": 1,
+      "min": 0,
+      "name": "freeze",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "clds_trig",
+      "label": "Trig",
+      "max": 1,
+      "min": 0,
+      "name": "trig",
+      "type": "bool"
+    },
+    {
+      "default": 50,
+      "id": "clds_position",
+      "label": "Position",
+      "max": 100,
+      "min": 0,
+      "name": "position",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "clds_size",
+      "label": "Size",
+      "max": 100,
+      "min": 0,
+      "name": "size",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "clds_pitch",
+      "label": "Pitch",
+      "max": 24,
+      "min": -24,
+      "name": "pitch",
+      "type": "pitch"
+    },
+    {
+      "default": 50,
+      "id": "clds_density",
+      "label": "Density",
+      "max": 100,
+      "min": 0,
+      "name": "density",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "clds_texture",
+      "label": "Texture",
+      "max": 100,
+      "min": 0,
+      "name": "texture",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "clds_spread",
+      "label": "Spread",
+      "max": 100,
+      "min": 0,
+      "name": "spread",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "clds_feedback",
+      "label": "Feedback",
+      "max": 100,
+      "min": 0,
+      "name": "feedback",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "clds_reverb",
+      "label": "Reverb",
+      "max": 100,
+      "min": 0,
+      "name": "reverb",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "clds_mode",
+      "label": "Mode",
+      "max": 3,
+      "min": 0,
+      "name": "mode",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "clds_bypass",
+      "label": "Bypass",
+      "max": 1,
+      "min": 0,
+      "name": "bypass",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "clds_silence",
+      "label": "Silence",
+      "max": 1,
+      "min": 0,
+      "name": "silence",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "clds_mono",
+      "label": "Mono",
+      "max": 1,
+      "min": 0,
+      "name": "mono",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "clds_lofi",
+      "label": "Lofi",
+      "max": 1,
+      "min": 0,
+      "name": "lofi",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "thru_gain",
+      "label": "Audio Thru Gain",
+      "max": 100,
+      "min": 0,
+      "name": "audio-thru-gain",
+      "type": "pct"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "clds-pd",
+  "tags": [
+    "ambient",
+    "clouds",
+    "effect",
+    "organellem",
+    "other",
+    "reverb",
+    "sound"
+  ],
+  "version": {
+    "archive_sha256": "2f9cab38a60e41f77da0e91c3ac68393a7b6b157196da9e63605123a3f47b858",
+    "file_id": 154960,
+    "updated_at": "2022-07-20T07:27:58+00:00"
+  }
+}

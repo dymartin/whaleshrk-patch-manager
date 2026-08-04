@@ -1,0 +1,49 @@
+{
+  "category": "utility/audio",
+  "category_override": null,
+  "display": "Range Shift",
+  "key": "range-shift@midi-range_shift",
+  "moduleType": "utility/audio/range-shift@midi-range_shift",
+  "params": [
+    {
+      "default": 0,
+      "id": "oct",
+      "label": "Octave",
+      "max": 2,
+      "min": -2,
+      "name": "octave",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "trans",
+      "label": "Transpose",
+      "max": 12,
+      "min": -12,
+      "name": "transpose",
+      "type": "int"
+    },
+    {
+      "default": 100,
+      "id": "vel",
+      "label": "Velocity",
+      "max": 127,
+      "min": 0,
+      "name": "velocity",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "midi-range_shift",
+  "tags": [
+    "midi",
+    "range-shift",
+    "utility"
+  ],
+  "version": {
+    "archive_sha256": "be18f830356829c2393b7d087e3352cebe0b82b6b5ff56b5d69ec235c8965ead",
+    "file_id": 154138,
+    "updated_at": "2022-06-27T06:47:36+00:00"
+  }
+}

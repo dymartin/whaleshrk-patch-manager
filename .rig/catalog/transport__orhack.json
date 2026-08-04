@@ -1,0 +1,450 @@
+{
+  "category": null,
+  "category_override": null,
+  "display": "Transport",
+  "key": "transport@orhack",
+  "moduleType": "clocks/transport",
+  "params": [
+    {
+      "default": 120,
+      "id": "bpm",
+      "label": "BPM",
+      "max": 200,
+      "min": 60,
+      "name": "bpm",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "swing8",
+      "label": "Swing 8",
+      "max": 100,
+      "min": 0,
+      "name": "swing-8",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "swing16",
+      "label": "Swing 16",
+      "max": 100,
+      "min": 0,
+      "name": "swing-16",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "midiout",
+      "label": "Midi >>",
+      "max": 1,
+      "min": 0,
+      "name": "midi-1",
+      "type": "bool"
+    },
+    {
+      "default": 1,
+      "id": "midiin",
+      "label": "Midi <<",
+      "max": 1,
+      "min": 0,
+      "name": "midi-2",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "chaos",
+      "label": "Chaos",
+      "max": 100,
+      "min": 0,
+      "name": "chaos",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "metronome",
+      "label": "Metro",
+      "max": 100,
+      "min": 0,
+      "name": "metro",
+      "type": "float"
+    },
+    {
+      "default": 4,
+      "id": "set_signature",
+      "label": "Signature",
+      "max": 7,
+      "min": 3,
+      "name": "signature",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "p1_a",
+      "label": "Chain A",
+      "max": 10,
+      "min": 1,
+      "name": "chain-a-1",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "p1_b",
+      "label": "Chain B",
+      "max": 10,
+      "min": 1,
+      "name": "chain-b-1",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "p1_c",
+      "label": "Chain C",
+      "max": 10,
+      "min": 1,
+      "name": "chain-c-1",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "p1_d",
+      "label": "Chain D",
+      "max": 10,
+      "min": 1,
+      "name": "chain-d-1",
+      "type": "int"
+    },
+    {
+      "default": 2,
+      "id": "p2_a",
+      "label": "Chain A",
+      "max": 10,
+      "min": 1,
+      "name": "chain-a-2",
+      "type": "int"
+    },
+    {
+      "default": 2,
+      "id": "p2_b",
+      "label": "Chain B",
+      "max": 10,
+      "min": 1,
+      "name": "chain-b-2",
+      "type": "int"
+    },
+    {
+      "default": 2,
+      "id": "p2_c",
+      "label": "Chain C",
+      "max": 10,
+      "min": 1,
+      "name": "chain-c-2",
+      "type": "int"
+    },
+    {
+      "default": 2,
+      "id": "p2_d",
+      "label": "Chain D",
+      "max": 10,
+      "min": 1,
+      "name": "chain-d-2",
+      "type": "int"
+    },
+    {
+      "default": 3,
+      "id": "p3_a",
+      "label": "Chain A",
+      "max": 10,
+      "min": 1,
+      "name": "chain-a-3",
+      "type": "int"
+    },
+    {
+      "default": 3,
+      "id": "p3_b",
+      "label": "Chain B",
+      "max": 10,
+      "min": 1,
+      "name": "chain-b-3",
+      "type": "int"
+    },
+    {
+      "default": 3,
+      "id": "p3_c",
+      "label": "Chain C",
+      "max": 10,
+      "min": 1,
+      "name": "chain-c-3",
+      "type": "int"
+    },
+    {
+      "default": 3,
+      "id": "p3_d",
+      "label": "Chain D",
+      "max": 10,
+      "min": 1,
+      "name": "chain-d-3",
+      "type": "int"
+    },
+    {
+      "default": 4,
+      "id": "p4_a",
+      "label": "Chain A",
+      "max": 10,
+      "min": 1,
+      "name": "chain-a-4",
+      "type": "int"
+    },
+    {
+      "default": 4,
+      "id": "p4_b",
+      "label": "Chain B",
+      "max": 10,
+      "min": 1,
+      "name": "chain-b-4",
+      "type": "int"
+    },
+    {
+      "default": 4,
+      "id": "p4_c",
+      "label": "Chain C",
+      "max": 10,
+      "min": 1,
+      "name": "chain-c-4",
+      "type": "int"
+    },
+    {
+      "default": 4,
+      "id": "p4_d",
+      "label": "Chain D",
+      "max": 10,
+      "min": 1,
+      "name": "chain-d-4",
+      "type": "int"
+    },
+    {
+      "default": 5,
+      "id": "p5_a",
+      "label": "Chain A",
+      "max": 10,
+      "min": 1,
+      "name": "chain-a-5",
+      "type": "int"
+    },
+    {
+      "default": 5,
+      "id": "p5_b",
+      "label": "Chain B",
+      "max": 10,
+      "min": 1,
+      "name": "chain-b-5",
+      "type": "int"
+    },
+    {
+      "default": 5,
+      "id": "p5_c",
+      "label": "Chain C",
+      "max": 10,
+      "min": 1,
+      "name": "chain-c-5",
+      "type": "int"
+    },
+    {
+      "default": 5,
+      "id": "p5_d",
+      "label": "Chain D",
+      "max": 10,
+      "min": 1,
+      "name": "chain-d-5",
+      "type": "int"
+    },
+    {
+      "default": 6,
+      "id": "p6_a",
+      "label": "Chain A",
+      "max": 10,
+      "min": 1,
+      "name": "chain-a-6",
+      "type": "int"
+    },
+    {
+      "default": 6,
+      "id": "p6_b",
+      "label": "Chain B",
+      "max": 10,
+      "min": 1,
+      "name": "chain-b-6",
+      "type": "int"
+    },
+    {
+      "default": 6,
+      "id": "p6_c",
+      "label": "Chain C",
+      "max": 10,
+      "min": 1,
+      "name": "chain-c-6",
+      "type": "int"
+    },
+    {
+      "default": 6,
+      "id": "p6_d",
+      "label": "Chain D",
+      "max": 10,
+      "min": 1,
+      "name": "chain-d-6",
+      "type": "int"
+    },
+    {
+      "default": 7,
+      "id": "p7_a",
+      "label": "Chain A",
+      "max": 10,
+      "min": 1,
+      "name": "chain-a-7",
+      "type": "int"
+    },
+    {
+      "default": 7,
+      "id": "p7_b",
+      "label": "Chain B",
+      "max": 10,
+      "min": 1,
+      "name": "chain-b-7",
+      "type": "int"
+    },
+    {
+      "default": 7,
+      "id": "p7_c",
+      "label": "Chain C",
+      "max": 10,
+      "min": 1,
+      "name": "chain-c-7",
+      "type": "int"
+    },
+    {
+      "default": 7,
+      "id": "p7_d",
+      "label": "Chain D",
+      "max": 10,
+      "min": 1,
+      "name": "chain-d-7",
+      "type": "int"
+    },
+    {
+      "default": 8,
+      "id": "p8_a",
+      "label": "Chain A",
+      "max": 10,
+      "min": 1,
+      "name": "chain-a-8",
+      "type": "int"
+    },
+    {
+      "default": 8,
+      "id": "p8_b",
+      "label": "Chain B",
+      "max": 10,
+      "min": 1,
+      "name": "chain-b-8",
+      "type": "int"
+    },
+    {
+      "default": 8,
+      "id": "p8_c",
+      "label": "Chain C",
+      "max": 10,
+      "min": 1,
+      "name": "chain-c-8",
+      "type": "int"
+    },
+    {
+      "default": 8,
+      "id": "p8_d",
+      "label": "Chain D",
+      "max": 10,
+      "min": 1,
+      "name": "chain-d-8",
+      "type": "int"
+    },
+    {
+      "default": 9,
+      "id": "p9_a",
+      "label": "Chain A",
+      "max": 10,
+      "min": 1,
+      "name": "chain-a-9",
+      "type": "int"
+    },
+    {
+      "default": 9,
+      "id": "p9_b",
+      "label": "Chain B",
+      "max": 10,
+      "min": 1,
+      "name": "chain-b-9",
+      "type": "int"
+    },
+    {
+      "default": 9,
+      "id": "p9_c",
+      "label": "Chain C",
+      "max": 10,
+      "min": 1,
+      "name": "chain-c-9",
+      "type": "int"
+    },
+    {
+      "default": 9,
+      "id": "p9_d",
+      "label": "Chain D",
+      "max": 10,
+      "min": 1,
+      "name": "chain-d-9",
+      "type": "int"
+    },
+    {
+      "default": 10,
+      "id": "p10_a",
+      "label": "Chain A",
+      "max": 10,
+      "min": 1,
+      "name": "chain-a-10",
+      "type": "int"
+    },
+    {
+      "default": 10,
+      "id": "p10_b",
+      "label": "Chain B",
+      "max": 10,
+      "min": 1,
+      "name": "chain-b-10",
+      "type": "int"
+    },
+    {
+      "default": 10,
+      "id": "p10_c",
+      "label": "Chain C",
+      "max": 10,
+      "min": 1,
+      "name": "chain-c-10",
+      "type": "int"
+    },
+    {
+      "default": 10,
+      "id": "p10_d",
+      "label": "Chain D",
+      "max": 10,
+      "min": 1,
+      "name": "chain-d-10",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "orhack",
+  "tags": [],
+  "version": {
+    "archive_sha256": null,
+    "file_id": null,
+    "updated_at": null
+  }
+}

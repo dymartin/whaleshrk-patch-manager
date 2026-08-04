@@ -1,0 +1,51 @@
+{
+  "category": "utility/audio",
+  "category_override": null,
+  "display": "mscale",
+  "key": "mscale@mscale-simple-midi-note-transposer",
+  "moduleType": "utility/audio/mscale@mscale-simple-midi-note-transposer",
+  "params": [
+    {
+      "default": 0,
+      "id": "root",
+      "label": "Root",
+      "max": 11,
+      "min": 0,
+      "name": "root",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "scale",
+      "label": "Scale",
+      "max": 1,
+      "min": 0,
+      "name": "scale",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "bypass",
+      "label": "Bypass",
+      "max": 1,
+      "min": 0,
+      "name": "bypass",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "mscale-simple-midi-note-transposer",
+  "tags": [
+    "midi",
+    "orac",
+    "organelle",
+    "transpose",
+    "utility"
+  ],
+  "version": {
+    "archive_sha256": "245b261f4672ede7382f346e049349f7e8aa0fd7dd3f1c9015759f5eae562e4f",
+    "file_id": 114514,
+    "updated_at": "2019-11-02T08:28:35+00:00"
+  }
+}

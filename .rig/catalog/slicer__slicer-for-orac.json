@@ -1,0 +1,228 @@
+{
+  "category": "effects/mod",
+  "category_override": null,
+  "display": "Slicer",
+  "key": "slicer@slicer-for-orac",
+  "moduleType": "effects/mod/slicer@slicer-for-orac",
+  "params": [
+    {
+      "default": 0,
+      "id": "interrupt",
+      "label": "Interrupt",
+      "max": 1,
+      "min": -1,
+      "name": "interrupt",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "compensate",
+      "label": "Compensate",
+      "max": 100,
+      "min": 0,
+      "name": "compensate",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "minspeed",
+      "label": "Min Speed",
+      "max": 100,
+      "min": 0,
+      "name": "min-speed",
+      "type": "pct"
+    },
+    {
+      "default": 6,
+      "id": "attackstep",
+      "label": "Attack Step",
+      "max": 127,
+      "min": 0,
+      "name": "attack-step",
+      "type": "int"
+    },
+    {
+      "default": 70,
+      "id": "attackthresh",
+      "label": "Attack Thresh",
+      "max": 127,
+      "min": 0,
+      "name": "attack-thresh",
+      "type": "int"
+    },
+    {
+      "default": 55,
+      "id": "silencethresh",
+      "label": "Silence Thresh",
+      "max": 127,
+      "min": 0,
+      "name": "silence-thresh",
+      "type": "int"
+    },
+    {
+      "default": 150,
+      "id": "timeconstant",
+      "label": "timeconstant",
+      "max": 300,
+      "min": 0,
+      "name": "timeconstant",
+      "type": "time"
+    },
+    {
+      "default": 100,
+      "id": "mix-1",
+      "label": "Mix 1",
+      "max": 200,
+      "min": 0,
+      "name": "mix-1",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "mix-2",
+      "label": "Mix 2",
+      "max": 200,
+      "min": 0,
+      "name": "mix-2",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "mix-3",
+      "label": "Mix 3",
+      "max": 200,
+      "min": 0,
+      "name": "mix-3",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "mix-4",
+      "label": "Mix 4",
+      "max": 200,
+      "min": 0,
+      "name": "mix-4",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "rate-1",
+      "label": "Play Rate",
+      "max": 200,
+      "min": -200,
+      "name": "play-rate-1",
+      "type": "pct"
+    },
+    {
+      "default": 6,
+      "id": "div-1",
+      "label": "Trig Div",
+      "max": 24,
+      "min": 0,
+      "name": "trig-div-1",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "slice-1",
+      "label": "Slice",
+      "max": 8,
+      "min": 0,
+      "name": "slice-1",
+      "type": "int"
+    },
+    {
+      "default": 100,
+      "id": "rate-2",
+      "label": "Play Rate",
+      "max": 200,
+      "min": -200,
+      "name": "play-rate-2",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "div-2",
+      "label": "Trig Div",
+      "max": 24,
+      "min": 0,
+      "name": "trig-div-2",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "slice-2",
+      "label": "Slice",
+      "max": 8,
+      "min": 0,
+      "name": "slice-2",
+      "type": "int"
+    },
+    {
+      "default": 100,
+      "id": "rate-3",
+      "label": "Play Rate",
+      "max": 200,
+      "min": -200,
+      "name": "play-rate-3",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "div-3",
+      "label": "Trig Div",
+      "max": 24,
+      "min": 0,
+      "name": "trig-div-3",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "slice-3",
+      "label": "Slice",
+      "max": 8,
+      "min": 0,
+      "name": "slice-3",
+      "type": "int"
+    },
+    {
+      "default": 100,
+      "id": "rate-4",
+      "label": "Play Rate",
+      "max": 200,
+      "min": -200,
+      "name": "play-rate-4",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "div-4",
+      "label": "Trig Div",
+      "max": 24,
+      "min": 0,
+      "name": "trig-div-4",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "slice-4",
+      "label": "Slice",
+      "max": 8,
+      "min": 0,
+      "name": "slice-4",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "slicer-for-orac",
+  "tags": [
+    "effect",
+    "slicer"
+  ],
+  "version": {
+    "archive_sha256": "92a53fc5540159394b3acc2a1fc08c96edb97713d39a2bdb26833899cf506d4d",
+    "file_id": 116767,
+    "updated_at": "2019-12-22T15:02:51+00:00"
+  }
+}

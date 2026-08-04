@@ -1,0 +1,131 @@
+{
+  "category": "instruments/synth",
+  "category_override": null,
+  "display": "FM Fatale",
+  "key": "fm-fatale@fm-fatale-2",
+  "moduleType": "instruments/synth/fm-fatale@fm-fatale-2",
+  "params": [
+    {
+      "default": 200,
+      "id": "modfreq",
+      "label": "ModFreq",
+      "max": 820,
+      "min": 20,
+      "name": "modfreq",
+      "type": "float"
+    },
+    {
+      "default": 2,
+      "id": "modtype",
+      "label": "ModType",
+      "max": 4,
+      "min": 0,
+      "name": "modtype",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "nonlin",
+      "label": "NonLinearity",
+      "max": 1,
+      "min": 0,
+      "name": "nonlinearity",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "nonlinatt",
+      "label": "NonLinAttack",
+      "max": 2,
+      "min": 0,
+      "name": "nonlinattack",
+      "type": "time"
+    },
+    {
+      "default": 0.1,
+      "id": "envattack",
+      "label": "EnvAttack",
+      "max": 2,
+      "min": 0.01,
+      "name": "envattack",
+      "type": "float"
+    },
+    {
+      "default": 0.1,
+      "id": "envdecay",
+      "label": "EnvDecay",
+      "max": 2,
+      "min": 0.01,
+      "name": "envdecay",
+      "type": "float"
+    },
+    {
+      "default": 0.1,
+      "id": "envrelease",
+      "label": "EnvRelease",
+      "max": 2,
+      "min": 0.01,
+      "name": "envrelease",
+      "type": "float"
+    },
+    {
+      "default": 0.1,
+      "id": "vibattack",
+      "label": "VibAttack",
+      "max": 2,
+      "min": 0.01,
+      "name": "vibattack",
+      "type": "float"
+    },
+    {
+      "default": 5,
+      "id": "vibfreq",
+      "label": "VibFreq",
+      "max": 15,
+      "min": 1,
+      "name": "vibfreq",
+      "type": "float"
+    },
+    {
+      "default": 0.1,
+      "id": "vibrelease",
+      "label": "VibRelease",
+      "max": 2,
+      "min": 0.01,
+      "name": "vibrelease",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "vibgain",
+      "label": "VibGain",
+      "max": 1,
+      "min": 0,
+      "name": "vibgain",
+      "type": "float"
+    },
+    {
+      "default": 100,
+      "id": "cutoff",
+      "label": "LP-Filter",
+      "max": 100,
+      "min": 0,
+      "name": "lp-filter",
+      "type": "float"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "fm-fatale-2",
+  "tags": [
+    "fm",
+    "orac",
+    "synth",
+    "synthesizer"
+  ],
+  "version": {
+    "archive_sha256": "9412c96f470388144b71b659f715c6a490b8468d59833e8bfa9ed2c22b18fbd2",
+    "file_id": 189814,
+    "updated_at": "2025-11-23T17:09:37+00:00"
+  }
+}

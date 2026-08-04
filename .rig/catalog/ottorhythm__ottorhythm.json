@@ -1,0 +1,150 @@
+{
+  "category": "sequencers",
+  "category_override": null,
+  "display": "OttoRhythm",
+  "key": "ottorhythm@ottorhythm",
+  "moduleType": "sequencers/ottorhythm@ottorhythm",
+  "params": [
+    {
+      "default": 0,
+      "id": "otto_style",
+      "label": "Style",
+      "max": 29,
+      "min": 0,
+      "name": "style",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "otto_kit",
+      "label": "Drumkit",
+      "max": 9,
+      "min": 0,
+      "name": "drumkit",
+      "type": "int"
+    },
+    {
+      "default": 50,
+      "id": "otto_volume",
+      "label": "Drum Volume",
+      "max": 99,
+      "min": 0,
+      "name": "drum-volume",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "otto_play",
+      "label": "Play",
+      "max": 1,
+      "min": 0,
+      "name": "play",
+      "type": "bool"
+    },
+    {
+      "default": 1,
+      "id": "otto_chrd_on",
+      "label": "Chord",
+      "max": 1,
+      "min": 0,
+      "name": "chord",
+      "type": "bool"
+    },
+    {
+      "default": 100,
+      "id": "otto_chrd_vel",
+      "label": "Velocity",
+      "max": 127,
+      "min": 1,
+      "name": "velocity-1",
+      "type": "int"
+    },
+    {
+      "default": 500,
+      "id": "otto_chrd_len",
+      "label": "Length",
+      "max": 2000,
+      "min": 20,
+      "name": "length-1",
+      "type": "time"
+    },
+    {
+      "default": 0,
+      "id": "otto_chrd_oct",
+      "label": "Octave",
+      "max": 2,
+      "min": -2,
+      "name": "octave-1",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "otto_bass_on",
+      "label": "Bass",
+      "max": 1,
+      "min": 0,
+      "name": "bass",
+      "type": "bool"
+    },
+    {
+      "default": 100,
+      "id": "otto_bass_vel",
+      "label": "Velocity",
+      "max": 127,
+      "min": 1,
+      "name": "velocity-2",
+      "type": "int"
+    },
+    {
+      "default": 500,
+      "id": "otto_bass_len",
+      "label": "Length",
+      "max": 2000,
+      "min": 20,
+      "name": "length-2",
+      "type": "time"
+    },
+    {
+      "default": 0,
+      "id": "otto_bass_oct",
+      "label": "Octave",
+      "max": 2,
+      "min": -2,
+      "name": "octave-2",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "otto_midi_thru",
+      "label": "Midi Thru",
+      "max": 1,
+      "min": 0,
+      "name": "midi-thru",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "otto_hold",
+      "label": "Hold",
+      "max": 1,
+      "min": 0,
+      "name": "hold",
+      "type": "bool"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "ottorhythm",
+  "tags": [
+    "drum",
+    "machine",
+    "other",
+    "sequencer",
+    "synthesizer"
+  ],
+  "version": {
+    "archive_sha256": "218ff95ab3ef20a12c70cd9ab048c1e9232dbfff0c09f7471866874ea23e3f73",
+    "file_id": 146099,
+    "updated_at": "2021-11-06T21:01:18+00:00"
+  }
+}

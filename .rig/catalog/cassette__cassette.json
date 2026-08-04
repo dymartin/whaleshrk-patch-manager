@@ -1,0 +1,62 @@
+{
+  "category": "instruments/sampler",
+  "category_override": null,
+  "display": "Cassette",
+  "key": "cassette@cassette",
+  "moduleType": "instruments/sampler/cassette@cassette",
+  "params": [
+    {
+      "default": 50,
+      "id": "force",
+      "label": "Force",
+      "max": 200,
+      "min": 1,
+      "name": "force",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "precision",
+      "label": "Precision",
+      "max": 50,
+      "min": -50,
+      "name": "precision",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "pitch",
+      "label": "Pitch",
+      "max": 11,
+      "min": -11,
+      "name": "pitch",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "thru_gain",
+      "label": "Audio Thru Gain",
+      "max": 100,
+      "min": 0,
+      "name": "audio-thru-gain",
+      "type": "pct"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "cassette",
+  "tags": [
+    "cassette",
+    "composition",
+    "overdub",
+    "record",
+    "sampler",
+    "song",
+    "tape"
+  ],
+  "version": {
+    "archive_sha256": "21486958464678ee42da304a85d6fd64a9c9f4cfce4d3339d9e587b6045037d4",
+    "file_id": 117561,
+    "updated_at": "2020-01-13T03:31:35+00:00"
+  }
+}

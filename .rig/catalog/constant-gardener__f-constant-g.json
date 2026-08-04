@@ -1,0 +1,55 @@
+{
+  "category": "effects/mod",
+  "category_override": null,
+  "display": "Constant Gardener",
+  "key": "constant-gardener@f-constant-g",
+  "moduleType": "effects/mod/constant-gardener@f-constant-g",
+  "params": [
+    {
+      "default": 100,
+      "id": "cg_speed",
+      "label": "Speed",
+      "max": 100,
+      "min": 0,
+      "name": "speed",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "cg_tune",
+      "label": "Tune",
+      "max": 12,
+      "min": -12,
+      "name": "tune",
+      "type": "pitch"
+    },
+    {
+      "default": 50,
+      "id": "cg_dw",
+      "label": "Dry/Wet",
+      "max": 100,
+      "min": 0,
+      "name": "dry-wet",
+      "type": "pct"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "f-constant-g",
+  "tags": [
+    "constant",
+    "effect",
+    "gardener",
+    "orac",
+    "organelle",
+    "pd",
+    "phase",
+    "pvoc",
+    "vocoder"
+  ],
+  "version": {
+    "archive_sha256": "b0d1c4f7c0f3497ead95f920aec39f5522f1d8d2b93552c11fe0e730ec14dfdb",
+    "file_id": 101590,
+    "updated_at": "2018-11-08T14:30:18+00:00"
+  }
+}

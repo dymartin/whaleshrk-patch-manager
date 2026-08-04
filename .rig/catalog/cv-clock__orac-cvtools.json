@@ -1,0 +1,70 @@
+{
+  "category": "utility/audio",
+  "category_override": null,
+  "display": "cv Clock",
+  "key": "cv-clock@orac-cvtools",
+  "moduleType": "utility/audio/cv-clock@orac-cvtools",
+  "params": [
+    {
+      "default": 120,
+      "id": "c_bpm",
+      "label": "BPM",
+      "max": 480,
+      "min": 10,
+      "name": "bpm",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "c_cvin",
+      "label": "CV In",
+      "max": 16,
+      "min": 0,
+      "name": "cv-in",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "c_cvout",
+      "label": "CV Out",
+      "max": 16,
+      "min": 0,
+      "name": "cv-out",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "c_midiin",
+      "label": "Midi In",
+      "max": 1,
+      "min": 0,
+      "name": "midi-in",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "c_midiout",
+      "label": "Midi Out",
+      "max": 1,
+      "min": 0,
+      "name": "midi-out",
+      "type": "bool"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "orac-cvtools",
+  "tags": [
+    "eurorack",
+    "modular",
+    "orac",
+    "organelle",
+    "rpi",
+    "utility"
+  ],
+  "version": {
+    "archive_sha256": "3d3071b0ba5172bfd9fec498ac648a3a44b176dca92b8965467028c0e9c7df9d",
+    "file_id": 110651,
+    "updated_at": "2019-07-26T15:31:22+00:00"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "category": null,
+  "category_override": null,
+  "display": "Ringverb",
+  "key": "ringverb@orhack",
+  "moduleType": "effects/reverb/ringverb",
+  "params": [
+    {
+      "default": 50,
+      "id": "r_amount",
+      "label": "Amount",
+      "max": 100,
+      "min": 0,
+      "name": "amount",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "r_time",
+      "label": "Time",
+      "max": 100,
+      "min": 0,
+      "name": "time",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "r_diff",
+      "label": "Diffusion",
+      "max": 100,
+      "min": 0,
+      "name": "diffusion",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "r_cutoff",
+      "label": "Cutoff",
+      "max": 100,
+      "min": 0,
+      "name": "cutoff",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "thru_gain",
+      "label": "Audio Thru Gain",
+      "max": 100,
+      "min": 0,
+      "name": "audio-thru-gain",
+      "type": "pct"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "orhack",
+  "tags": [],
+  "version": {
+    "archive_sha256": null,
+    "file_id": null,
+    "updated_at": null
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "category": null,
+  "category_override": null,
+  "display": "Oscilloscope",
+  "key": "oscilloscope@orhack",
+  "moduleType": "utility/visual/scope",
+  "params": [],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "orhack",
+  "tags": [],
+  "version": {
+    "archive_sha256": null,
+    "file_id": null,
+    "updated_at": null
+  }
+}

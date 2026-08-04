@@ -1,0 +1,70 @@
+{
+  "category": "effects/mod",
+  "category_override": null,
+  "display": "Delay 3s",
+  "key": "delay-3s@delayfxsend",
+  "moduleType": "effects/mod/delay-3s@delayfxsend",
+  "params": [
+    {
+      "default": 50,
+      "id": "dly_dw",
+      "label": "Dry/Wet",
+      "max": 100,
+      "min": 0,
+      "name": "dry-wet",
+      "type": "pct"
+    },
+    {
+      "default": 3000,
+      "id": "dly_time",
+      "label": "Time",
+      "max": 3000,
+      "min": 0,
+      "name": "time",
+      "type": "time"
+    },
+    {
+      "default": 10,
+      "id": "dly_fb",
+      "label": "Feedback",
+      "max": 100,
+      "min": 0,
+      "name": "feedback",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "dly_hip",
+      "label": "Freq",
+      "max": 15000,
+      "min": 0,
+      "name": "freq",
+      "type": "freq"
+    },
+    {
+      "default": 0,
+      "id": "thru_gain",
+      "label": "Audio Thru Gain",
+      "max": 100,
+      "min": 0,
+      "name": "audio-thru-gain",
+      "type": "pct"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "delayfxsend",
+  "tags": [
+    "aux-send",
+    "delay",
+    "effect",
+    "fx",
+    "fx-send",
+    "orac"
+  ],
+  "version": {
+    "archive_sha256": "6384256733e7207ffda3f222edd044e963b2c9f06d1f39c6e7891fb499aac73d",
+    "file_id": 112312,
+    "updated_at": "2019-09-02T16:28:06+00:00"
+  }
+}

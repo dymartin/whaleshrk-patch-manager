@@ -1,0 +1,67 @@
+{
+  "category": "effects/mod",
+  "category_override": null,
+  "display": "FreqShifter",
+  "key": "freqshifter@freqshifter",
+  "moduleType": "effects/mod/freqshifter@freqshifter",
+  "params": [
+    {
+      "default": 0,
+      "id": "freq",
+      "label": "Shift",
+      "max": 100,
+      "min": 0,
+      "name": "shift",
+      "type": "pct"
+    },
+    {
+      "default": 2,
+      "id": "lfofreq",
+      "label": "LFO Freq",
+      "max": 220,
+      "min": 0,
+      "name": "lfo-freq",
+      "type": "freq"
+    },
+    {
+      "default": 0,
+      "id": "lfoamount",
+      "label": "LFO Amount",
+      "max": 100,
+      "min": 0,
+      "name": "lfo-amount",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "dw",
+      "label": "Dry/Wet",
+      "max": 100,
+      "min": 0,
+      "name": "dry-wet",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "thru_gain",
+      "label": "Audio Thru Gain",
+      "max": 100,
+      "min": 0,
+      "name": "audio-thru-gain",
+      "type": "pct"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "freqshifter",
+  "tags": [
+    "effect",
+    "freqshifter",
+    "frequencyshifter"
+  ],
+  "version": {
+    "archive_sha256": "d6693ad7e6fd30202c3e3c95b508139cb6f24c81e37b2bc29ee5804b9116e4bf",
+    "file_id": 118875,
+    "updated_at": "2020-02-17T03:54:48+00:00"
+  }
+}

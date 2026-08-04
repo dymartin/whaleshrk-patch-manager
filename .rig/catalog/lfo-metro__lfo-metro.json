@@ -1,0 +1,76 @@
+{
+  "category": "utility/audio",
+  "category_override": null,
+  "display": "LFO Metro",
+  "key": "lfo-metro@lfo-metro",
+  "moduleType": "utility/audio/lfo-metro@lfo-metro",
+  "params": [
+    {
+      "default": 0,
+      "id": "l_wave",
+      "label": "Wave",
+      "max": 3,
+      "min": 0,
+      "name": "wave",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "l_nbars",
+      "label": "Number of Bars",
+      "max": 32,
+      "min": 0,
+      "name": "number-of-bars",
+      "type": "int"
+    },
+    {
+      "default": 10,
+      "id": "l_amt",
+      "label": "Amount",
+      "max": 100,
+      "min": 0,
+      "name": "amount",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "l_offset",
+      "label": "Offset",
+      "max": 100,
+      "min": 0,
+      "name": "offset",
+      "type": "pct"
+    },
+    {
+      "default": 15,
+      "id": "l_bus",
+      "label": "Mod Bus",
+      "max": 20,
+      "min": 0,
+      "name": "mod-bus",
+      "type": "int"
+    },
+    {
+      "default": 4,
+      "id": "l_barlen",
+      "label": "Bar Length",
+      "max": 8,
+      "min": 0,
+      "name": "bar-length",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "lfo-metro",
+  "tags": [
+    "clock-cycle",
+    "lfo",
+    "other"
+  ],
+  "version": {
+    "archive_sha256": "d51da3c135a4154e83b55bba3bef4c4d388d85e42ca2769588c0fbfc7f3469b7",
+    "file_id": 146683,
+    "updated_at": "2021-11-19T10:22:37+00:00"
+  }
+}

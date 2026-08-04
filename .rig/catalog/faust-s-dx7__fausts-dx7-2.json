@@ -1,0 +1,68 @@
+{
+  "category": "instruments/synth",
+  "category_override": null,
+  "display": "Faust's DX7",
+  "key": "faust-s-dx7@fausts-dx7-2",
+  "moduleType": "instruments/synth/faust-s-dx7@fausts-dx7-2",
+  "params": [
+    {
+      "default": 1,
+      "id": "bank",
+      "label": "Bank",
+      "max": 2,
+      "min": 1,
+      "name": "bank",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "presetid",
+      "label": "Preset",
+      "max": 32,
+      "min": 1,
+      "name": "preset",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "transpose",
+      "label": "Transpose",
+      "max": 24,
+      "min": -24,
+      "name": "transpose",
+      "type": "pitch"
+    },
+    {
+      "default": 50,
+      "id": "release",
+      "label": "Release",
+      "max": 2000,
+      "min": 0,
+      "name": "release",
+      "type": "time"
+    },
+    {
+      "default": 0,
+      "id": "attack",
+      "label": "Attack",
+      "max": 2000,
+      "min": 0,
+      "name": "attack",
+      "type": "time"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "fausts-dx7-2",
+  "tags": [
+    "dx7",
+    "faust",
+    "synth",
+    "synthesizer"
+  ],
+  "version": {
+    "archive_sha256": "be466260f0683bc1766d805cd7c830c315d025acc55dbea5f60dab6bfd59a2c2",
+    "file_id": 169897,
+    "updated_at": "2023-08-10T19:40:08+00:00"
+  }
+}

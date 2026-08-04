@@ -1,0 +1,69 @@
+{
+  "category": "instruments/synth",
+  "category_override": null,
+  "display": "Memor(y)hack-5",
+  "key": "memor-y-hack-5@memoryhack-5",
+  "moduleType": "instruments/synth/memor-y-hack-5@memoryhack-5",
+  "params": [
+    {
+      "default": 0,
+      "id": "mf_octave",
+      "label": "Octave",
+      "max": 2,
+      "min": -2,
+      "name": "octave",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "mf_fx",
+      "label": "FX",
+      "max": 5,
+      "min": 0,
+      "name": "fx",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "mf_cutoff",
+      "label": "Cutoff",
+      "max": 1,
+      "min": 0,
+      "name": "cutoff",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "mf_emphasis",
+      "label": "Emphasis",
+      "max": 1,
+      "min": 0,
+      "name": "emphasis",
+      "type": "float"
+    },
+    {
+      "default": 1,
+      "id": "mf_type",
+      "label": "Type",
+      "max": 3,
+      "min": 1,
+      "name": "type",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "memoryhack-5",
+  "tags": [
+    "phaser",
+    "retro",
+    "synth",
+    "synthesizer",
+    "virtual-analog"
+  ],
+  "version": {
+    "archive_sha256": "0dfa356ed2015cfb905ce76f0d99b8293aeb4db9a14ea81e0ba4789e1b9410ba",
+    "file_id": 170855,
+    "updated_at": "2023-09-12T13:54:58+00:00"
+  }
+}

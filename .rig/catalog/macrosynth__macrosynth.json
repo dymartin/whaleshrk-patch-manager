@@ -1,0 +1,133 @@
+{
+  "category": "instruments/synth",
+  "category_override": null,
+  "display": "macrosynth",
+  "key": "macrosynth@macrosynth",
+  "moduleType": "instruments/synth/macrosynth@macrosynth",
+  "params": [
+    {
+      "default": 0,
+      "id": "model",
+      "label": "Model",
+      "max": 15,
+      "min": 0,
+      "name": "model",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "semitone",
+      "label": "Semitone",
+      "max": 48,
+      "min": -48,
+      "name": "semitone",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "trigger_active",
+      "label": "Trigger",
+      "max": 1,
+      "min": 0,
+      "name": "trigger",
+      "type": "bool"
+    },
+    {
+      "default": 50,
+      "id": "harmonics",
+      "label": "Harmonics",
+      "max": 100,
+      "min": 0,
+      "name": "harmonics",
+      "type": "float"
+    },
+    {
+      "default": 50,
+      "id": "timbre",
+      "label": "Timbre",
+      "max": 100,
+      "min": 0,
+      "name": "timbre",
+      "type": "float"
+    },
+    {
+      "default": 50,
+      "id": "morph",
+      "label": "Morph",
+      "max": 100,
+      "min": 0,
+      "name": "morph",
+      "type": "float"
+    },
+    {
+      "default": 50,
+      "id": "lpg_colour",
+      "label": "LPG Colour",
+      "max": 100,
+      "min": 0,
+      "name": "lpg-colour",
+      "type": "float"
+    },
+    {
+      "default": 50,
+      "id": "decay",
+      "label": "Decay",
+      "max": 100,
+      "min": 0,
+      "name": "decay",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "aux",
+      "label": "Main/Aux",
+      "max": 1,
+      "min": 0,
+      "name": "main-aux",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "mod_timbre",
+      "label": "Mod Timbre",
+      "max": 1,
+      "min": -1,
+      "name": "mod-timbre",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "mod_fm",
+      "label": "Mod FM",
+      "max": 1,
+      "min": -1,
+      "name": "mod-fm",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "mod_morph",
+      "label": "Mod Morph",
+      "max": 1,
+      "min": -1,
+      "name": "mod-morph",
+      "type": "float"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "macrosynth",
+  "tags": [
+    "drums",
+    "formant",
+    "synth",
+    "synthesizer",
+    "wavefolding",
+    "wavetable"
+  ],
+  "version": {
+    "archive_sha256": "d9637f1544813b6a4cdb9cd1161c11cf87e0d983a9fb95a3a656fd2989d2c8a4",
+    "file_id": 114182,
+    "updated_at": "2019-10-25T00:16:44+00:00"
+  }
+}

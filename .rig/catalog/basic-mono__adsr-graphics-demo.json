@@ -1,0 +1,57 @@
+{
+  "category": "utility/audio",
+  "category_override": null,
+  "display": "Basic Mono",
+  "key": "basic-mono@adsr-graphics-demo",
+  "moduleType": "utility/audio/basic-mono@adsr-graphics-demo",
+  "params": [
+    {
+      "default": 1,
+      "id": "attack",
+      "label": "Attack",
+      "max": 2000,
+      "min": 1,
+      "name": "attack",
+      "type": "time"
+    },
+    {
+      "default": 500,
+      "id": "decay",
+      "label": "Decay",
+      "max": 4000,
+      "min": 1,
+      "name": "decay",
+      "type": "time"
+    },
+    {
+      "default": 50,
+      "id": "sustain",
+      "label": "Sustain",
+      "max": 100,
+      "min": 0,
+      "name": "sustain",
+      "type": "pct"
+    },
+    {
+      "default": 500,
+      "id": "release",
+      "label": "Release",
+      "max": 4000,
+      "min": 1,
+      "name": "release",
+      "type": "time"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "adsr-graphics-demo",
+  "tags": [
+    "demo",
+    "other"
+  ],
+  "version": {
+    "archive_sha256": "fb6952155286b742f137293a545f1ce71fd861a423de275d70cfab63c804d1cc",
+    "file_id": 114147,
+    "updated_at": "2019-10-24T02:09:08+00:00"
+  }
+}

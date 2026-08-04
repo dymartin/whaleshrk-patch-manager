@@ -1,0 +1,81 @@
+{
+  "category": null,
+  "category_override": null,
+  "display": "Warp",
+  "key": "warp@orhack",
+  "moduleType": "effects/drive/warp",
+  "params": [
+    {
+      "default": 50,
+      "id": "w_algo",
+      "label": "Algo",
+      "max": 100,
+      "min": 0,
+      "name": "algo",
+      "type": "pct"
+    },
+    {
+      "default": 20,
+      "id": "w_timbre",
+      "label": "Timbre",
+      "max": 100,
+      "min": 0,
+      "name": "timbre",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "w_drive1",
+      "label": "Drive A",
+      "max": 100,
+      "min": 0,
+      "name": "drive-a",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "w_drive2",
+      "label": "Drive B",
+      "max": 100,
+      "min": 0,
+      "name": "drive-b",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "w_mix",
+      "label": "Dry | Wet",
+      "max": 100,
+      "min": 0,
+      "name": "dry-wet",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "w_volume",
+      "label": "OUT Volume",
+      "max": 100,
+      "min": 0,
+      "name": "out-volume",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "thru_gain",
+      "label": "Audio Thru Gain",
+      "max": 100,
+      "min": 0,
+      "name": "audio-thru-gain",
+      "type": "pct"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "orhack",
+  "tags": [],
+  "version": {
+    "archive_sha256": null,
+    "file_id": null,
+    "updated_at": null
+  }
+}

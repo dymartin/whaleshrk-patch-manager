@@ -1,0 +1,34 @@
+{
+  "category": "effects/mod",
+  "category_override": null,
+  "display": "Superposition",
+  "key": "superposition@superposition",
+  "moduleType": "effects/mod/superposition@superposition",
+  "params": [
+    {
+      "default": 0,
+      "id": "transposition",
+      "label": "Transposition",
+      "max": 24,
+      "min": -24,
+      "name": "transposition",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "superposition",
+  "tags": [
+    "chords",
+    "effect",
+    "pitch",
+    "pitchshifter",
+    "polyphony",
+    "timestretch"
+  ],
+  "version": {
+    "archive_sha256": "92826b967d5223a1d50767e77c01572c88e8b5c7d548198be77592fc5f13526c",
+    "file_id": 116701,
+    "updated_at": "2019-12-21T00:47:37+00:00"
+  }
+}

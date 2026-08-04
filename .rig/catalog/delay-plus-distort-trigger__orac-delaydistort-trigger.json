@@ -1,0 +1,63 @@
+{
+  "category": "effects/mod",
+  "category_override": null,
+  "display": "Delay + Distort Trigger",
+  "key": "delay-plus-distort-trigger@orac-delaydistort-trigger",
+  "moduleType": "effects/mod/delay-plus-distort-trigger@orac-delaydistort-trigger",
+  "params": [
+    {
+      "default": 25,
+      "id": "rdd_delLen",
+      "label": "Delay Length",
+      "max": 100,
+      "min": 0,
+      "name": "delay-length",
+      "type": "pct"
+    },
+    {
+      "default": 25,
+      "id": "rdd_distLen",
+      "label": "Dist. Length",
+      "max": 100,
+      "min": 0,
+      "name": "dist-length",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "rdd_depth",
+      "label": "Depth",
+      "max": 100,
+      "min": 0,
+      "name": "depth",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "rdd_wetdry",
+      "label": "Wet/Dry",
+      "max": 100,
+      "min": 0,
+      "name": "wet-dry",
+      "type": "pct"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "orac-delaydistort-trigger",
+  "tags": [
+    "critter",
+    "delay",
+    "distort",
+    "effect",
+    "guitari",
+    "module",
+    "orac",
+    "rhythm"
+  ],
+  "version": {
+    "archive_sha256": "3ff548428e143bfc062286b972d6475b84966f28fa5f157102d657db28e20876",
+    "file_id": 99723,
+    "updated_at": "2018-08-09T16:08:25+00:00"
+  }
+}

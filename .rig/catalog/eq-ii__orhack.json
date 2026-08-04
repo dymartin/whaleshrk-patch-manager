@@ -1,0 +1,63 @@
+{
+  "category": null,
+  "category_override": null,
+  "display": "EQ II",
+  "key": "eq-ii@orhack",
+  "moduleType": "effects/filter/eq2",
+  "params": [
+    {
+      "default": 0,
+      "id": "thru_gain",
+      "label": "Audio Thru Gain",
+      "max": 100,
+      "min": 0,
+      "name": "audio-thru-gain",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "lowband",
+      "label": "< 150 Hz",
+      "max": 200,
+      "min": 0,
+      "name": "150-hz",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "highband",
+      "label": "> 3000 Hz",
+      "max": 200,
+      "min": 0,
+      "name": "3000-hz",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "infra_cut",
+      "label": "Low-cut (15Hz)",
+      "max": 1,
+      "min": 0,
+      "name": "low-cut-15hz",
+      "type": "bool"
+    },
+    {
+      "default": 1000,
+      "id": "freq",
+      "label": "Crossover",
+      "max": 7000,
+      "min": 75,
+      "name": "crossover",
+      "type": "freq"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "orhack",
+  "tags": [],
+  "version": {
+    "archive_sha256": null,
+    "file_id": null,
+    "updated_at": null
+  }
+}

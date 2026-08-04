@@ -1,0 +1,1083 @@
+{
+  "category": "utility/audio",
+  "category_override": null,
+  "display": "Parallel",
+  "key": "parallel@nkmutepar6",
+  "moduleType": "utility/audio/parallel@nkmutepar6",
+  "params": [
+    {
+      "default": 100,
+      "id": "r-thru-gain-a1",
+      "label": "Thru Gain",
+      "max": 200,
+      "min": 0,
+      "name": "thru-gain-1",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "r-gain-a1",
+      "label": "Gain",
+      "max": 200,
+      "min": 0,
+      "name": "gain-1",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "r-notethru-a1",
+      "label": "Note Thru",
+      "max": 1,
+      "min": 0,
+      "name": "note-thru-1",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "r-bypass-a1",
+      "label": "Bypass",
+      "max": 1,
+      "min": 0,
+      "name": "bypass-1",
+      "type": "bool"
+    },
+    {
+      "default": 100,
+      "id": "r-thru-gain-a2",
+      "label": "Thru Gain",
+      "max": 200,
+      "min": 0,
+      "name": "thru-gain-2",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "r-gain-a2",
+      "label": "Gain",
+      "max": 200,
+      "min": 0,
+      "name": "gain-2",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "r-notethru-a2",
+      "label": "Note Thru",
+      "max": 1,
+      "min": 0,
+      "name": "note-thru-2",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "r-bypass-a2",
+      "label": "Bypass",
+      "max": 1,
+      "min": 0,
+      "name": "bypass-2",
+      "type": "bool"
+    },
+    {
+      "default": 100,
+      "id": "r-thru-gain-a3",
+      "label": "Thru Gain",
+      "max": 200,
+      "min": 0,
+      "name": "thru-gain-3",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "r-gain-a3",
+      "label": "Gain",
+      "max": 200,
+      "min": 0,
+      "name": "gain-3",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "r-notethru-a3",
+      "label": "Note Thru",
+      "max": 1,
+      "min": 0,
+      "name": "note-thru-3",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "r-bypass-a3",
+      "label": "Bypass",
+      "max": 1,
+      "min": 0,
+      "name": "bypass-3",
+      "type": "bool"
+    },
+    {
+      "default": 100,
+      "id": "r-thru-gain-b1",
+      "label": "Thru Gain",
+      "max": 200,
+      "min": 0,
+      "name": "thru-gain-4",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "r-gain-b1",
+      "label": "Gain",
+      "max": 200,
+      "min": 0,
+      "name": "gain-4",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "r-notethru-b1",
+      "label": "Note Thru",
+      "max": 1,
+      "min": 0,
+      "name": "note-thru-4",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "r-bypass-b1",
+      "label": "Bypass",
+      "max": 1,
+      "min": 0,
+      "name": "bypass-4",
+      "type": "bool"
+    },
+    {
+      "default": 100,
+      "id": "r-thru-gain-b2",
+      "label": "Thru Gain",
+      "max": 200,
+      "min": 0,
+      "name": "thru-gain-5",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "r-gain-b2",
+      "label": "Gain",
+      "max": 200,
+      "min": 0,
+      "name": "gain-5",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "r-notethru-b2",
+      "label": "Note Thru",
+      "max": 1,
+      "min": 0,
+      "name": "note-thru-5",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "r-bypass-b2",
+      "label": "Bypass",
+      "max": 1,
+      "min": 0,
+      "name": "bypass-5",
+      "type": "bool"
+    },
+    {
+      "default": 100,
+      "id": "r-thru-gain-b3",
+      "label": "Thru Gain",
+      "max": 200,
+      "min": 0,
+      "name": "thru-gain-6",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "r-gain-b3",
+      "label": "Gain",
+      "max": 200,
+      "min": 0,
+      "name": "gain-6",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "r-notethru-b3",
+      "label": "Note Thru",
+      "max": 1,
+      "min": 0,
+      "name": "note-thru-6",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "r-bypass-b3",
+      "label": "Bypass",
+      "max": 1,
+      "min": 0,
+      "name": "bypass-6",
+      "type": "bool"
+    },
+    {
+      "default": 100,
+      "id": "r-thru-gain-b4",
+      "label": "Thru Gain",
+      "max": 200,
+      "min": 0,
+      "name": "thru-gain-7",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "r-gain-b4",
+      "label": "Gain",
+      "max": 200,
+      "min": 0,
+      "name": "gain-7",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "r-notethru-b4",
+      "label": "Note Thru",
+      "max": 1,
+      "min": 0,
+      "name": "note-thru-7",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "r-bypass-b4",
+      "label": "Bypass",
+      "max": 1,
+      "min": 0,
+      "name": "bypass-7",
+      "type": "bool"
+    },
+    {
+      "default": 100,
+      "id": "r-thru-gain-c1",
+      "label": "Thru Gain",
+      "max": 200,
+      "min": 0,
+      "name": "thru-gain-8",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "r-gain-c1",
+      "label": "Gain",
+      "max": 200,
+      "min": 0,
+      "name": "gain-8",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "r-notethru-c1",
+      "label": "Note Thru",
+      "max": 1,
+      "min": 0,
+      "name": "note-thru-8",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "r-bypass-c1",
+      "label": "Bypass",
+      "max": 1,
+      "min": 0,
+      "name": "bypass-8",
+      "type": "bool"
+    },
+    {
+      "default": 100,
+      "id": "r-thru-gain-c2",
+      "label": "Thru Gain",
+      "max": 200,
+      "min": 0,
+      "name": "thru-gain-9",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "r-gain-c2",
+      "label": "Gain",
+      "max": 200,
+      "min": 0,
+      "name": "gain-9",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "r-notethru-c2",
+      "label": "Note Thru",
+      "max": 1,
+      "min": 0,
+      "name": "note-thru-9",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "r-bypass-c2",
+      "label": "Bypass",
+      "max": 1,
+      "min": 0,
+      "name": "bypass-9",
+      "type": "bool"
+    },
+    {
+      "default": 100,
+      "id": "r-thru-gain-c3",
+      "label": "Thru Gain",
+      "max": 200,
+      "min": 0,
+      "name": "thru-gain-10",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "r-gain-c3",
+      "label": "Gain",
+      "max": 200,
+      "min": 0,
+      "name": "gain-10",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "r-notethru-c3",
+      "label": "Note Thru",
+      "max": 1,
+      "min": 0,
+      "name": "note-thru-10",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "r-bypass-c3",
+      "label": "Bypass",
+      "max": 1,
+      "min": 0,
+      "name": "bypass-10",
+      "type": "bool"
+    },
+    {
+      "default": 100,
+      "id": "r-thru-gain-p1",
+      "label": "Thru Gain",
+      "max": 200,
+      "min": 0,
+      "name": "thru-gain-11",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "r-gain-p1",
+      "label": "Gain",
+      "max": 200,
+      "min": 0,
+      "name": "gain-11",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "r-bypass-p1",
+      "label": "Bypass",
+      "max": 1,
+      "min": 0,
+      "name": "bypass-11",
+      "type": "bool"
+    },
+    {
+      "default": 100,
+      "id": "r-thru-gain-p2",
+      "label": "Thru Gain",
+      "max": 200,
+      "min": 0,
+      "name": "thru-gain-12",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "r-gain-p2",
+      "label": "Gain",
+      "max": 200,
+      "min": 0,
+      "name": "gain-12",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "r-bypass-p2",
+      "label": "Bypass",
+      "max": 1,
+      "min": 0,
+      "name": "bypass-12",
+      "type": "bool"
+    },
+    {
+      "default": 1,
+      "id": "r-chin-midigate-1",
+      "label": "In Midi",
+      "max": 1,
+      "min": 0,
+      "name": "in-midi-1",
+      "type": "bool"
+    },
+    {
+      "default": 1,
+      "id": "r-chin-midich-1",
+      "label": "In Midi Ch.",
+      "max": 16,
+      "min": 0,
+      "name": "in-midi-ch-1",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "r-chout-midich-1",
+      "label": "Out Midi Ch.",
+      "max": 16,
+      "min": 0,
+      "name": "out-midi-ch-1",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "r-chin-l-gain-1",
+      "label": "In L Gain",
+      "max": 200,
+      "min": 0,
+      "name": "in-l-gain-1",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "r-chin-r-gain-1",
+      "label": "In R Gain",
+      "max": 200,
+      "min": 0,
+      "name": "in-r-gain-1",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "r-chout-gain-1",
+      "label": "Out Gain",
+      "max": 200,
+      "min": 0,
+      "name": "out-gain-1",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "r-chin-l-pan-1",
+      "label": "In L Pan",
+      "max": 1,
+      "min": 0,
+      "name": "in-l-pan-1",
+      "type": "pan"
+    },
+    {
+      "default": 1,
+      "id": "r-chin-r-pan-1",
+      "label": "In R Pan",
+      "max": 1,
+      "min": 0,
+      "name": "in-r-pan-1",
+      "type": "pan"
+    },
+    {
+      "default": 0,
+      "id": "r-chout-l-pan-1",
+      "label": "Out L Pan",
+      "max": 1,
+      "min": 0,
+      "name": "out-l-pan-1",
+      "type": "pan"
+    },
+    {
+      "default": 1,
+      "id": "r-chout-r-pan-1",
+      "label": "Out R Pan",
+      "max": 1,
+      "min": 0,
+      "name": "out-r-pan-1",
+      "type": "pan"
+    },
+    {
+      "default": 1,
+      "id": "r-chin-midigate-2",
+      "label": "In Midi",
+      "max": 1,
+      "min": 0,
+      "name": "in-midi-2",
+      "type": "bool"
+    },
+    {
+      "default": 2,
+      "id": "r-chin-midich-2",
+      "label": "In Midi Ch.",
+      "max": 16,
+      "min": 0,
+      "name": "in-midi-ch-2",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "r-chout-midich-2",
+      "label": "Out Midi Ch.",
+      "max": 16,
+      "min": 0,
+      "name": "out-midi-ch-2",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "r-chin-l-gain-2",
+      "label": "In L Gain",
+      "max": 200,
+      "min": 0,
+      "name": "in-l-gain-2",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "r-chin-r-gain-2",
+      "label": "In R Gain",
+      "max": 200,
+      "min": 0,
+      "name": "in-r-gain-2",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "r-chout-gain-2",
+      "label": "Out Gain",
+      "max": 200,
+      "min": 0,
+      "name": "out-gain-2",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "r-chin-l-pan-2",
+      "label": "In L Pan",
+      "max": 1,
+      "min": 0,
+      "name": "in-l-pan-2",
+      "type": "pan"
+    },
+    {
+      "default": 1,
+      "id": "r-chin-r-pan-2",
+      "label": "In R Pan",
+      "max": 1,
+      "min": 0,
+      "name": "in-r-pan-2",
+      "type": "pan"
+    },
+    {
+      "default": 0,
+      "id": "r-chout-l-pan-2",
+      "label": "Out L Pan",
+      "max": 1,
+      "min": 0,
+      "name": "out-l-pan-2",
+      "type": "pan"
+    },
+    {
+      "default": 1,
+      "id": "r-chout-r-pan-2",
+      "label": "Out R Pan",
+      "max": 1,
+      "min": 0,
+      "name": "out-r-pan-2",
+      "type": "pan"
+    },
+    {
+      "default": 1,
+      "id": "r-chin-midigate-3",
+      "label": "In Midi",
+      "max": 1,
+      "min": 0,
+      "name": "in-midi-3",
+      "type": "bool"
+    },
+    {
+      "default": 3,
+      "id": "r-chin-midich-3",
+      "label": "In Midi Ch.",
+      "max": 16,
+      "min": 0,
+      "name": "in-midi-ch-3",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "r-chout-midich-3",
+      "label": "Out Midi Ch.",
+      "max": 16,
+      "min": 0,
+      "name": "out-midi-ch-3",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "r-chin-l-gain-3",
+      "label": "In L Gain",
+      "max": 200,
+      "min": 0,
+      "name": "in-l-gain-3",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "r-chin-r-gain-3",
+      "label": "In R Gain",
+      "max": 200,
+      "min": 0,
+      "name": "in-r-gain-3",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "r-chout-gain-3",
+      "label": "Out Gain",
+      "max": 200,
+      "min": 0,
+      "name": "out-gain-3",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "r-chin-l-pan-3",
+      "label": "In L Pan",
+      "max": 1,
+      "min": 0,
+      "name": "in-l-pan-3",
+      "type": "pan"
+    },
+    {
+      "default": 1,
+      "id": "r-chin-r-pan-3",
+      "label": "In R Pan",
+      "max": 1,
+      "min": 0,
+      "name": "in-r-pan-3",
+      "type": "pan"
+    },
+    {
+      "default": 0,
+      "id": "r-chout-l-pan-3",
+      "label": "Out L Pan",
+      "max": 1,
+      "min": 0,
+      "name": "out-l-pan-3",
+      "type": "pan"
+    },
+    {
+      "default": 1,
+      "id": "r-chout-r-pan-3",
+      "label": "Out R Pan",
+      "max": 1,
+      "min": 0,
+      "name": "out-r-pan-3",
+      "type": "pan"
+    },
+    {
+      "default": 1,
+      "id": "r-chin-midigate-4",
+      "label": "In Midi",
+      "max": 1,
+      "min": 0,
+      "name": "in-midi-4",
+      "type": "bool"
+    },
+    {
+      "default": 3,
+      "id": "r-chin-midich-4",
+      "label": "In Midi Ch.",
+      "max": 16,
+      "min": 0,
+      "name": "in-midi-ch-4",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "r-chout-midich-4",
+      "label": "Out Midi Ch.",
+      "max": 16,
+      "min": 0,
+      "name": "out-midi-ch-4",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "r-chin-l-gain-4",
+      "label": "In L Gain",
+      "max": 200,
+      "min": 0,
+      "name": "in-l-gain-4",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "r-chin-r-gain-4",
+      "label": "In R Gain",
+      "max": 200,
+      "min": 0,
+      "name": "in-r-gain-4",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "r-chout-gain-4",
+      "label": "Out Gain",
+      "max": 200,
+      "min": 0,
+      "name": "out-gain-4",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "r-chin-l-pan-4",
+      "label": "In L Pan",
+      "max": 1,
+      "min": 0,
+      "name": "in-l-pan-4",
+      "type": "pan"
+    },
+    {
+      "default": 1,
+      "id": "r-chin-r-pan-4",
+      "label": "In R Pan",
+      "max": 1,
+      "min": 0,
+      "name": "in-r-pan-4",
+      "type": "pan"
+    },
+    {
+      "default": 0,
+      "id": "r-chout-l-pan-4",
+      "label": "Out L Pan",
+      "max": 1,
+      "min": 0,
+      "name": "out-l-pan-4",
+      "type": "pan"
+    },
+    {
+      "default": 1,
+      "id": "r-chout-r-pan-4",
+      "label": "Out R Pan",
+      "max": 1,
+      "min": 0,
+      "name": "out-r-pan-4",
+      "type": "pan"
+    },
+    {
+      "default": 1,
+      "id": "r-chin-midigate-5",
+      "label": "In Midi",
+      "max": 1,
+      "min": 0,
+      "name": "in-midi-5",
+      "type": "bool"
+    },
+    {
+      "default": 3,
+      "id": "r-chin-midich-5",
+      "label": "In Midi Ch.",
+      "max": 16,
+      "min": 0,
+      "name": "in-midi-ch-5",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "r-chout-midich-5",
+      "label": "Out Midi Ch.",
+      "max": 16,
+      "min": 0,
+      "name": "out-midi-ch-5",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "r-chin-l-gain-5",
+      "label": "In L Gain",
+      "max": 200,
+      "min": 0,
+      "name": "in-l-gain-5",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "r-chin-r-gain-5",
+      "label": "In R Gain",
+      "max": 200,
+      "min": 0,
+      "name": "in-r-gain-5",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "r-chout-gain-5",
+      "label": "Out Gain",
+      "max": 200,
+      "min": 0,
+      "name": "out-gain-5",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "r-chin-l-pan-5",
+      "label": "In L Pan",
+      "max": 1,
+      "min": 0,
+      "name": "in-l-pan-5",
+      "type": "pan"
+    },
+    {
+      "default": 1,
+      "id": "r-chin-r-pan-5",
+      "label": "In R Pan",
+      "max": 1,
+      "min": 0,
+      "name": "in-r-pan-5",
+      "type": "pan"
+    },
+    {
+      "default": 0,
+      "id": "r-chout-l-pan-5",
+      "label": "Out L Pan",
+      "max": 1,
+      "min": 0,
+      "name": "out-l-pan-5",
+      "type": "pan"
+    },
+    {
+      "default": 1,
+      "id": "r-chout-r-pan-5",
+      "label": "Out R Pan",
+      "max": 1,
+      "min": 0,
+      "name": "out-r-pan-5",
+      "type": "pan"
+    },
+    {
+      "default": 1,
+      "id": "r-chin-midigate-6",
+      "label": "In Midi",
+      "max": 1,
+      "min": 0,
+      "name": "in-midi-6",
+      "type": "bool"
+    },
+    {
+      "default": 3,
+      "id": "r-chin-midich-6",
+      "label": "In Midi Ch.",
+      "max": 16,
+      "min": 0,
+      "name": "in-midi-ch-6",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "r-chout-midich-6",
+      "label": "Out Midi Ch.",
+      "max": 16,
+      "min": 0,
+      "name": "out-midi-ch-6",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "r-chin-l-gain-6",
+      "label": "In L Gain",
+      "max": 200,
+      "min": 0,
+      "name": "in-l-gain-6",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "r-chin-r-gain-6",
+      "label": "In R Gain",
+      "max": 200,
+      "min": 0,
+      "name": "in-r-gain-6",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "r-chout-gain-6",
+      "label": "Out Gain",
+      "max": 200,
+      "min": 0,
+      "name": "out-gain-6",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "r-chin-l-pan-6",
+      "label": "In L Pan",
+      "max": 1,
+      "min": 0,
+      "name": "in-l-pan-6",
+      "type": "pan"
+    },
+    {
+      "default": 1,
+      "id": "r-chin-r-pan-6",
+      "label": "In R Pan",
+      "max": 1,
+      "min": 0,
+      "name": "in-r-pan-6",
+      "type": "pan"
+    },
+    {
+      "default": 0,
+      "id": "r-chout-l-pan-6",
+      "label": "Out L Pan",
+      "max": 1,
+      "min": 0,
+      "name": "out-l-pan-6",
+      "type": "pan"
+    },
+    {
+      "default": 1,
+      "id": "r-chout-r-pan-6",
+      "label": "Out R Pan",
+      "max": 1,
+      "min": 0,
+      "name": "out-r-pan-6",
+      "type": "pan"
+    },
+    {
+      "default": 0,
+      "id": "r-main-dest",
+      "label": "A. Dest",
+      "max": 10,
+      "min": 0,
+      "name": "a-dest",
+      "type": "int"
+    },
+    {
+      "default": 16,
+      "id": "r-midi-ch",
+      "label": "A. Midi Ch",
+      "max": 16,
+      "min": 0,
+      "name": "a-midi-ch",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "r-midi-module-cc",
+      "label": "A. Mod CC",
+      "max": 120,
+      "min": 0,
+      "name": "a-mod-cc",
+      "type": "int"
+    },
+    {
+      "default": 69,
+      "id": "r-midi-auxcc",
+      "label": "Aux CC",
+      "max": 120,
+      "min": 0,
+      "name": "aux-cc",
+      "type": "int"
+    },
+    {
+      "default": 64,
+      "id": "r-midi-fscc",
+      "label": "FS Ped CC",
+      "max": 120,
+      "min": 0,
+      "name": "fs-ped-cc",
+      "type": "int"
+    },
+    {
+      "default": 4,
+      "id": "r-midi-expcc",
+      "label": "Exp Ped CC",
+      "max": 120,
+      "min": 0,
+      "name": "exp-ped-cc",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "r-midi-pgmgate",
+      "label": "Prog",
+      "max": 1,
+      "min": 0,
+      "name": "prog",
+      "type": "bool"
+    },
+    {
+      "default": 100,
+      "id": "r-midi-ppreset-cc",
+      "label": "Preset-",
+      "max": 120,
+      "min": 0,
+      "name": "preset",
+      "type": "int"
+    },
+    {
+      "default": 101,
+      "id": "r-midi-npreset-cc",
+      "label": "Preset+",
+      "max": 120,
+      "min": 0,
+      "name": "preset-plus",
+      "type": "int"
+    },
+    {
+      "default": 102,
+      "id": "r-midi-save-preset-cc",
+      "label": "Save Preset",
+      "max": 120,
+      "min": 0,
+      "name": "save-preset",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "r-midi-notegate",
+      "label": "A. Note",
+      "max": 1,
+      "min": 0,
+      "name": "a-note",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "r-midi-ctrlgate",
+      "label": "A. Ctrl",
+      "max": 1,
+      "min": 0,
+      "name": "a-ctrl",
+      "type": "bool"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "nkmutepar6",
+  "tags": [
+    "other",
+    "router"
+  ],
+  "version": {
+    "archive_sha256": "5dba029fbf3d2238ca432e1c0aba347fc326fbf4673bc45e647546350ad78778",
+    "file_id": 127368,
+    "updated_at": "2020-07-28T17:32:12+00:00"
+  }
+}

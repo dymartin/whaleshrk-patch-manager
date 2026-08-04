@@ -1,0 +1,252 @@
+{
+  "category": null,
+  "category_override": null,
+  "display": "ProgArp",
+  "key": "progarp@orhack",
+  "moduleType": "sequencers/progarp",
+  "params": [
+    {
+      "default": 1,
+      "id": "otto_play",
+      "label": "Play",
+      "max": 1,
+      "min": 0,
+      "name": "play",
+      "type": "bool"
+    },
+    {
+      "default": 1,
+      "id": "otto_bass_on",
+      "label": "Bass",
+      "max": 1,
+      "min": 0,
+      "name": "bass",
+      "type": "bool"
+    },
+    {
+      "default": 100,
+      "id": "otto_bass_vel",
+      "label": "Velocity",
+      "max": 127,
+      "min": 1,
+      "name": "velocity",
+      "type": "int"
+    },
+    {
+      "default": 250,
+      "id": "otto_bass_len",
+      "label": "Length",
+      "max": 2000,
+      "min": 20,
+      "name": "length-1",
+      "type": "time"
+    },
+    {
+      "default": 0,
+      "id": "otto_bass_oct",
+      "label": "Octave",
+      "max": 2,
+      "min": -2,
+      "name": "octave",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "otto_hold",
+      "label": "Hold",
+      "max": 1,
+      "min": 0,
+      "name": "hold",
+      "type": "bool"
+    },
+    {
+      "default": 3,
+      "id": "speed",
+      "label": "Speed",
+      "max": 4,
+      "min": 0,
+      "name": "speed",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "maxoct",
+      "label": "Max. Oct",
+      "max": 3,
+      "min": 0,
+      "name": "max-oct",
+      "type": "int"
+    },
+    {
+      "default": 16,
+      "id": "length",
+      "label": "Length",
+      "max": 16,
+      "min": 1,
+      "name": "length-2",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "step-0",
+      "label": "Index",
+      "max": 12,
+      "min": 0,
+      "name": "index-1",
+      "type": "int"
+    },
+    {
+      "default": 2,
+      "id": "step-1",
+      "label": "Index",
+      "max": 12,
+      "min": 0,
+      "name": "index-2",
+      "type": "int"
+    },
+    {
+      "default": 3,
+      "id": "step-2",
+      "label": "Index",
+      "max": 12,
+      "min": 0,
+      "name": "index-3",
+      "type": "int"
+    },
+    {
+      "default": 4,
+      "id": "step-3",
+      "label": "Index",
+      "max": 12,
+      "min": 0,
+      "name": "index-4",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "step-4",
+      "label": "Index",
+      "max": 12,
+      "min": 0,
+      "name": "index-5",
+      "type": "int"
+    },
+    {
+      "default": 2,
+      "id": "step-5",
+      "label": "Index",
+      "max": 12,
+      "min": 0,
+      "name": "index-6",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "step-6",
+      "label": "Index",
+      "max": 12,
+      "min": 0,
+      "name": "index-7",
+      "type": "int"
+    },
+    {
+      "default": 2,
+      "id": "step-7",
+      "label": "Index",
+      "max": 12,
+      "min": 0,
+      "name": "index-8",
+      "type": "int"
+    },
+    {
+      "default": 3,
+      "id": "step-8",
+      "label": "Index",
+      "max": 12,
+      "min": 0,
+      "name": "index-9",
+      "type": "int"
+    },
+    {
+      "default": 4,
+      "id": "step-9",
+      "label": "Index",
+      "max": 12,
+      "min": 0,
+      "name": "index-10",
+      "type": "int"
+    },
+    {
+      "default": 3,
+      "id": "step-10",
+      "label": "Index",
+      "max": 12,
+      "min": 0,
+      "name": "index-11",
+      "type": "int"
+    },
+    {
+      "default": 4,
+      "id": "step-11",
+      "label": "Index",
+      "max": 12,
+      "min": 0,
+      "name": "index-12",
+      "type": "int"
+    },
+    {
+      "default": 5,
+      "id": "step-12",
+      "label": "Index",
+      "max": 12,
+      "min": 0,
+      "name": "index-13",
+      "type": "int"
+    },
+    {
+      "default": 4,
+      "id": "step-13",
+      "label": "Index",
+      "max": 12,
+      "min": 0,
+      "name": "index-14",
+      "type": "int"
+    },
+    {
+      "default": 3,
+      "id": "step-14",
+      "label": "Index",
+      "max": 12,
+      "min": 0,
+      "name": "index-15",
+      "type": "int"
+    },
+    {
+      "default": 2,
+      "id": "step-15",
+      "label": "Index",
+      "max": 12,
+      "min": 0,
+      "name": "index-16",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "randomize",
+      "label": "Randomize",
+      "max": 1,
+      "min": 0,
+      "name": "randomize",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "orhack",
+  "tags": [],
+  "version": {
+    "archive_sha256": null,
+    "file_id": null,
+    "updated_at": null
+  }
+}

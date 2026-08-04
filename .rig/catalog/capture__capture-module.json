@@ -1,0 +1,43 @@
+{
+  "category": "instruments/sampler",
+  "category_override": null,
+  "display": "Capture",
+  "key": "capture@capture-module",
+  "moduleType": "instruments/sampler/capture@capture-module",
+  "params": [
+    {
+      "default": 100,
+      "id": "reaction",
+      "label": "Reaction",
+      "max": 1000,
+      "min": 0.1,
+      "name": "reaction",
+      "type": "time"
+    },
+    {
+      "default": 0,
+      "id": "thru_gain",
+      "label": "Audio Thru Gain",
+      "max": 200,
+      "min": 0,
+      "name": "audio-thru-gain",
+      "type": "pct"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "capture-module",
+  "tags": [
+    "capture",
+    "module",
+    "organelle",
+    "recorder",
+    "resampling",
+    "sampler"
+  ],
+  "version": {
+    "archive_sha256": "08efe34fe421ae9ce5aef3d2b70459501d2cec56c587c8a721f00208306acc41",
+    "file_id": 117565,
+    "updated_at": "2020-01-13T03:37:48+00:00"
+  }
+}

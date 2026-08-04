@@ -1,0 +1,100 @@
+{
+  "category": "sequencers",
+  "category_override": null,
+  "display": "Cycles",
+  "key": "cycles@cycles",
+  "moduleType": "sequencers/cycles@cycles",
+  "params": [
+    {
+      "default": -2,
+      "id": "ps_record",
+      "label": "Input Mode",
+      "max": 1,
+      "min": -2,
+      "name": "input-mode",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "ps_rev",
+      "label": "Reverse",
+      "max": 1,
+      "min": 0,
+      "name": "reverse",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "ps_rand",
+      "label": "Random",
+      "max": 1,
+      "min": 0,
+      "name": "random",
+      "type": "bool"
+    },
+    {
+      "default": 1,
+      "id": "ps_div",
+      "label": "Beat Div.",
+      "max": 24,
+      "min": 1,
+      "name": "beat-div",
+      "type": "int"
+    },
+    {
+      "default": 1,
+      "id": "ps_slot",
+      "label": "Save Slot",
+      "max": 32,
+      "min": 1,
+      "name": "save-slot",
+      "type": "int"
+    },
+    {
+      "default": 3,
+      "id": "ps_length",
+      "label": "Length",
+      "max": 1000,
+      "min": 3,
+      "name": "length",
+      "type": "time"
+    },
+    {
+      "default": 0,
+      "id": "ps_harmonics",
+      "label": "Harmonics",
+      "max": 11,
+      "min": 0,
+      "name": "harmonics",
+      "type": "int"
+    },
+    {
+      "default": 100,
+      "id": "ps_velo",
+      "label": "Velocity",
+      "max": 127,
+      "min": 1,
+      "name": "velocity",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [
+    "\\$1/presets/\\$2/\\$3-notes.txt",
+    "\\$1/presets/\\$2/\\$3-vel.txt",
+    "\\$1/presets/\\$2/\\$3-len.txt"
+  ],
+  "source": "cycles",
+  "tags": [
+    "experimental",
+    "organelle",
+    "polyphonic",
+    "sequencer",
+    "step-sequencer"
+  ],
+  "version": {
+    "archive_sha256": "ec762fb5e95d588a3a57e4acc18744c9e2c8319746597c5e6cf95bb918d71795",
+    "file_id": 117562,
+    "updated_at": "2020-01-13T03:33:16+00:00"
+  }
+}

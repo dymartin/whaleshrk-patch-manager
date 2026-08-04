@@ -1,0 +1,68 @@
+{
+  "category": "effects/mod",
+  "category_override": null,
+  "display": "Warble",
+  "key": "warble@warble",
+  "moduleType": "effects/mod/warble@warble",
+  "params": [
+    {
+      "default": 1.5,
+      "id": "speed",
+      "label": "Speed",
+      "max": 5,
+      "min": 1,
+      "name": "speed",
+      "type": "float"
+    },
+    {
+      "default": 5,
+      "id": "depth",
+      "label": "Depth",
+      "max": 50,
+      "min": 0,
+      "name": "depth",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "noise",
+      "label": "Noise",
+      "max": 100,
+      "min": 0,
+      "name": "noise",
+      "type": "float"
+    },
+    {
+      "default": 40000,
+      "id": "filt",
+      "label": "Filter",
+      "max": 40000,
+      "min": 0,
+      "name": "filter",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "thru_gain",
+      "label": "Audio Thru Gain",
+      "max": 100,
+      "min": 0,
+      "name": "audio-thru-gain",
+      "type": "pct"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "warble",
+  "tags": [
+    "effect",
+    "hiss",
+    "modulation",
+    "tape"
+  ],
+  "version": {
+    "archive_sha256": "838d628fb1145dae3e0c044d396c299db51248775be84a3e20d22e7b37ea0e3b",
+    "file_id": 146095,
+    "updated_at": "2021-11-06T20:52:41+00:00"
+  }
+}

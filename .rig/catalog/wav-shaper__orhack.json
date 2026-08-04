@@ -1,0 +1,90 @@
+{
+  "category": null,
+  "category_override": null,
+  "display": "Wav.shaper",
+  "key": "wav-shaper@orhack",
+  "moduleType": "effects/drive/wavshaper",
+  "params": [
+    {
+      "default": 50,
+      "id": "inGain",
+      "label": "In Gain",
+      "max": 200,
+      "min": 0,
+      "name": "in-gain",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "outGain",
+      "label": "Out Gain",
+      "max": 100,
+      "min": 0,
+      "name": "out-gain",
+      "type": "pct"
+    },
+    {
+      "default": 1,
+      "id": "wave",
+      "label": "Waveform",
+      "max": 25,
+      "min": 1,
+      "name": "waveform",
+      "type": "int"
+    },
+    {
+      "default": 100,
+      "id": "dw",
+      "label": "Dry/Wet",
+      "max": 100,
+      "min": 0,
+      "name": "dry-wet",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "dcOffset",
+      "label": "DC-Offset",
+      "max": 100,
+      "min": 0,
+      "name": "dc-offset",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "hpf",
+      "label": "High-Pass",
+      "max": 100,
+      "min": 0,
+      "name": "high-pass",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "lpf",
+      "label": "Low-Pass",
+      "max": 100,
+      "min": 0,
+      "name": "low-pass",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "thru_gain",
+      "label": "Audio Thru Gain",
+      "max": 100,
+      "min": 0,
+      "name": "audio-thru-gain",
+      "type": "pct"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "orhack",
+  "tags": [],
+  "version": {
+    "archive_sha256": null,
+    "file_id": null,
+    "updated_at": null
+  }
+}

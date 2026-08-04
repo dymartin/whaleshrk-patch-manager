@@ -1,0 +1,225 @@
+{
+  "category": null,
+  "category_override": null,
+  "display": "Elements",
+  "key": "elements@orhack",
+  "moduleType": "effects/mod/elements",
+  "params": [
+    {
+      "default": 0,
+      "id": "l_tune",
+      "label": "Tune",
+      "max": 24,
+      "min": -24,
+      "name": "tune",
+      "type": "pitch"
+    },
+    {
+      "default": 0,
+      "id": "l_finetune",
+      "label": "Fine Tune",
+      "max": 100,
+      "min": -100,
+      "name": "fine-tune",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "l_contour",
+      "label": "Contour",
+      "max": 100,
+      "min": 0,
+      "name": "contour",
+      "type": "int"
+    },
+    {
+      "default": 50,
+      "id": "l_bow_level",
+      "label": "Level",
+      "max": 100,
+      "min": 0,
+      "name": "level-1",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "l_bow_timbre",
+      "label": "Timbre",
+      "max": 100,
+      "min": 0,
+      "name": "timbre-1",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "l_blow_level",
+      "label": "Level",
+      "max": 100,
+      "min": 0,
+      "name": "level-2",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "l_blow_timbre",
+      "label": "Timbre",
+      "max": 100,
+      "min": 0,
+      "name": "timbre-2",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "l_blow_flow",
+      "label": "Flow",
+      "max": 100,
+      "min": 0,
+      "name": "flow",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "l_strike_level",
+      "label": "Level",
+      "max": 100,
+      "min": 0,
+      "name": "level-3",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "l_strike_timbre",
+      "label": "Timbre",
+      "max": 100,
+      "min": 0,
+      "name": "timbre-3",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "l_strike_mallet",
+      "label": "Mallet",
+      "max": 100,
+      "min": 0,
+      "name": "mallet",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "l_space",
+      "label": "Space",
+      "max": 100,
+      "min": 0,
+      "name": "space",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "l_geometry",
+      "label": "Geometry",
+      "max": 100,
+      "min": 0,
+      "name": "geometry",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "l_brightness",
+      "label": "Brightness",
+      "max": 100,
+      "min": 0,
+      "name": "brightness",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "l_damping",
+      "label": "Damping",
+      "max": 100,
+      "min": 0,
+      "name": "damping",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "l_position",
+      "label": "Position",
+      "max": 100,
+      "min": 0,
+      "name": "position",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "l_resonator",
+      "label": "Resonator",
+      "max": 3,
+      "min": 0,
+      "name": "resonator",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "l_modpitch",
+      "label": "Mod Pitch",
+      "max": 24,
+      "min": -24,
+      "name": "mod-pitch",
+      "type": "pitch"
+    },
+    {
+      "default": 0,
+      "id": "l_moddepth",
+      "label": "Mod Depth",
+      "max": 100,
+      "min": 0,
+      "name": "mod-depth",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "l_bypass",
+      "label": "Bypass",
+      "max": 1,
+      "min": 0,
+      "name": "bypass",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "l_easter_egg",
+      "label": "Easter Egg",
+      "max": 1,
+      "min": 0,
+      "name": "easter-egg",
+      "type": "bool"
+    },
+    {
+      "default": 1,
+      "id": "l_seed",
+      "label": "Seed",
+      "max": 32768,
+      "min": 0,
+      "name": "seed",
+      "type": "int"
+    },
+    {
+      "default": 2,
+      "id": "pb_range",
+      "label": "Pb Range",
+      "max": 48,
+      "min": 0,
+      "name": "pb-range",
+      "type": "pitch"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "orhack",
+  "tags": [],
+  "version": {
+    "archive_sha256": null,
+    "file_id": null,
+    "updated_at": null
+  }
+}

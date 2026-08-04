@@ -1,0 +1,40 @@
+{
+  "category": "effects/mod",
+  "category_override": null,
+  "display": "Brownie",
+  "key": "brownie@brownie-2",
+  "moduleType": "effects/mod/brownie@brownie-2",
+  "params": [
+    {
+      "default": 50,
+      "id": "speed",
+      "label": "Speed",
+      "max": 100,
+      "min": 0,
+      "name": "speed",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "depth",
+      "label": "Depth",
+      "max": 100,
+      "min": 0,
+      "name": "depth",
+      "type": "pct"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "brownie-2",
+  "tags": [
+    "effect",
+    "harmonic",
+    "tremolo"
+  ],
+  "version": {
+    "archive_sha256": "839c34076be7b466343bd32722b45ae1bf9e3d7455b46e25c637c21d7f5d867c",
+    "file_id": 162468,
+    "updated_at": "2023-01-29T03:33:21+00:00"
+  }
+}

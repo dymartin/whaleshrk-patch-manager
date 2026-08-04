@@ -1,0 +1,93 @@
+{
+  "category": "instruments/synth",
+  "category_override": null,
+  "display": "Slatra",
+  "key": "slatra@slatra-2",
+  "moduleType": "instruments/synth/slatra@slatra-2",
+  "params": [
+    {
+      "default": 0,
+      "id": "slatra_transpose",
+      "label": "Transpose",
+      "max": 24,
+      "min": -24,
+      "name": "transpose",
+      "type": "int"
+    },
+    {
+      "default": 0,
+      "id": "slatra_velocity",
+      "label": "Vel Mod",
+      "max": 100,
+      "min": 0,
+      "name": "vel-mod",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "slatra_ampdecay",
+      "label": "Amp Decay",
+      "max": 100,
+      "min": 0,
+      "name": "amp-decay",
+      "type": "pct"
+    },
+    {
+      "default": 80,
+      "id": "slatra_volume",
+      "label": "Volume",
+      "max": 100,
+      "min": 0,
+      "name": "volume",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "slatra_vibrato",
+      "label": "Vibrato",
+      "max": 100,
+      "min": 0,
+      "name": "vibrato",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "slatra_modscale",
+      "label": "Mod Scale",
+      "max": 800,
+      "min": 12.5,
+      "name": "mod-scale",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "slatra_moddepth",
+      "label": "Mod Depth",
+      "max": 100,
+      "min": 0,
+      "name": "mod-depth",
+      "type": "pct"
+    },
+    {
+      "default": 10,
+      "id": "slatra_moddecay",
+      "label": "Mod Decay",
+      "max": 100,
+      "min": 0,
+      "name": "mod-decay",
+      "type": "pct"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "slatra-2",
+  "tags": [
+    "orac",
+    "synthesizer"
+  ],
+  "version": {
+    "archive_sha256": "325409c5832a15c21a91a340bbfb4627fe25485cb39e263bcc64656a52e542b7",
+    "file_id": 107572,
+    "updated_at": "2019-06-11T20:02:38+00:00"
+  }
+}

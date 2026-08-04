@@ -1,0 +1,58 @@
+{
+  "category": "effects/mod",
+  "category_override": null,
+  "display": "SimpleDistortion",
+  "key": "simpledistortion@simpledist",
+  "moduleType": "effects/mod/simpledistortion@simpledist",
+  "params": [
+    {
+      "default": 0,
+      "id": "dist",
+      "label": "Dist",
+      "max": 100,
+      "min": 0,
+      "name": "dist",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "hipass",
+      "label": "HiPass",
+      "max": 500,
+      "min": 0,
+      "name": "hipass",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "lopass",
+      "label": "LowPass",
+      "max": 500,
+      "min": 0,
+      "name": "lowpass",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "dw",
+      "label": "Dry/Wet",
+      "max": 100,
+      "min": 0,
+      "name": "dry-wet",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "simpledist",
+  "tags": [
+    "distortion",
+    "effect",
+    "fx"
+  ],
+  "version": {
+    "archive_sha256": "e2332be7cf47e886508ebc62186354d5bec8144a6fdc7f5cc909a50aa4220511",
+    "file_id": 125523,
+    "updated_at": "2020-06-12T12:13:57+00:00"
+  }
+}

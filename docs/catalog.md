@@ -71,13 +71,28 @@ uploads, counted `-empty-` as a module, and applied neither slug rule.
 The two packs are `sequencers-bpm` (Arp Seq, Click, Clock, PolyBeats, Punchy,
 Sampler24, Seq) and `orac-cvtools` (eight CV in/out modules). Verified at the
 measured install categories — `sequencers` and `utility/audio` — none of the 15
-collides with a built-in runtime path.
+collides with a built-in runtime path. That guarantee extends to all 135
+community entries, not just these 15 — see "Install layout and category"
+below for why: 6 of the other 120 single-module uploads *do* reuse a
+built-in's own directory name, and only installing by qualified catalog key
+rather than raw archive directory name keeps them all catalogued.
 
 ## Parameter names
 
 `slug(label)` from `module.json`, with an index suffix following declaration
 order where a module repeats a label. Derived at ingest, recorded in the catalog
 entry alongside the real parameter id, min, max, default and type.
+
+**Tuple shape is not uniform.** `[type, id, label, min, max, default]` (6
+elements) holds for every type except `bool`, verified across all 67
+built-in `module.json` files with no exception. `bool` carries no min/max —
+`[type, id, label, default]` (4 elements) — since a boolean's range is
+implicitly 0/1. One real community module (candidate 163108, "vj-fm") ships
+a `bool` parameter with a spurious extra numeric element before the default;
+the default is always the tuple's last element regardless of length, which
+reads correctly for both shapes. `parameters` may also be entirely absent
+(candidate 103456, "seq3") — a module with zero user-adjustable parameters,
+not an error.
 
 Defaults are pinned per module version — a module update changing a default must
 surface as a reviewable change, not silent drift.
@@ -115,24 +130,124 @@ produced against the 145 real candidates.
   shadowing built-ins. Runtime loads by path, not catalog key.
 - Reject modules reading/writing unmodelled preset sidecars, detected as below.
 
+### Reject ordering
+
+The conditions above are mutually exclusive buckets — every one of the 145
+candidates lands in exactly one of them or passes — but the fixture's asserted
+counts (14 not-a-module / 5 wrong-arch / 3 rack-redistribution / 1 bad-JSON /
+122 pass) only reproduce under one specific check order. Three real
+candidates only resolve to their measured bucket because of it, so the order
+is load-bearing, not incidental, and a later refactor that reorders these
+checks silently breaks the counts with no test failure pointing at why.
+Derived by replaying the frozen fixture and checking which order the
+measured buckets require:
+
+1. **Archive safety** (traversal, absolute paths, symlinks, case collisions,
+   size/count limits). Nothing in the archive's path structure — including
+   whether a directory holds a module — can be trusted until the archive
+   itself is safe to walk. Fires on zero real candidates; ordered first on
+   engineering grounds, not because measurement required it here.
+2. **Not-a-module** (no directory has both `module.json` and `module.pd`).
+   Must run before the redistribution check: candidates `96836`, `105123`,
+   `114274`, `189681` each ship a root `main.pd` *and* have no module
+   directory anywhere. If redistribution were checked first, all four would
+   misfile as rack redistributions (main.pd at the archive root, trivially
+   "not inside any module directory" when there are no module directories at
+   all), inflating that bucket to 7 and starving not-a-module to 10.
+3. **Bad JSON** (a module's `module.json` does not parse). Independent of the
+   other buckets in the measured data — the one bad-JSON candidate (`118027`,
+   "sustain") has no `main.pd` and no ELF binaries — so its position relative
+   to wrong-arch/redistribution doesn't move any count. Placed here because a
+   candidate whose module identity cannot even be parsed has nothing left to
+   gate structurally.
+4. **Wrong architecture** (any bundled external fails the ELF ABI check).
+   Must run before the redistribution check: `162128` (ORHACK's own archive)
+   and `171653` (`8rac`) each ship a root `main.pd` *and* the x86
+   `tb_peakcomp~`/`ds_peakcomp~` pair. Measured: both land in the wrong-arch
+   bucket, which is only possible if wrong-arch is checked before
+   redistribution.
+5. **Rack redistribution** (`main.pd` whose containing directory is not itself
+   a module directory, nor nested inside one — see below). By elimination,
+   whatever survives steps 1-4 with a root-level `main.pd` is a genuine
+   redistribution: exactly `96789`, `105149`, `169334`, the trio that ships
+   literally `orac/main.pd`.
+6. **Duplicate `moduleType` path** and **unmodelled preset sidecar** — the
+   two module-level checks (a candidate can pass with some of its modules
+   kept and others dropped; see "Module-level vs candidate-level" below).
+   Ordered last because both need a module's identity (parsed `module.json`,
+   category, key) already resolved, which only exists once a candidate has
+   cleared every candidate-level check above. Fire on zero real modules in
+   the measured 122-candidate pass set — see "Install layout and category"
+   for why duplicate-path in particular is zero by construction, not by luck.
+
+**The `main.pd`-containment test, precisely:** the brief's "at the package
+root" / "deeper inside a module directory" wording is a simplification. The
+actual test is containment: a `main.pd` rejects only if its directory is
+neither equal to, nor a descendant of, any module directory in the archive.
+Three real shapes exist in the fixture, and only containment separates them
+correctly:
+
+- `orac/main.pd` next to `orac/modules/fx/delay/` (module directories) — the
+  `main.pd` directory (`orac`) is not a module directory and is not inside
+  one → **reject** (the 3-candidate redistribution bucket).
+- `simpledist/main.pd` in the same directory as `simpledist/module.json` —
+  the `main.pd` directory *is* the module directory → **warn, pass**
+  (candidates `125524`, `125848`, `163108`).
+- `monocle/aptone/main.pd` where the module directory is `monocle` — the
+  `main.pd` directory (`monocle/aptone`) is a *descendant* of the module
+  directory → **warn, pass** (candidates `146075`, `146090`, `154907`,
+  `169842`). A naïve "is the main.pd directory exactly a module directory"
+  test would wrongly reject these four as redistributions.
+
+**Module-level vs candidate-level:** the four structural checks (archive
+safety, not-a-module, bad-JSON, wrong-arch) and the redistribution check are
+candidate-level — any hit rejects the whole archive, contributing zero
+catalog entries, which is what makes a 5-module pack like `8rac` count once
+in the wrong-arch bucket rather than five times. Sidecar and duplicate-path
+are module-level: the brief's sidecar text says "rejects the module"
+(singular), and a duplicate path is inherently about one specific module's
+target, not its whole upload — so a pack can lose one member to either check
+while its siblings still catalogue. No real candidate exercises this split
+(zero sidecar/duplicate-path rejects in the measured data), so it is
+documented as the more precise reading of the spec text rather than
+something the fixture proves.
+
 ### Detecting preset sidecars
 
 The rule needs a method, because sidecar files are written by Pure Data code
 inside the module, not by anything the preset system declares.
 
-Scan every `.pd` file in the archive for `read`/`write` messages whose argument
-path contains `presets` — the same scan that produced the built-in inventory in
-[platform/state.md](platform/state.md). Resolve `$0`/`$1`-style substitutions
-textually; a pattern that cannot be resolved counts as unmodelled.
+Scan every `.pd` file in a module's own directory subtree for `read`/`write`
+Pd message boxes whose argument path contains `presets` — the same scan that
+produced the built-in inventory in [platform/state.md](platform/state.md).
 
-Any resulting pattern that is not one of the five modelled built-in patterns
-rejects the module. A module with no such message is stateless and passes. The
-compiler can only produce a deterministic sidecar set for patterns it has
-templates for, so an unmodelled one means a preset whose device state is
-whatever the previously loaded preset left behind.
+**What "resolved" means, precisely.** Every one of the five built-in
+patterns is a message whose path starts with the literal `$1/presets/$2/`
+(`$1` = dataDir, `$2` = preset name — both framework-injected at runtime by
+the same convention across every stateful module, never module-specific),
+followed only by further `$N` substitutions (slot id, loop index — also
+framework-injected) and fixed literal characters baked into that module's own
+`.pd` file (a filename and extension). A message matching that shape is
+"resolved": the compiler can synthesize the matching filename once it knows
+$1/$2/$3.../slot, *regardless of which literal suffix the module chose* — the
+five built-ins are the shapes that proved the mechanism exists, not an
+exhaustive whitelist of literal filenames. A message that does not start with
+`$1/presets/$2/`, or whose remainder contains anything other than `$N` tokens
+and literal filename characters, is unresolved and rejects the module.
 
-This is a *textual* scan, deliberately conservative: dynamic path construction
-it cannot resolve rejects rather than warns.
+This distinction is load-bearing, not cosmetic: `sequencers-bpm`'s four
+sequencer members (Arp Seq, Seq, PolyBeats, Punchy) each write suffixes like
+`$3-punchy-seqvel.txt` or `$3-sequence-state.txt` that match none of the five
+built-in templates literally, yet the pack contributes all 7 of its measured
+catalog entries. A whitelist reading of "one of the five modelled patterns"
+would reject them and the 200-entry count would not reproduce. Verified
+against every real `read`/`write`-to-`presets` message in the 122 candidates
+that pass the rest of the gate: all resolve under the shape rule, zero are
+unmodelled — see `tests/test_catalog_ingest.py`.
+
+A module with no such message is stateless and passes. This is a *textual*
+scan, deliberately conservative: dynamic path construction it cannot resolve
+rejects rather than warns.
 
 The ABI check is a one-byte test catching real shipping breakage. Every
 wrong-arch hit found was the same x86 `tb_peakcomp~` / `ds_peakcomp~` pair,
@@ -179,8 +294,30 @@ reviewable repo diff — this supersedes Prompt.md, which specified auto-install
 ## Install layout and category
 
 Community modules install to
-`<card>/media/orhack/user-modules/<category>/<name>/`, and **that path is the
-`moduleType`**. Archives carry no category, so the catalog assigns it.
+`<card>/media/orhack/user-modules/<category>/<name>/`. `userModuleDir`
+(`/tmp/media/orhack/user-modules`) and the built-in `modules/` root are
+search-path prefixes, not part of the stored value — a slot's `moduleType` is
+resolved against `userModuleDir` first, then `modules/`
+([platform/state.md](platform/state.md)) — so the *stored* `moduleType` is
+`<category>/<name>` for a community module and the plain relative path (e.g.
+`effects/delay/spiraldelay`) for a built-in. Both live in the same namespace,
+which is exactly what makes "a community path shadowing a built-in" a real,
+checkable collision. Archives carry no category, so the catalog assigns it.
+
+**`<name>` is the catalog key, not the archive's own directory name.** Real
+data forced this: 6 of the 135 measured community entries re-implement a
+built-in under the same folder name in the same category — standalone
+re-uploads of `polystep`, `notegen`, `samplement`, `slatra`, `superposition`
+and `warble`, each shipping a directory literally named after the built-in it
+mirrors. A raw-directory-name install path collides with the built-in every
+time for exactly these six. Since the catalog key (`slug(display)@source`) is
+already guaranteed unique — no "who wins" rule needed, see "Keys" above —
+using it as the trailing path component (`effects/mod/warble@warble`) makes
+every community `moduleType` unique by construction, not by a reject check
+that would otherwise silently drop 6 real modules. The duplicate-path reject
+condition still exists as a safety net (a Patchstorage upload slug literally
+equal to `orhack` would still collide), but contributes zero rejects on real
+data as a result.
 
 Role cannot be derived from the patch — signal I/O does not discriminate
 instrument from effect (see [platform/modules.md](platform/modules.md)).

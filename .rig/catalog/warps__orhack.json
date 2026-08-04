@@ -1,0 +1,117 @@
+{
+  "category": null,
+  "category_override": null,
+  "display": "Warps",
+  "key": "warps@orhack",
+  "moduleType": "effects/mod/warps",
+  "params": [
+    {
+      "default": 0,
+      "id": "w_shape",
+      "label": "Shape",
+      "max": 3,
+      "min": 0,
+      "name": "shape",
+      "type": "int"
+    },
+    {
+      "default": 50,
+      "id": "w_algo",
+      "label": "Algo",
+      "max": 100,
+      "min": 0,
+      "name": "algo",
+      "type": "pct"
+    },
+    {
+      "default": 20,
+      "id": "w_timbre",
+      "label": "Timbre",
+      "max": 100,
+      "min": 0,
+      "name": "timbre",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "e_sustain",
+      "label": "Sustain",
+      "max": 100,
+      "min": 0,
+      "name": "sustain",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "e_release",
+      "label": "Release",
+      "max": 2000,
+      "min": 0,
+      "name": "release",
+      "type": "time"
+    },
+    {
+      "default": 0,
+      "id": "e_attack",
+      "label": "Attack",
+      "max": 2000,
+      "min": 0,
+      "name": "attack",
+      "type": "time"
+    },
+    {
+      "default": 500,
+      "id": "e_decay",
+      "label": "Decay",
+      "max": 2000,
+      "min": 0,
+      "name": "decay",
+      "type": "time"
+    },
+    {
+      "default": 0,
+      "id": "w_drive1",
+      "label": "Carrier Lvl",
+      "max": 100,
+      "min": 0,
+      "name": "carrier-lvl",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "w_drive2",
+      "label": "Mod Lvl",
+      "max": 100,
+      "min": 0,
+      "name": "mod-lvl",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "w_gate",
+      "label": "Gate",
+      "max": 1,
+      "min": 0,
+      "name": "gate",
+      "type": "bool"
+    },
+    {
+      "default": 0,
+      "id": "thru_gain",
+      "label": "Audio Thru Gain",
+      "max": 100,
+      "min": 0,
+      "name": "audio-thru-gain",
+      "type": "pct"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "orhack",
+  "tags": [],
+  "version": {
+    "archive_sha256": null,
+    "file_id": null,
+    "updated_at": null
+  }
+}

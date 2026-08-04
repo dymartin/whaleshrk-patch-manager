@@ -1,0 +1,162 @@
+{
+  "category": null,
+  "category_override": null,
+  "display": "cvout Macro",
+  "key": "cvout-macro@orhack",
+  "moduleType": "utility/cv/out-macro",
+  "params": [
+    {
+      "default": 50,
+      "id": "m_p1",
+      "label": "Param 1",
+      "max": 100,
+      "min": 0,
+      "name": "param-1",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "m_p2",
+      "label": "Param 2",
+      "max": 100,
+      "min": 0,
+      "name": "param-2",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "m_p3",
+      "label": "Param 3",
+      "max": 100,
+      "min": 0,
+      "name": "param-3",
+      "type": "pct"
+    },
+    {
+      "default": 50,
+      "id": "m_p4",
+      "label": "Param 4",
+      "max": 100,
+      "min": 0,
+      "name": "param-4",
+      "type": "pct"
+    },
+    {
+      "default": 100,
+      "id": "m_amt_p1",
+      "label": "Amount",
+      "max": 100,
+      "min": -100,
+      "name": "amount-1",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "m_offset_p1",
+      "label": "Offset",
+      "max": 1,
+      "min": -1,
+      "name": "offset-1",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "m_ch_p1",
+      "label": "CV Ch.",
+      "max": 16,
+      "min": 0,
+      "name": "cv-ch-1",
+      "type": "int"
+    },
+    {
+      "default": 100,
+      "id": "m_amt_p2",
+      "label": "Amount",
+      "max": 100,
+      "min": -100,
+      "name": "amount-2",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "m_offset_p2",
+      "label": "Offset",
+      "max": 1,
+      "min": -1,
+      "name": "offset-2",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "m_ch_p2",
+      "label": "CV Ch.",
+      "max": 16,
+      "min": 0,
+      "name": "cv-ch-2",
+      "type": "int"
+    },
+    {
+      "default": 100,
+      "id": "m_amt_p3",
+      "label": "Amount",
+      "max": 100,
+      "min": -100,
+      "name": "amount-3",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "m_offset_p3",
+      "label": "Offset",
+      "max": 1,
+      "min": -1,
+      "name": "offset-3",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "m_ch_p3",
+      "label": "CV Ch.",
+      "max": 16,
+      "min": 0,
+      "name": "cv-ch-3",
+      "type": "int"
+    },
+    {
+      "default": 100,
+      "id": "m_amt_p4",
+      "label": "Amount",
+      "max": 100,
+      "min": -100,
+      "name": "amount-4",
+      "type": "pct"
+    },
+    {
+      "default": 0,
+      "id": "m_offset_p4",
+      "label": "Offset",
+      "max": 1,
+      "min": -1,
+      "name": "offset-4",
+      "type": "float"
+    },
+    {
+      "default": 0,
+      "id": "m_ch_p4",
+      "label": "CV Ch.",
+      "max": 16,
+      "min": 0,
+      "name": "cv-ch-4",
+      "type": "int"
+    }
+  ],
+  "schema_version": 1,
+  "sidecar_templates": [],
+  "source": "orhack",
+  "tags": [],
+  "version": {
+    "archive_sha256": null,
+    "file_id": null,
+    "updated_at": null
+  }
+}
