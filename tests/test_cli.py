@@ -71,3 +71,15 @@ def test_validate_verify_report_not_implemented():
     result = runner.invoke(app, ["validate", "verify-report", "report.json"])
     assert result.exit_code != 0
     assert "not implemented" in result.output
+
+
+def test_validate_help_documents_both_invocation_forms():
+    # `validate` is a flat command, not a subcommand group (see the comment
+    # above it in rig/cli.py), so `verify-report` isn't a discoverable
+    # subcommand on its own -- the help text is the only place a caller
+    # learns it exists.
+    result = runner.invoke(app, ["validate", "--help"])
+    assert result.exit_code == 0
+    assert "rig validate --tier static|hardware [SONG...]" in result.output
+    assert "rig validate verify-report REPORT" in result.output
+    assert "verify-report" in result.output

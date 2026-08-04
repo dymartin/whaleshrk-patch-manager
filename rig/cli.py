@@ -75,23 +75,39 @@ def rename_chain(
     _not_implemented("rename-chain")
 
 
+# `validate` is a single flat command, deliberately not a typer sub-app/group,
+# even though `verify-report` reads like a subcommand. typer's TyperGroup
+# (vendored click) resolves a group's leftover positional tokens as a
+# subcommand-name candidate before the group's own callback runs at all --
+# confirmed against typer 0.27.1's TyperGroup.parse_args/invoke in
+# typer/core.py -- regardless of allow_extra_args/ignore_unknown_options. A
+# `song: list[str]` argument on a `validate` group callback therefore either
+# swallows a literal `verify-report` (breaking subcommand dispatch) or, as a
+# group argument, makes any non-empty SONG list fail with "No such command".
+# Do not turn this back into a group; dispatch on args[0] instead.
 @app.command(
     context_settings={"ignore_unknown_options": True},
+    epilog=(
+        "rig validate --tier static|hardware [SONG...]\n\n"
+        "rig validate verify-report REPORT"
+    ),
 )
 def validate(
     args: Optional[list[str]] = typer.Argument(
-        None, help="SONG... , or 'verify-report REPORT'"
+        None,
+        metavar="[SONG]... | verify-report REPORT",
+        help="Song names for --tier validation, or the literal "
+        "'verify-report REPORT'.",
     ),
     tier: Optional[str] = typer.Option(None, "--tier", help="static|hardware"),
 ) -> None:
-    """rig validate --tier static|hardware [SONG...]
+    """Run static or hardware validation, or verify a recorded report.
 
-    rig validate verify-report REPORT
+    Two invocation forms:
 
-    A single flat command, not a subcommand group: typer/click resolve a
-    group's leftover positional tokens as a subcommand name before the
-    group's own callback runs, which would swallow SONG names meant for the
-    --tier form. Dispatch on args[0] instead.
+        rig validate --tier static|hardware [SONG...]
+
+        rig validate verify-report REPORT
     """
     args = args or []
     if args and args[0] == "verify-report":
