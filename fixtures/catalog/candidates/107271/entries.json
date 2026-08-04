@@ -1,0 +1,23 @@
+[
+ {
+  "name": "easteregg/patch.pd",
+  "size": 681,
+  "compress_size": 251,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "easteregg/module.json",
+  "size": 111,
+  "compress_size": 79,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "easteregg/module.pd",
+  "size": 2959,
+  "compress_size": 903,
+  "external_attr": 2175008768,
+  "is_dir": false
+ }
+]

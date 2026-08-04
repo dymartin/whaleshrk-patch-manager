@@ -1,0 +1,100 @@
+[
+ {
+  "name": "Vocoder/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107247104,
+  "is_dir": true
+ },
+ {
+  "name": "Vocoder/freeverb~-help.pd",
+  "size": 6862,
+  "compress_size": 2363,
+  "external_attr": 2180988928,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107116032,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/Vocoder/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107116032,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/Vocoder/._freeverb~-help.pd",
+  "size": 239,
+  "compress_size": 166,
+  "external_attr": 2176204800,
+  "is_dir": false
+ },
+ {
+  "name": "Vocoder/freeverb~.pd_linux",
+  "size": 53588,
+  "compress_size": 22968,
+  "external_attr": 2180988928,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/Vocoder/._freeverb~.pd_linux",
+  "size": 239,
+  "compress_size": 165,
+  "external_attr": 2176204800,
+  "is_dir": false
+ },
+ {
+  "name": "Vocoder/latch-notes.pd",
+  "size": 1183,
+  "compress_size": 393,
+  "external_attr": 2180988928,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/Vocoder/._latch-notes.pd",
+  "size": 239,
+  "compress_size": 165,
+  "external_attr": 2176204800,
+  "is_dir": false
+ },
+ {
+  "name": "Vocoder/main.pd",
+  "size": 8983,
+  "compress_size": 2746,
+  "external_attr": 2180988928,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/Vocoder/._main.pd",
+  "size": 239,
+  "compress_size": 165,
+  "external_attr": 2176204800,
+  "is_dir": false
+ },
+ {
+  "name": "Vocoder/tone.pd",
+  "size": 1078,
+  "compress_size": 367,
+  "external_attr": 2180988928,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/Vocoder/._tone.pd",
+  "size": 239,
+  "compress_size": 165,
+  "external_attr": 2176204800,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/._Vocoder",
+  "size": 239,
+  "compress_size": 166,
+  "external_attr": 2176204800,
+  "is_dir": false
+ }
+]

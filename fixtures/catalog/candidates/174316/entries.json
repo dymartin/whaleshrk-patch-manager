@@ -1,0 +1,44 @@
+[
+ {
+  "name": "euclid-Tr-32/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "euclid-Tr-32/eseq.pd",
+  "size": 1149,
+  "compress_size": 390,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "euclid-Tr-32/module.json",
+  "size": 1697,
+  "compress_size": 392,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "euclid-Tr-32/module.pd",
+  "size": 2058,
+  "compress_size": 638,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "euclid-Tr-32/.DS_Store",
+  "size": 6148,
+  "compress_size": 178,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "euclid-Tr-32/euclid.pd",
+  "size": 1279,
+  "compress_size": 610,
+  "external_attr": 2175008768,
+  "is_dir": false
+ }
+]

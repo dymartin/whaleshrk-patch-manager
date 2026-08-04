@@ -1,0 +1,27 @@
+#N canvas 845 305 518 623 10;
+#X obj 63 106 spigot 0;
+#X obj 63 78 == 4;
+#X obj 63 35 spigot;
+#X obj 63 56 change;
+#X obj 63 127 t b b;
+#X msg 16 154 0;
+#X text 50 216 start arming;
+#X obj 20 3 inlet;
+#X obj 247 70 inlet;
+#X obj 127 164 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 96 10 r rev-arm-\$1-\$2;
+#X obj 16 181 s revo-\$1-\$2;
+#X obj 90 203 s rev-\$1-\$2;
+#X connect 0 0 4 0;
+#X connect 1 0 0 0;
+#X connect 1 0 0 1;
+#X connect 2 0 3 0;
+#X connect 3 0 1 0;
+#X connect 4 0 5 0;
+#X connect 4 1 9 0;
+#X connect 4 1 12 0;
+#X connect 5 0 11 0;
+#X connect 7 0 2 0;
+#X connect 8 0 1 1;
+#X connect 10 0 2 1;

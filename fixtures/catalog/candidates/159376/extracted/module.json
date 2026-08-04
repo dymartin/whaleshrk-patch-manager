@@ -1,0 +1,28 @@
+{
+    "display" : "Nori Sampler",
+    "parameters" :  [ 
+        ["pct","p0_k1","Osc Ratio 2",-100,100,0],
+        ["pct","p0_k2","Osc Ratio 3",-100,100,0],
+        ["pct","p0_k3","Osc Ratio 4",-100,100,0],
+        ["pct","p0_k4","Index",-100,100,0],
+        ["pct","p1_k1","lfo rate",-100,100,0],
+        ["pct","p1_k2","lfo delay",-100,100,0],
+        ["pct","p1_k3","lfo->pitch",-100,100,0],
+        ["pct","p1_k4","lfo->index",-100,100,0],
+        ["pct","p2_k1","attack",-100,100,0],
+        ["pct","p2_k2","delay",-100,100,0],
+        ["pct","p2_k3","sustain",-100,100,0],
+        ["pct","p2_k4","release",-100,100,0],
+        ["pct","p3_k1","transpose",-100,100,0],
+        ["pct","p3_k2","portamento",-100,100,0],
+        ["pct","p3_k3","sub mix",-100,100,0],
+        ["pct","p3_k4","volume",-100,100,0]
+    ],
+    "pages" : [ 
+        ["pg_0","OpRatio",["p0_k1","p0_k2","p0_k3","p0_k4"]],
+        ["pg_1","LFO",["p1_k1","p1_k2","p1_k3","p1_k4"]],
+        ["pg_2","ADSR",["p2_k1","p2_k2","p2_k3","p2_k4"]],
+        ["pg_3","Master",["p3_k1","p3_k2","p3_k3","p3_k4"]]
+    ]
+}
+

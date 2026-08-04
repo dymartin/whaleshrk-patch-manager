@@ -1,0 +1,1360 @@
+[
+ {
+  "name": "apollo/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "apollo/LICENSE.txt",
+  "size": 1812,
+  "compress_size": 917,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "apollo/aptone/LICENSE.txt",
+  "size": 1812,
+  "compress_size": 917,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/aptone.pd",
+  "size": 2615,
+  "compress_size": 916,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/aptone_tester.pd",
+  "size": 2538,
+  "compress_size": 661,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/effect.txt",
+  "size": 566,
+  "compress_size": 151,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/env.txt",
+  "size": 1007,
+  "compress_size": 204,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/env/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "apollo/aptone/env/env_parabolic.pd",
+  "size": 1432,
+  "compress_size": 483,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/env/parabolic_linetest.pd",
+  "size": 520,
+  "compress_size": 249,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/env/parabolic_line~.pd",
+  "size": 1832,
+  "compress_size": 589,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/lfo/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "apollo/aptone/lfo/brownian.pd",
+  "size": 378092,
+  "compress_size": 106465,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/lfo/desktop.ini",
+  "size": 48,
+  "compress_size": 41,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/lfo/lfo.pd",
+  "size": 179,
+  "compress_size": 137,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/main.pd",
+  "size": 9342,
+  "compress_size": 2546,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/mod.txt",
+  "size": 1647,
+  "compress_size": 254,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/moog~-help.pd",
+  "size": 1463,
+  "compress_size": 597,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/moog~.pd_linux",
+  "size": 18416,
+  "compress_size": 8983,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/read_filter.pd",
+  "size": 7564,
+  "compress_size": 2086,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "apollo/aptone/samplemap/0.wav",
+  "size": 12332,
+  "compress_size": 6192,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/1.wav",
+  "size": 12332,
+  "compress_size": 5744,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/10.wav",
+  "size": 12332,
+  "compress_size": 5963,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/11.wav",
+  "size": 12332,
+  "compress_size": 5318,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/12.wav",
+  "size": 12332,
+  "compress_size": 5603,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/13.wav",
+  "size": 12332,
+  "compress_size": 6160,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/14.wav",
+  "size": 12332,
+  "compress_size": 6199,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/15.wav",
+  "size": 12332,
+  "compress_size": 6233,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/16.wav",
+  "size": 12332,
+  "compress_size": 6249,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/17.wav",
+  "size": 12332,
+  "compress_size": 5966,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/18.wav",
+  "size": 12332,
+  "compress_size": 6115,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/19.wav",
+  "size": 12332,
+  "compress_size": 4764,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/2.wav",
+  "size": 12332,
+  "compress_size": 6146,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/20.wav",
+  "size": 12332,
+  "compress_size": 5897,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/21.wav",
+  "size": 12332,
+  "compress_size": 5599,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/22.wav",
+  "size": 12332,
+  "compress_size": 6180,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/23.wav",
+  "size": 12332,
+  "compress_size": 6228,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/24.wav",
+  "size": 12332,
+  "compress_size": 5997,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/25.wav",
+  "size": 12332,
+  "compress_size": 6126,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/26.wav",
+  "size": 12332,
+  "compress_size": 6123,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/27.wav",
+  "size": 12332,
+  "compress_size": 6274,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/28.wav",
+  "size": 12332,
+  "compress_size": 6182,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/29.wav",
+  "size": 12332,
+  "compress_size": 6169,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/3.wav",
+  "size": 12332,
+  "compress_size": 6032,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/30.wav",
+  "size": 12332,
+  "compress_size": 6196,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/31.wav",
+  "size": 12332,
+  "compress_size": 6171,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/32.wav",
+  "size": 12332,
+  "compress_size": 6136,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/33.wav",
+  "size": 12332,
+  "compress_size": 6080,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/34.wav",
+  "size": 12332,
+  "compress_size": 6139,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/35.wav",
+  "size": 12332,
+  "compress_size": 6105,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/36.wav",
+  "size": 12332,
+  "compress_size": 6260,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/37.wav",
+  "size": 12332,
+  "compress_size": 6217,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/38.wav",
+  "size": 12332,
+  "compress_size": 6164,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/39.wav",
+  "size": 12332,
+  "compress_size": 6170,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/4.wav",
+  "size": 12332,
+  "compress_size": 5689,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/40.wav",
+  "size": 12332,
+  "compress_size": 6199,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/41.wav",
+  "size": 12332,
+  "compress_size": 6207,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/42.wav",
+  "size": 12332,
+  "compress_size": 6016,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/43.wav",
+  "size": 12332,
+  "compress_size": 6219,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/44.wav",
+  "size": 12332,
+  "compress_size": 6266,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/45.wav",
+  "size": 12332,
+  "compress_size": 6186,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/46.wav",
+  "size": 12332,
+  "compress_size": 6109,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/47.wav",
+  "size": 12332,
+  "compress_size": 6180,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/48.wav",
+  "size": 12332,
+  "compress_size": 6189,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/49.wav",
+  "size": 12332,
+  "compress_size": 6156,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/5.wav",
+  "size": 12332,
+  "compress_size": 5998,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/50.wav",
+  "size": 12332,
+  "compress_size": 5941,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/51.wav",
+  "size": 12332,
+  "compress_size": 6020,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/52.wav",
+  "size": 12332,
+  "compress_size": 6194,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/53.wav",
+  "size": 12332,
+  "compress_size": 5115,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/54.wav",
+  "size": 12332,
+  "compress_size": 6234,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/55.wav",
+  "size": 12332,
+  "compress_size": 6187,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/56.wav",
+  "size": 12332,
+  "compress_size": 6162,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/57.wav",
+  "size": 12332,
+  "compress_size": 6229,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/58.wav",
+  "size": 12332,
+  "compress_size": 6116,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/59.wav",
+  "size": 12332,
+  "compress_size": 6244,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/6.wav",
+  "size": 12332,
+  "compress_size": 6147,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/60.wav",
+  "size": 12332,
+  "compress_size": 6264,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/61.wav",
+  "size": 12332,
+  "compress_size": 6189,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/62.wav",
+  "size": 12332,
+  "compress_size": 6164,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/63.wav",
+  "size": 12332,
+  "compress_size": 5488,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/64.wav",
+  "size": 12332,
+  "compress_size": 5816,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/65.wav",
+  "size": 12332,
+  "compress_size": 6202,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/66.wav",
+  "size": 12332,
+  "compress_size": 5780,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/67.wav",
+  "size": 12332,
+  "compress_size": 6215,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/68.wav",
+  "size": 12332,
+  "compress_size": 5290,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/69.wav",
+  "size": 12332,
+  "compress_size": 5326,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/7.wav",
+  "size": 12332,
+  "compress_size": 4742,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/70.wav",
+  "size": 12332,
+  "compress_size": 5913,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/71.wav",
+  "size": 12332,
+  "compress_size": 6127,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/72.wav",
+  "size": 12332,
+  "compress_size": 6108,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/73.wav",
+  "size": 12332,
+  "compress_size": 6265,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/74.wav",
+  "size": 12332,
+  "compress_size": 6245,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/75.wav",
+  "size": 12332,
+  "compress_size": 6225,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/76.wav",
+  "size": 12332,
+  "compress_size": 6249,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/77.wav",
+  "size": 12332,
+  "compress_size": 5943,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/78.wav",
+  "size": 12332,
+  "compress_size": 6268,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/79.wav",
+  "size": 12332,
+  "compress_size": 6268,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/8.wav",
+  "size": 12332,
+  "compress_size": 5992,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samplemap/9.wav",
+  "size": 12332,
+  "compress_size": 5341,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "apollo/aptone/samples/0.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/10.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/11.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/12.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/13.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/14.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/15.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/16.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/17.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/18.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/19.aif",
+  "size": 812,
+  "compress_size": 809,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/2.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/20.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/22.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/24.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/25.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/26.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/27.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/28.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/3.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/30.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/31.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/32.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/34.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/35.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/36.aif",
+  "size": 812,
+  "compress_size": 807,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/37.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/38.aif",
+  "size": 812,
+  "compress_size": 692,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/39.aif",
+  "size": 810,
+  "compress_size": 810,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/40.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/41.aif",
+  "size": 812,
+  "compress_size": 809,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/42.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/43.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/45.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/46.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/47.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/48.aif",
+  "size": 810,
+  "compress_size": 810,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/5.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/6.aif",
+  "size": 812,
+  "compress_size": 805,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/7.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/9.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_0185.wav",
+  "size": 1344,
+  "compress_size": 396,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_0508.wav",
+  "size": 1344,
+  "compress_size": 933,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_0617.wav",
+  "size": 1344,
+  "compress_size": 1340,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_0646.wav",
+  "size": 1344,
+  "compress_size": 1255,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_aguitar_0007.wav",
+  "size": 1344,
+  "compress_size": 1339,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_altosax_0001.wav",
+  "size": 1344,
+  "compress_size": 1337,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_bsaw_0001.wav",
+  "size": 1344,
+  "compress_size": 1334,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_cheeze_0006.wav",
+  "size": 1344,
+  "compress_size": 1339,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_clarinett_0009.wav",
+  "size": 1344,
+  "compress_size": 1342,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_clavinet_0001.wav",
+  "size": 1344,
+  "compress_size": 1300,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_distorted_0007.wav",
+  "size": 1344,
+  "compress_size": 478,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_distorted_0008.wav",
+  "size": 1344,
+  "compress_size": 307,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_distorted_0018.wav",
+  "size": 1344,
+  "compress_size": 1070,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_eguitar_0001.wav",
+  "size": 1344,
+  "compress_size": 1287,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_eorgan_0001.wav",
+  "size": 1344,
+  "compress_size": 1344,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_flute_0001.wav",
+  "size": 1344,
+  "compress_size": 1344,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_hvoice_0001.wav",
+  "size": 1344,
+  "compress_size": 1344,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_hvoice_0002.wav",
+  "size": 1344,
+  "compress_size": 1344,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_hvoice_0003.wav",
+  "size": 1344,
+  "compress_size": 1344,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_hvoice_0004.wav",
+  "size": 1344,
+  "compress_size": 1329,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_linear_0002.wav",
+  "size": 1344,
+  "compress_size": 1335,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_oscchip_0001.wav",
+  "size": 1344,
+  "compress_size": 1150,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_overtone_0009.wav",
+  "size": 1344,
+  "compress_size": 1342,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_piano_0001.wav",
+  "size": 1344,
+  "compress_size": 1344,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_piano_0019.wav",
+  "size": 1344,
+  "compress_size": 1344,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_saw_0001.wav",
+  "size": 1344,
+  "compress_size": 1344,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_squ_0001.wav",
+  "size": 1344,
+  "compress_size": 1296,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_tri_0001.wav",
+  "size": 1344,
+  "compress_size": 1344,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_vgame_0002.wav",
+  "size": 1344,
+  "compress_size": 216,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_vgame_0003.wav",
+  "size": 1344,
+  "compress_size": 1344,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_vgame_0004.wav",
+  "size": 1344,
+  "compress_size": 1344,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/AKWF_violin_0001.wav",
+  "size": 1344,
+  "compress_size": 1332,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/VS36.aif",
+  "size": 810,
+  "compress_size": 810,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/VS38.aif",
+  "size": 810,
+  "compress_size": 810,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/VS40.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/VS42.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/VS52.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/VS69.aif",
+  "size": 812,
+  "compress_size": 812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/out.txt",
+  "size": 3607,
+  "compress_size": 626,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/samples/samples.txt",
+  "size": 980,
+  "compress_size": 310,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/smoothswitch.pd",
+  "size": 317,
+  "compress_size": 152,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/tableosc.pd",
+  "size": 1934,
+  "compress_size": 503,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/test/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "apollo/aptone/test/keyboard.pd",
+  "size": 34717,
+  "compress_size": 7410,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/test/keyfilter2.pd",
+  "size": 901,
+  "compress_size": 336,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/test/step-mother-2.1.pd",
+  "size": 36629,
+  "compress_size": 7973,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/aptone/voice.pd",
+  "size": 4975,
+  "compress_size": 1495,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/deploy.sh",
+  "size": 353,
+  "compress_size": 218,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/module.json",
+  "size": 1605,
+  "compress_size": 507,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "apollo/module.pd",
+  "size": 394,
+  "compress_size": 175,
+  "external_attr": 2179792896,
+  "is_dir": false
+ }
+]

@@ -1,0 +1,48 @@
+{
+    "name" : "Juno 104",
+    "display" : "Juno 104",
+    "parameters" :  [ 
+        ["int","transpose","Transpose",-2,2,0],
+        ["time","porta","Portamento",0,1000,0],
+        ["bool","chorus","Chorus",0,1,0],
+        ["int", "volume", "Volume",0,100,25],
+
+        ["freq","lfo_rate","LFO Rate",0.01,30,0.01],
+        ["time","lfo_delay","LFO Delay",0,5000,0],
+        ["int","lfo_pitch","LFO Pitch",0,100,0],
+        ["int","lfo_vcf","LFO VCF",0,100,0],
+
+        ["bool","square_osc","Square Osc",1],
+        ["int","pulse_width","Pulse Width",0,90,0],
+        ["int","pwm","PWM",0,100,0],
+
+        ["bool","saw_osc","Saw Osc",0,1,0],
+        ["int","sub_osc","Sub Osc Vol",0,100,0],
+        ["int","noise","Noise Vol",0,100,0],
+
+        ["freq","vcf_freq","VCF Freq",0,2520,1400],
+        ["int","vcf_res","VCF Res",0,100,0],
+        ["bool","vcf_env","VCF Env Mode",0,1,0],
+        ["int","vcf_depth","VCF Env Depth",0,100,50],
+
+        ["int","vcf_kybd","VCF Kybd Trk",0,150,75],
+        ["freq","hpf","HPF Freq",0,10000,0],
+        ["bool","vca_env","VCA Env Mode",0,1,0],
+
+        ["time","attack","Attack",1,3000,300],
+        ["time","decay","Decay",1,12000,1500],
+        ["int","sustain","Sustain",0,100,80],
+        ["time","release","Release",1,12000,3000]
+
+    ],
+    "pages" : [ 
+        ["pg_main","Main",["transpose","porta","chorus","volume"]],
+        ["pg_lfo", "LFO",["lfo_rate","lfo_delay","lfo_pitch","lfo_vcf"]],
+        ["pg_pulse", "Pulse",["square_osc","pulse_width","pwm"]],
+        ["pg_sub", "Sub", ["saw_osc","sub_osc","noise"]],
+        ["pg_vcf", "VCF", ["vcf_freq","vcf_res","vcf_env","vcf_depth"]],
+        ["pg_vca", "VCA", ["vcf_kybd","hpf","vca_env"]],
+        ["pg_ADSR", "ADSR", ["attack","decay","sustain","release"]]
+    ]
+}
+

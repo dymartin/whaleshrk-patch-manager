@@ -1,0 +1,10 @@
+{
+    "display" : "Sequences",
+    "parameters" :  [ 
+        ["pct","metronome","Metronome",0,100,0]
+     ],
+    "pages" : [ 
+        ["pg_sequences","Sequences",["metronome"]]
+    ]
+}
+

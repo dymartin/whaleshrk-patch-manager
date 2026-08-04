@@ -1,0 +1,121 @@
+[
+ {
+  "name": "realsampler24/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107099648,
+  "is_dir": true
+ },
+ {
+  "name": "realsampler24/s24-voice.pd",
+  "size": 5243,
+  "compress_size": 1737,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/realsampler24/._s24-voice.pd",
+  "size": 398,
+  "compress_size": 279,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "realsampler24/crown-window.pd",
+  "size": 681,
+  "compress_size": 345,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/realsampler24/._crown-window.pd",
+  "size": 401,
+  "compress_size": 282,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "realsampler24/load-24.pd",
+  "size": 1729,
+  "compress_size": 680,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/realsampler24/._load-24.pd",
+  "size": 396,
+  "compress_size": 276,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "realsampler24/s_vphasor-help.pd",
+  "size": 1467,
+  "compress_size": 689,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/realsampler24/._s_vphasor-help.pd",
+  "size": 403,
+  "compress_size": 282,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "realsampler24/s_vphasor.pd",
+  "size": 1738,
+  "compress_size": 730,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/realsampler24/._s_vphasor.pd",
+  "size": 398,
+  "compress_size": 279,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "realsampler24/module.json",
+  "size": 2055,
+  "compress_size": 515,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/realsampler24/._module.json",
+  "size": 397,
+  "compress_size": 275,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "realsampler24/window.txt",
+  "size": 45192,
+  "compress_size": 635,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/realsampler24/._window.txt",
+  "size": 396,
+  "compress_size": 278,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "realsampler24/module.pd",
+  "size": 6940,
+  "compress_size": 1729,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/realsampler24/._module.pd",
+  "size": 395,
+  "compress_size": 272,
+  "external_attr": 2175008768,
+  "is_dir": false
+ }
+]

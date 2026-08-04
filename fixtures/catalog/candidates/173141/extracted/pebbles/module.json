@@ -1,0 +1,13 @@
+{
+    "display" : "Pebbles",
+    "parameters" :  [ 
+        ["time","pb_ramp_down","Ramp Down",0,2000,0],
+        ["int","pb_mod_amount","Modulation",0,100,50],
+        ["int","pb_filter_q","Filter Q",0,200,5]
+    ],
+    "pages" : [ 
+        ["pg_main","Main",["pb_ramp_down","pb_mod_amount","pb_filter_q"]],
+        ["pg_graphics","Graphics",[]]
+    ]
+}
+

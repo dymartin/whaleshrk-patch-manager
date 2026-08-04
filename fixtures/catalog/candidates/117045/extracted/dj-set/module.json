@@ -1,0 +1,10 @@
+{
+    "display" : "DJ-set",
+    "parameters" :  [ 
+        ["pct","force","Force",1,100,10],
+        ["float","precision","Precision",-50,50,0]
+    ],
+    "pages" : [ 
+        ["pg_DJ-set","DJ-set",["force","precision"]]
+    ]
+}

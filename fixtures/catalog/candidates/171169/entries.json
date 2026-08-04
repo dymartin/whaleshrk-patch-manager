@@ -1,0 +1,415 @@
+[
+ {
+  "name": "recjam+/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "recjam+/gray-template.pd",
+  "size": 107,
+  "compress_size": 88,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/keys-diagram.txt",
+  "size": 161,
+  "compress_size": 75,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/Sequencer2/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "recjam+/Sequencer2/sequence.txt",
+  "size": 400,
+  "compress_size": 121,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/Sequencer2/Sequencer2.pd",
+  "size": 10404,
+  "compress_size": 2994,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/knobs.txt",
+  "size": 30,
+  "compress_size": 30,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/temposync.pd",
+  "size": 2038,
+  "compress_size": 549,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/cg-load-array.pd",
+  "size": 1578,
+  "compress_size": 702,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/override.pd",
+  "size": 2130,
+  "compress_size": 719,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/cg-looper.pd",
+  "size": 4500,
+  "compress_size": 1480,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/detent.pd",
+  "size": 957,
+  "compress_size": 332,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/.module.json.swp",
+  "size": 12288,
+  "compress_size": 355,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/pd~-loopjam.pd",
+  "size": 13878,
+  "compress_size": 3703,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/delay5sec.pd",
+  "size": 671,
+  "compress_size": 245,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/sounds/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "recjam+/sounds/24.wav",
+  "size": 176444,
+  "compress_size": 120249,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/sounds/2.wav",
+  "size": 26492,
+  "compress_size": 23406,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/sounds/20.wav",
+  "size": 12444,
+  "compress_size": 11319,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/sounds/19.wav",
+  "size": 747804,
+  "compress_size": 601139,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/sounds/6.wav",
+  "size": 185262,
+  "compress_size": 82564,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/sounds/9.wav",
+  "size": 19238,
+  "compress_size": 7910,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/sounds/23.wav",
+  "size": 507196,
+  "compress_size": 171648,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/sounds/21.wav",
+  "size": 691726,
+  "compress_size": 371562,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/sounds/5.wav",
+  "size": 38462,
+  "compress_size": 15836,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/sounds/10.wav",
+  "size": 95104,
+  "compress_size": 58987,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/sounds/14.wav",
+  "size": 60216,
+  "compress_size": 41421,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/sounds/16.wav",
+  "size": 27048,
+  "compress_size": 13217,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/sounds/17.wav",
+  "size": 663816,
+  "compress_size": 521710,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/sounds/15.wav",
+  "size": 155776,
+  "compress_size": 87248,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/sounds/22.wav",
+  "size": 132344,
+  "compress_size": 91064,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/sounds/12.wav",
+  "size": 9554,
+  "compress_size": 8380,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/sounds/8.wav",
+  "size": 185262,
+  "compress_size": 95297,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/sounds/18.wav",
+  "size": 176604,
+  "compress_size": 134105,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/sounds/1.wav",
+  "size": 361662,
+  "compress_size": 101433,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/sounds/13.wav",
+  "size": 152928,
+  "compress_size": 79875,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/sounds/3.wav",
+  "size": 44640,
+  "compress_size": 23863,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/sounds/11.wav",
+  "size": 1420064,
+  "compress_size": 960083,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/sounds/4.wav",
+  "size": 850626,
+  "compress_size": 470653,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/sounds/7.wav",
+  "size": 55232,
+  "compress_size": 45763,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/soundshare/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "recjam+/soundshare/os_switch.pd",
+  "size": 726,
+  "compress_size": 270,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/soundshare/soundshare_rec~.pd",
+  "size": 3381,
+  "compress_size": 950,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/soundshare/folder_list.pd_linux",
+  "size": 5272,
+  "compress_size": 2533,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/soundshare/s2l.pd_linux",
+  "size": 17276,
+  "compress_size": 8180,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/soundshare/s2l.dll",
+  "size": 35722,
+  "compress_size": 12064,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/soundshare/soundshare_select.pd",
+  "size": 4997,
+  "compress_size": 1164,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/soundshare/folder_list.dll",
+  "size": 11790,
+  "compress_size": 4813,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/soundshare/soundshare_recsync~.pd",
+  "size": 3696,
+  "compress_size": 1020,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/soundshare/folder_list-help.pd",
+  "size": 2208,
+  "compress_size": 1022,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/soundshare/s2l-help.pd",
+  "size": 1893,
+  "compress_size": 808,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/soundshare/soundshare_play~.pd",
+  "size": 2793,
+  "compress_size": 825,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/lengths.txt",
+  "size": 296,
+  "compress_size": 71,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/cg-print-kb.pd",
+  "size": 3097,
+  "compress_size": 902,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/cg-rec-array.pd",
+  "size": 8098,
+  "compress_size": 2622,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/LICENSE.txt",
+  "size": 1812,
+  "compress_size": 917,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/module.json",
+  "size": 458,
+  "compress_size": 217,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/jam-loop-voice.pd",
+  "size": 3942,
+  "compress_size": 1120,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "recjam+/module.pd",
+  "size": 7469,
+  "compress_size": 2073,
+  "external_attr": 2175008768,
+  "is_dir": false
+ }
+]

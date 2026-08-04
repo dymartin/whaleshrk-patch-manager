@@ -1,0 +1,30 @@
+[
+ {
+  "name": "supercompress/deploy.sh",
+  "size": 374,
+  "compress_size": 207,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "supercompress/manifest.txt",
+  "size": 200,
+  "compress_size": 131,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "supercompress/module.json",
+  "size": 255,
+  "compress_size": 153,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "supercompress/module.pd",
+  "size": 6881,
+  "compress_size": 1835,
+  "external_attr": 2179792896,
+  "is_dir": false
+ }
+]

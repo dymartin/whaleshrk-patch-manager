@@ -1,0 +1,135 @@
+[
+ {
+  "name": "polychain/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1103101952,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/._polychain",
+  "size": 220,
+  "compress_size": 93,
+  "external_attr": 2176843776,
+  "is_dir": false
+ },
+ {
+  "name": "polychain/.DS_Store",
+  "size": 6148,
+  "compress_size": 178,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/polychain/._.DS_Store",
+  "size": 120,
+  "compress_size": 53,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "polychain/six_voices.pd",
+  "size": 465,
+  "compress_size": 164,
+  "external_attr": 2176843776,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/polychain/._six_voices.pd",
+  "size": 276,
+  "compress_size": 187,
+  "external_attr": 2176843776,
+  "is_dir": false
+ },
+ {
+  "name": "polychain/alloff.pd",
+  "size": 725,
+  "compress_size": 274,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/polychain/._alloff.pd",
+  "size": 276,
+  "compress_size": 136,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "polychain/voice.pd",
+  "size": 288,
+  "compress_size": 167,
+  "external_attr": 2176843776,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/polychain/._voice.pd",
+  "size": 276,
+  "compress_size": 187,
+  "external_attr": 2176843776,
+  "is_dir": false
+ },
+ {
+  "name": "polychain/midiout_p.pd",
+  "size": 337,
+  "compress_size": 161,
+  "external_attr": 2176843776,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/polychain/._midiout_p.pd",
+  "size": 276,
+  "compress_size": 170,
+  "external_attr": 2176843776,
+  "is_dir": false
+ },
+ {
+  "name": "polychain/.module.json.swp",
+  "size": 12288,
+  "compress_size": 758,
+  "external_attr": 2172649472,
+  "is_dir": false
+ },
+ {
+  "name": "polychain/module.json",
+  "size": 1554,
+  "compress_size": 420,
+  "external_attr": 2176843776,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/polychain/._module.json",
+  "size": 276,
+  "compress_size": 134,
+  "external_attr": 2176843776,
+  "is_dir": false
+ },
+ {
+  "name": "polychain/poly4mono.pd",
+  "size": 748,
+  "compress_size": 283,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/polychain/._poly4mono.pd",
+  "size": 276,
+  "compress_size": 136,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "polychain/module.pd",
+  "size": 996,
+  "compress_size": 365,
+  "external_attr": 2176843776,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/polychain/._module.pd",
+  "size": 276,
+  "compress_size": 187,
+  "external_attr": 2176843776,
+  "is_dir": false
+ }
+]

@@ -1,0 +1,16 @@
+{
+    "display" : "vocoder",
+    "parameters" :  [ 
+        ["float","tune","tune",0,100,0],
+        ["float","squelch","squelch",0,100,0],
+        ["float","wetandry","wetandry",0,100,0],
+        ["float","reverb","reverb",0,100,0]
+          
+       
+    ],
+    "pages" : [ 
+        ["pg_1","Vocoder",["tune","squelch","wetandry","reverb"]]
+
+    ]
+}
+

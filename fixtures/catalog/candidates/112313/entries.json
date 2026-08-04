@@ -1,0 +1,37 @@
+[
+ {
+  "name": "delay (mod 4 fx send)/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106067456,
+  "is_dir": true
+ },
+ {
+  "name": "delay (mod 4 fx send)/c_xfade.pd",
+  "size": 1432,
+  "compress_size": 740,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "delay (mod 4 fx send)/delay3sec.pd",
+  "size": 670,
+  "compress_size": 267,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "delay (mod 4 fx send)/module.json",
+  "size": 392,
+  "compress_size": 199,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "delay (mod 4 fx send)/module.pd",
+  "size": 1027,
+  "compress_size": 391,
+  "external_attr": 2175025152,
+  "is_dir": false
+ }
+]

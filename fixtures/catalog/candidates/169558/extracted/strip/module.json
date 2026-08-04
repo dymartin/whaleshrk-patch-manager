@@ -1,0 +1,37 @@
+{
+    "display" : "Strip",
+    "parameters" :  [ 
+        ["pct","thru_gain","Audio Thru Gain",0,100,0],
+        ["pct","lowlowband","< 100 Hz",0,200,100],
+        ["pct","lowband","100~300 Hz",0,200,100],
+        ["pct","midlowband","300~600 Hz",0,200,100],
+        ["pct","midhighband","600~4000 Hz",0,200,100],
+        ["pct","highband","4000~8000 Hz",0,200,100],
+        ["pct","highhighband","> 10000 Hz",0,200,100],
+        ["int","threshold","Threshold",-30,0,-15],
+        ["float","freq_mult","DS Freq",0.75,2,1],
+        ["float","q","DS Q",1,1.4,1],
+        ["int","dsthresh","DS Thres",-65,0,-15],
+        ["int","ratio","Ratio",2,10,4],
+        ["int","attack","Attack",1,6,6],
+        ["int","release","Release",1,5,1],
+        ["float","makeup","Makeup",0,20,1.0],
+        ["float","dsresponse","Response",0.1,100,100],
+        ["int","eq_select","EQ",0,3,0],
+        ["int","ds_select","DS",0,3,3],
+        ["int","comp_select","Compressor",0,3,0],
+	["int","gate_select","Gate",0,3,3],
+	["float","gate-thresh","Threshold",100,150,132],
+	["float","gate-attack","Attack",0.1,125,80],
+	["int","gate-hold","Hold",500,7500,500],
+	["int","gate-decay","Decay",5000,100000,75000]
+        ],
+    "pages" : [ 
+	["pg_gate","Gate",["gate-thresh","gate-attack","gate-hold","gate-decay"]],
+        ["pg_eq4","EQ",[]],
+        ["pg_deess","DS",["freq_mult","q","dsthresh"]],
+        ["pg_compress","Compress",["threshold","attack","release","makeup"]],
+        ["pg_settings","Settings",["gate_select","eq_select","comp_select","ds_select"]]
+    ]
+}
+

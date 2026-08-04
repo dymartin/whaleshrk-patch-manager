@@ -1,0 +1,191 @@
+[
+ {
+  "name": "sfplayer+/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "sfplayer+/os_switch.pd",
+  "size": 726,
+  "compress_size": 270,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "sfplayer+/folder_list.pd_linux",
+  "size": 5272,
+  "compress_size": 2533,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "sfplayer+/latch-notes.pd",
+  "size": 1183,
+  "compress_size": 393,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "sfplayer+/s2l.pd_linux",
+  "size": 17276,
+  "compress_size": 8180,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "sfplayer+/fluid~-help.pd",
+  "size": 6699,
+  "compress_size": 2109,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "sfplayer+/fluid.pd",
+  "size": 3697,
+  "compress_size": 1226,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "sfplayer+/libfluidsynth.so",
+  "size": 387712,
+  "compress_size": 173490,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "sfplayer+/s2l.dll",
+  "size": 35722,
+  "compress_size": 12064,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "sfplayer+/fluid.gen.txt",
+  "size": 743,
+  "compress_size": 286,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "sfplayer+/folder_list.dll",
+  "size": 11790,
+  "compress_size": 4813,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "sfplayer+/module.json.save",
+  "size": 581,
+  "compress_size": 255,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "sfplayer+/fluid~.pd_linux",
+  "size": 11116,
+  "compress_size": 4612,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "sfplayer+/fluid~.pd_darwin",
+  "size": 14116,
+  "compress_size": 3288,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "sfplayer+/LICENSE.txt",
+  "size": 1812,
+  "compress_size": 917,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "sfplayer+/module.json",
+  "size": 706,
+  "compress_size": 292,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "sfplayer+/libfluidsynth.so_bak.1",
+  "size": 387712,
+  "compress_size": 173490,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "sfplayer+/libfluidsynth.so.1",
+  "size": 294736,
+  "compress_size": 133042,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "sfplayer+/module.pd",
+  "size": 2472,
+  "compress_size": 775,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "sfplayer+/fluidsynth",
+  "size": 25376,
+  "compress_size": 10470,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "sfplayer+/fluid.gen2sym.pd",
+  "size": 1419,
+  "compress_size": 555,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "sfplayer+/README",
+  "size": 1482,
+  "compress_size": 837,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "sfplayer+/ARP_STRINGS.SF2",
+  "size": 684710,
+  "compress_size": 624675,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "sfplayer+/pd~-sfplayer.pd",
+  "size": 3803,
+  "compress_size": 1110,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "sfplayer+/fluid~_back.pd_linux",
+  "size": 11116,
+  "compress_size": 4612,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "sfplayer+/sfshare_select.pd",
+  "size": 2124,
+  "compress_size": 685,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "sfplayer+/libfluidsynth.so.1.5.2",
+  "size": 387712,
+  "compress_size": 173490,
+  "external_attr": 2179792896,
+  "is_dir": false
+ }
+]

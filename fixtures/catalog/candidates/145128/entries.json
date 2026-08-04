@@ -1,0 +1,1297 @@
+[
+ {
+  "name": "berryloops/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106067456,
+  "is_dir": true
+ },
+ {
+  "name": "berryloops/folder_list.pd_darwin",
+  "size": 47112,
+  "compress_size": 5499,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/loop-voice.pd",
+  "size": 6379,
+  "compress_size": 1834,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107116032,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/berryloops/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107116032,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/berryloops/._loop-voice.pd",
+  "size": 268,
+  "compress_size": 176,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/berryloops.pd",
+  "size": 6627,
+  "compress_size": 1927,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/._berryloops.pd",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/loops/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106067456,
+  "is_dir": true
+ },
+ {
+  "name": "berryloops/loops/4.wav",
+  "size": 268332,
+  "compress_size": 205077,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/loops/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107116032,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/berryloops/loops/._4.wav",
+  "size": 268,
+  "compress_size": 176,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/loops/1.wav",
+  "size": 101804,
+  "compress_size": 72385,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/loops/._1.wav",
+  "size": 268,
+  "compress_size": 176,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/loops/3.wav",
+  "size": 130860,
+  "compress_size": 90134,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/loops/._3.wav",
+  "size": 268,
+  "compress_size": 176,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/loops/2.wav",
+  "size": 138028,
+  "compress_size": 100096,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/loops/._2.wav",
+  "size": 268,
+  "compress_size": 176,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/module.json",
+  "size": 1667,
+  "compress_size": 487,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/._module.json",
+  "size": 227,
+  "compress_size": 133,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106067456,
+  "is_dir": true
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/.DS_Store",
+  "size": 10244,
+  "compress_size": 1750,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107116032,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/._.DS_Store",
+  "size": 120,
+  "compress_size": 53,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106067456,
+  "is_dir": true
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/chord-prob.pd",
+  "size": 3482,
+  "compress_size": 1045,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107116032,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._chord-prob.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-short-long-b.pd",
+  "size": 1082,
+  "compress_size": 388,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-short-long-b.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/chord-muter.pd",
+  "size": 10920,
+  "compress_size": 2976,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._chord-muter.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-draw-kb-help.pd",
+  "size": 1313,
+  "compress_size": 443,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-draw-kb-help.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-make-note.pd",
+  "size": 898,
+  "compress_size": 349,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-make-note.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-psystem-parameter.pd",
+  "size": 1959,
+  "compress_size": 636,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-psystem-parameter.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-speedlim.pd",
+  "size": 1692,
+  "compress_size": 815,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-speedlim.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-toggle.pd",
+  "size": 356,
+  "compress_size": 166,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-toggle.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-draw-kb.pd",
+  "size": 11472,
+  "compress_size": 1264,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-draw-kb.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/folder_list-help.pd",
+  "size": 2208,
+  "compress_size": 1022,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._folder_list-help.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-smoothswitch.pd",
+  "size": 941,
+  "compress_size": 339,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-smoothswitch.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/folder_list.pd_darwin",
+  "size": 47112,
+  "compress_size": 5499,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-psystem-knob.pd",
+  "size": 2874,
+  "compress_size": 958,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-psystem-knob.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-loop.pd",
+  "size": 1082,
+  "compress_size": 446,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-loop.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-metro-LFO.pd",
+  "size": 526,
+  "compress_size": 215,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-metro-LFO.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-duck.pd",
+  "size": 759,
+  "compress_size": 277,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-duck.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-time-count.pd",
+  "size": 904,
+  "compress_size": 327,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-time-count.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-count-up-down.pd",
+  "size": 978,
+  "compress_size": 337,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-count-up-down.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-wet-dry.pd",
+  "size": 621,
+  "compress_size": 253,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-wet-dry.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-draw-bar-grid.pd",
+  "size": 7170,
+  "compress_size": 2055,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-draw-bar-grid.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/folder_list.pd_linux",
+  "size": 5272,
+  "compress_size": 2533,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._folder_list.pd_linux",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-draw-kb-big.pd",
+  "size": 5600,
+  "compress_size": 1363,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-draw-kb-big.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-list-2-items.pd",
+  "size": 346,
+  "compress_size": 157,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-list-2-items.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-draw-rec-drop.pd",
+  "size": 1049,
+  "compress_size": 379,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-draw-rec-drop.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/clockfix.pd_linux",
+  "size": 13500,
+  "compress_size": 6134,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._clockfix.pd_linux",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/midiclocker.pd_linux",
+  "size": 13176,
+  "compress_size": 5329,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._midiclocker.pd_linux",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-snap.pd",
+  "size": 369,
+  "compress_size": 207,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-snap.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/note-on-off.pd",
+  "size": 1497,
+  "compress_size": 496,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._note-on-off.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-measure-trig.pd",
+  "size": 1150,
+  "compress_size": 428,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-measure-trig.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-note-trig.pd",
+  "size": 2150,
+  "compress_size": 719,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-note-trig.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/abl_link~.pd_linux.orig",
+  "size": 36452,
+  "compress_size": 12499,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._abl_link~.pd_linux.orig",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/note-tracker.pd",
+  "size": 1415,
+  "compress_size": 475,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._note-tracker.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-custom-screen-line.pd",
+  "size": 1359,
+  "compress_size": 443,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-custom-screen-line.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-draw-knob-bar.pd",
+  "size": 1679,
+  "compress_size": 590,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-draw-knob-bar.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-2-way-detent.pd",
+  "size": 1383,
+  "compress_size": 393,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-2-way-detent.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-psystem-label.pd",
+  "size": 1433,
+  "compress_size": 498,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-psystem-label.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-knob-mute-sc.pd",
+  "size": 838,
+  "compress_size": 332,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-knob-mute-sc.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/clocker.pd_linux",
+  "size": 14072,
+  "compress_size": 6158,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._clocker.pd_linux",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-draw-waveform.pd",
+  "size": 4726,
+  "compress_size": 1465,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-draw-waveform.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-knob-scale.pd",
+  "size": 2831,
+  "compress_size": 1022,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-knob-scale.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-one-bang.pd",
+  "size": 394,
+  "compress_size": 171,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-one-bang.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/libabl_link~.so",
+  "size": 536588,
+  "compress_size": 148525,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._libabl_link~.so",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/externals/cg-store-list.pd",
+  "size": 490,
+  "compress_size": 201,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/externals/._cg-store-list.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sampling/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106067456,
+  "is_dir": true
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sampling/cg-simple-sample.pd",
+  "size": 3827,
+  "compress_size": 1131,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sampling/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107116032,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sampling/._cg-simple-sample.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sampling/waveplayer~.pd_linux",
+  "size": 24916,
+  "compress_size": 11393,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sampling/._waveplayer~.pd_linux",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sampling/cg-count-sf.pd",
+  "size": 891,
+  "compress_size": 357,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sampling/._cg-count-sf.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sampling/load-rec-sample.pd",
+  "size": 9706,
+  "compress_size": 2917,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sampling/._load-rec-sample.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sampling/cg-play-sample.pd",
+  "size": 5091,
+  "compress_size": 1556,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sampling/._cg-play-sample.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sampling/cg-waveform-load.pd",
+  "size": 483,
+  "compress_size": 245,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sampling/._cg-waveform-load.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sampling/cg-writeSf~.pd",
+  "size": 3214,
+  "compress_size": 1003,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sampling/._cg-writeSf~.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sampling/cg-sig-play.pd",
+  "size": 1676,
+  "compress_size": 593,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sampling/._cg-sig-play.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/README.md",
+  "size": 98,
+  "compress_size": 90,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/._README.md",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sequencer/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106067456,
+  "is_dir": true
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sequencer/shortcut-mute-s.pd",
+  "size": 481,
+  "compress_size": 208,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sequencer/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107116032,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sequencer/._shortcut-mute-s.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sequencer/cg-shortcut.pd",
+  "size": 10696,
+  "compress_size": 2962,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sequencer/._cg-shortcut.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sequencer/seq-format-event.pd",
+  "size": 344,
+  "compress_size": 170,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sequencer/._seq-format-event.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sequencer/seq-player.pd",
+  "size": 4516,
+  "compress_size": 1433,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sequencer/._seq-player.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sequencer/5option-control.pd",
+  "size": 5123,
+  "compress_size": 1417,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sequencer/._5option-control.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sequencer/print-line5.pd",
+  "size": 3854,
+  "compress_size": 1112,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sequencer/._print-line5.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sequencer/seq3.pd",
+  "size": 43013,
+  "compress_size": 9885,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sequencer/._seq3.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sequencer/knob-recycle.pd",
+  "size": 2254,
+  "compress_size": 543,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sequencer/._knob-recycle.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sequencer/sc-module.pd",
+  "size": 4560,
+  "compress_size": 1268,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sequencer/._sc-module.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sequencer/seq-overdubber.pd",
+  "size": 6966,
+  "compress_size": 1968,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sequencer/._seq-overdubber.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sequencer/slot-tracker.txt",
+  "size": 28,
+  "compress_size": 6,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sequencer/._slot-tracker.txt",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sequencer/cg-simple-seq.pd",
+  "size": 1291,
+  "compress_size": 425,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sequencer/._cg-simple-seq.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sequencer/shortcut-mute-f.pd",
+  "size": 637,
+  "compress_size": 268,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sequencer/._shortcut-mute-f.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sequencer/seq3-multipage.pd",
+  "size": 34164,
+  "compress_size": 8516,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sequencer/._seq3-multipage.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sequencer/cg-standard-sc-seq3-control.pd",
+  "size": 2065,
+  "compress_size": 725,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sequencer/._cg-standard-sc-seq3-control.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sequencer/cg-standard-sc-seq3-print.pd",
+  "size": 3790,
+  "compress_size": 1145,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sequencer/._cg-standard-sc-seq3-print.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sequencer/cg-count-ticks.pd",
+  "size": 1873,
+  "compress_size": 568,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sequencer/._cg-count-ticks.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sequencer/seq.pd",
+  "size": 3526,
+  "compress_size": 1153,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sequencer/._seq.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sequencer/seq3-simple.pd",
+  "size": 12645,
+  "compress_size": 3687,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sequencer/._seq3-simple.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sequencer/seq-recorder.pd",
+  "size": 4940,
+  "compress_size": 1583,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sequencer/._seq-recorder.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sequencer/shortcut-mute-list.pd",
+  "size": 1573,
+  "compress_size": 538,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sequencer/._shortcut-mute-list.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sequencer/auto-knob-out.pd",
+  "size": 482,
+  "compress_size": 234,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sequencer/._auto-knob-out.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/sequencer/5page-system.pd",
+  "size": 8281,
+  "compress_size": 2042,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/sequencer/._5page-system.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/metronome/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106067456,
+  "is_dir": true
+ },
+ {
+  "name": "berryloops/cg-pd-library-local/metronome/metronome360.pd",
+  "size": 8308,
+  "compress_size": 2639,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/metronome/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107116032,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/berryloops/cg-pd-library-local/metronome/._metronome360.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "berryloops/module.pd",
+  "size": 403,
+  "compress_size": 185,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/berryloops/._module.pd",
+  "size": 176,
+  "compress_size": 92,
+  "external_attr": 2175025152,
+  "is_dir": false
+ }
+]

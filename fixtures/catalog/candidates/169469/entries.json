@@ -1,0 +1,156 @@
+[
+ {
+  "name": "SupLex_Reverb/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051072,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/._SupLex_Reverb",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "SupLex_Reverb/modallpass100ms.pd",
+  "size": 814,
+  "compress_size": 312,
+  "external_attr": 2180972544,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/SupLex_Reverb/._modallpass100ms.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2180972544,
+  "is_dir": false
+ },
+ {
+  "name": "SupLex_Reverb/allpass100ms.pd",
+  "size": 686,
+  "compress_size": 290,
+  "external_attr": 2180972544,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/SupLex_Reverb/._allpass100ms.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2180972544,
+  "is_dir": false
+ },
+ {
+  "name": "SupLex_Reverb/dattorroplate.pd",
+  "size": 5347,
+  "compress_size": 1412,
+  "external_attr": 2180972544,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/SupLex_Reverb/._dattorroplate.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2180972544,
+  "is_dir": false
+ },
+ {
+  "name": "SupLex_Reverb/dattorrostereo.pd",
+  "size": 3565,
+  "compress_size": 1076,
+  "external_attr": 2180972544,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/SupLex_Reverb/._dattorrostereo.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2180972544,
+  "is_dir": false
+ },
+ {
+  "name": "SupLex_Reverb/allpass100ms2tap.pd",
+  "size": 916,
+  "compress_size": 323,
+  "external_attr": 2180972544,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/SupLex_Reverb/._allpass100ms2tap.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2180972544,
+  "is_dir": false
+ },
+ {
+  "name": "SupLex_Reverb/tanh~.pd_linux",
+  "size": 13076,
+  "compress_size": 6535,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/SupLex_Reverb/._tanh~.pd_linux",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "SupLex_Reverb/module.json",
+  "size": 876,
+  "compress_size": 318,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/SupLex_Reverb/._module.json",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "SupLex_Reverb/c_xfade.pd",
+  "size": 1432,
+  "compress_size": 740,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/SupLex_Reverb/._c_xfade.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "SupLex_Reverb/module.pd",
+  "size": 4569,
+  "compress_size": 839,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/SupLex_Reverb/._module.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "SupLex_Reverb/tanh~-help.pd",
+  "size": 1805,
+  "compress_size": 834,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/SupLex_Reverb/._tanh~-help.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2179792896,
+  "is_dir": false
+ }
+]

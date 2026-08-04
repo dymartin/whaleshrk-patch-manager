@@ -1,0 +1,30 @@
+[
+ {
+  "name": "CR78-pattern/deploy.sh",
+  "size": 591,
+  "compress_size": 302,
+  "external_attr": 2180972544,
+  "is_dir": false
+ },
+ {
+  "name": "CR78-pattern/manifest.txt",
+  "size": 197,
+  "compress_size": 135,
+  "external_attr": 2180972544,
+  "is_dir": false
+ },
+ {
+  "name": "CR78-pattern/module.json",
+  "size": 2025,
+  "compress_size": 474,
+  "external_attr": 2180972544,
+  "is_dir": false
+ },
+ {
+  "name": "CR78-pattern/module.pd",
+  "size": 31813,
+  "compress_size": 6287,
+  "external_attr": 2180972544,
+  "is_dir": false
+ }
+]

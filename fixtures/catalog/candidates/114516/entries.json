@@ -1,0 +1,37 @@
+[
+ {
+  "name": "mscale/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "mscale/module.pd",
+  "size": 2762,
+  "compress_size": 838,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "mscale/mscale.pd",
+  "size": 1141,
+  "compress_size": 342,
+  "external_attr": 2180972544,
+  "is_dir": false
+ },
+ {
+  "name": "mscale/mscale-help.pd",
+  "size": 907,
+  "compress_size": 353,
+  "external_attr": 2180972544,
+  "is_dir": false
+ },
+ {
+  "name": "mscale/module.json",
+  "size": 274,
+  "compress_size": 141,
+  "external_attr": 2175008768,
+  "is_dir": false
+ }
+]

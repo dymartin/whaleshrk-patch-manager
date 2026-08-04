@@ -1,0 +1,10 @@
+{
+    "display" : "Empty",
+    "parameters" :  [ 
+	["pct","thru_gain","Audio Thru Gain",0,100,100]
+    ],
+    "pages" : [ 
+        ["pg_main",[]]
+    ]
+}
+

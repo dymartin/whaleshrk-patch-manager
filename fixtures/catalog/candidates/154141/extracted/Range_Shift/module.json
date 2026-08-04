@@ -1,0 +1,12 @@
+{
+"name" : "range_shift",
+"display" : "Range Shift",
+"parameters" :  [ 
+	["int","oct","Octave",-2,2,0],
+	["int","trans","Transpose",-12,12,0],
+	["int","vel","Velocity",0,127,100]
+],
+"pages" : [ 
+	["pg_main","Main",["oct","trans","vel"]]
+]
+}

@@ -1,0 +1,24 @@
+{
+    "display" : "Recjam+",
+    "parameters" :  [ 
+        ["pct","rate","Rate",-200,200,100],
+        ["pct","mode","Mode",0,2,0],
+        ["pct","length","Len",0,100,100],
+        ["pct","feedback","Feedback",0,100,0],
+        ["time","time","Time",1,5000,350],
+        ["bool","temposync","Tempo Sync",0],
+        ["int","kit","Kit",1,24,1],
+        ["pct","volume","Volume",0,200,100],
+        ["int","threshold","Threshold",-30,0,-15],
+        ["int","ratio","Ratio",2,10,2],
+        ["int","attack","Attack",1,6,6],
+        ["int","release","Release",1,5,1],
+        ["float","makeup","Make-Up",0,20,1.0]
+    ],
+    "pages" : [ 
+        ["pg_main","Main",[]],
+        ["pg_xtra","Extra",["temposync","kit","volume","threshold"]],
+        ["pg_comp","Comp",["ratio","attack","release","makeup"]]
+    ]
+}
+

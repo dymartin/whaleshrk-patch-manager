@@ -1,0 +1,58 @@
+[
+ {
+  "name": "F-constant-g/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "F-constant-g/module.pd",
+  "size": 26410,
+  "compress_size": 7717,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "F-constant-g/cg-dw.pd",
+  "size": 527,
+  "compress_size": 202,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "F-constant-g/module.json",
+  "size": 324,
+  "compress_size": 179,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "F-constant-g/tune.txt",
+  "size": 104,
+  "compress_size": 62,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "F-constant-g/deploy.sh",
+  "size": 146,
+  "compress_size": 102,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "F-constant-g/manifest.txt",
+  "size": 627,
+  "compress_size": 344,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "F-constant-g/skel-band-store.txt",
+  "size": 880,
+  "compress_size": 356,
+  "external_attr": 2179792896,
+  "is_dir": false
+ }
+]

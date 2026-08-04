@@ -1,0 +1,184 @@
+[
+ {
+  "name": "polystep/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 16,
+  "is_dir": true
+ },
+ {
+  "name": "polystep/beatdiv.pd",
+  "size": 1424,
+  "compress_size": 439,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "polystep/deploy.sh",
+  "size": 369,
+  "compress_size": 226,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "polystep/keyfilter2.pd",
+  "size": 901,
+  "compress_size": 333,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "polystep/len_0.txt",
+  "size": 2,
+  "compress_size": 2,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "polystep/len_1.txt",
+  "size": 4,
+  "compress_size": 4,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "polystep/len_2.txt",
+  "size": 3,
+  "compress_size": 3,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "polystep/len_3.txt",
+  "size": 3,
+  "compress_size": 3,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "polystep/len_4.txt",
+  "size": 4,
+  "compress_size": 4,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "polystep/manifest.txt",
+  "size": 1490,
+  "compress_size": 682,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "polystep/man_note.pd",
+  "size": 720,
+  "compress_size": 279,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "polystep/module.json",
+  "size": 1022,
+  "compress_size": 379,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "polystep/module.pd",
+  "size": 712,
+  "compress_size": 284,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "polystep/notes_0.txt",
+  "size": 1102,
+  "compress_size": 115,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "polystep/notes_1.txt",
+  "size": 1576,
+  "compress_size": 77,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "polystep/notes_2.txt",
+  "size": 1569,
+  "compress_size": 57,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "polystep/notes_3.txt",
+  "size": 1566,
+  "compress_size": 41,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "polystep/notes_4.txt",
+  "size": 1576,
+  "compress_size": 72,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "polystep/polystep.pd",
+  "size": 18375,
+  "compress_size": 4223,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "polystep/README",
+  "size": 1913,
+  "compress_size": 872,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "polystep/testkeys.pd",
+  "size": 5190,
+  "compress_size": 1467,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "polystep/vel_0.txt",
+  "size": 1176,
+  "compress_size": 57,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "polystep/vel_1.txt",
+  "size": 1618,
+  "compress_size": 62,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "polystep/vel_2.txt",
+  "size": 1596,
+  "compress_size": 51,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "polystep/vel_3.txt",
+  "size": 1572,
+  "compress_size": 32,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "polystep/vel_4.txt",
+  "size": 1674,
+  "compress_size": 63,
+  "external_attr": 32,
+  "is_dir": false
+ }
+]

@@ -1,0 +1,135 @@
+[
+ {
+  "name": "juno104-pd/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "juno104-pd/.DS_Store",
+  "size": 6148,
+  "compress_size": 178,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "juno104-pd/104_voice.pd",
+  "size": 16294,
+  "compress_size": 5220,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "juno104-pd/104_voice_v2.pd",
+  "size": 1043,
+  "compress_size": 436,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "juno104-pd/106_oscillator.pd",
+  "size": 2669,
+  "compress_size": 1058,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "juno104-pd/chorus.pd",
+  "size": 1956,
+  "compress_size": 574,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "juno104-pd/envelope_generator.pd",
+  "size": 2020,
+  "compress_size": 780,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "juno104-pd/GNU_License.rtf",
+  "size": 35450,
+  "compress_size": 11377,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "juno104-pd/lfo_delay_time.pd",
+  "size": 1443,
+  "compress_size": 636,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "juno104-pd/lfo_pitch_depth.pd",
+  "size": 2007,
+  "compress_size": 747,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "juno104-pd/lfo_tri.pd",
+  "size": 1166,
+  "compress_size": 587,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "juno104-pd/noise_mix.pd",
+  "size": 456,
+  "compress_size": 220,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "juno104-pd/presets.pd",
+  "size": 8192,
+  "compress_size": 2426,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "juno104-pd/pulse_width_modulation.pd",
+  "size": 1334,
+  "compress_size": 628,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "juno104-pd/voltage_controlled_amplifier.pd",
+  "size": 1757,
+  "compress_size": 642,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "juno104-pd/voltage_controlled_filter.pd",
+  "size": 3344,
+  "compress_size": 1099,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "juno104-pd/module.json",
+  "size": 1773,
+  "compress_size": 610,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "juno104-pd/module.pd",
+  "size": 5708,
+  "compress_size": 1409,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "juno104-pd/pd~-juno104.pd",
+  "size": 15184,
+  "compress_size": 4274,
+  "external_attr": 2179792896,
+  "is_dir": false
+ }
+]

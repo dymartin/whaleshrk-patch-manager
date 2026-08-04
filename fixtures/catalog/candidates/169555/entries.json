@@ -1,0 +1,156 @@
+[
+ {
+  "name": "transcycle/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "transcycle/multicycle.dll",
+  "size": 3122405,
+  "compress_size": 705265,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "transcycle/brownian.pd",
+  "size": 4331111,
+  "compress_size": 1263766,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "transcycle/abl_link~.pd_linux",
+  "size": 36452,
+  "compress_size": 12435,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "transcycle/metro2.wav",
+  "size": 5580,
+  "compress_size": 5023,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "transcycle/mavg.pd",
+  "size": 1036,
+  "compress_size": 411,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "transcycle/.module.json.swp",
+  "size": 12288,
+  "compress_size": 1189,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "transcycle/clock.pd",
+  "size": 33957,
+  "compress_size": 7930,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "transcycle/multicycle_test.pd",
+  "size": 1708,
+  "compress_size": 504,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "transcycle/pattern-change.pd",
+  "size": 869,
+  "compress_size": 335,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "transcycle/cg-tap-tempo.pd",
+  "size": 2511,
+  "compress_size": 704,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "transcycle/mavg.pd_linux",
+  "size": 4820,
+  "compress_size": 2464,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "transcycle/libabl_link~.so",
+  "size": 536588,
+  "compress_size": 148132,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "transcycle/module.json",
+  "size": 3734,
+  "compress_size": 808,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "transcycle/metro1.wav",
+  "size": 2604,
+  "compress_size": 2322,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "transcycle/module.pd",
+  "size": 21155,
+  "compress_size": 5652,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "transcycle/README",
+  "size": 504,
+  "compress_size": 252,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "transcycle/mavg-help.pd",
+  "size": 839,
+  "compress_size": 415,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "transcycle/sampler-voice.pd",
+  "size": 3277,
+  "compress_size": 1116,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "transcycle/chanparam.pd",
+  "size": 512,
+  "compress_size": 212,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "transcycle/multicycle.pd_linux",
+  "size": 147580,
+  "compress_size": 60889,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "transcycle/overtake.pd",
+  "size": 1593,
+  "compress_size": 515,
+  "external_attr": 2175008768,
+  "is_dir": false
+ }
+]

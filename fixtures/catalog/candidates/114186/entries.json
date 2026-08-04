@@ -1,0 +1,44 @@
+[
+ {
+  "name": "audio2midi/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 16,
+  "is_dir": true
+ },
+ {
+  "name": "audio2midi/LICENSE.txt",
+  "size": 1812,
+  "compress_size": 913,
+  "external_attr": 524320,
+  "is_dir": false
+ },
+ {
+  "name": "audio2midi/module.json",
+  "size": 360,
+  "compress_size": 178,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "audio2midi/module.pd",
+  "size": 1074,
+  "compress_size": 399,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "audio2midi/polytracker.pd",
+  "size": 3741,
+  "compress_size": 479,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "audio2midi/tracker.pd",
+  "size": 1213,
+  "compress_size": 432,
+  "external_attr": 32,
+  "is_dir": false
+ }
+]

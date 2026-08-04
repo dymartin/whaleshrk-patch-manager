@@ -1,0 +1,30 @@
+[
+ {
+  "name": "scope/deploy.sh",
+  "size": 368,
+  "compress_size": 206,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "scope/manifest.txt",
+  "size": 176,
+  "compress_size": 125,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "scope/module.json",
+  "size": 114,
+  "compress_size": 78,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "scope/module.pd",
+  "size": 6137,
+  "compress_size": 1748,
+  "external_attr": 2179792896,
+  "is_dir": false
+ }
+]

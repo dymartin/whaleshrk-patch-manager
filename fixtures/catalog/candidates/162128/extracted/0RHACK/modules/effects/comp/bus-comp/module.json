@@ -1,0 +1,24 @@
+{
+    "display" : "Bus Comp",
+    "parameters" :  [ 
+        ["pct","thru_gain","Audio Thru Gain",0,100,0],
+        ["int","threshold","Threshold",-30,0,-15],
+        ["int","ratio","Ratio",2,10,2],
+        ["int","attack","Attack",1,6,6],
+        ["int","release","Release",1,5,1],
+        ["float","makeup","Make-Up",0,20,1.0],
+	["int","sidechannel","Sidechain >>",0,14,0],
+        ["freq","hpf_sc","Detector HPF",0,550,100],
+        ["freq","bpf_sc","BPF Freq",50,5500,50],
+        ["int","bandwidth_sc","BPF Q",1,10,5],
+        ["float","boost_sc","BPF Boost",1,3,2]
+
+
+    ],
+    "pages" : [ 
+        ["pg_main","Bus Comp",["threshold","hpf_sc"]],
+        ["pg_settings","Settings",["ratio","attack","release","makeup"]],
+        ["pg_sidechain","SC Input",["sidechannel","bpf_sc","bandwidth_sc","boost_sc"]]
+
+    ]
+}

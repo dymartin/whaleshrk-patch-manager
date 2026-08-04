@@ -1,0 +1,13 @@
+#N canvas 4153 741 639 497 12;
+#X obj 85 65 r notes;
+#X obj 79 144 fm-synth-poly a1;
+#X obj 80 244 dac~;
+#X obj 365 38 loadbang;
+#X msg 366 70 \; pd dsp 1;
+#X listbox 168 100 20 0 0 0 - - - 0;
+#X obj 460 73 s loadbang-a1;
+#X connect 0 0 1 0;
+#X connect 0 0 5 0;
+#X connect 1 0 2 0;
+#X connect 3 0 4 0;
+#X connect 3 0 6 0;

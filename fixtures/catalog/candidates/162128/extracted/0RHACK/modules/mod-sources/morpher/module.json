@@ -1,0 +1,102 @@
+{
+    "display" : "Morpher",
+    "parameters" :  [ 
+        ["pct","m_p1","Param 1",0,100,50],
+        ["pct","m_p2","Param 2",0,100,50],
+        ["pct","m_p3","Param 3",0,100,50],
+        ["pct","m_p4","Param 4",0,100,50],
+
+        ["pct","m_p5","Param 5",0,100,50],
+        ["pct","m_p6","Param 6",0,100,50],
+        ["pct","m_p7","Param 7",0,100,50],
+        ["pct","m_p8","Param 8",0,100,50],
+
+        ["pct","m_p9","Param 9",0,100,50],
+        ["pct","m_p10","Param 10",0,100,50],
+        ["pct","m_p11","Param 11",0,100,50],
+        ["pct","m_p12","Param 12",0,100,50],
+
+        ["pct","m_p13","Param 13",0,100,50],
+        ["pct","m_p14","Param 14",0,100,50],
+        ["pct","m_p15","Param 15",0,100,50],
+        ["pct","m_p16","Param 16",0,100,50],
+
+
+
+        ["pct","m_amt_p1","Amount",0,100,100],
+        ["pct","m_offset_p1","Offset",0,100,0],
+        ["int","m_bus_p1","Mod Bus",21,32,21],
+
+        ["pct","m_amt_p2","Amount",0,100,100],
+        ["pct","m_offset_p2","Offset",0,100,0],
+        ["int","m_bus_p2","Mod Bus",21,32,22],
+
+        ["pct","m_amt_p3","Amount",0,100,100],
+        ["pct","m_offset_p3","Offset",0,100,0],
+        ["int","m_bus_p3","Mod Bus",21,32,23],
+
+        ["pct","m_amt_p4","Amount",0,100,100],
+        ["pct","m_offset_p4","Offset",0,100,0],
+        ["int","m_bus_p4","Mod Bus",21,32,24],
+
+
+
+        ["pct","m_amt_p5","Amount",0,100,100],
+        ["pct","m_offset_p5","Offset",0,100,0],
+        ["int","m_bus_p5","Mod Bus",21,32,25],
+
+        ["pct","m_amt_p6","Amount",0,100,100],
+        ["pct","m_offset_p6","Offset",0,100,0],
+        ["int","m_bus_p6","Mod Bus",21,32,26],
+
+        ["pct","m_amt_p7","Amount",0,100,100],
+        ["pct","m_offset_p7","Offset",0,100,0],
+        ["int","m_bus_p7","Mod Bus",21,32,27],
+
+        ["pct","m_amt_p8","Amount",0,100,100],
+        ["pct","m_offset_p8","Offset",0,100,0],
+        ["int","m_bus_p8","Mod Bus",21,32,28],
+
+
+
+        ["pct","m_amt_p9","Amount",0,100,100],
+        ["pct","m_offset_p9","Offset",0,100,0],
+        ["int","m_bus_p9","Mod Bus",21,32,29],
+
+        ["pct","m_amt_p10","Amount",0,100,100],
+        ["pct","m_offset_p10","Offset",0,100,0],
+        ["int","m_bus_p10","Mod Bus",21,32,30],
+
+        ["pct","m_amt_p11","Amount",0,100,100],
+        ["pct","m_offset_p11","Offset",0,100,0],
+        ["int","m_bus_p11","Mod Bus",21,32,31],
+
+        ["pct","m_amt_p12","Amount",0,100,100],
+        ["pct","m_offset_p12","Offset",0,100,0],
+        ["int","m_bus_p12","Mod Bus",21,32,32],
+
+
+        ["pct","m_amt_p13","Amount",0,100,100],
+        ["pct","m_offset_p13","Offset",0,100,0],
+        ["int","m_bus_p13","Mod Bus",21,32,29],
+
+        ["pct","m_amt_p14","Amount",0,100,100],
+        ["pct","m_offset_p14","Offset",0,100,0],
+        ["int","m_bus_p14","Mod Bus",21,32,30],
+
+        ["pct","m_amt_p15","Amount",0,100,100],
+        ["pct","m_offset_p15","Offset",0,100,0],
+        ["int","m_bus_p15","Mod Bus",21,32,31],
+
+        ["pct","m_amt_p16","Amount",0,100,100],
+        ["pct","m_offset_p16","Offset",0,100,0],
+        ["int","m_bus_p16","Mod Bus",21,32,32]
+    ],
+    "pages" : [ 
+        ["pg_map1","SET PARAMETERS",["m_p1","m_p2","m_p3","m_p4"]],
+        ["pg_map2","SET PARAMETERS",["m_p5","m_p6","m_p7","m_p8"]],
+        ["pg_map3","SET PARAMETERS",["m_p9","m_p10","m_p11","m_p12"]],
+        ["pg_map4","SET PARAMETERS",["m_p13","m_p14","m_p15","m_p16"]]
+    ]
+}
+

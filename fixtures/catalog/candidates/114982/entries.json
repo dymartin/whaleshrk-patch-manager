@@ -1,0 +1,37 @@
+[
+ {
+  "name": "filtration/deploy.sh",
+  "size": 368,
+  "compress_size": 207,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "filtration/manifest.txt",
+  "size": 262,
+  "compress_size": 169,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "filtration/module.json",
+  "size": 410,
+  "compress_size": 191,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "filtration/module.pd",
+  "size": 2802,
+  "compress_size": 877,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "filtration/pd~-filtration.pd",
+  "size": 2699,
+  "compress_size": 767,
+  "external_attr": 2179792896,
+  "is_dir": false
+ }
+]

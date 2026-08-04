@@ -1,0 +1,30 @@
+[
+ {
+  "name": "grids/deploy.sh",
+  "size": 370,
+  "compress_size": 208,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "grids/manifest.txt",
+  "size": 176,
+  "compress_size": 126,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "grids/module.json",
+  "size": 1422,
+  "compress_size": 465,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "grids/module.pd",
+  "size": 10285,
+  "compress_size": 2559,
+  "external_attr": 2175008768,
+  "is_dir": false
+ }
+]

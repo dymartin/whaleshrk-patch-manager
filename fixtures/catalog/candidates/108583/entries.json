@@ -1,0 +1,114 @@
+[
+ {
+  "name": "Tremolosync/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106067456,
+  "is_dir": true
+ },
+ {
+  "name": "Tremolosync/.DS_Store",
+  "size": 6148,
+  "compress_size": 178,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107116032,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/Tremolosync/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107116032,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/Tremolosync/._.DS_Store",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "Tremolosync/c_xfade.pd",
+  "size": 1432,
+  "compress_size": 740,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/Tremolosync/._c_xfade.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "Tremolosync/e_tremolo-help.pd",
+  "size": 1373,
+  "compress_size": 673,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/Tremolosync/._e_tremolo-help.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "Tremolosync/e_tremolo.pd",
+  "size": 1918,
+  "compress_size": 890,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/Tremolosync/._e_tremolo.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "Tremolosync/module.json",
+  "size": 372,
+  "compress_size": 186,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/Tremolosync/._module.json",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "Tremolosync/module.pd",
+  "size": 5982,
+  "compress_size": 1635,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/Tremolosync/._module.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/._Tremolosync",
+  "size": 212,
+  "compress_size": 129,
+  "external_attr": 2175025152,
+  "is_dir": false
+ }
+]

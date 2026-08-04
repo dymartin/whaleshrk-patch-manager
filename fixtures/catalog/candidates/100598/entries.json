@@ -1,0 +1,373 @@
+[
+ {
+  "name": "S-Drumsampler24/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106067456,
+  "is_dir": true
+ },
+ {
+  "name": "S-Drumsampler24/crown-window.pd",
+  "size": 681,
+  "compress_size": 345,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107116032,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/S-Drumsampler24/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107116032,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/S-Drumsampler24/._crown-window.pd",
+  "size": 299,
+  "compress_size": 204,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/load-24.pd",
+  "size": 833,
+  "compress_size": 391,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/S-Drumsampler24/._load-24.pd",
+  "size": 299,
+  "compress_size": 204,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/module.json",
+  "size": 392,
+  "compress_size": 183,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/S-Drumsampler24/._module.json",
+  "size": 299,
+  "compress_size": 204,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/module.pd",
+  "size": 5101,
+  "compress_size": 1384,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/S-Drumsampler24/._module.pd",
+  "size": 355,
+  "compress_size": 249,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/s24-voice.pd",
+  "size": 4915,
+  "compress_size": 1629,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/S-Drumsampler24/._s24-voice.pd",
+  "size": 299,
+  "compress_size": 204,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/s_vphasor-help.pd",
+  "size": 1467,
+  "compress_size": 689,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/S-Drumsampler24/._s_vphasor-help.pd",
+  "size": 299,
+  "compress_size": 205,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/s_vphasor.pd",
+  "size": 1738,
+  "compress_size": 730,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/S-Drumsampler24/._s_vphasor.pd",
+  "size": 299,
+  "compress_size": 204,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/Sounds/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106067456,
+  "is_dir": true
+ },
+ {
+  "name": "S-Drumsampler24/Sounds/s24-sounds/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106067456,
+  "is_dir": true
+ },
+ {
+  "name": "S-Drumsampler24/Sounds/s24-sounds/1.wav",
+  "size": 34069,
+  "compress_size": 32011,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/Sounds/s24-sounds/10.wav",
+  "size": 579044,
+  "compress_size": 517183,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/Sounds/s24-sounds/11.wav",
+  "size": 535538,
+  "compress_size": 467232,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/Sounds/s24-sounds/12.wav",
+  "size": 18372,
+  "compress_size": 16385,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/Sounds/s24-sounds/13.wav",
+  "size": 99685,
+  "compress_size": 96396,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/Sounds/s24-sounds/14.wav",
+  "size": 10478,
+  "compress_size": 9560,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/Sounds/s24-sounds/15.wav",
+  "size": 9554,
+  "compress_size": 8380,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/Sounds/s24-sounds/16.wav",
+  "size": 32115,
+  "compress_size": 29072,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/Sounds/s24-sounds/17.wav",
+  "size": 28407,
+  "compress_size": 25948,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/Sounds/s24-sounds/18.wav",
+  "size": 27817,
+  "compress_size": 25418,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/Sounds/s24-sounds/19.wav",
+  "size": 83779,
+  "compress_size": 70410,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/Sounds/s24-sounds/2.wav",
+  "size": 75751,
+  "compress_size": 70991,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/Sounds/s24-sounds/20.wav",
+  "size": 81001,
+  "compress_size": 68705,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/Sounds/s24-sounds/21.wav",
+  "size": 101905,
+  "compress_size": 84823,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/Sounds/s24-sounds/22.wav",
+  "size": 361662,
+  "compress_size": 256161,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/S-Drumsampler24/Sounds/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107116032,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/S-Drumsampler24/Sounds/s24-sounds/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107116032,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/S-Drumsampler24/Sounds/s24-sounds/._22.wav",
+  "size": 299,
+  "compress_size": 205,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/Sounds/s24-sounds/23.wav",
+  "size": 1086472,
+  "compress_size": 941023,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/S-Drumsampler24/Sounds/s24-sounds/._23.wav",
+  "size": 299,
+  "compress_size": 204,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/Sounds/s24-sounds/24.wav",
+  "size": 352944,
+  "compress_size": 288149,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/S-Drumsampler24/Sounds/s24-sounds/._24.wav",
+  "size": 299,
+  "compress_size": 205,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/Sounds/s24-sounds/3.wav",
+  "size": 580684,
+  "compress_size": 530771,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/Sounds/s24-sounds/4.wav",
+  "size": 4698,
+  "compress_size": 3869,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/Sounds/s24-sounds/5.wav",
+  "size": 31011,
+  "compress_size": 28261,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/Sounds/s24-sounds/6.wav",
+  "size": 36243,
+  "compress_size": 32863,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/Sounds/s24-sounds/7.wav",
+  "size": 73677,
+  "compress_size": 65471,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/Sounds/s24-sounds/8.wav",
+  "size": 89121,
+  "compress_size": 79810,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/Sounds/s24-sounds/9.wav",
+  "size": 212924,
+  "compress_size": 179012,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/S-Drumsampler24/Sounds/._s24-sounds",
+  "size": 299,
+  "compress_size": 205,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/S-Drumsampler24/._Sounds",
+  "size": 299,
+  "compress_size": 204,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S-Drumsampler24/window.txt",
+  "size": 45192,
+  "compress_size": 635,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/S-Drumsampler24/._window.txt",
+  "size": 299,
+  "compress_size": 204,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/._S-Drumsampler24",
+  "size": 299,
+  "compress_size": 204,
+  "external_attr": 2175025152,
+  "is_dir": false
+ }
+]

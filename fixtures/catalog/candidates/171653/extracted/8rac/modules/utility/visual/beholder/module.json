@@ -1,0 +1,31 @@
+{
+    "display" : "Beholder",
+    "parameters" :  [ 
+        ["pct","p1","Depth 1",0,100,0],
+        ["pct","p2","Depth 2",0,100,0],
+        ["pct","p3","Depth 3",0,100,0],
+        ["pct","p4","Depth 4",0,100,0],
+
+        ["float","speed_1","Speed 1",0,64,0],
+        ["float","speed_2","Speed 2",0,64,0],
+        ["float","speed_3","Speed 3",0,64,0],
+        ["float","speed_4","Speed 4",0,64,0],
+
+        ["int","shape_1","Shape 1",0,3,0],
+        ["int","shape_2","Shape 2",0,3,0],
+        ["int","shape_3","Shape 3",0,3,0],
+        ["int","shape_4","Shape 4",0,3,0],
+
+        ["int","offset_1","Offset 1",0,127,0],
+        ["int","offset_2","Offset 2",0,127,0],       
+        ["int","offset_3","Offset 3",0,127,0],
+        ["int","offset_4","Offset 4",0,127,0]
+    ],
+    "pages" : [ 
+        ["pg_offset","Offset",["offset_1", "offset_2", "offset_3", "offset_4"]],
+        ["pg_depth","Depth",["p1","p2","p3","p4"]],
+        ["pg_speed","Speed",["speed_1", "speed_2", "speed_3", "speed_4"]],
+        ["pg_shape","Shape",["shape_1", "shape_2", "shape_3", "shape_4"]]
+    ]
+}
+

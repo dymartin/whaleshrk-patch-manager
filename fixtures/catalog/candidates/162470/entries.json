@@ -1,0 +1,23 @@
+[
+ {
+  "name": "brownie/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "brownie/module.json",
+  "size": 213,
+  "compress_size": 123,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "brownie/module.pd",
+  "size": 2567,
+  "compress_size": 1034,
+  "external_attr": 2175008768,
+  "is_dir": false
+ }
+]

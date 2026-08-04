@@ -1,0 +1,156 @@
+[
+ {
+  "name": "adsr-demo/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106067456,
+  "is_dir": true
+ },
+ {
+  "name": "adsr-demo/.DS_Store",
+  "size": 6148,
+  "compress_size": 178,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107116032,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/adsr-demo/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107116032,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/adsr-demo/._.DS_Store",
+  "size": 120,
+  "compress_size": 52,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "adsr-demo/adsr-print-2.pd",
+  "size": 4095,
+  "compress_size": 1075,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/adsr-demo/._adsr-print-2.pd",
+  "size": 217,
+  "compress_size": 137,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "adsr-demo/bp-voice.pd",
+  "size": 4603,
+  "compress_size": 1398,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/adsr-demo/._bp-voice.pd",
+  "size": 217,
+  "compress_size": 137,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "adsr-demo/c_adsr-help.pd",
+  "size": 2336,
+  "compress_size": 885,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/adsr-demo/._c_adsr-help.pd",
+  "size": 217,
+  "compress_size": 137,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "adsr-demo/c_adsr.pd",
+  "size": 3238,
+  "compress_size": 1342,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/adsr-demo/._c_adsr.pd",
+  "size": 217,
+  "compress_size": 137,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "adsr-demo/module.json",
+  "size": 371,
+  "compress_size": 186,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/adsr-demo/._module.json",
+  "size": 303,
+  "compress_size": 196,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "adsr-demo/module.pd",
+  "size": 9427,
+  "compress_size": 2680,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/adsr-demo/._module.pd",
+  "size": 217,
+  "compress_size": 137,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "adsr-demo/u_splicetrans-help.pd",
+  "size": 4803,
+  "compress_size": 1563,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/adsr-demo/._u_splicetrans-help.pd",
+  "size": 217,
+  "compress_size": 137,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "adsr-demo/u_splicetrans.pd",
+  "size": 4564,
+  "compress_size": 1623,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/adsr-demo/._u_splicetrans.pd",
+  "size": 217,
+  "compress_size": 137,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/._adsr-demo",
+  "size": 217,
+  "compress_size": 137,
+  "external_attr": 2175025152,
+  "is_dir": false
+ }
+]

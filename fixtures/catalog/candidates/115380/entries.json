@@ -1,0 +1,44 @@
+[
+ {
+  "name": "ratchet/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 16,
+  "is_dir": true
+ },
+ {
+  "name": "ratchet/module.json",
+  "size": 805,
+  "compress_size": 250,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "ratchet/module.pd",
+  "size": 438,
+  "compress_size": 200,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "ratchet/prob.pd",
+  "size": 1249,
+  "compress_size": 364,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "ratchet/ratchet.pd",
+  "size": 1524,
+  "compress_size": 409,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "ratchet/voice.pd",
+  "size": 3084,
+  "compress_size": 799,
+  "external_attr": 32,
+  "is_dir": false
+ }
+]

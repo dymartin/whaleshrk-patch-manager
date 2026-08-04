@@ -1,0 +1,51 @@
+[
+ {
+  "name": "S-stringmachine/as-simple.pd",
+  "size": 3477,
+  "compress_size": 1011,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "S-stringmachine/blsaw.pd",
+  "size": 3320,
+  "compress_size": 1221,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "S-stringmachine/deploy.sh",
+  "size": 144,
+  "compress_size": 95,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "S-stringmachine/manifest.txt",
+  "size": 417,
+  "compress_size": 240,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "S-stringmachine/module.json",
+  "size": 414,
+  "compress_size": 196,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "S-stringmachine/module.pd",
+  "size": 2745,
+  "compress_size": 875,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "S-stringmachine/moog~.pd_linux",
+  "size": 18416,
+  "compress_size": 8983,
+  "external_attr": 2179792896,
+  "is_dir": false
+ }
+]

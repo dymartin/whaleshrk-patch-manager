@@ -1,0 +1,51 @@
+[
+ {
+  "name": "looplay/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051072,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/._looplay",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "looplay/bsamp-voice.pd",
+  "size": 1561,
+  "compress_size": 547,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "looplay/module.json",
+  "size": 353,
+  "compress_size": 183,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/looplay/._module.json",
+  "size": 327,
+  "compress_size": 172,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "looplay/module.pd",
+  "size": 3666,
+  "compress_size": 1268,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/looplay/._module.pd",
+  "size": 276,
+  "compress_size": 135,
+  "external_attr": 2175008768,
+  "is_dir": false
+ }
+]

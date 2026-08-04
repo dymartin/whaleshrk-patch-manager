@@ -1,0 +1,35 @@
+{
+    "display" : "CR78 Patterns",
+    "parameters" :  [
+        ["int", "g_pattern", "Pattern", 0, 20, 0],
+        ["pct", "g_tamb_lvl", "Tambourine Lvl", 0, 99, 0],
+        ["pct", "g_guiro_lvl", "Guiro Lvl", 0, 99, 0],
+        ["int", "g_kick_note", "kick note", 60, 84, 60],
+        ["int", "g_kickaccent_note", "kickaccent note", 60, 84, 61],
+        ["int", "g_snare_note", "snare note", 60, 84, 62],
+        ["int", "g_snareaccent_note", "snareaccent note", 60, 84, 63],
+        ["int", "g_hihat_note", "hihat note", 60, 84, 64],
+        ["int", "g_hihataccent_note", "hihataccent note", 60, 84, 65],
+        ["int", "g_cymbal_note", "cymbal note", 60, 84, 66],
+        ["int", "g_clave_note", "clave note", 60, 84, 67],
+        ["int", "g_conga_note", "conga note", 60, 84, 68],
+        ["int", "g_bongolo_note", "bongolo note", 60, 84, 69],
+        ["int", "g_bongohi_note", "bongohi note", 60, 84, 70],
+        ["int", "g_rim_note", "rim note", 60, 84, 71],
+        ["int", "g_guiro1_note", "guiro1 note", 60, 84, 72],
+        ["int", "g_guiro2_note", "guiro2 note", 60, 84, 73],
+        ["int", "g_tamb1_note", "tamb1 note", 60, 84, 74],
+        ["int", "g_tamb2_note", "tamb2 note", 60, 84, 75],
+        ["bool", "g_mute_kick", "Mute kick", 0],
+        ["bool", "g_mute_cymbal", "Mute cymbals", 0],
+        ["bool", "g_mute_snare", "Mute snare+perc", 0]
+    ],
+    "pages" : [ 
+        ["pg_main", "Main", ["g_pattern", "g_tamb_lvl", "g_guiro_lvl"]],
+        ["pg_mute", "Mute", ["g_mute_kick", "g_mute_cymbal", "g_mute_snare"]],
+        ["pg_notes1", "Midi Notes 1", ["g_kick_note", "g_kickaccent_note", "g_snare_note", "g_snareaccent_note"]],
+        ["pg_notes2", "Midi Notes 2", ["g_hihat_note", "g_hihataccent_note", "g_cymbal_note", "g_clave_note"]],
+        ["pg_notes3", "Midi Notes 3", ["g_conga_note", "g_bongolo_note", "g_bongohi_note", "g_rim_note"]],
+        ["pg_notes4", "Midi Notes 4", ["g_tamb1_note", "g_tamb2_note", "g_guiro1_note", "g_guiro2_note"]]
+    ]
+}

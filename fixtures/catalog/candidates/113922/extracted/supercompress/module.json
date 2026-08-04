@@ -1,0 +1,10 @@
+{
+    "display" : "SuperCompress",
+    "parameters" :  [ 
+        ["pct","thru_gain","Audio Thru Gain",0,200,0],
+        ["time","reaction","Reaction",0.1,1000,100]
+    ],
+    "pages" : [ 
+        ["pg_supercompress","SuperCompress",["reaction"]]
+    ]
+}

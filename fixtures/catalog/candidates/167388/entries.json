@@ -1,0 +1,541 @@
+[
+ {
+  "name": "S24delay/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106067456,
+  "is_dir": true
+ },
+ {
+  "name": "S24delay/detent.pd",
+  "size": 1145,
+  "compress_size": 387,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/.DS_Store",
+  "size": 6148,
+  "compress_size": 178,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107116032,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/S24delay/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107116032,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/S24delay/._.DS_Store",
+  "size": 120,
+  "compress_size": 53,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/slot.txt",
+  "size": 200,
+  "compress_size": 7,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/knobs.txt",
+  "size": 16,
+  "compress_size": 18,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/delay5sec.pd",
+  "size": 606,
+  "compress_size": 229,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sampler-voice.pd",
+  "size": 3611,
+  "compress_size": 1257,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106067456,
+  "is_dir": true
+ },
+ {
+  "name": "S24delay/sequences/seq1y.txt",
+  "size": 432,
+  "compress_size": 148,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/seq1x.txt",
+  "size": 108,
+  "compress_size": 59,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/seq0x.txt",
+  "size": 3701,
+  "compress_size": 1155,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/seq0y.txt",
+  "size": 139,
+  "compress_size": 64,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/slot.txt",
+  "size": 3,
+  "compress_size": 5,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/seq12y.txt",
+  "size": 202,
+  "compress_size": 90,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/seq7y.txt",
+  "size": 694,
+  "compress_size": 269,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/seq7x.txt",
+  "size": 777,
+  "compress_size": 290,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/seq12x.txt",
+  "size": 202,
+  "compress_size": 90,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/seq6x.txt",
+  "size": 2651,
+  "compress_size": 850,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/seq13x.txt",
+  "size": 333,
+  "compress_size": 151,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/seq13y.txt",
+  "size": 3275,
+  "compress_size": 1038,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/seq6y.txt",
+  "size": 347,
+  "compress_size": 123,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/seq10x.txt",
+  "size": 369,
+  "compress_size": 133,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/seq5x.txt",
+  "size": 2553,
+  "compress_size": 629,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/seq5y.txt",
+  "size": 2553,
+  "compress_size": 629,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/seq10y.txt",
+  "size": 235,
+  "compress_size": 93,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/seq9x.txt",
+  "size": 242,
+  "compress_size": 89,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/seq9y.txt",
+  "size": 627,
+  "compress_size": 188,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/seq8y.txt",
+  "size": 362,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/seq8x.txt",
+  "size": 362,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/slot-tracker.txt",
+  "size": 28,
+  "compress_size": 8,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/seq4y.txt",
+  "size": 516,
+  "compress_size": 171,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/seq11y.txt",
+  "size": 838,
+  "compress_size": 248,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/seq11x.txt",
+  "size": 823,
+  "compress_size": 304,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/seq4x.txt",
+  "size": 347,
+  "compress_size": 131,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/seq3x.txt",
+  "size": 203,
+  "compress_size": 89,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/seq3y.txt",
+  "size": 235,
+  "compress_size": 100,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/seq2y.txt",
+  "size": 2553,
+  "compress_size": 629,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/sequences/seq2x.txt",
+  "size": 266,
+  "compress_size": 106,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/module.json",
+  "size": 335,
+  "compress_size": 159,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106067456,
+  "is_dir": true
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/externals/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106067456,
+  "is_dir": true
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/externals/chord-prob.pd",
+  "size": 3482,
+  "compress_size": 1045,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/externals/chord-muter.pd",
+  "size": 10920,
+  "compress_size": 2976,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/externals/cg-print-wave.pd",
+  "size": 3034,
+  "compress_size": 948,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/externals/chord-prob-old.pd",
+  "size": 7118,
+  "compress_size": 1610,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/externals/clockfix.pd_linux",
+  "size": 13500,
+  "compress_size": 6134,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/externals/note-on-off.pd",
+  "size": 1497,
+  "compress_size": 496,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/externals/cg-osc-scope.pd",
+  "size": 2822,
+  "compress_size": 865,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/externals/note-tracker.pd",
+  "size": 1415,
+  "compress_size": 475,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/externals/clocker.pd_linux",
+  "size": 14072,
+  "compress_size": 6158,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/externals/abl_link~.pd_linux",
+  "size": 36452,
+  "compress_size": 12499,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/externals/libabl_link~.so",
+  "size": 536588,
+  "compress_size": 148525,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/README.md",
+  "size": 98,
+  "compress_size": 90,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/sequencer/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106067456,
+  "is_dir": true
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/sequencer/shortcut-mute-s.pd",
+  "size": 481,
+  "compress_size": 208,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/sequencer/seq-format-event.pd",
+  "size": 344,
+  "compress_size": 170,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/sequencer/seq-player.pd",
+  "size": 4516,
+  "compress_size": 1433,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/sequencer/5option-control.pd",
+  "size": 5123,
+  "compress_size": 1417,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/sequencer/print-line5.pd",
+  "size": 3899,
+  "compress_size": 1129,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/sequencer/seq3.pd",
+  "size": 37646,
+  "compress_size": 8823,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/sequencer/sc-module.pd",
+  "size": 1723,
+  "compress_size": 556,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/sequencer/seq-overdubber.pd",
+  "size": 6966,
+  "compress_size": 1968,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/sequencer/slot-tracker.txt",
+  "size": 28,
+  "compress_size": 6,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/sequencer/shortcut-mute-f.pd",
+  "size": 563,
+  "compress_size": 221,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/sequencer/shortcut.pd",
+  "size": 10235,
+  "compress_size": 2802,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/sequencer/seq.pd",
+  "size": 3352,
+  "compress_size": 1091,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/sequencer/seq3-simple.pd",
+  "size": 12645,
+  "compress_size": 3687,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/sequencer/seq-recorder.pd",
+  "size": 4918,
+  "compress_size": 1580,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/sequencer/shortcut-mute-list.pd",
+  "size": 724,
+  "compress_size": 265,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/sequencer/5page-system.pd",
+  "size": 8281,
+  "compress_size": 2042,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/metronome/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106067456,
+  "is_dir": true
+ },
+ {
+  "name": "S24delay/CG-Pd-Library-Local/metronome/metronome360.pd",
+  "size": 8369,
+  "compress_size": 2663,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/LICENSE.txt",
+  "size": 1812,
+  "compress_size": 917,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "S24delay/module.pd",
+  "size": 18322,
+  "compress_size": 4771,
+  "external_attr": 2175025152,
+  "is_dir": false
+ }
+]

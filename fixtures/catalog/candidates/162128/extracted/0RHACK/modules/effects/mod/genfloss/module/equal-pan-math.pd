@@ -1,0 +1,12 @@
+#N canvas 4 50 1585 645 10;
+#X obj 26 105 expr cos($f1 * 3.14159 / 2);
+#X obj 227 104 expr sin($f1 * 3.14159 / 2);
+#X obj 26 71 clip 0 1;
+#X obj 34 8 inlet;
+#X obj 26 197 outlet;
+#X obj 227 196 outlet;
+#X connect 0 0 4 0;
+#X connect 1 0 5 0;
+#X connect 2 0 0 0;
+#X connect 2 0 1 0;
+#X connect 3 0 2 0;

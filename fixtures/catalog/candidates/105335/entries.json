@@ -1,0 +1,37 @@
+[
+ {
+  "name": "mec-0.2.1-1-armv7h.pkg.tar.xz",
+  "size": 644824,
+  "compress_size": 644924,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "mec.instr",
+  "size": 593,
+  "compress_size": 296,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac-0.2.1-1-armv7h.pkg.tar.xz",
+  "size": 5003568,
+  "compress_size": 5004333,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac.pd",
+  "size": 154,
+  "compress_size": 96,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "readme.txt",
+  "size": 2352,
+  "compress_size": 1049,
+  "external_attr": 2175008768,
+  "is_dir": false
+ }
+]

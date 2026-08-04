@@ -1,0 +1,30 @@
+[
+ {
+  "name": "lfo_metro/deploy.sh",
+  "size": 152,
+  "compress_size": 98,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "lfo_metro/manifest.txt",
+  "size": 188,
+  "compress_size": 129,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "lfo_metro/module.json",
+  "size": 468,
+  "compress_size": 233,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "lfo_metro/module.pd",
+  "size": 3878,
+  "compress_size": 1318,
+  "external_attr": 2179792896,
+  "is_dir": false
+ }
+]

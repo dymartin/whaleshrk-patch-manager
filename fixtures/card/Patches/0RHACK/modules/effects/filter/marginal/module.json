@@ -1,0 +1,18 @@
+{
+    "name" : "marginal",
+    "display" : "Marginal",
+    "parameters" :  [ 
+	    ["pct","thru_gain","Audio Thru Gain",0,100,0],
+        ["float","lf_boost","LF Boost",0,10,0],
+        ["float","lf_cut","LF Cut",0,10,0],
+        ["float","hf_boost","HF Boost",0,10,0],
+        ["float","hf_cut","HF Cut",0,10,0],
+        ["pct","width","M/S Width",0,100,0],
+        ["int","l_hpf","M/S Highpass",0,3,0]
+    ],
+    "pages" : [ 
+        ["pg_eqp","EQP",["lf_boost","lf_cut","hf_boost","hf_cut"]],
+        ["pg_exp","Expand",["width","l_hpf"]]
+    ]
+}
+

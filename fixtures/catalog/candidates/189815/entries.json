@@ -1,0 +1,58 @@
+[
+ {
+  "name": "FmFatale/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1103101952,
+  "is_dir": true
+ },
+ {
+  "name": "FmFatale/newfaust-gate.pd",
+  "size": 877,
+  "compress_size": 386,
+  "external_attr": 2176843776,
+  "is_dir": false
+ },
+ {
+  "name": "FmFatale/faust-gate.pd",
+  "size": 1143,
+  "compress_size": 447,
+  "external_attr": 2176843776,
+  "is_dir": false
+ },
+ {
+  "name": "FmFatale/faust-control.pd",
+  "size": 1481,
+  "compress_size": 537,
+  "external_attr": 2176843776,
+  "is_dir": false
+ },
+ {
+  "name": "FmFatale/analog-filter.pd",
+  "size": 4123,
+  "compress_size": 1245,
+  "external_attr": 2176843776,
+  "is_dir": false
+ },
+ {
+  "name": "FmFatale/NLFfmnorev~.pd_linux",
+  "size": 73632,
+  "compress_size": 29198,
+  "external_attr": 2176843776,
+  "is_dir": false
+ },
+ {
+  "name": "FmFatale/module.json",
+  "size": 897,
+  "compress_size": 351,
+  "external_attr": 2176843776,
+  "is_dir": false
+ },
+ {
+  "name": "FmFatale/module.pd",
+  "size": 17012,
+  "compress_size": 2571,
+  "external_attr": 2176843776,
+  "is_dir": false
+ }
+]

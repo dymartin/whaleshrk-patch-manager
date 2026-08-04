@@ -1,0 +1,22 @@
+{
+    "name" : "SupLex Reverb",
+    "display" : "SupLex Reverb",
+    "parameters" :  [ 
+        ["time","predelayms","Pre-delay",0,200,30],
+        ["pct","bandwidth","Input Amt",0,100,70],
+        ["pct","damping","Damping",0,100,25],
+        ["pct","gain","Plt Feedback",0,120,90],
+        ["pct","drywet","Plate mix",0,100,100],
+        ["pct","pre-tanh-level","Pre gain",0,100,50],
+        ["pct","pre-tanh-dw","Pre-drt mix",0,100,0],
+        ["pct","post-tanh-level","Post gain",0,100,50],
+        ["pct","post-tanh-dw","Post-drt mix",0,100,0],
+        ["pct","dirt-trim","Dirt Vol",0,100,100]
+    ],
+    "pages" : [
+        ["pg_plate","Plate",["predelayms","bandwidth","damping","gain"]],
+        ["pg_mix","Mix",["drywet","pre-tanh-dw","post-tanh-dw","dirt-trim"]],
+        ["pg_dirt","Dirt",["pre-tanh-level","pre-tanh-dw","post-tanh-level","post-tanh-dw"]]
+    ]
+}
+

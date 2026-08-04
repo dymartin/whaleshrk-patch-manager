@@ -1,0 +1,44 @@
+[
+ {
+  "name": "empty/deploy.sh",
+  "size": 490,
+  "compress_size": 221,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "empty/empty/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "empty/empty/params.json",
+  "size": 2655,
+  "compress_size": 156,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "empty/manifest.txt",
+  "size": 242,
+  "compress_size": 163,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "empty/module.json",
+  "size": 153,
+  "compress_size": 100,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "empty/module.pd",
+  "size": 11172,
+  "compress_size": 2698,
+  "external_attr": 2179792896,
+  "is_dir": false
+ }
+]

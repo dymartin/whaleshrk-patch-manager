@@ -1,0 +1,17 @@
+{
+    "display" : "Warp",
+    "parameters" :  [ 
+        ["pct","w_algo","Algo",0,100,50],
+        ["pct","w_timbre","Timbre",0,100,20],
+        ["pct","w_drive1","Drive A",0,100,0],
+        ["pct","w_drive2","Drive B",0,100,0],
+	["pct","w_mix","Dry | Wet",0,100,100],
+	["pct","w_volume","OUT Volume",0,100,100],
+        ["pct","thru_gain","Audio Thru Gain",0,100,0]
+    ],
+    "pages" : [ 
+        ["pg_wrps","Drive",["w_drive1","w_drive2","w_algo","w_timbre"]],
+	["pg_mix","Mix",["w_mix","w_volume"]]
+    ]
+}
+

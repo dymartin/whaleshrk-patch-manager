@@ -1,2 +1,7 @@
 Prompt.md
 .worktrees/
+.superpowers/
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/

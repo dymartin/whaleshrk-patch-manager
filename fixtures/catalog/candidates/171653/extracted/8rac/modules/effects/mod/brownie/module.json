@@ -1,0 +1,11 @@
+{
+    "display" : "Brownie",
+    "parameters" :  [ 
+        ["pct","speed","Speed",0,100,50],
+        ["pct","depth","Depth",0,100,50]
+    ],
+    "pages" : [ 
+        ["pg_main","Main",["speed","depth"]]
+    ]
+}
+

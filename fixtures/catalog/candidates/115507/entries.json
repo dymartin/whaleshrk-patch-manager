@@ -1,0 +1,170 @@
+[
+ {
+  "name": "cycles/beatdiv.pd",
+  "size": 1387,
+  "compress_size": 431,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "cycles/deploy.sh",
+  "size": 372,
+  "compress_size": 209,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "cycles/keyfilter2.pd",
+  "size": 901,
+  "compress_size": 336,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "cycles/len_0.txt",
+  "size": 2,
+  "compress_size": 2,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "cycles/len_1.txt",
+  "size": 4,
+  "compress_size": 4,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "cycles/len_2.txt",
+  "size": 3,
+  "compress_size": 3,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "cycles/len_3.txt",
+  "size": 3,
+  "compress_size": 3,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "cycles/len_4.txt",
+  "size": 4,
+  "compress_size": 4,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "cycles/man_note.pd",
+  "size": 720,
+  "compress_size": 279,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "cycles/manifest.txt",
+  "size": 1380,
+  "compress_size": 691,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "cycles/module.json",
+  "size": 525,
+  "compress_size": 250,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "cycles/module.pd",
+  "size": 11293,
+  "compress_size": 2861,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "cycles/notes_0.txt",
+  "size": 1102,
+  "compress_size": 119,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "cycles/notes_1.txt",
+  "size": 1576,
+  "compress_size": 68,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "cycles/notes_2.txt",
+  "size": 1569,
+  "compress_size": 49,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "cycles/notes_3.txt",
+  "size": 1566,
+  "compress_size": 35,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "cycles/notes_4.txt",
+  "size": 1576,
+  "compress_size": 67,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "cycles/polystep.pd",
+  "size": 15831,
+  "compress_size": 4018,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "cycles/testkeys.pd",
+  "size": 5190,
+  "compress_size": 1535,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "cycles/vel_0.txt",
+  "size": 1176,
+  "compress_size": 40,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "cycles/vel_1.txt",
+  "size": 1618,
+  "compress_size": 52,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "cycles/vel_2.txt",
+  "size": 1596,
+  "compress_size": 44,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "cycles/vel_3.txt",
+  "size": 1572,
+  "compress_size": 25,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "cycles/vel_4.txt",
+  "size": 1674,
+  "compress_size": 58,
+  "external_attr": 2175008768,
+  "is_dir": false
+ }
+]

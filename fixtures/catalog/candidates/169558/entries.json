@@ -1,0 +1,114 @@
+[
+ {
+  "name": "strip/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "strip/tbcomp.pd",
+  "size": 1225,
+  "compress_size": 410,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "strip/override.pd",
+  "size": 2024,
+  "compress_size": 686,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "strip/mute_selector.pd",
+  "size": 2040,
+  "compress_size": 530,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "strip/gate.pd",
+  "size": 3789,
+  "compress_size": 950,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "strip/dsoled.pd",
+  "size": 2249,
+  "compress_size": 702,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "strip/tb_peakcomp~.pd_linux",
+  "size": 7027,
+  "compress_size": 2672,
+  "external_attr": 2180972544,
+  "is_dir": false
+ },
+ {
+  "name": "strip/ds_peakcomp~.pd_linux",
+  "size": 7027,
+  "compress_size": 2672,
+  "external_attr": 2180972544,
+  "is_dir": false
+ },
+ {
+  "name": "strip/.module.json.swp",
+  "size": 12288,
+  "compress_size": 834,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "strip/dscomp.pd",
+  "size": 2097,
+  "compress_size": 585,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "strip/settings-label.pd",
+  "size": 2338,
+  "compress_size": 662,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "strip/module.json",
+  "size": 1552,
+  "compress_size": 522,
+  "external_attr": 2180972544,
+  "is_dir": false
+ },
+ {
+  "name": "strip/dssettings-label.pd",
+  "size": 1006,
+  "compress_size": 298,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "strip/module.pd",
+  "size": 27671,
+  "compress_size": 5975,
+  "external_attr": 2180972544,
+  "is_dir": false
+ },
+ {
+  "name": "strip/comp.pd",
+  "size": 3822,
+  "compress_size": 954,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "strip/oled.pd",
+  "size": 2252,
+  "compress_size": 698,
+  "external_attr": 2175008768,
+  "is_dir": false
+ }
+]

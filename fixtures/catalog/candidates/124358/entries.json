@@ -1,0 +1,23 @@
+[
+ {
+  "name": "Subosc/module.json",
+  "size": 911,
+  "compress_size": 373,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "Subosc/module.pd",
+  "size": 1057,
+  "compress_size": 328,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "Subosc/subharmonicosc.pd",
+  "size": 3677,
+  "compress_size": 978,
+  "external_attr": 32,
+  "is_dir": false
+ }
+]

@@ -1,0 +1,30 @@
+[
+ {
+  "name": "parallel3/deploy.sh",
+  "size": 374,
+  "compress_size": 208,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "parallel3/manifest.txt",
+  "size": 188,
+  "compress_size": 128,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "parallel3/module.json",
+  "size": 7509,
+  "compress_size": 1288,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "parallel3/module.pd",
+  "size": 13706,
+  "compress_size": 3420,
+  "external_attr": 2179792896,
+  "is_dir": false
+ }
+]

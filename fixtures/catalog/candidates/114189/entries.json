@@ -1,0 +1,44 @@
+[
+ {
+  "name": "buzz/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 16,
+  "is_dir": true
+ },
+ {
+  "name": "buzz/leadvoice.pd",
+  "size": 1975,
+  "compress_size": 761,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "buzz/module.json",
+  "size": 311,
+  "compress_size": 178,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "buzz/module.pd",
+  "size": 2015,
+  "compress_size": 666,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "buzz/smoothswitch.pd",
+  "size": 332,
+  "compress_size": 155,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "buzz/s_buzz.pd",
+  "size": 3097,
+  "compress_size": 1094,
+  "external_attr": 32,
+  "is_dir": false
+ }
+]

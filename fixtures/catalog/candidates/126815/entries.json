@@ -1,0 +1,114 @@
+[
+ {
+  "name": "nkMutePar6/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106067456,
+  "is_dir": true
+ },
+ {
+  "name": "nkMutePar6/chainoutnk4.pd",
+  "size": 2626,
+  "compress_size": 733,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "nkMutePar6/chainoutnk5.pd",
+  "size": 2626,
+  "compress_size": 734,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "nkMutePar6/chainoutnk1.pd",
+  "size": 2626,
+  "compress_size": 736,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "nkMutePar6/chainoutnk6.pd",
+  "size": 2626,
+  "compress_size": 736,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "nkMutePar6/chainoutnk2.pd",
+  "size": 2626,
+  "compress_size": 736,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "nkMutePar6/chainoutnk3.pd",
+  "size": 2626,
+  "compress_size": 736,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "nkMutePar6/chainoutnk7.pd",
+  "size": 2653,
+  "compress_size": 744,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107116032,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/nkMutePar6/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107116032,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/nkMutePar6/._chainoutnk7.pd",
+  "size": 176,
+  "compress_size": 91,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "nkMutePar6/module.json",
+  "size": 9847,
+  "compress_size": 1373,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "nkMutePar6/module.pd",
+  "size": 5414,
+  "compress_size": 1496,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/nkMutePar6/._module.pd",
+  "size": 176,
+  "compress_size": 92,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "nkMutePar6/chainoutnk8.pd",
+  "size": 2653,
+  "compress_size": 745,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/nkMutePar6/._chainoutnk8.pd",
+  "size": 176,
+  "compress_size": 92,
+  "external_attr": 2175025152,
+  "is_dir": false
+ }
+]

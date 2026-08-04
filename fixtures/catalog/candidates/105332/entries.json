@@ -1,0 +1,16 @@
+[
+ {
+  "name": "orac.deb",
+  "size": 4973770,
+  "compress_size": 4974481,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "mec.deb",
+  "size": 807626,
+  "compress_size": 807699,
+  "external_attr": 2175008768,
+  "is_dir": false
+ }
+]

@@ -1,0 +1,222 @@
+#N canvas 112 63 1456 813 12;
+#X obj 31 -19 r presets;
+#X obj 31 12 select 9 10 11 12 13 14 15 16, f 199;
+#X msg 16 85 \; dx7/global/algorithm 17 \; dx7/global/feedback 5 \;
+dx7/op0/rgR1 80 \; dx7/op0/rgR2 24 \; dx7/op0/rgR3 10 \; dx7/op0/rgR4
+50 \; dx7/op0/rgL1 99 \; dx7/op0/rgL2 62 \; dx7/op0/rgL3 0 \; dx7/op0/rgL4
+0 \; dx7/op0/level 94 \; dx7/op0/keyVelSens 2 \; dx7/op0/opMode 0 \;
+dx7/op0/opFreq 1 \; dx7/op0/opDetune 0 \; dx7/op0/opRateScale 3 \;
+dx7/op1/rgR1 95 \; dx7/op1/rgR2 0 \; dx7/op1/rgR3 25 \; dx7/op1/rgR4
+0 \; dx7/op1/rgL1 99 \; dx7/op1/rgL2 75 \; dx7/op1/rgL3 0 \; dx7/op1/rgL4
+0 \; dx7/op1/level 86 \; dx7/op1/keyVelSens 1 \; dx7/op1/opMode 0 \;
+dx7/op1/opFreq 1 \; dx7/op1/opDetune 2 \; dx7/op1/opRateScale 2 \;
+dx7/op2/rgR1 90 \; dx7/op2/rgR2 27 \; dx7/op2/rgR3 20 \; dx7/op2/rgR4
+50 \; dx7/op2/rgL1 99 \; dx7/op2/rgL2 85 \; dx7/op2/rgL3 0 \; dx7/op2/rgL4
+0 \; dx7/op2/level 83 \; dx7/op2/keyVelSens 1 \; dx7/op2/opMode 0 \;
+dx7/op2/opFreq 5 \; dx7/op2/opDetune 1 \; dx7/op2/opRateScale 5 \;
+dx7/op3/rgR1 97 \; dx7/op3/rgR2 27 \; dx7/op3/rgR3 10 \; dx7/op3/rgR4
+25 \; dx7/op3/rgL1 99 \; dx7/op3/rgL2 86 \; dx7/op3/rgL3 48 \; dx7/op3/rgL4
+0 \; dx7/op3/level 84 \; dx7/op3/keyVelSens 1 \; dx7/op3/opMode 0 \;
+dx7/op3/opFreq 1 \; dx7/op3/opDetune -1 \; dx7/op3/opRateScale 3 \;
+dx7/op4/rgR1 90 \; dx7/op4/rgR2 71 \; dx7/op4/rgR3 33 \; dx7/op4/rgR4
+31 \; dx7/op4/rgL1 99 \; dx7/op4/rgL2 0 \; dx7/op4/rgL3 0 \; dx7/op4/rgL4
+0 \; dx7/op4/level 94 \; dx7/op4/keyVelSens 1 \; dx7/op4/opMode 0 \;
+dx7/op4/opFreq 0.5 \; dx7/op4/opDetune 0 \; dx7/op4/opRateScale 3 \;
+dx7/op5/rgR1 92 \; dx7/op5/rgR2 71 \; dx7/op5/rgR3 58 \; dx7/op5/rgR4
+36 \; dx7/op5/rgL1 99 \; dx7/op5/rgL2 0 \; dx7/op5/rgL3 0 \; dx7/op5/rgL4
+0 \; dx7/op5/level 78 \; dx7/op5/keyVelSens 1 \; dx7/op5/opMode 0 \;
+dx7/op5/opFreq 0.5 \; dx7/op5/opDetune 1 \; dx7/op5/opRateScale 3 \;
+;
+#X msg 195 86 \; dx7/global/algorithm 2 \; dx7/global/feedback 4 \;
+dx7/op0/rgR1 90 \; dx7/op0/rgR2 30 \; dx7/op0/rgR3 28 \; dx7/op0/rgR4
+45 \; dx7/op0/rgL1 99 \; dx7/op0/rgL2 95 \; dx7/op0/rgL3 0 \; dx7/op0/rgL4
+0 \; dx7/op0/level 86 \; dx7/op0/keyVelSens 3 \; dx7/op0/opMode 0 \;
+dx7/op0/opFreq 1 \; dx7/op0/opDetune -4 \; dx7/op0/opRateScale 3 \;
+dx7/op1/rgR1 98 \; dx7/op1/rgR2 36 \; dx7/op1/rgR3 6 \; dx7/op1/rgR4
+32 \; dx7/op1/rgL1 91 \; dx7/op1/rgL2 90 \; dx7/op1/rgL3 0 \; dx7/op1/rgL4
+0 \; dx7/op1/level 85 \; dx7/op1/keyVelSens 0 \; dx7/op1/opMode 0 \;
+dx7/op1/opFreq 1 \; dx7/op1/opDetune 4 \; dx7/op1/opRateScale 2 \;
+dx7/op2/rgR1 94 \; dx7/op2/rgR2 80 \; dx7/op2/rgR3 19 \; dx7/op2/rgR4
+12 \; dx7/op2/rgL1 83 \; dx7/op2/rgL2 67 \; dx7/op2/rgL3 0 \; dx7/op2/rgL4
+0 \; dx7/op2/level 97 \; dx7/op2/keyVelSens 3 \; dx7/op2/opMode 0 \;
+dx7/op2/opFreq 7 \; dx7/op2/opDetune -3 \; dx7/op2/opRateScale 3 \;
+dx7/op3/rgR1 90 \; dx7/op3/rgR2 64 \; dx7/op3/rgR3 28 \; dx7/op3/rgR4
+45 \; dx7/op3/rgL1 99 \; dx7/op3/rgL2 97 \; dx7/op3/rgL3 0 \; dx7/op3/rgL4
+0 \; dx7/op3/level 95 \; dx7/op3/keyVelSens 2 \; dx7/op3/opMode 0 \;
+dx7/op3/opFreq 1 \; dx7/op3/opDetune 3 \; dx7/op3/opRateScale 3 \;
+dx7/op4/rgR1 98 \; dx7/op4/rgR2 20 \; dx7/op4/rgR3 6 \; dx7/op4/rgR4
+2 \; dx7/op4/rgL1 91 \; dx7/op4/rgL2 90 \; dx7/op4/rgL3 0 \; dx7/op4/rgL4
+0 \; dx7/op4/level 87 \; dx7/op4/keyVelSens 1 \; dx7/op4/opMode 0 \;
+dx7/op4/opFreq 1 \; dx7/op4/opDetune -2 \; dx7/op4/opRateScale 2 \;
+dx7/op5/rgR1 80 \; dx7/op5/rgR2 73 \; dx7/op5/rgR3 15 \; dx7/op5/rgR4
+10 \; dx7/op5/rgL1 99 \; dx7/op5/rgL2 19 \; dx7/op5/rgL3 0 \; dx7/op5/rgL4
+0 \; dx7/op5/level 84 \; dx7/op5/keyVelSens 5 \; dx7/op5/opMode 0 \;
+dx7/op5/opFreq 0.5 \; dx7/op5/opDetune 2 \; dx7/op5/opRateScale 3 \;
+;
+#X msg 370 87 \; dx7/global/algorithm 4 \; dx7/global/feedback 6 \;
+dx7/op0/rgR1 96 \; dx7/op0/rgR2 25 \; dx7/op0/rgR3 25 \; dx7/op0/rgR4
+67 \; dx7/op0/rgL1 99 \; dx7/op0/rgL2 75 \; dx7/op0/rgL3 0 \; dx7/op0/rgL4
+0 \; dx7/op0/level 99 \; dx7/op0/keyVelSens 2 \; dx7/op0/opMode 0 \;
+dx7/op0/opFreq 1 \; dx7/op0/opDetune 3 \; dx7/op0/opRateScale 3 \;
+dx7/op1/rgR1 95 \; dx7/op1/rgR2 50 \; dx7/op1/rgR3 35 \; dx7/op1/rgR4
+78 \; dx7/op1/rgL1 99 \; dx7/op1/rgL2 75 \; dx7/op1/rgL3 0 \; dx7/op1/rgL4
+0 \; dx7/op1/level 58 \; dx7/op1/keyVelSens 7 \; dx7/op1/opMode 0 \;
+dx7/op1/opFreq 14 \; dx7/op1/opDetune 0 \; dx7/op1/opRateScale 3 \;
+dx7/op2/rgR1 95 \; dx7/op2/rgR2 20 \; dx7/op2/rgR3 20 \; dx7/op2/rgR4
+50 \; dx7/op2/rgL1 99 \; dx7/op2/rgL2 95 \; dx7/op2/rgL3 0 \; dx7/op2/rgL4
+0 \; dx7/op2/level 99 \; dx7/op2/keyVelSens 2 \; dx7/op2/opMode 0 \;
+dx7/op2/opFreq 1 \; dx7/op2/opDetune 0 \; dx7/op2/opRateScale 3 \;
+dx7/op3/rgR1 95 \; dx7/op3/rgR2 29 \; dx7/op3/rgR3 20 \; dx7/op3/rgR4
+50 \; dx7/op3/rgL1 99 \; dx7/op3/rgL2 95 \; dx7/op3/rgL3 0 \; dx7/op3/rgL4
+0 \; dx7/op3/level 89 \; dx7/op3/keyVelSens 6 \; dx7/op3/opMode 0 \;
+dx7/op3/opFreq 1 \; dx7/op3/opDetune 0 \; dx7/op3/opRateScale 3 \;
+dx7/op4/rgR1 95 \; dx7/op4/rgR2 20 \; dx7/op4/rgR3 20 \; dx7/op4/rgR4
+50 \; dx7/op4/rgL1 99 \; dx7/op4/rgL2 95 \; dx7/op4/rgL3 0 \; dx7/op4/rgL4
+0 \; dx7/op4/level 99 \; dx7/op4/keyVelSens 0 \; dx7/op4/opMode 0 \;
+dx7/op4/opFreq 1 \; dx7/op4/opDetune -7 \; dx7/op4/opRateScale 3 \;
+dx7/op5/rgR1 95 \; dx7/op5/rgR2 29 \; dx7/op5/rgR3 20 \; dx7/op5/rgR4
+50 \; dx7/op5/rgL1 99 \; dx7/op5/rgL2 95 \; dx7/op5/rgL3 0 \; dx7/op5/rgL4
+0 \; dx7/op5/level 79 \; dx7/op5/keyVelSens 6 \; dx7/op5/opMode 0 \;
+dx7/op5/opFreq 1 \; dx7/op5/opDetune 7 \; dx7/op5/opRateScale 3 \;
+;
+#X msg 544 83 \; dx7/global/algorithm 7 \; dx7/global/feedback 7 \;
+dx7/op0/rgR1 74 \; dx7/op0/rgR2 85 \; dx7/op0/rgR3 27 \; dx7/op0/rgR4
+70 \; dx7/op0/rgL1 99 \; dx7/op0/rgL2 95 \; dx7/op0/rgL3 0 \; dx7/op0/rgL4
+0 \; dx7/op0/level 99 \; dx7/op0/keyVelSens 5 \; dx7/op0/opMode 0 \;
+dx7/op0/opFreq 1 \; dx7/op0/opDetune 0 \; dx7/op0/opRateScale 4 \;
+dx7/op1/rgR1 91 \; dx7/op1/rgR2 25 \; dx7/op1/rgR3 39 \; dx7/op1/rgR4
+60 \; dx7/op1/rgL1 99 \; dx7/op1/rgL2 86 \; dx7/op1/rgL3 0 \; dx7/op1/rgL4
+0 \; dx7/op1/level 93 \; dx7/op1/keyVelSens 7 \; dx7/op1/opMode 0 \;
+dx7/op1/opFreq 3 \; dx7/op1/opDetune 0 \; dx7/op1/opRateScale 2 \;
+dx7/op2/rgR1 78 \; dx7/op2/rgR2 87 \; dx7/op2/rgR3 22 \; dx7/op2/rgR4
+75 \; dx7/op2/rgL1 99 \; dx7/op2/rgL2 92 \; dx7/op2/rgL3 0 \; dx7/op2/rgL4
+0 \; dx7/op2/level 99 \; dx7/op2/keyVelSens 7 \; dx7/op2/opMode 0 \;
+dx7/op2/opFreq 1 \; dx7/op2/opDetune 0 \; dx7/op2/opRateScale 3 \;
+dx7/op3/rgR1 81 \; dx7/op3/rgR2 87 \; dx7/op3/rgR3 22 \; dx7/op3/rgR4
+75 \; dx7/op3/rgL1 99 \; dx7/op3/rgL2 92 \; dx7/op3/rgL3 0 \; dx7/op3/rgL4
+0 \; dx7/op3/level 89 \; dx7/op3/keyVelSens 4 \; dx7/op3/opMode 0 \;
+dx7/op3/opFreq 3 \; dx7/op3/opDetune 0 \; dx7/op3/opRateScale 4 \;
+dx7/op4/rgR1 81 \; dx7/op4/rgR2 87 \; dx7/op4/rgR3 22 \; dx7/op4/rgR4
+75 \; dx7/op4/rgL1 99 \; dx7/op4/rgL2 92 \; dx7/op4/rgL3 0 \; dx7/op4/rgL4
+0 \; dx7/op4/level 99 \; dx7/op4/keyVelSens 7 \; dx7/op4/opMode 0 \;
+dx7/op4/opFreq 3 \; dx7/op4/opDetune 0 \; dx7/op4/opRateScale 4 \;
+dx7/op5/rgR1 99 \; dx7/op5/rgR2 57 \; dx7/op5/rgR3 99 \; dx7/op5/rgR4
+75 \; dx7/op5/rgL1 99 \; dx7/op5/rgL2 0 \; dx7/op5/rgL3 0 \; dx7/op5/rgL4
+0 \; dx7/op5/level 57 \; dx7/op5/keyVelSens 6 \; dx7/op5/opMode 0 \;
+dx7/op5/opFreq 12 \; dx7/op5/opDetune 0 \; dx7/op5/opRateScale 0 \;
+;
+#X msg 721 86 \; dx7/global/algorithm 15 \; dx7/global/feedback 7 \;
+dx7/op0/rgR1 95 \; dx7/op0/rgR2 67 \; dx7/op0/rgR3 99 \; dx7/op0/rgR4
+71 \; dx7/op0/rgL1 99 \; dx7/op0/rgL2 99 \; dx7/op0/rgL3 99 \; dx7/op0/rgL4
+0 \; dx7/op0/level 86 \; dx7/op0/keyVelSens 2 \; dx7/op0/opMode 0 \;
+dx7/op0/opFreq 3 \; dx7/op0/opDetune 0 \; dx7/op0/opRateScale 0 \;
+dx7/op1/rgR1 99 \; dx7/op1/rgR2 99 \; dx7/op1/rgR3 99 \; dx7/op1/rgR4
+42 \; dx7/op1/rgL1 99 \; dx7/op1/rgL2 99 \; dx7/op1/rgL3 99 \; dx7/op1/rgL4
+99 \; dx7/op1/level 87 \; dx7/op1/keyVelSens 7 \; dx7/op1/opMode 0
+\; dx7/op1/opFreq 1 \; dx7/op1/opDetune 0 \; dx7/op1/opRateScale 1
+\; dx7/op2/rgR1 99 \; dx7/op2/rgR2 99 \; dx7/op2/rgR3 99 \; dx7/op2/rgR4
+71 \; dx7/op2/rgL1 99 \; dx7/op2/rgL2 99 \; dx7/op2/rgL3 99 \; dx7/op2/rgL4
+0 \; dx7/op2/level 99 \; dx7/op2/keyVelSens 7 \; dx7/op2/opMode 0 \;
+dx7/op2/opFreq 1.5 \; dx7/op2/opDetune 0 \; dx7/op2/opRateScale 0 \;
+dx7/op3/rgR1 92 \; dx7/op3/rgR2 99 \; dx7/op3/rgR3 15 \; dx7/op3/rgR4
+71 \; dx7/op3/rgL1 99 \; dx7/op3/rgL2 96 \; dx7/op3/rgL3 75 \; dx7/op3/rgL4
+0 \; dx7/op3/level 70 \; dx7/op3/keyVelSens 0 \; dx7/op3/opMode 0 \;
+dx7/op3/opFreq 0.5 \; dx7/op3/opDetune 0 \; dx7/op3/opRateScale 0 \;
+dx7/op4/rgR1 99 \; dx7/op4/rgR2 99 \; dx7/op4/rgR3 12 \; dx7/op4/rgR4
+0 \; dx7/op4/rgL1 99 \; dx7/op4/rgL2 99 \; dx7/op4/rgL3 76 \; dx7/op4/rgL4
+0 \; dx7/op4/level 85 \; dx7/op4/keyVelSens 7 \; dx7/op4/opMode 0 \;
+dx7/op4/opFreq 0.5 \; dx7/op4/opDetune 0 \; dx7/op4/opRateScale 0 \;
+dx7/op5/rgR1 99 \; dx7/op5/rgR2 44 \; dx7/op5/rgR3 1 \; dx7/op5/rgR4
+71 \; dx7/op5/rgL1 99 \; dx7/op5/rgL2 96 \; dx7/op5/rgL3 75 \; dx7/op5/rgL4
+0 \; dx7/op5/level 73 \; dx7/op5/keyVelSens 2 \; dx7/op5/opMode 0 \;
+dx7/op5/opFreq 3 \; dx7/op5/opDetune 0 \; dx7/op5/opRateScale 0 \;
+;
+#X msg 894 86 \; dx7/global/algorithm 17 \; dx7/global/feedback 7 \;
+dx7/op0/rgR1 99 \; dx7/op0/rgR2 0 \; dx7/op0/rgR3 12 \; dx7/op0/rgR4
+70 \; dx7/op0/rgL1 99 \; dx7/op0/rgL2 95 \; dx7/op0/rgL3 95 \; dx7/op0/rgL4
+0 \; dx7/op0/level 99 \; dx7/op0/keyVelSens 0 \; dx7/op0/opMode 0 \;
+dx7/op0/opFreq 1 \; dx7/op0/opDetune 1 \; dx7/op0/opRateScale 1 \;
+dx7/op1/rgR1 99 \; dx7/op1/rgR2 95 \; dx7/op1/rgR3 0 \; dx7/op1/rgR4
+0 \; dx7/op1/rgL1 99 \; dx7/op1/rgL2 96 \; dx7/op1/rgL3 89 \; dx7/op1/rgL4
+0 \; dx7/op1/level 71 \; dx7/op1/keyVelSens 0 \; dx7/op1/opMode 0 \;
+dx7/op1/opFreq 1 \; dx7/op1/opDetune -1 \; dx7/op1/opRateScale 3 \;
+dx7/op2/rgR1 99 \; dx7/op2/rgR2 87 \; dx7/op2/rgR3 0 \; dx7/op2/rgR4
+0 \; dx7/op2/rgL1 93 \; dx7/op2/rgL2 90 \; dx7/op2/rgL3 0 \; dx7/op2/rgL4
+0 \; dx7/op2/level 82 \; dx7/op2/keyVelSens 0 \; dx7/op2/opMode 0 \;
+dx7/op2/opFreq 1 \; dx7/op2/opDetune 0 \; dx7/op2/opRateScale 3 \;
+dx7/op3/rgR1 99 \; dx7/op3/rgR2 92 \; dx7/op3/rgR3 28 \; dx7/op3/rgR4
+60 \; dx7/op3/rgL1 99 \; dx7/op3/rgL2 90 \; dx7/op3/rgL3 0 \; dx7/op3/rgL4
+0 \; dx7/op3/level 71 \; dx7/op3/keyVelSens 0 \; dx7/op3/opMode 0 \;
+dx7/op3/opFreq 2 \; dx7/op3/opDetune 2 \; dx7/op3/opRateScale 6 \;
+dx7/op4/rgR1 99 \; dx7/op4/rgR2 99 \; dx7/op4/rgR3 97 \; dx7/op4/rgR4
+0 \; dx7/op4/rgL1 99 \; dx7/op4/rgL2 65 \; dx7/op4/rgL3 60 \; dx7/op4/rgL4
+0 \; dx7/op4/level 43 \; dx7/op4/keyVelSens 0 \; dx7/op4/opMode 0 \;
+dx7/op4/opFreq 3 \; dx7/op4/opDetune -2 \; dx7/op4/opRateScale 1 \;
+dx7/op5/rgR1 99 \; dx7/op5/rgR2 70 \; dx7/op5/rgR3 60 \; dx7/op5/rgR4
+0 \; dx7/op5/rgL1 99 \; dx7/op5/rgL2 99 \; dx7/op5/rgL3 97 \; dx7/op5/rgL4
+0 \; dx7/op5/level 47 \; dx7/op5/keyVelSens 0 \; dx7/op5/opMode 0 \;
+dx7/op5/opFreq 17 \; dx7/op5/opDetune 0 \; dx7/op5/opRateScale 3 \;
+;
+#X msg 1070 86 \; dx7/global/algorithm 15 \; dx7/global/feedback 7
+\; dx7/op0/rgR1 95 \; dx7/op0/rgR2 62 \; dx7/op0/rgR3 17 \; dx7/op0/rgR4
+58 \; dx7/op0/rgL1 99 \; dx7/op0/rgL2 95 \; dx7/op0/rgL3 32 \; dx7/op0/rgL4
+0 \; dx7/op0/level 99 \; dx7/op0/keyVelSens 0 \; dx7/op0/opMode 0 \;
+dx7/op0/opFreq 0.5 \; dx7/op0/opDetune 0 \; dx7/op0/opRateScale 7 \;
+dx7/op1/rgR1 99 \; dx7/op1/rgR2 20 \; dx7/op1/rgR3 0 \; dx7/op1/rgR4
+0 \; dx7/op1/rgL1 99 \; dx7/op1/rgL2 0 \; dx7/op1/rgL3 0 \; dx7/op1/rgL4
+0 \; dx7/op1/level 80 \; dx7/op1/keyVelSens 0 \; dx7/op1/opMode 0 \;
+dx7/op1/opFreq 0.5 \; dx7/op1/opDetune 0 \; dx7/op1/opRateScale 7 \;
+dx7/op2/rgR1 88 \; dx7/op2/rgR2 96 \; dx7/op2/rgR3 32 \; dx7/op2/rgR4
+30 \; dx7/op2/rgL1 79 \; dx7/op2/rgL2 65 \; dx7/op2/rgL3 0 \; dx7/op2/rgL4
+0 \; dx7/op2/level 99 \; dx7/op2/keyVelSens 3 \; dx7/op2/opMode 0 \;
+dx7/op2/opFreq 0.5 \; dx7/op2/opDetune 0 \; dx7/op2/opRateScale 6 \;
+dx7/op3/rgR1 90 \; dx7/op3/rgR2 42 \; dx7/op3/rgR3 7 \; dx7/op3/rgR4
+55 \; dx7/op3/rgL1 90 \; dx7/op3/rgL2 30 \; dx7/op3/rgL3 0 \; dx7/op3/rgL4
+0 \; dx7/op3/level 93 \; dx7/op3/keyVelSens 5 \; dx7/op3/opMode 0 \;
+dx7/op3/opFreq 5 \; dx7/op3/opDetune 0 \; dx7/op3/opRateScale 5 \;
+dx7/op4/rgR1 99 \; dx7/op4/rgR2 0 \; dx7/op4/rgR3 0 \; dx7/op4/rgR4
+0 \; dx7/op4/rgL1 99 \; dx7/op4/rgL2 0 \; dx7/op4/rgL3 0 \; dx7/op4/rgL4
+0 \; dx7/op4/level 62 \; dx7/op4/keyVelSens 3 \; dx7/op4/opMode 0 \;
+dx7/op4/opFreq 0.5 \; dx7/op4/opDetune 0 \; dx7/op4/opRateScale 7 \;
+dx7/op5/rgR1 94 \; dx7/op5/rgR2 56 \; dx7/op5/rgR3 24 \; dx7/op5/rgR4
+55 \; dx7/op5/rgL1 93 \; dx7/op5/rgL2 28 \; dx7/op5/rgL3 0 \; dx7/op5/rgL4
+0 \; dx7/op5/level 85 \; dx7/op5/keyVelSens 7 \; dx7/op5/opMode 0 \;
+dx7/op5/opFreq 9 \; dx7/op5/opDetune 0 \; dx7/op5/opRateScale 1 \;
+;
+#X msg 1247 87 \; dx7/global/algorithm 16 \; dx7/global/feedback 7
+\; dx7/op0/rgR1 75 \; dx7/op0/rgR2 37 \; dx7/op0/rgR3 18 \; dx7/op0/rgR4
+63 \; dx7/op0/rgL1 99 \; dx7/op0/rgL2 70 \; dx7/op0/rgL3 0 \; dx7/op0/rgL4
+0 \; dx7/op0/level 99 \; dx7/op0/keyVelSens 2 \; dx7/op0/opMode 0 \;
+dx7/op0/opFreq 0.505 \; dx7/op0/opDetune 0 \; dx7/op0/opRateScale 3
+\; dx7/op1/rgR1 28 \; dx7/op1/rgR2 37 \; dx7/op1/rgR3 42 \; dx7/op1/rgR4
+50 \; dx7/op1/rgL1 99 \; dx7/op1/rgL2 0 \; dx7/op1/rgL3 0 \; dx7/op1/rgL4
+0 \; dx7/op1/level 80 \; dx7/op1/keyVelSens 2 \; dx7/op1/opMode 0 \;
+dx7/op1/opFreq 0.515 \; dx7/op1/opDetune 0 \; dx7/op1/opRateScale 1
+\; dx7/op2/rgR1 73 \; dx7/op2/rgR2 25 \; dx7/op2/rgR3 32 \; dx7/op2/rgR4
+30 \; dx7/op2/rgL1 97 \; dx7/op2/rgL2 78 \; dx7/op2/rgL3 0 \; dx7/op2/rgL4
+0 \; dx7/op2/level 68 \; dx7/op2/keyVelSens 3 \; dx7/op2/opMode 0 \;
+dx7/op2/opFreq 1 \; dx7/op2/opDetune 7 \; dx7/op2/opRateScale 3 \;
+dx7/op3/rgR1 80 \; dx7/op3/rgR2 39 \; dx7/op3/rgR3 28 \; dx7/op3/rgR4
+53 \; dx7/op3/rgL1 93 \; dx7/op3/rgL2 57 \; dx7/op3/rgL3 0 \; dx7/op3/rgL4
+0 \; dx7/op3/level 99 \; dx7/op3/keyVelSens 2 \; dx7/op3/opMode 0 \;
+dx7/op3/opFreq 0.5 \; dx7/op3/opDetune 0 \; dx7/op3/opRateScale 3 \;
+dx7/op4/rgR1 99 \; dx7/op4/rgR2 51 \; dx7/op4/rgR3 0 \; dx7/op4/rgR4
+0 \; dx7/op4/rgL1 99 \; dx7/op4/rgL2 74 \; dx7/op4/rgL3 0 \; dx7/op4/rgL4
+0 \; dx7/op4/level 75 \; dx7/op4/keyVelSens 2 \; dx7/op4/opMode 0 \;
+dx7/op4/opFreq 1.01 \; dx7/op4/opDetune 0 \; dx7/op4/opRateScale 4
+\; dx7/op5/rgR1 25 \; dx7/op5/rgR2 50 \; dx7/op5/rgR3 24 \; dx7/op5/rgR4
+55 \; dx7/op5/rgL1 96 \; dx7/op5/rgL2 97 \; dx7/op5/rgL3 0 \; dx7/op5/rgL4
+0 \; dx7/op5/level 87 \; dx7/op5/keyVelSens 7 \; dx7/op5/opMode 0 \;
+dx7/op5/opFreq 0.5 \; dx7/op5/opDetune 1 \; dx7/op5/opRateScale 3 \;
+;
+#X obj 116 -15 r preset2;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 1 1 3 0;
+#X connect 1 2 4 0;
+#X connect 1 3 5 0;
+#X connect 1 4 6 0;
+#X connect 1 5 7 0;
+#X connect 1 6 8 0;
+#X connect 1 7 9 0;
+#X connect 10 0 1 0;

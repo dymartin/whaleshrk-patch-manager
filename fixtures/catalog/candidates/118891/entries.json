@@ -1,0 +1,485 @@
+[
+ {
+  "name": "wavshaper/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106067456,
+  "is_dir": true
+ },
+ {
+  "name": "wavshaper/waveshaper.pd",
+  "size": 1226,
+  "compress_size": 398,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107116032,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/wavshaper/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107116032,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/wavshaper/._waveshaper.pd",
+  "size": 266,
+  "compress_size": 151,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/.DS_Store",
+  "size": 8196,
+  "compress_size": 1215,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/._.DS_Store",
+  "size": 120,
+  "compress_size": 53,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/wavs/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106067456,
+  "is_dir": true
+ },
+ {
+  "name": "wavshaper/wavs/103.wav",
+  "size": 32872,
+  "compress_size": 27039,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/wavs/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107116032,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/wavshaper/wavs/._103.wav",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/wavs/117.wav",
+  "size": 32872,
+  "compress_size": 29945,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/wavs/._117.wav",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/wavs/116.wav",
+  "size": 32872,
+  "compress_size": 24650,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/wavs/._116.wav",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/wavs/102.wav",
+  "size": 32872,
+  "compress_size": 30879,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/wavs/._102.wav",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/wavs/114.wav",
+  "size": 32872,
+  "compress_size": 30562,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/wavs/._114.wav",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/wavs/100.wav",
+  "size": 32872,
+  "compress_size": 31919,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/wavs/._100.wav",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/wavs/101.wav",
+  "size": 32872,
+  "compress_size": 30151,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/wavs/._101.wav",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/wavs/115.wav",
+  "size": 32872,
+  "compress_size": 24293,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/wavs/._115.wav",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/wavs/111.wav",
+  "size": 32872,
+  "compress_size": 30501,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/wavs/._111.wav",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/wavs/105.wav",
+  "size": 32872,
+  "compress_size": 30928,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/wavs/._105.wav",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/wavs/.DS_Store",
+  "size": 6148,
+  "compress_size": 178,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/wavs/._.DS_Store",
+  "size": 120,
+  "compress_size": 53,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/wavs/104.wav",
+  "size": 32872,
+  "compress_size": 29760,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/wavs/._104.wav",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/wavs/110.wav",
+  "size": 32872,
+  "compress_size": 28285,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/wavs/._110.wav",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/wavs/106.wav",
+  "size": 32872,
+  "compress_size": 27301,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/wavs/._106.wav",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/wavs/112.wav",
+  "size": 32872,
+  "compress_size": 30954,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/wavs/._112.wav",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/wavs/113.wav",
+  "size": 32872,
+  "compress_size": 28283,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/wavs/._113.wav",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/wavs/107.wav",
+  "size": 32872,
+  "compress_size": 30034,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/wavs/._107.wav",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/wavs/122.wav",
+  "size": 32872,
+  "compress_size": 26755,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/wavs/._122.wav",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/wavs/123.wav",
+  "size": 32872,
+  "compress_size": 25095,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/wavs/._123.wav",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/wavs/109.wav",
+  "size": 32872,
+  "compress_size": 31472,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/wavs/._109.wav",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/wavs/121.wav",
+  "size": 32872,
+  "compress_size": 26861,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/wavs/._121.wav",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/wavs/120.wav",
+  "size": 32872,
+  "compress_size": 31188,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/wavs/._120.wav",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/wavs/108.wav",
+  "size": 32872,
+  "compress_size": 29150,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/wavs/._108.wav",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/wavs/124.wav",
+  "size": 32872,
+  "compress_size": 30773,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/wavs/._124.wav",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/wavs/118.wav",
+  "size": 32872,
+  "compress_size": 29894,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/wavs/._118.wav",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/wavs/119.wav",
+  "size": 32872,
+  "compress_size": 27605,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/wavs/._119.wav",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/._wavs",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/module.json",
+  "size": 609,
+  "compress_size": 264,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/._module.json",
+  "size": 268,
+  "compress_size": 176,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/c_xfade.pd",
+  "size": 1432,
+  "compress_size": 740,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/._c_xfade.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "wavshaper/module.pd",
+  "size": 2122,
+  "compress_size": 693,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/wavshaper/._module.pd",
+  "size": 268,
+  "compress_size": 177,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/._wavshaper",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175025152,
+  "is_dir": false
+ }
+]

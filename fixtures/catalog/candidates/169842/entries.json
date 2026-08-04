@@ -1,0 +1,352 @@
+[
+ {
+  "name": "branks+/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "branks+/preset.pd",
+  "size": 9861,
+  "compress_size": 2543,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/notein_mono.pd",
+  "size": 4107,
+  "compress_size": 1212,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/preset3.txt",
+  "size": 202,
+  "compress_size": 69,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "branks+/aptone/aptone_tester.pd",
+  "size": 2505,
+  "compress_size": 617,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/aptone.pd",
+  "size": 2921,
+  "compress_size": 964,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/effect.txt",
+  "size": 566,
+  "compress_size": 151,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/mod.txt",
+  "size": 1647,
+  "compress_size": 254,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/voicewrapper.pd",
+  "size": 141,
+  "compress_size": 104,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/read_filter.pd",
+  "size": 7564,
+  "compress_size": 2086,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/env/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "branks+/aptone/env/parabolic_linetest.pd",
+  "size": 520,
+  "compress_size": 249,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/env/env_parabolic.pd",
+  "size": 2473,
+  "compress_size": 726,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/env/parabolic_line~.pd",
+  "size": 1832,
+  "compress_size": 589,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/env/env_parabolic-f.pd",
+  "size": 2482,
+  "compress_size": 736,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/muug~.dll",
+  "size": 8209,
+  "compress_size": 3179,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/main.pd",
+  "size": 9342,
+  "compress_size": 2546,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/moog~.pd_darwin",
+  "size": 29576,
+  "compress_size": 4383,
+  "external_attr": 2180972544,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/lfo2/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "branks+/aptone/lfo2/brownian.pd",
+  "size": 378092,
+  "compress_size": 106465,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/lfo2/lfo.pd",
+  "size": 5195,
+  "compress_size": 1460,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/lfo2/desktop.ini",
+  "size": 48,
+  "compress_size": 41,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/module1.pd",
+  "size": 3153,
+  "compress_size": 902,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/muug~.pd_linux",
+  "size": 2992,
+  "compress_size": 1541,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/modenv.pd",
+  "size": 2775,
+  "compress_size": 704,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/smoothswitch.pd",
+  "size": 317,
+  "compress_size": 152,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/brds~.pd_linux",
+  "size": 142856,
+  "compress_size": 100898,
+  "external_attr": 2180972544,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/test/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "branks+/aptone/test/step-mother-2.1.pd",
+  "size": 36629,
+  "compress_size": 7973,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/test/keyfilter2.pd",
+  "size": 901,
+  "compress_size": 336,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/test/keyboard.pd",
+  "size": 34717,
+  "compress_size": 7410,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/tableosc.pd",
+  "size": 2852,
+  "compress_size": 825,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/moog~.pd_linux",
+  "size": 18416,
+  "compress_size": 8983,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/moog~-help.pd",
+  "size": 1463,
+  "compress_size": 597,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/LICENSE.txt",
+  "size": 1812,
+  "compress_size": 917,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/polywrapper.pd",
+  "size": 330,
+  "compress_size": 163,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/brds~.pd_darwin",
+  "size": 1664928,
+  "compress_size": 1190028,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/env.txt",
+  "size": 1007,
+  "compress_size": 204,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/voice.pd",
+  "size": 8064,
+  "compress_size": 2234,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/lfo1/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "branks+/aptone/lfo1/brownian.pd",
+  "size": 378092,
+  "compress_size": 106465,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/lfo1/lfo.pd",
+  "size": 5312,
+  "compress_size": 1482,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/aptone/lfo1/desktop.ini",
+  "size": 48,
+  "compress_size": 41,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/presets.pd",
+  "size": 8192,
+  "compress_size": 2430,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/preset2.txt",
+  "size": 214,
+  "compress_size": 92,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/pd~-braids.pd",
+  "size": 823,
+  "compress_size": 323,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/preset1.txt",
+  "size": 181,
+  "compress_size": 41,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/module.json",
+  "size": 2431,
+  "compress_size": 669,
+  "external_attr": 2176188416,
+  "is_dir": false
+ },
+ {
+  "name": "branks+/module.pd",
+  "size": 8572,
+  "compress_size": 2092,
+  "external_attr": 2176188416,
+  "is_dir": false
+ }
+]

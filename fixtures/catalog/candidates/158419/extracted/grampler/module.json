@@ -1,0 +1,28 @@
+{
+    "display" : "Grampler",
+    "parameters" :  [
+        ["pct", "g_speed", "Speed", 0, 100, 50],
+        ["time", "g_length", "Length", 1, 500, 150],
+        ["pct", "g_density", "Density", 0, 100, 66],
+        ["pct", "g_width", "Width", 0, 100, 50],
+        ["pct", "g_startAt", "Start at", 0, 100, 5],
+        ["pct", "g_endAt", "End at", 0, 100, 95],
+        ["time", "g_attack", "Attack", 0, 1000, 0],
+        ["time", "g_release", "Release", 0, 1000, 50],
+        ["pct", "g_spread", "Spread", 0, 100, 0],
+        ["int", "g_window", "Window", 0, 2, 0],
+        ["int", "g_latch", "Latch", 0, 1, 0],
+        ["int", "g_reverse", "Reverse", 0, 1, 0],
+        ["int", "g_sample_offset", "Sample offset", 0, 0, 0],
+        ["int", "s_kit", "Kit", 1, 12, 1],
+        ["int", "s_slot1", "Slot", 1, 24, 1],
+        ["int", "g_freeze", "Freeze", 0, 1, 0]
+    ],
+    "pages" : [ 
+        ["pg_main", "Main", ["g_speed", "g_length", "g_density", "g_width"]],
+        ["pg_env_slice", "Env/Slice", ["g_startAt", "g_endAt", "g_attack", "g_release"]],
+        ["pg_play", "Play", ["g_latch", "g_reverse", "g_spread", "g_window"]],
+        ["pg_sample", "Sample", ["s_kit","s_slot1"]]
+    ]
+}
+

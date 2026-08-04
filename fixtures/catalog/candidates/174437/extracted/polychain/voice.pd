@@ -1,0 +1,10 @@
+#N canvas 252 242 789 716 10;
+#X obj 84 199 noteout;
+#X obj 84 127 unpack 0 0 0;
+#X obj 80 61 inlet;
+#X text 7 10 \$1 is the device id \, \$2 is the module slot id;
+#X obj 169 141 r m_midi_ch_device-\$1-\$2;
+#X connect 1 0 0 0;
+#X connect 1 1 0 1;
+#X connect 2 0 1 0;
+#X connect 4 0 0 2;

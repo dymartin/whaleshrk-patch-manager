@@ -1,0 +1,5 @@
+{
+	"dataDir":	"/tmp/data/orhack",
+	"mediaDir":	"/tmp/media",
+	"userModuleDir":	"/tmp/media/orhack/user-modules"
+}

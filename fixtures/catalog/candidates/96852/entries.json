@@ -1,0 +1,51 @@
+[
+ {
+  "name": "S-norisampler/LICENSE.txt",
+  "size": 1812,
+  "compress_size": 917,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "S-norisampler/deploy.sh",
+  "size": 353,
+  "compress_size": 218,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "S-norisampler/manifest.txt",
+  "size": 406,
+  "compress_size": 243,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "S-norisampler/module.json",
+  "size": 371,
+  "compress_size": 173,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "S-norisampler/module.pd",
+  "size": 5904,
+  "compress_size": 1915,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "S-norisampler/samplervoice.pd",
+  "size": 8048,
+  "compress_size": 2705,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "S-norisampler/sound.wav",
+  "size": 902956,
+  "compress_size": 685374,
+  "external_attr": 2179792896,
+  "is_dir": false
+ }
+]

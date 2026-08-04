@@ -1,0 +1,51 @@
+[
+ {
+  "name": "edrum 1.1/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051072,
+  "is_dir": true
+ },
+ {
+  "name": "edrum 1.1/efficient-kick.pd",
+  "size": 1443,
+  "compress_size": 457,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "edrum 1.1/efficient-snare.pd",
+  "size": 1546,
+  "compress_size": 507,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "edrum 1.1/efficient-snare2.pd",
+  "size": 1356,
+  "compress_size": 493,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "edrum 1.1/module.pd",
+  "size": 2490,
+  "compress_size": 688,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "edrum 1.1/efficient-fmhh.pd",
+  "size": 4136,
+  "compress_size": 1219,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "edrum 1.1/module.json",
+  "size": 574,
+  "compress_size": 219,
+  "external_attr": 2175008768,
+  "is_dir": false
+ }
+]

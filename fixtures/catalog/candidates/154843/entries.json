@@ -1,0 +1,107 @@
+[
+ {
+  "name": "brds-pd/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "brds-pd/bob_tilde/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "brds-pd/bob_tilde/bob~-help.pd",
+  "size": 4878,
+  "compress_size": 1855,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "brds-pd/bob_tilde/README.txt",
+  "size": 1094,
+  "compress_size": 625,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "brds-pd/bob_tilde/Makefile",
+  "size": 17005,
+  "compress_size": 4338,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "brds-pd/bob_tilde/output~.pd",
+  "size": 1746,
+  "compress_size": 717,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "brds-pd/bob_tilde/GNUmakefile.am",
+  "size": 688,
+  "compress_size": 430,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "brds-pd/bob_tilde/bob~.c",
+  "size": 7953,
+  "compress_size": 2176,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "brds-pd/module.pd",
+  "size": 5319,
+  "compress_size": 1812,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "brds-pd/voice.pd",
+  "size": 3479,
+  "compress_size": 1160,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "brds-pd/adsr.pd",
+  "size": 2799,
+  "compress_size": 1113,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "brds-pd/module.json",
+  "size": 1187,
+  "compress_size": 390,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "brds-pd/pd~-brds.pd",
+  "size": 752,
+  "compress_size": 265,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "brds-pd/.module.json.swp",
+  "size": 12288,
+  "compress_size": 667,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "brds-pd/brds~.pd_linux",
+  "size": 142856,
+  "compress_size": 100898,
+  "external_attr": 2179792896,
+  "is_dir": false
+ }
+]

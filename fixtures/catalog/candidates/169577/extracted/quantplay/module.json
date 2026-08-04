@@ -1,0 +1,28 @@
+{
+    "display" : "Quantplay",
+    "parameters" :  [ 
+        ["pct","volume","Volume",0,100,50],
+	["float","vol-1","Volume 1",0,1.5,1],
+	["float","samp-1","Sample 1",0,1,1],
+	["float","vol-2","Volume 2",0,1.5,1],
+	["float","samp-2","Sample 2",0,1,1],
+	["float","vol-3","Volume 3",0,1.5,1],
+	["float","samp-3","Sample 3",0,1,1],
+	["float","vol-4","Volume 4",0,1.5,1],
+	["float","samp-4","Sample 4",0,1,1],
+	["float","pan-1","Pan 1",-1,1,0],
+	["float","pan-2","Pan 2",-1,1,0],
+	["float","pan-3","Pan 3",-1,1,0],
+	["float","pan-4","Pan 4",-1,1,0],
+	["pct","filt-1","Filt 1",0,100,100],
+	["pct","filt-2","Filt 2",0,100,100],
+	["pct","filt-3","Filt 3",0,100,100],
+    ["pct","filt-4","Filt 4",0,100,100],	
+        ["int","samp-src","Sample Source",-1,27,27]
+    ],
+    "pages" : [ 
+        ["pg_samp","Sample",["samp-1","samp-2","samp-3","samp-4"]],
+        ["pg_vol","Vol",["vol-1","vol-2","vol-3","vol-4"]]
+    ]
+}
+

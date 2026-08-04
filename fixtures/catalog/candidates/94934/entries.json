@@ -1,0 +1,261 @@
+[
+ {
+  "name": "MEC/MEC/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "MEC/MEC/libmec-eigenharp.so",
+  "size": 380640,
+  "compress_size": 155822,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/KontrolModule.pd_linux",
+  "size": 14236,
+  "compress_size": 6277,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/bs_mm_fw_0103.ihx",
+  "size": 20326,
+  "compress_size": 6817,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/SoundplaneAppState.txt",
+  "size": 227926,
+  "compress_size": 72837,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/libmec-kontrol-api.so",
+  "size": 704512,
+  "compress_size": 234216,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/libsplite.so",
+  "size": 121028,
+  "compress_size": 54152,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/libmec-api.so",
+  "size": 696712,
+  "compress_size": 242006,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/picopd.json",
+  "size": 1800,
+  "compress_size": 395,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/libmec-utils.so",
+  "size": 27596,
+  "compress_size": 10901,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/mec-app",
+  "size": 68456,
+  "compress_size": 26952,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/libportaudio.so",
+  "size": 10580,
+  "compress_size": 4431,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/79-push2.rules",
+  "size": 155,
+  "compress_size": 134,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/libmec-push2.so",
+  "size": 16340,
+  "compress_size": 6921,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/59-soundplane.rules",
+  "size": 218,
+  "compress_size": 170,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/librtmidi.so",
+  "size": 65632,
+  "compress_size": 26873,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/pushkontrol.json",
+  "size": 606,
+  "compress_size": 220,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/run.sh",
+  "size": 2007,
+  "compress_size": 622,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/69-eigenharp.rules",
+  "size": 767,
+  "compress_size": 184,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/resources/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "MEC/MEC/resources/bs_mm_fw_0103.ihx",
+  "size": 20326,
+  "compress_size": 6817,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/resources/psu_mm_fw_0102.ihx",
+  "size": 17752,
+  "compress_size": 5921,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/resources/pico.ihx",
+  "size": 24114,
+  "compress_size": 9375,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/libmec-soundplane.so",
+  "size": 469988,
+  "compress_size": 210462,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/picoosc.json",
+  "size": 1827,
+  "compress_size": 400,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/libpicodecoder.so",
+  "size": 18680,
+  "compress_size": 9486,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/picoktrl.json",
+  "size": 1829,
+  "compress_size": 399,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/psu_mm_fw_0102.ihx",
+  "size": 17752,
+  "compress_size": 5921,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/pico.ihx",
+  "size": 24114,
+  "compress_size": 9375,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/osckontrol.json",
+  "size": 509,
+  "compress_size": 194,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/liboscpack.so",
+  "size": 74832,
+  "compress_size": 30728,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/libcjson.so",
+  "size": 20356,
+  "compress_size": 9384,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/libeigenapi.so",
+  "size": 380632,
+  "compress_size": 155827,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/KontrolRack.pd_linux",
+  "size": 401160,
+  "compress_size": 141989,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/MEC/49-axoloti.rules",
+  "size": 256,
+  "compress_size": 155,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/deploy.sh",
+  "size": 540,
+  "compress_size": 288,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "MEC/manifest.txt",
+  "size": 2263,
+  "compress_size": 1099,
+  "external_attr": 2175008768,
+  "is_dir": false
+ }
+]

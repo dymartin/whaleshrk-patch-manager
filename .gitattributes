@@ -1,0 +1,7 @@
+# Fixture data is frozen, hash-verified evidence: docs/platform/README.md pins
+# ORHACK 0.52b's SHA-256, and the catalog fixture records a SHA-256 per
+# candidate archive. Later phases also do byte-exact preset/patch comparison
+# (Prompt/03-compiler.md). Git must never normalize line endings or otherwise
+# transform these files on checkout -- that would silently break every hash
+# and byte comparison against them.
+/fixtures/** -text

@@ -1,0 +1,36 @@
+{
+    "name" : "SH101",
+    "display" : "SH101",
+    "parameters" :  [ 
+        ["int","transpose","Transpose",-24,24,0],
+        ["float","square","Square",0,100,100],
+        ["float","saw","Saw",0,100,50],
+        ["float","sub","Sub",0,100,75],
+        ["float","noise","Noise",0,100,0],
+        ["float","attack","Attack",1,4000,5],
+        ["float","decay","Decay",1,4000,100],
+        ["float","sustain","Sustain",0,100,50],
+        ["float","release","Release",1,5000,1000],
+        ["int","vca_mode","VCA Mode",0,1,0],
+        ["float","volume","Volume",0,1,0.75],
+        ["float","lfo_rate","Rate",0.01,30,0.5],
+        ["int","lfo_mode","LFO Mode",0,3,0],
+        ["int","pwm_mode","PWM Mode",0,2,0],
+        ["float","vco_mod","VCO Mod",0.1,20,0.1],
+        ["float","pwm","PWM",0.01,499,250],
+        ["float","vcf_mod","VCF Mod",0.05,10,0.05],
+        ["float","vcf_freq","VCF Freq",5,10000,800],
+        ["float","vcf_res","VCF Res",0.5,5,0.5],
+        ["float","vcf_env","VCF Env",10,4000,10],
+        ["float","vcf_kbd","VCF Kbd",0.1,48,0.1]
+    ],
+    "pages" : [ 
+        ["pg_main","Main",["volume","vca_mode","lfo_mode","lfo_rate"]],
+        ["pg_mixer","Mixer",["square","saw","sub","noise"]],
+        ["pg_vco","VCO",["vco_mod","pwm","pwm_mode","transpose"]],
+        ["pg_vcf1","VCF 1",["vcf_freq","vcf_res","vcf_env","vcf_mod"]],
+	["pg_vcf2","VCF 2",["vcf_kbd"]],
+        ["pg_env","Env",["attack","decay","sustain","release"]]
+    ]
+}
+

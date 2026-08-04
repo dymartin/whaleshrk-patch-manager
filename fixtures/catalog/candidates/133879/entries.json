@@ -1,0 +1,86 @@
+[
+ {
+  "name": "grids divby4/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051072,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/._grids divby4",
+  "size": 210,
+  "compress_size": 109,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "grids divby4/.DS_Store",
+  "size": 6148,
+  "compress_size": 287,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/grids divby4/._.DS_Store",
+  "size": 120,
+  "compress_size": 53,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "grids divby4/manifest.txt",
+  "size": 176,
+  "compress_size": 126,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/grids divby4/._manifest.txt",
+  "size": 617,
+  "compress_size": 409,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "grids divby4/deploy.sh",
+  "size": 370,
+  "compress_size": 208,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/grids divby4/._deploy.sh",
+  "size": 614,
+  "compress_size": 406,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "grids divby4/module.json",
+  "size": 1429,
+  "compress_size": 470,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/grids divby4/._module.json",
+  "size": 732,
+  "compress_size": 513,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "grids divby4/module.pd",
+  "size": 10267,
+  "compress_size": 2528,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/grids divby4/._module.pd",
+  "size": 276,
+  "compress_size": 133,
+  "external_attr": 2175008768,
+  "is_dir": false
+ }
+]

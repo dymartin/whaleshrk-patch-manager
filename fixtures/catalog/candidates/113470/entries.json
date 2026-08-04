@@ -1,0 +1,800 @@
+[
+ {
+  "name": "orac_seq_bpm/deploy.sh",
+  "size": 506,
+  "compress_size": 274,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/manifest.txt",
+  "size": 9037,
+  "compress_size": 2760,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-1/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-1/a1-sequence-state.txt",
+  "size": 9,
+  "compress_size": 9,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-1/b2-punchy-state.txt",
+  "size": 27,
+  "compress_size": 25,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-1/b1-sequence-state.txt",
+  "size": 9,
+  "compress_size": 9,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-1/c1-sequence.txt",
+  "size": 258,
+  "compress_size": 108,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-1/b2-punchy-seq.txt",
+  "size": 138,
+  "compress_size": 11,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-1/a1-sequence.txt",
+  "size": 176,
+  "compress_size": 88,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-1/params.json",
+  "size": 5618,
+  "compress_size": 1067,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-1/b2-punchy-seqvel.txt",
+  "size": 137,
+  "compress_size": 28,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-1/b1-sequence.txt",
+  "size": 176,
+  "compress_size": 83,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-1/c1-polybeats.txt",
+  "size": 254,
+  "compress_size": 113,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-2/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-2/a1-sequence-state.txt",
+  "size": 9,
+  "compress_size": 9,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-2/b2-punchy-state.txt",
+  "size": 27,
+  "compress_size": 25,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-2/b1-sequence-state.txt",
+  "size": 9,
+  "compress_size": 9,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-2/c1-sequence.txt",
+  "size": 255,
+  "compress_size": 107,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-2/b2-punchy-seq.txt",
+  "size": 157,
+  "compress_size": 46,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-2/a1-sequence.txt",
+  "size": 346,
+  "compress_size": 124,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-2/params.json",
+  "size": 5617,
+  "compress_size": 1080,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-2/b2-punchy-seqvel.txt",
+  "size": 154,
+  "compress_size": 43,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-2/b1-sequence.txt",
+  "size": 144,
+  "compress_size": 78,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-2/c1-polybeats.txt",
+  "size": 256,
+  "compress_size": 130,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-3/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-3/a1-sequence-state.txt",
+  "size": 9,
+  "compress_size": 9,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-3/b2-punchy-state.txt",
+  "size": 29,
+  "compress_size": 28,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-3/b1-sequence-state.txt",
+  "size": 9,
+  "compress_size": 9,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-3/c1-sequence.txt",
+  "size": 266,
+  "compress_size": 112,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-3/b2-punchy-seq.txt",
+  "size": 138,
+  "compress_size": 11,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-3/a1-sequence.txt",
+  "size": 108,
+  "compress_size": 68,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-3/params.json",
+  "size": 5592,
+  "compress_size": 1059,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-3/b2-punchy-seqvel.txt",
+  "size": 137,
+  "compress_size": 28,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-3/b1-sequence.txt",
+  "size": 363,
+  "compress_size": 133,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/presets/seq-demo-3/c1-polybeats.txt",
+  "size": 264,
+  "compress_size": 129,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/sampler24/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/sampler24/Sounds/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/sampler24/Sounds/s24-sounds/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/sampler24/Sounds/s24-sounds/2.wav",
+  "size": 361662,
+  "compress_size": 187700,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/sampler24/Sounds/s24-sounds/6.wav",
+  "size": 361644,
+  "compress_size": 222723,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/sampler24/Sounds/s24-sounds/9.wav",
+  "size": 361662,
+  "compress_size": 249162,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/sampler24/Sounds/s24-sounds/5.wav",
+  "size": 361662,
+  "compress_size": 203271,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/sampler24/Sounds/s24-sounds/10.wav",
+  "size": 361662,
+  "compress_size": 210907,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/sampler24/Sounds/s24-sounds/12.wav",
+  "size": 361662,
+  "compress_size": 219515,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/sampler24/Sounds/s24-sounds/8.wav",
+  "size": 361662,
+  "compress_size": 214451,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/sampler24/Sounds/s24-sounds/1.wav",
+  "size": 361662,
+  "compress_size": 178824,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/sampler24/Sounds/s24-sounds/3.wav",
+  "size": 361662,
+  "compress_size": 195267,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/sampler24/Sounds/s24-sounds/11.wav",
+  "size": 361662,
+  "compress_size": 194437,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/sampler24/Sounds/s24-sounds/4.wav",
+  "size": 352944,
+  "compress_size": 287966,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/sampler24/Sounds/s24-sounds/7.wav",
+  "size": 361662,
+  "compress_size": 220352,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/sampler24/load-24.pd",
+  "size": 883,
+  "compress_size": 417,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/sampler24/window.txt",
+  "size": 45192,
+  "compress_size": 635,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/sampler24/s_vphasor.pd",
+  "size": 1738,
+  "compress_size": 730,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/sampler24/module.json",
+  "size": 392,
+  "compress_size": 183,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/sampler24/crown-window.pd",
+  "size": 681,
+  "compress_size": 345,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/sampler24/module.pd",
+  "size": 3895,
+  "compress_size": 1225,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/sampler24/s_vphasor-help.pd",
+  "size": 1467,
+  "compress_size": 689,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/sampler24/s24-voice.pd",
+  "size": 4915,
+  "compress_size": 1629,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/punchy/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/punchy/punchy-seqvel.txt",
+  "size": 222,
+  "compress_size": 101,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/punchy/latch-notes.pd",
+  "size": 863,
+  "compress_size": 318,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/punchy/counter-up.pd",
+  "size": 1075,
+  "compress_size": 410,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/punchy/seq.pd",
+  "size": 2949,
+  "compress_size": 937,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/punchy/seq-player.pd",
+  "size": 4470,
+  "compress_size": 1436,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/punchy/seq-format-event.pd",
+  "size": 344,
+  "compress_size": 170,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/punchy/punchy-seq.txt",
+  "size": 99,
+  "compress_size": 54,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/punchy/clockfix.pd_linux",
+  "size": 14116,
+  "compress_size": 6450,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/punchy/clocker.pd_linux",
+  "size": 14664,
+  "compress_size": 6490,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/punchy/seq-recorder.pd",
+  "size": 5853,
+  "compress_size": 1918,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/punchy/module.json",
+  "size": 375,
+  "compress_size": 186,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/punchy/module.pd",
+  "size": 19008,
+  "compress_size": 5273,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/arpseq/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/arpseq/latch-notes.pd",
+  "size": 863,
+  "compress_size": 318,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/arpseq/counter-up.pd",
+  "size": 1075,
+  "compress_size": 410,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/arpseq/seq.pd",
+  "size": 3025,
+  "compress_size": 946,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/arpseq/seq-player.pd",
+  "size": 4470,
+  "compress_size": 1436,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/arpseq/seq-format-event.pd",
+  "size": 344,
+  "compress_size": 170,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/arpseq/clockfix.pd_linux",
+  "size": 14116,
+  "compress_size": 6450,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/arpseq/clocker.pd_linux",
+  "size": 14664,
+  "compress_size": 6490,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/arpseq/seq-recorder.pd",
+  "size": 5853,
+  "compress_size": 1918,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/arpseq/module.json",
+  "size": 377,
+  "compress_size": 185,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/arpseq/module.pd",
+  "size": 38518,
+  "compress_size": 8902,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/arpseq/counter-down.pd",
+  "size": 1291,
+  "compress_size": 463,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/clock/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/clock/metronome360.pd",
+  "size": 8119,
+  "compress_size": 2625,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/clock/clockfix.pd_linux",
+  "size": 13500,
+  "compress_size": 6134,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/clock/module.json",
+  "size": 268,
+  "compress_size": 149,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/clock/module.pd",
+  "size": 3697,
+  "compress_size": 1270,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/polybeats/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/polybeats/keys-diagram.txt",
+  "size": 161,
+  "compress_size": 75,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/polybeats/counter-up.pd",
+  "size": 1185,
+  "compress_size": 441,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/polybeats/pb-notesBAK.pd",
+  "size": 3041,
+  "compress_size": 966,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/polybeats/pb-notes.pd",
+  "size": 3081,
+  "compress_size": 1000,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/polybeats/test",
+  "size": 249,
+  "compress_size": 106,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/polybeats/cg-print-kb.pd",
+  "size": 3906,
+  "compress_size": 1099,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/polybeats/module.json",
+  "size": 501,
+  "compress_size": 249,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/polybeats/module.pd",
+  "size": 16550,
+  "compress_size": 4479,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/seq/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/seq/seq.pd",
+  "size": 2958,
+  "compress_size": 947,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/seq/seq-player.pd",
+  "size": 4514,
+  "compress_size": 1450,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/seq/seq-format-event.pd",
+  "size": 344,
+  "compress_size": 170,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/seq/clockfix.pd_linux",
+  "size": 14116,
+  "compress_size": 6450,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/seq/clocker.pd_linux",
+  "size": 14664,
+  "compress_size": 6490,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/seq/seq-recorder.pd",
+  "size": 5853,
+  "compress_size": 1918,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/seq/module.json",
+  "size": 178,
+  "compress_size": 114,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/seq/module.pd",
+  "size": 10686,
+  "compress_size": 3094,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/click/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/click/metro2.wav",
+  "size": 5580,
+  "compress_size": 5023,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/click/module.json",
+  "size": 233,
+  "compress_size": 131,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/click/metro1.wav",
+  "size": 2604,
+  "compress_size": 2322,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/click/module.pd",
+  "size": 1988,
+  "compress_size": 692,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac_seq_bpm/sequence_bpm/click/sampler-voice.pd",
+  "size": 3567,
+  "compress_size": 1214,
+  "external_attr": 2179792896,
+  "is_dir": false
+ }
+]

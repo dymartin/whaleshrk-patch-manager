@@ -1,0 +1,86 @@
+[
+ {
+  "name": "F-delay_toggle/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106067456,
+  "is_dir": true
+ },
+ {
+  "name": "F-delay_toggle/c_xfade.pd",
+  "size": 1432,
+  "compress_size": 740,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107116032,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/F-delay_toggle/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107116032,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/F-delay_toggle/._c_xfade.pd",
+  "size": 299,
+  "compress_size": 205,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "F-delay_toggle/delay3sec.pd",
+  "size": 690,
+  "compress_size": 268,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/F-delay_toggle/._delay3sec.pd",
+  "size": 299,
+  "compress_size": 205,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "F-delay_toggle/module.json",
+  "size": 361,
+  "compress_size": 185,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/F-delay_toggle/._module.json",
+  "size": 299,
+  "compress_size": 204,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "F-delay_toggle/module.pd",
+  "size": 2137,
+  "compress_size": 725,
+  "external_attr": 2179809280,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/F-delay_toggle/._module.pd",
+  "size": 299,
+  "compress_size": 205,
+  "external_attr": 2175025152,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/._F-delay_toggle",
+  "size": 299,
+  "compress_size": 205,
+  "external_attr": 2175025152,
+  "is_dir": false
+ }
+]

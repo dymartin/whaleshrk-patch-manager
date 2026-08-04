@@ -1,0 +1,29 @@
+{
+    "display" : "303-pd",
+    "parameters" :  [ 
+        ["int","amount","Amount",0,127,0],
+        ["int","mix","Dry/wet",0,127,0],
+        ["int","cents","Cents",0,100,0],
+        ["int","semi","Semi",-12,12,0],
+        ["int","pw","Pulse Width",0,127,0],
+        ["int","boost","Accent VCA",0,127,0],
+        ["int","dcoffset","DC Offset",0,127,0],
+        ["bool","mute","Mute",0],
+        ["int","sat","Saturation",0,127,0],
+        ["int","accent","Accent",0,127,0],
+        ["int","decay","Decay",0,127,0],
+        ["int","env","Env Mod",0,127,0],
+        ["int","res","Resonance",0,127,0],
+        ["int","cutoff","Cutoff",0,127,30],
+        ["int","waveform","Waveform",0,1,0],
+        ["int","oversample","Oversampling",1,10,4],
+        ["int","vol","Volume",0,127,40]
+    ],
+    "pages" : [ 
+        ["pg_waveform","Waveform",["waveform","pw","semi","cents"]],
+        ["pg_filter","Filter",["cutoff","res","env","decay"]],
+        ["pg_accent","Accent",["accent","boost","sat","oversample"]],
+        ["pg_shaper","Shaper",["vol","dcoffset","amount","mix"]]
+    ]
+}
+

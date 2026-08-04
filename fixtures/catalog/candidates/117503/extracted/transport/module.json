@@ -1,0 +1,18 @@
+{
+    "display" : "Transport",
+    "parameters" :  [ 
+        ["int","bpm","BPM",60,200,120],
+        ["float","swing8","Swing 8",0,100,0],
+        ["float","swing16","Swing 16",0,50,0],
+        ["bool","midiout","Midi Out",0],      
+        ["float","chaos","Chaos",0,100,0],    
+        ["float","drift","Drift",0,100,0],        
+        ["float","driftrate","Drift rate",0,100,10],
+	["pct","metronome","Metronome",0,100,0],
+	["int","set_signature","Signature",0,24,4]
+	],
+    "pages" : [ 
+        ["pg_oclock","Transport",[]]
+    ]
+}
+

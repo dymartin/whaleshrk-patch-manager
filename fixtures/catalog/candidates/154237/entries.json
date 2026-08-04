@@ -1,0 +1,65 @@
+[
+ {
+  "name": "parallel3+/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "parallel3+/module.pd",
+  "size": 19388,
+  "compress_size": 4835,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "parallel3+/cg-knob-fixed.pd",
+  "size": 4350,
+  "compress_size": 1080,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "parallel3+/module.json",
+  "size": 7518,
+  "compress_size": 1291,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "parallel3+/deploy.sh",
+  "size": 374,
+  "compress_size": 208,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "parallel3+/manifest.txt",
+  "size": 188,
+  "compress_size": 128,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "parallel3+/a-vol.txt",
+  "size": 4,
+  "compress_size": 4,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "parallel3+/b-vol.txt",
+  "size": 4,
+  "compress_size": 4,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "parallel3+/c-vol.txt",
+  "size": 4,
+  "compress_size": 4,
+  "external_attr": 2179792896,
+  "is_dir": false
+ }
+]

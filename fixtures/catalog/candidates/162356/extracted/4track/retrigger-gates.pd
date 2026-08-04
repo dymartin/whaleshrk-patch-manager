@@ -1,0 +1,87 @@
+#N canvas 874 178 757 479 10;
+#X obj 150 251 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 183 203 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 150 229 spigot;
+#X obj 246 229 spigot;
+#X obj 279 203 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 246 251 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 347 229 spigot;
+#X obj 380 203 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 347 251 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 294 -57 clocking for retrigger;
+#X obj 455 229 spigot;
+#X obj 488 203 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 455 251 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 565 229 spigot;
+#X obj 598 203 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 565 251 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X floatatom 50 126 5 0 0 0 - - -;
+#X obj 50 146 sel 1 3;
+#X obj 50 251 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 83 203 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 50 229 spigot;
+#X obj 246 104 r eighths;
+#X obj 348 104 r triplets;
+#X obj 455 104 r sixteenths;
+#X obj 598 174 r rep24-\$1-\$2;
+#X obj 488 174 r repsix-\$1-\$2;
+#X obj 380 174 r reptri-\$1-\$2;
+#X obj 183 174 r repq-\$1-\$2;
+#X obj 279 174 r repe-\$1-\$2;
+#X obj 83 175 r repw-\$1-\$2;
+#X obj 50 272 s repws-\$1-\$2;
+#X obj 150 272 s repqs-\$1-\$2;
+#X obj 246 272 s repes-\$1-\$2;
+#X obj 347 272 s reptris-\$1-\$2;
+#X obj 455 272 s repsixs-\$1-\$2;
+#X obj 50 105 r beatnum-\$2;
+#X obj 150 104 r quarters;
+#X obj 616 147 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 565 104 r master-ticks;
+#X obj 565 272 s rep24s-\$1-\$2;
+#X connect 0 0 31 0;
+#X connect 1 0 2 1;
+#X connect 2 0 0 0;
+#X connect 3 0 5 0;
+#X connect 4 0 3 1;
+#X connect 5 0 32 0;
+#X connect 6 0 8 0;
+#X connect 7 0 6 1;
+#X connect 8 0 33 0;
+#X connect 10 0 12 0;
+#X connect 11 0 10 1;
+#X connect 12 0 34 0;
+#X connect 13 0 15 0;
+#X connect 14 0 13 1;
+#X connect 15 0 39 0;
+#X connect 16 0 17 0;
+#X connect 17 0 20 0;
+#X connect 17 1 20 0;
+#X connect 18 0 30 0;
+#X connect 19 0 20 1;
+#X connect 20 0 18 0;
+#X connect 21 0 3 0;
+#X connect 22 0 6 0;
+#X connect 23 0 10 0;
+#X connect 24 0 14 0;
+#X connect 25 0 11 0;
+#X connect 26 0 7 0;
+#X connect 27 0 1 0;
+#X connect 28 0 4 0;
+#X connect 29 0 19 0;
+#X connect 35 0 16 0;
+#X connect 36 0 2 0;
+#X connect 38 0 13 0;

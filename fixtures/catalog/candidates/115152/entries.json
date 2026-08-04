@@ -1,0 +1,30 @@
+[
+ {
+  "name": "eq4/deploy.sh",
+  "size": 354,
+  "compress_size": 206,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "eq4/manifest.txt",
+  "size": 170,
+  "compress_size": 124,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "eq4/module.json",
+  "size": 661,
+  "compress_size": 285,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "eq4/module.pd",
+  "size": 11933,
+  "compress_size": 2841,
+  "external_attr": 2179792896,
+  "is_dir": false
+ }
+]

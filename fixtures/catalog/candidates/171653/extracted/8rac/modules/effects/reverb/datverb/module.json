@@ -1,0 +1,16 @@
+{
+    "display" : "Datverb",
+    "parameters" :  [ 
+	["pct","wet","Dry/Wet",0,100,50],
+        ["pct","diff","Diffusion",0,100,80],
+	["pct","decay","Decay",0,100,70],
+	["pct","damp","Damping",0,100,65],
+	["pct","bandwidth","Filter",0,100,80],
+	["float","predelay","Predelay",0,300,0]
+    ],
+    "pages" : [ 
+        ["pg_main","Pg 1",["wet","diff","decay","damp"]],
+	["pg_xtra","Pg 2",["bandwidth","predelay"]]
+    ]
+}
+

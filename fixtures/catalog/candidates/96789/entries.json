@@ -1,0 +1,3012 @@
+[
+ {
+  "name": "orac/externals/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/externals/libmec-eigenharp.so",
+  "size": 380640,
+  "compress_size": 155822,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/externals/KontrolModule.pd_linux",
+  "size": 13176,
+  "compress_size": 5794,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/externals/libmec-kontrol-api.so",
+  "size": 687280,
+  "compress_size": 228936,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/externals/libmec-api.so",
+  "size": 453804,
+  "compress_size": 156382,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/externals/libmec-utils.so",
+  "size": 27596,
+  "compress_size": 10901,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/externals/libportaudio.so",
+  "size": 10580,
+  "compress_size": 4431,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/externals/libmec-push2.so",
+  "size": 31248,
+  "compress_size": 7857,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/externals/librtmidi.so",
+  "size": 65632,
+  "compress_size": 26873,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/externals/libmec-soundplane.so",
+  "size": 469988,
+  "compress_size": 210462,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/externals/libpicodecoder.so",
+  "size": 18680,
+  "compress_size": 9486,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/externals/liboscpack.so",
+  "size": 74832,
+  "compress_size": 30728,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/externals/libcjson.so",
+  "size": 20356,
+  "compress_size": 9384,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/externals/KontrolRack.pd_linux",
+  "size": 269300,
+  "compress_size": 90640,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/main.pd",
+  "size": 7739,
+  "compress_size": 1420,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/manifest.txt",
+  "size": 28721,
+  "compress_size": 10538,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/U-euclid/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/U-euclid/eseq.pd",
+  "size": 1119,
+  "compress_size": 380,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-euclid/module.pd",
+  "size": 2104,
+  "compress_size": 670,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-euclid/euclid.pd",
+  "size": 1282,
+  "compress_size": 613,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-euclid/module.json",
+  "size": 1719,
+  "compress_size": 401,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-edrum/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/S-edrum/efficient-fmhh.pd",
+  "size": 3999,
+  "compress_size": 1164,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-edrum/module.pd",
+  "size": 2401,
+  "compress_size": 716,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-edrum/efficient-kick.pd",
+  "size": 1302,
+  "compress_size": 411,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-edrum/efficient-snare.pd",
+  "size": 1364,
+  "compress_size": 446,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-edrum/module.json",
+  "size": 108,
+  "compress_size": 69,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/R-2x4+2/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/R-2x4+2/module.pd",
+  "size": 1777,
+  "compress_size": 658,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/R-2x4+2/module.json",
+  "size": 2242,
+  "compress_size": 446,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-punchy/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/U-punchy/latch-notes.pd",
+  "size": 863,
+  "compress_size": 318,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-punchy/counter-up.pd",
+  "size": 1075,
+  "compress_size": 410,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-punchy/module.pd",
+  "size": 13908,
+  "compress_size": 3767,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-punchy/punchy-seq.txt",
+  "size": 99,
+  "compress_size": 54,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-punchy/module.json",
+  "size": 336,
+  "compress_size": 179,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-punchy/punchy-seqvel.txt",
+  "size": 222,
+  "compress_size": 101,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-sampler/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/S-sampler/Sounds/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/S-sampler/Sounds/BasicSampler-sound/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/S-sampler/Sounds/BasicSampler-sound/wave-bsamp.wav",
+  "size": 1086472,
+  "compress_size": 940818,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-sampler/module.pd",
+  "size": 2564,
+  "compress_size": 905,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-sampler/module.json",
+  "size": 381,
+  "compress_size": 183,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-sampler/bsamp-voice.pd",
+  "size": 3537,
+  "compress_size": 1111,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-arper/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/U-arper/counter-down.pd",
+  "size": 1291,
+  "compress_size": 463,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-arper/latch-notes.pd",
+  "size": 863,
+  "compress_size": 318,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-arper/counter-up.pd",
+  "size": 1075,
+  "compress_size": 410,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-arper/module.pd",
+  "size": 25699,
+  "compress_size": 5527,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-arper/module.json",
+  "size": 269,
+  "compress_size": 148,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rngs/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/S-rngs/rngs~.pd_linux",
+  "size": 88752,
+  "compress_size": 55123,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rngs/module.pd",
+  "size": 3004,
+  "compress_size": 914,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rngs/module.json",
+  "size": 1105,
+  "compress_size": 378,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-czz/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/S-czz/s_blsquare.pd",
+  "size": 1747,
+  "compress_size": 610,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-czz/u_splicetrans.pd",
+  "size": 4564,
+  "compress_size": 1623,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-czz/u_loader-help.pd",
+  "size": 5106,
+  "compress_size": 1953,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-czz/u_splicetrans-help.pd",
+  "size": 4803,
+  "compress_size": 1563,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-czz/g_synthcontrol.pd",
+  "size": 4425,
+  "compress_size": 646,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-czz/g_synsl-help.pd",
+  "size": 1467,
+  "compress_size": 582,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-czz/u_loader.pd",
+  "size": 1201,
+  "compress_size": 545,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-czz/s_blsquare-help.pd",
+  "size": 1572,
+  "compress_size": 626,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-czz/c_adsr-help.pd",
+  "size": 2336,
+  "compress_size": 885,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-czz/m_scale.pd",
+  "size": 4680,
+  "compress_size": 1629,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-czz/module.pd",
+  "size": 12277,
+  "compress_size": 2966,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-czz/c_adsr.pd",
+  "size": 3192,
+  "compress_size": 1329,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-czz/g_synsl.pd",
+  "size": 2062,
+  "compress_size": 946,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-czz/s_czz.pd",
+  "size": 10743,
+  "compress_size": 2803,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-czz/s_czz-help.pd",
+  "size": 13698,
+  "compress_size": 3631,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-czz/u_dispatch.pd",
+  "size": 910,
+  "compress_size": 449,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-czz/module.json",
+  "size": 430,
+  "compress_size": 196,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-czz/g_synthcontrol-help.pd",
+  "size": 4283,
+  "compress_size": 1485,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-czz/m_scale-help.pd",
+  "size": 3240,
+  "compress_size": 1019,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-czz/u_cocollect-help.pd",
+  "size": 806,
+  "compress_size": 323,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-czz/u_cocollect.pd",
+  "size": 1234,
+  "compress_size": 647,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-czz/u_dispatch-help.pd",
+  "size": 2164,
+  "compress_size": 784,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-panner/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/F-panner/AudioPan.pd",
+  "size": 1009,
+  "compress_size": 413,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-panner/module.pd",
+  "size": 1600,
+  "compress_size": 535,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-panner/c_xfade.pd",
+  "size": 1432,
+  "compress_size": 740,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-panner/module.json",
+  "size": 303,
+  "compress_size": 158,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-default/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/U-default/module.pd",
+  "size": 922,
+  "compress_size": 363,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-default/module.json",
+  "size": 111,
+  "compress_size": 69,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-bitcrusher/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/F-bitcrusher/module.pd",
+  "size": 1422,
+  "compress_size": 513,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-bitcrusher/c_xfade.pd",
+  "size": 1432,
+  "compress_size": 740,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-bitcrusher/module.json",
+  "size": 254,
+  "compress_size": 144,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-bitcrusher/e_bitcrusher.pd",
+  "size": 2013,
+  "compress_size": 882,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-bitcrusher/e_bitcrusher-help.pd",
+  "size": 1834,
+  "compress_size": 803,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-r_reverb/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/F-r_reverb/rngs_reverb~.pd_linux",
+  "size": 10360,
+  "compress_size": 5061,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-r_reverb/module.pd",
+  "size": 1323,
+  "compress_size": 461,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-r_reverb/module.json",
+  "size": 362,
+  "compress_size": 169,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-genny/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/U-genny/latch-notes.pd",
+  "size": 863,
+  "compress_size": 318,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-genny/module.pd",
+  "size": 14323,
+  "compress_size": 3988,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-genny/module.json",
+  "size": 332,
+  "compress_size": 160,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rhodey/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/S-rhodey/u_loader-help.pd",
+  "size": 5106,
+  "compress_size": 1953,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rhodey/u_loader.pd",
+  "size": 1201,
+  "compress_size": 545,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rhodey/c_adsr-help.pd",
+  "size": 2336,
+  "compress_size": 885,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rhodey/module.pd",
+  "size": 2001,
+  "compress_size": 671,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rhodey/rhodey-voice.pd",
+  "size": 1894,
+  "compress_size": 767,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rhodey/c_xfade.pd",
+  "size": 1468,
+  "compress_size": 748,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rhodey/c_adsr.pd",
+  "size": 3192,
+  "compress_size": 1329,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rhodey/s_rhodey.pd",
+  "size": 6272,
+  "compress_size": 1798,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rhodey/u_dispatch.pd",
+  "size": 910,
+  "compress_size": 449,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rhodey/module.json",
+  "size": 361,
+  "compress_size": 185,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rhodey/s_rhodey-help.pd",
+  "size": 3328,
+  "compress_size": 1145,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rhodey/u_cocollect-help.pd",
+  "size": 806,
+  "compress_size": 323,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rhodey/u_cocollect.pd",
+  "size": 1234,
+  "compress_size": 647,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rhodey/u_dispatch-help.pd",
+  "size": 2164,
+  "compress_size": 784,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-delay/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/F-delay/delay3sec.pd",
+  "size": 690,
+  "compress_size": 268,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-delay/module.pd",
+  "size": 1343,
+  "compress_size": 497,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-delay/c_xfade.pd",
+  "size": 1432,
+  "compress_size": 740,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-delay/module.json",
+  "size": 361,
+  "compress_size": 185,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-flanger/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/F-flanger/module.pd",
+  "size": 2619,
+  "compress_size": 960,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-flanger/module.json",
+  "size": 384,
+  "compress_size": 177,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-basicmono/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/S-basicmono/s_blsquare.pd",
+  "size": 1747,
+  "compress_size": 610,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-basicmono/u_splicetrans.pd",
+  "size": 4564,
+  "compress_size": 1623,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-basicmono/u_splicetrans-help.pd",
+  "size": 4803,
+  "compress_size": 1563,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-basicmono/s_blsquare-help.pd",
+  "size": 1572,
+  "compress_size": 626,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-basicmono/s_blsaw-help.pd",
+  "size": 999,
+  "compress_size": 442,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-basicmono/module.pd",
+  "size": 1177,
+  "compress_size": 438,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-basicmono/s_blsaw.pd",
+  "size": 640,
+  "compress_size": 370,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-basicmono/module.json",
+  "size": 473,
+  "compress_size": 240,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-basicmono/bp-voice.pd",
+  "size": 4968,
+  "compress_size": 1441,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-basicmono/smoothswitch.pd",
+  "size": 317,
+  "compress_size": 152,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-chordroll/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/U-chordroll/module.pd",
+  "size": 5682,
+  "compress_size": 1663,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-chordroll/chord-list.txt",
+  "size": 115,
+  "compress_size": 80,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-chordroll/module.json",
+  "size": 345,
+  "compress_size": 173,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/R-4x2+2/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/R-4x2+2/module.pd",
+  "size": 2129,
+  "compress_size": 726,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/R-4x2+2/module.json",
+  "size": 2770,
+  "compress_size": 483,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/R-3x3+1/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/R-3x3+1/module.pd",
+  "size": 1952,
+  "compress_size": 683,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/R-3x3+1/module.json",
+  "size": 2501,
+  "compress_size": 465,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-tuneddelaymono/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/S-tuneddelaymono/td-stretchy.pd",
+  "size": 1941,
+  "compress_size": 630,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-tuneddelaymono/d.wav",
+  "size": 25610,
+  "compress_size": 23200,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-tuneddelaymono/module.pd",
+  "size": 3747,
+  "compress_size": 1178,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-tuneddelaymono/c.wav",
+  "size": 98518,
+  "compress_size": 49414,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-tuneddelaymono/a.wav",
+  "size": 18838,
+  "compress_size": 17317,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-tuneddelaymono/b.wav",
+  "size": 22096,
+  "compress_size": 19215,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-tuneddelaymono/module.json",
+  "size": 420,
+  "compress_size": 203,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-tuneddelaymono/delay_onesec.pd",
+  "size": 422,
+  "compress_size": 172,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-dclip/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/F-dclip/module.pd",
+  "size": 1971,
+  "compress_size": 682,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-dclip/c_xfade.pd",
+  "size": 1432,
+  "compress_size": 740,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-dclip/module.json",
+  "size": 390,
+  "compress_size": 190,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-wavescanner/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/S-wavescanner/Sounds/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/S-wavescanner/Sounds/WaveScanner-sound/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/S-wavescanner/Sounds/WaveScanner-sound/wave-wavs.wav",
+  "size": 180962,
+  "compress_size": 145531,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-wavescanner/module.pd",
+  "size": 4362,
+  "compress_size": 1472,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-wavescanner/wavs-voice.pd",
+  "size": 2990,
+  "compress_size": 914,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-wavescanner/module.json",
+  "size": 402,
+  "compress_size": 197,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-phaser/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/F-phaser/module.pd",
+  "size": 2315,
+  "compress_size": 799,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-phaser/module.json",
+  "size": 321,
+  "compress_size": 155,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-phaser/e_phaser.pd",
+  "size": 2012,
+  "compress_size": 711,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-analogstyle/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/S-analogstyle/as-simple.pd",
+  "size": 1357,
+  "compress_size": 472,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-analogstyle/module.pd",
+  "size": 2688,
+  "compress_size": 845,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-analogstyle/moog~.pd_linux",
+  "size": 18416,
+  "compress_size": 8983,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-analogstyle/module.json",
+  "size": 391,
+  "compress_size": 195,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-analogstyle/blsaw.pd",
+  "size": 3137,
+  "compress_size": 1168,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-dtanh/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/F-dtanh/tanh~.pd_linux",
+  "size": 13076,
+  "compress_size": 6535,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-dtanh/module.pd",
+  "size": 1438,
+  "compress_size": 524,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-dtanh/c_xfade.pd",
+  "size": 1432,
+  "compress_size": 740,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-dtanh/module.json",
+  "size": 259,
+  "compress_size": 146,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-dtanh/tanh~-help.pd",
+  "size": 1805,
+  "compress_size": 834,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-freezer/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/F-freezer/grainvoice.pd",
+  "size": 920,
+  "compress_size": 323,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-freezer/latch-notes.pd",
+  "size": 1185,
+  "compress_size": 394,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-freezer/LICENSE.txt",
+  "size": 1812,
+  "compress_size": 917,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-freezer/module.pd",
+  "size": 11274,
+  "compress_size": 3544,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-freezer/grain.pd",
+  "size": 2385,
+  "compress_size": 774,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-freezer/module.json",
+  "size": 390,
+  "compress_size": 187,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-r_chorus/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/F-r_chorus/module.pd",
+  "size": 984,
+  "compress_size": 371,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-r_chorus/module.json",
+  "size": 256,
+  "compress_size": 140,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-r_chorus/rngs_chorus~.pd_linux",
+  "size": 34552,
+  "compress_size": 20143,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rampsynth/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/S-rampsynth/rs-voice.pd",
+  "size": 5006,
+  "compress_size": 1410,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rampsynth/s_blsquare.pd",
+  "size": 1747,
+  "compress_size": 610,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rampsynth/u_splicetrans.pd",
+  "size": 4564,
+  "compress_size": 1623,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rampsynth/u_splicetrans-help.pd",
+  "size": 4803,
+  "compress_size": 1563,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rampsynth/s_blsquare-help.pd",
+  "size": 1572,
+  "compress_size": 626,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rampsynth/s_blsaw-help.pd",
+  "size": 999,
+  "compress_size": 442,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rampsynth/module.pd",
+  "size": 1564,
+  "compress_size": 533,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rampsynth/s_blsaw.pd",
+  "size": 642,
+  "compress_size": 370,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rampsynth/c_ead.pd",
+  "size": 1849,
+  "compress_size": 694,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rampsynth/c_ead-help.pd",
+  "size": 3490,
+  "compress_size": 1119,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rampsynth/module.json",
+  "size": 562,
+  "compress_size": 252,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-rampsynth/smoothswitch.pd",
+  "size": 317,
+  "compress_size": 152,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-noterepeat/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/U-noterepeat/module.pd",
+  "size": 6920,
+  "compress_size": 1811,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-noterepeat/nr-voice.pd",
+  "size": 2673,
+  "compress_size": 822,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-noterepeat/module.json",
+  "size": 327,
+  "compress_size": 179,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-r_ensemble/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/F-r_ensemble/rngs_ensemble~.pd_linux",
+  "size": 34696,
+  "compress_size": 20235,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-r_ensemble/module.pd",
+  "size": 990,
+  "compress_size": 372,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-r_ensemble/module.json",
+  "size": 260,
+  "compress_size": 142,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-basicpoly/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/S-basicpoly/s_blsquare.pd",
+  "size": 1747,
+  "compress_size": 610,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-basicpoly/u_splicetrans.pd",
+  "size": 4564,
+  "compress_size": 1623,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-basicpoly/u_splicetrans-help.pd",
+  "size": 4803,
+  "compress_size": 1563,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-basicpoly/s_blsquare-help.pd",
+  "size": 1572,
+  "compress_size": 626,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-basicpoly/s_blsaw-help.pd",
+  "size": 999,
+  "compress_size": 442,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-basicpoly/module.pd",
+  "size": 1968,
+  "compress_size": 645,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-basicpoly/s_blsaw.pd",
+  "size": 640,
+  "compress_size": 370,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-basicpoly/module.json",
+  "size": 473,
+  "compress_size": 241,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-basicpoly/bp-voice.pd",
+  "size": 4968,
+  "compress_size": 1443,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-basicpoly/smoothswitch.pd",
+  "size": 317,
+  "compress_size": 152,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-mooglfo/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/F-mooglfo/module.pd",
+  "size": 1807,
+  "compress_size": 617,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-mooglfo/module.json",
+  "size": 377,
+  "compress_size": 184,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/U-overloop/recorder.pd",
+  "size": 1163,
+  "compress_size": 412,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/folder_list.pd_linux",
+  "size": 5272,
+  "compress_size": 2533,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/9.wav",
+  "size": 39212,
+  "compress_size": 38649,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/3.wav",
+  "size": 27820,
+  "compress_size": 26500,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/37.wav",
+  "size": 38444,
+  "compress_size": 29844,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/1.wav",
+  "size": 47532,
+  "compress_size": 46304,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/5.wav",
+  "size": 31404,
+  "compress_size": 30854,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/25.wav",
+  "size": 258988,
+  "compress_size": 151007,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/42.wav",
+  "size": 31916,
+  "compress_size": 97,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/8.wav",
+  "size": 27692,
+  "compress_size": 27341,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/19.wav",
+  "size": 46764,
+  "compress_size": 45528,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/38.wav",
+  "size": 182700,
+  "compress_size": 171775,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/40.wav",
+  "size": 31276,
+  "compress_size": 96,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/10.wav",
+  "size": 74540,
+  "compress_size": 73970,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/14.wav",
+  "size": 54060,
+  "compress_size": 53487,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/27.wav",
+  "size": 195244,
+  "compress_size": 165950,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/36.wav",
+  "size": 31148,
+  "compress_size": 29497,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/32.wav",
+  "size": 500780,
+  "compress_size": 398745,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/23.wav",
+  "size": 42668,
+  "compress_size": 42198,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/17.wav",
+  "size": 42668,
+  "compress_size": 41934,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/16.wav",
+  "size": 42412,
+  "compress_size": 41953,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/31.wav",
+  "size": 325548,
+  "compress_size": 203125,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/34.wav",
+  "size": 100140,
+  "compress_size": 98069,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/4.wav",
+  "size": 29740,
+  "compress_size": 29508,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/39.wav",
+  "size": 70956,
+  "compress_size": 63441,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/13.wav",
+  "size": 45484,
+  "compress_size": 44520,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/15.wav",
+  "size": 43948,
+  "compress_size": 43209,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/35.wav",
+  "size": 36524,
+  "compress_size": 36265,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/45.wav",
+  "size": 103084,
+  "compress_size": 168,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/43.wav",
+  "size": 30892,
+  "compress_size": 96,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/22.wav",
+  "size": 41516,
+  "compress_size": 40726,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/11.wav",
+  "size": 70060,
+  "compress_size": 69337,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/30.wav",
+  "size": 79788,
+  "compress_size": 61699,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/24.wav",
+  "size": 62636,
+  "compress_size": 61881,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/44.wav",
+  "size": 33836,
+  "compress_size": 98,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/41.wav",
+  "size": 29484,
+  "compress_size": 94,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/20.wav",
+  "size": 44588,
+  "compress_size": 42101,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/12.wav",
+  "size": 47916,
+  "compress_size": 47320,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/28.wav",
+  "size": 166060,
+  "compress_size": 144618,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/7.wav",
+  "size": 28716,
+  "compress_size": 27509,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/18.wav",
+  "size": 47788,
+  "compress_size": 47174,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/26.wav",
+  "size": 579628,
+  "compress_size": 524231,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/29.wav",
+  "size": 222252,
+  "compress_size": 197586,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/33.wav",
+  "size": 380972,
+  "compress_size": 373728,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/6.wav",
+  "size": 32300,
+  "compress_size": 32022,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/2.wav",
+  "size": 28204,
+  "compress_size": 27737,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/Sounds/21.wav",
+  "size": 43052,
+  "compress_size": 41233,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/LICENSE.txt",
+  "size": 34633,
+  "compress_size": 11981,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/delay5sec.pd",
+  "size": 652,
+  "compress_size": 242,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/module.pd",
+  "size": 6092,
+  "compress_size": 1736,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/main.pd",
+  "size": 5981,
+  "compress_size": 1722,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/toggle-keys.pd",
+  "size": 709,
+  "compress_size": 275,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/module.json",
+  "size": 399,
+  "compress_size": 184,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/player.pd",
+  "size": 1653,
+  "compress_size": 579,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-overloop/folder_list-help.pd",
+  "size": 2208,
+  "compress_size": 1022,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-analogmono/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/S-analogmono/as-simple.pd",
+  "size": 1357,
+  "compress_size": 472,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-analogmono/module.pd",
+  "size": 2229,
+  "compress_size": 743,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-analogmono/moog~.pd_linux",
+  "size": 18416,
+  "compress_size": 8983,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-analogmono/module.json",
+  "size": 395,
+  "compress_size": 196,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-analogmono/blsaw.pd",
+  "size": 3137,
+  "compress_size": 1168,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-specdelay/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/F-specdelay/module.pd",
+  "size": 3478,
+  "compress_size": 1149,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-specdelay/module.json",
+  "size": 406,
+  "compress_size": 180,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-specdelay/Guitar_specdelay~.pd",
+  "size": 9894,
+  "compress_size": 2769,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-brds/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/S-brds/adsr.pd",
+  "size": 2799,
+  "compress_size": 1113,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-brds/module.pd",
+  "size": 1410,
+  "compress_size": 469,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-brds/bob_tilde/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/S-brds/bob_tilde/bob~-help.pd",
+  "size": 4878,
+  "compress_size": 1855,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-brds/bob_tilde/README.txt",
+  "size": 1094,
+  "compress_size": 625,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-brds/bob_tilde/Makefile",
+  "size": 17005,
+  "compress_size": 4338,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-brds/bob_tilde/output~.pd",
+  "size": 1746,
+  "compress_size": 717,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-brds/bob_tilde/GNUmakefile.am",
+  "size": 688,
+  "compress_size": 430,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-brds/bob_tilde/bob~.c",
+  "size": 7953,
+  "compress_size": 2176,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-brds/module.json",
+  "size": 1116,
+  "compress_size": 364,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-brds/brds~.pd_darwin",
+  "size": 1664928,
+  "compress_size": 1190028,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-brds/brds~.pd_linux",
+  "size": 140020,
+  "compress_size": 100112,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-brds/voice.pd",
+  "size": 2317,
+  "compress_size": 715,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-polybeats/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/U-polybeats/counter-up.pd",
+  "size": 1078,
+  "compress_size": 412,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-polybeats/pb-notes.pd",
+  "size": 2473,
+  "compress_size": 801,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-polybeats/module.pd",
+  "size": 7053,
+  "compress_size": 2015,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-polybeats/module.json",
+  "size": 394,
+  "compress_size": 206,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-seq2/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/U-seq2/module.pd",
+  "size": 10511,
+  "compress_size": 2911,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-seq2/module.json",
+  "size": 105,
+  "compress_size": 66,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/R-1x10/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/R-1x10/module.pd",
+  "size": 1461,
+  "compress_size": 556,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/R-1x10/module.json",
+  "size": 1833,
+  "compress_size": 366,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-reverb/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/F-reverb/module.pd",
+  "size": 1876,
+  "compress_size": 596,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-reverb/freeverb~.pd_linux",
+  "size": 53588,
+  "compress_size": 22968,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-reverb/module.json",
+  "size": 304,
+  "compress_size": 157,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-reverb/freeverb~-help.pd",
+  "size": 6862,
+  "compress_size": 2363,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-lmnts/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/S-lmnts/lmnts~.pd_darwin",
+  "size": 1101744,
+  "compress_size": 737932,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-lmnts/module.pd",
+  "size": 4477,
+  "compress_size": 1221,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-lmnts/lmnts~.pd_linux",
+  "size": 431276,
+  "compress_size": 361495,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-lmnts/module.json",
+  "size": 1635,
+  "compress_size": 464,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-brdsmono/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/S-brdsmono/adsr.pd",
+  "size": 2799,
+  "compress_size": 1113,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-brdsmono/module.pd",
+  "size": 1075,
+  "compress_size": 394,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-brdsmono/bob_tilde/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/S-brdsmono/bob_tilde/bob~-help.pd",
+  "size": 4878,
+  "compress_size": 1855,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-brdsmono/bob_tilde/README.txt",
+  "size": 1094,
+  "compress_size": 625,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-brdsmono/bob_tilde/Makefile",
+  "size": 17005,
+  "compress_size": 4338,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-brdsmono/bob_tilde/output~.pd",
+  "size": 1746,
+  "compress_size": 717,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-brdsmono/bob_tilde/GNUmakefile.am",
+  "size": 688,
+  "compress_size": 430,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-brdsmono/bob_tilde/bob~.c",
+  "size": 7953,
+  "compress_size": 2176,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-brdsmono/module.json",
+  "size": 1125,
+  "compress_size": 370,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-brdsmono/brds~.pd_darwin",
+  "size": 1664928,
+  "compress_size": 1190028,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-brdsmono/brds~.pd_linux",
+  "size": 140020,
+  "compress_size": 100112,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-brdsmono/voice.pd",
+  "size": 2317,
+  "compress_size": 715,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-tremelo/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/F-tremelo/e_tremolo-help.pd",
+  "size": 1373,
+  "compress_size": 673,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-tremelo/module.pd",
+  "size": 1048,
+  "compress_size": 408,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-tremelo/c_xfade.pd",
+  "size": 1432,
+  "compress_size": 740,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-tremelo/e_tremolo.pd",
+  "size": 1366,
+  "compress_size": 716,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-tremelo/module.json",
+  "size": 252,
+  "compress_size": 144,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-wrps/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/F-wrps/adsr.pd",
+  "size": 2799,
+  "compress_size": 1113,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-wrps/module.pd",
+  "size": 2559,
+  "compress_size": 791,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-wrps/wrps~.pd_linux",
+  "size": 112928,
+  "compress_size": 73548,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-wrps/module.json",
+  "size": 759,
+  "compress_size": 288,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-clds/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/F-clds/clds~.pd_linux",
+  "size": 148684,
+  "compress_size": 100599,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-clds/module.pd",
+  "size": 4037,
+  "compress_size": 1112,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-clds/module.json",
+  "size": 1177,
+  "compress_size": 364,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-sampler24/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/S-sampler24/s_vphasor.pd",
+  "size": 1738,
+  "compress_size": 730,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-sampler24/window.txt",
+  "size": 45192,
+  "compress_size": 635,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-sampler24/crown-window.pd",
+  "size": 681,
+  "compress_size": 345,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-sampler24/Sounds/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/S-sampler24/Sounds/s24-sounds/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/S-sampler24/Sounds/s24-sounds/9.wav",
+  "size": 361662,
+  "compress_size": 249162,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-sampler24/Sounds/s24-sounds/3.wav",
+  "size": 361662,
+  "compress_size": 195267,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-sampler24/Sounds/s24-sounds/1.wav",
+  "size": 361662,
+  "compress_size": 178824,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-sampler24/Sounds/s24-sounds/5.wav",
+  "size": 361662,
+  "compress_size": 203271,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-sampler24/Sounds/s24-sounds/8.wav",
+  "size": 361662,
+  "compress_size": 214451,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-sampler24/Sounds/s24-sounds/10.wav",
+  "size": 361662,
+  "compress_size": 210907,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-sampler24/Sounds/s24-sounds/4.wav",
+  "size": 352944,
+  "compress_size": 287966,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-sampler24/Sounds/s24-sounds/11.wav",
+  "size": 361662,
+  "compress_size": 194437,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-sampler24/Sounds/s24-sounds/12.wav",
+  "size": 361662,
+  "compress_size": 219515,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-sampler24/Sounds/s24-sounds/7.wav",
+  "size": 361662,
+  "compress_size": 220352,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-sampler24/Sounds/s24-sounds/6.wav",
+  "size": 361644,
+  "compress_size": 222723,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-sampler24/Sounds/s24-sounds/2.wav",
+  "size": 361662,
+  "compress_size": 187700,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-sampler24/s_vphasor-help.pd",
+  "size": 1467,
+  "compress_size": 689,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-sampler24/module.pd",
+  "size": 4236,
+  "compress_size": 1315,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-sampler24/load-24.pd",
+  "size": 833,
+  "compress_size": 391,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-sampler24/s24-voice.pd",
+  "size": 4915,
+  "compress_size": 1629,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-sampler24/module.json",
+  "size": 392,
+  "compress_size": 183,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-rhythmicon/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/U-rhythmicon/phasebang.pd",
+  "size": 265,
+  "compress_size": 156,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-rhythmicon/LICENSE.txt",
+  "size": 1812,
+  "compress_size": 917,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-rhythmicon/module.pd",
+  "size": 6022,
+  "compress_size": 1763,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-rhythmicon/module.json",
+  "size": 322,
+  "compress_size": 187,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-rhythmicon/rhythmicon-voice.pd",
+  "size": 1107,
+  "compress_size": 409,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-rhythmicon/latch-notes2.pd",
+  "size": 1340,
+  "compress_size": 452,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-grds/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/U-grds/module.pd",
+  "size": 4441,
+  "compress_size": 1186,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-grds/module.json",
+  "size": 796,
+  "compress_size": 295,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-grds/grids.pd_linux",
+  "size": 25352,
+  "compress_size": 8443,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-chorus/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/F-chorus/engine-chorus.pd",
+  "size": 2164,
+  "compress_size": 618,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-chorus/module.pd",
+  "size": 3509,
+  "compress_size": 848,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-chorus/e_chorus.pd",
+  "size": 1263,
+  "compress_size": 659,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-chorus/module.json",
+  "size": 302,
+  "compress_size": 156,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-tuneddelay/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/S-tuneddelay/td-stretchy.pd",
+  "size": 1941,
+  "compress_size": 630,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-tuneddelay/d.wav",
+  "size": 25610,
+  "compress_size": 23200,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-tuneddelay/module.pd",
+  "size": 4277,
+  "compress_size": 1303,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-tuneddelay/c.wav",
+  "size": 98518,
+  "compress_size": 49414,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-tuneddelay/a.wav",
+  "size": 18838,
+  "compress_size": 17317,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-tuneddelay/b.wav",
+  "size": 22096,
+  "compress_size": 19215,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-tuneddelay/module.json",
+  "size": 414,
+  "compress_size": 200,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/S-tuneddelay/delay_onesec.pd",
+  "size": 422,
+  "compress_size": 172,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-pitchshift/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/F-pitchshift/e_pitchshift.pd",
+  "size": 704,
+  "compress_size": 402,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-pitchshift/module.pd",
+  "size": 1063,
+  "compress_size": 405,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-pitchshift/e_forcepitch-help.pd",
+  "size": 1499,
+  "compress_size": 616,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-pitchshift/e_sdelay.pd",
+  "size": 921,
+  "compress_size": 439,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-pitchshift/c_xfade.pd",
+  "size": 1432,
+  "compress_size": 740,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-pitchshift/module.json",
+  "size": 251,
+  "compress_size": 151,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-pitchshift/guts-pshifter.pd",
+  "size": 2389,
+  "compress_size": 762,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-pitchshift/e_pitchshift-help.pd",
+  "size": 1263,
+  "compress_size": 606,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-pitchshift/e_sdelay-help.pd",
+  "size": 1527,
+  "compress_size": 692,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/F-pitchshift/e_forcepitch.pd",
+  "size": 1227,
+  "compress_size": 488,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-clock/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/modules/U-clock/libabl_link~.so",
+  "size": 536588,
+  "compress_size": 148132,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-clock/module.pd",
+  "size": 9875,
+  "compress_size": 2888,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-clock/module.json",
+  "size": 240,
+  "compress_size": 145,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/modules/U-clock/abl_link~.pd_linux",
+  "size": 36452,
+  "compress_size": 12435,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "orac/orac-rack.json",
+  "size": 1453,
+  "compress_size": 266,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/subpatches/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "orac/subpatches/chainout.pd",
+  "size": 882,
+  "compress_size": 312,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/subpatches/connectmod.pd",
+  "size": 572,
+  "compress_size": 226,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/subpatches/rack-testing.pd",
+  "size": 2433,
+  "compress_size": 546,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/subpatches/connectin.pd",
+  "size": 688,
+  "compress_size": 259,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/subpatches/actmodhandler.pd",
+  "size": 3749,
+  "compress_size": 1009,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/subpatches/connectout.pd",
+  "size": 736,
+  "compress_size": 276,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "orac/subpatches/auxgate.pd",
+  "size": 736,
+  "compress_size": 274,
+  "external_attr": 2175008768,
+  "is_dir": false
+ }
+]

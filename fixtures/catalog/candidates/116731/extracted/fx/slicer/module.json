@@ -1,0 +1,43 @@
+{
+    "display" : "Slicer",
+    "parameters" :  [ 
+        ["int","interrupt","Interrupt",-1,1,0],
+        ["pct","compensate","Compensate",0,100,0],
+        ["pct","minspeed","Min Speed",0,100,0],
+
+	["int","attackstep", "Attack Step", 0, 127,6],
+	["int","attackthresh", "Attack Thresh", 0, 127,70],
+	["int","silencethresh", "Silence Thresh", 0, 127,55],
+	["time","timeconstant", "timeconstant", 0, 300,150],
+
+        ["pct","mix-1","Mix 1",0,200,100],
+        ["pct","mix-2","Mix 2",0,200,100],
+        ["pct","mix-3","Mix 3",0,200,100],
+        ["pct","mix-4","Mix 4",0,200,100],
+
+        ["pct","rate-1","Play Rate",-200,200,100],
+        ["int","div-1","Trig Div",0,24,6],
+        ["int","slice-1","Slice",0,8,0],
+
+        ["pct","rate-2","Play Rate",-200,200,100],
+        ["int","div-2","Trig Div",0,24,0],
+        ["int","slice-2","Slice",0,8,0],
+
+        ["pct","rate-3","Play Rate",-200,200,100],
+        ["int","div-3","Trig Div",0,24,0],
+        ["int","slice-3","Slice",0,8,0],
+
+        ["pct","rate-4","Play Rate",-200,200,100],
+        ["int","div-4","Trig Div",0,24,0],
+        ["int","slice-4","Slice",0,8,0]
+     ],
+    "pages" : [ 
+        ["pg_mix","Mix",["mix-1","mix-2","mix-3", "mix-4"]],
+        ["pg_p1", "Player 1", ["div-1","rate-1","slice-1"]],
+        ["pg_p2", "Player 2", ["div-2","rate-2","slice-2"]],
+        ["pg_p3", "Player 3", ["div-3","rate-3","slice-3"]],
+        ["pg_p4", "Player 4", ["div-4","rate-4","slice-4"]],
+        ["pg_play","Player",["interrupt","compensate","minspeed"]]
+    ]
+}
+

@@ -1,0 +1,527 @@
+[
+ {
+  "name": "gendyflext/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107099664,
+  "is_dir": true
+ },
+ {
+  "name": "gendyflext/modulo_counter.pd_linux",
+  "size": 4836,
+  "compress_size": 2377,
+  "external_attr": 2180841472,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/main.pd",
+  "size": 4001,
+  "compress_size": 1155,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/.gitignore",
+  "size": 21,
+  "compress_size": 21,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/README",
+  "size": 689,
+  "compress_size": 409,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/gendy-ex1.pd",
+  "size": 246,
+  "compress_size": 129,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/gendy-gui.pd",
+  "size": 5222,
+  "compress_size": 1488,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/gendy~-help.pd",
+  "size": 4724,
+  "compress_size": 1451,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/package.txt",
+  "size": 272,
+  "compress_size": 157,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/d-scale.pd",
+  "size": 1093,
+  "compress_size": 441,
+  "external_attr": 2180841472,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/gendy~.pd_linux",
+  "size": 126224,
+  "compress_size": 51951,
+  "external_attr": 2180841472,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/gendyflext-rack.json",
+  "size": 2,
+  "compress_size": 2,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/gendyflext-module.json",
+  "size": 362,
+  "compress_size": 172,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/pd-linux/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107099664,
+  "is_dir": true
+ },
+ {
+  "name": "gendyflext/.git/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107099664,
+  "is_dir": true
+ },
+ {
+  "name": "gendyflext/.git/description",
+  "size": 73,
+  "compress_size": 63,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/.git/config",
+  "size": 264,
+  "compress_size": 175,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/.git/index",
+  "size": 1623,
+  "compress_size": 850,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/.git/packed-refs",
+  "size": 107,
+  "compress_size": 98,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/.git/HEAD",
+  "size": 23,
+  "compress_size": 23,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/src/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107099664,
+  "is_dir": true
+ },
+ {
+  "name": "gendyflext/src/breakpoint.cpp",
+  "size": 4610,
+  "compress_size": 1452,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/src/breakpoint.h",
+  "size": 1974,
+  "compress_size": 766,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/src/gendy_waveform.cpp",
+  "size": 17373,
+  "compress_size": 4555,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/src/gendy_waveform.h",
+  "size": 3288,
+  "compress_size": 1287,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/src/gendy~.cpp",
+  "size": 7424,
+  "compress_size": 2468,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/src/gendy~.h",
+  "size": 3375,
+  "compress_size": 1355,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/src/log.cpp",
+  "size": 1524,
+  "compress_size": 616,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/src/log.h",
+  "size": 1349,
+  "compress_size": 606,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/src/splines.cpp",
+  "size": 1853,
+  "compress_size": 882,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/src/splines.h",
+  "size": 1045,
+  "compress_size": 544,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/src/types.h",
+  "size": 1207,
+  "compress_size": 616,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/src/util.cpp",
+  "size": 1540,
+  "compress_size": 819,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/src/util.h",
+  "size": 1294,
+  "compress_size": 685,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/pd-linux/release-single/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107099664,
+  "is_dir": true
+ },
+ {
+  "name": "gendyflext/pd-linux/release-single/breakpoint.opp",
+  "size": 5576,
+  "compress_size": 1727,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/pd-linux/release-single/gendy~.opp",
+  "size": 32064,
+  "compress_size": 7022,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/pd-linux/release-single/gendy_waveform.opp",
+  "size": 14824,
+  "compress_size": 5454,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/pd-linux/release-single/log.opp",
+  "size": 2096,
+  "compress_size": 591,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/pd-linux/release-single/splines.opp",
+  "size": 2136,
+  "compress_size": 810,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/pd-linux/release-single/util.opp",
+  "size": 2392,
+  "compress_size": 800,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/pd-linux/release-single/gendy~.pd_linux",
+  "size": 160400,
+  "compress_size": 60630,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/.git/refs/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107099664,
+  "is_dir": true
+ },
+ {
+  "name": "gendyflext/.git/branches/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107099664,
+  "is_dir": true
+ },
+ {
+  "name": "gendyflext/.git/info/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107099664,
+  "is_dir": true
+ },
+ {
+  "name": "gendyflext/.git/info/exclude",
+  "size": 240,
+  "compress_size": 173,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/.git/hooks/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107099664,
+  "is_dir": true
+ },
+ {
+  "name": "gendyflext/.git/hooks/post-update.sample",
+  "size": 189,
+  "compress_size": 138,
+  "external_attr": 2180841472,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/.git/hooks/pre-rebase.sample",
+  "size": 4898,
+  "compress_size": 2015,
+  "external_attr": 2180841472,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/.git/hooks/pre-push.sample",
+  "size": 1348,
+  "compress_size": 669,
+  "external_attr": 2180841472,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/.git/hooks/applypatch-msg.sample",
+  "size": 478,
+  "compress_size": 279,
+  "external_attr": 2180841472,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/.git/hooks/pre-applypatch.sample",
+  "size": 424,
+  "compress_size": 265,
+  "external_attr": 2180841472,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/.git/hooks/pre-commit.sample",
+  "size": 1642,
+  "compress_size": 931,
+  "external_attr": 2180841472,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/.git/hooks/update.sample",
+  "size": 3610,
+  "compress_size": 1141,
+  "external_attr": 2180841472,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/.git/hooks/prepare-commit-msg.sample",
+  "size": 1239,
+  "compress_size": 663,
+  "external_attr": 2180841472,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/.git/hooks/commit-msg.sample",
+  "size": 896,
+  "compress_size": 503,
+  "external_attr": 2180841472,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/.git/objects/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107099664,
+  "is_dir": true
+ },
+ {
+  "name": "gendyflext/.git/logs/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107099664,
+  "is_dir": true
+ },
+ {
+  "name": "gendyflext/.git/logs/HEAD",
+  "size": 185,
+  "compress_size": 130,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/.git/refs/heads/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107099664,
+  "is_dir": true
+ },
+ {
+  "name": "gendyflext/.git/refs/heads/master",
+  "size": 41,
+  "compress_size": 41,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/.git/refs/tags/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107099664,
+  "is_dir": true
+ },
+ {
+  "name": "gendyflext/.git/refs/remotes/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107099664,
+  "is_dir": true
+ },
+ {
+  "name": "gendyflext/.git/objects/pack/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107099664,
+  "is_dir": true
+ },
+ {
+  "name": "gendyflext/.git/objects/pack/pack-bc9d1b8438aa0155bc1e12ffe48a118eabccc352.pack",
+  "size": 94570,
+  "compress_size": 91365,
+  "external_attr": 2166620161,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/.git/objects/pack/pack-bc9d1b8438aa0155bc1e12ffe48a118eabccc352.idx",
+  "size": 12244,
+  "compress_size": 11472,
+  "external_attr": 2166620161,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/.git/objects/info/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107099664,
+  "is_dir": true
+ },
+ {
+  "name": "gendyflext/.git/logs/refs/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107099664,
+  "is_dir": true
+ },
+ {
+  "name": "gendyflext/.git/refs/remotes/origin/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107099664,
+  "is_dir": true
+ },
+ {
+  "name": "gendyflext/.git/refs/remotes/origin/HEAD",
+  "size": 32,
+  "compress_size": 32,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/.git/logs/refs/remotes/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107099664,
+  "is_dir": true
+ },
+ {
+  "name": "gendyflext/.git/logs/refs/heads/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107099664,
+  "is_dir": true
+ },
+ {
+  "name": "gendyflext/.git/logs/refs/heads/master",
+  "size": 185,
+  "compress_size": 130,
+  "external_attr": 2176057344,
+  "is_dir": false
+ },
+ {
+  "name": "gendyflext/.git/logs/refs/remotes/origin/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1107099664,
+  "is_dir": true
+ },
+ {
+  "name": "gendyflext/.git/logs/refs/remotes/origin/HEAD",
+  "size": 185,
+  "compress_size": 130,
+  "external_attr": 2176057344,
+  "is_dir": false
+ }
+]

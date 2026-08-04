@@ -1,0 +1,198 @@
+[
+ {
+  "name": "module.pd",
+  "size": 15668,
+  "compress_size": 4465,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/._module.pd",
+  "size": 368,
+  "compress_size": 215,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "GNU_License.rtf",
+  "size": 35450,
+  "compress_size": 11377,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/._GNU_License.rtf",
+  "size": 212,
+  "compress_size": 138,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "VCA.pd",
+  "size": 401,
+  "compress_size": 223,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/._VCA.pd",
+  "size": 268,
+  "compress_size": 176,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "FM_voice.pd",
+  "size": 828,
+  "compress_size": 357,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/._FM_voice.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "presets.pd",
+  "size": 8192,
+  "compress_size": 2426,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/._presets.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "glassfm.pd",
+  "size": 48163,
+  "compress_size": 9725,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/._glassfm.pd",
+  "size": 276,
+  "compress_size": 135,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "LFO_Delay.pd",
+  "size": 1580,
+  "compress_size": 685,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/._LFO_Delay.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "adsr_curve.pd",
+  "size": 2174,
+  "compress_size": 808,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/._adsr_curve.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pitch_utility.pd",
+  "size": 2574,
+  "compress_size": 988,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/._pitch_utility.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "4op_fm_osc.pd",
+  "size": 3742,
+  "compress_size": 1158,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/._4op_fm_osc.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "sub_osc.pd",
+  "size": 1378,
+  "compress_size": 567,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/._sub_osc.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "LFO_tri.pd",
+  "size": 1386,
+  "compress_size": 679,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/._LFO_tri.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "master_vol.pd",
+  "size": 692,
+  "compress_size": 304,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/._master_vol.pd",
+  "size": 212,
+  "compress_size": 135,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "module.json",
+  "size": 1084,
+  "compress_size": 317,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/._module.json",
+  "size": 368,
+  "compress_size": 233,
+  "external_attr": 2175008768,
+  "is_dir": false
+ }
+]

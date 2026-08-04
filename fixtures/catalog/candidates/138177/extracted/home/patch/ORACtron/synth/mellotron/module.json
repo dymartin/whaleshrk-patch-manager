@@ -1,0 +1,13 @@
+{
+	"name" : "mellotron",
+	"display" : "Mellotron",
+	"parameters" : [
+		["int","instrument","Instrument",0,8,0],
+		["pct","octave","Octave",0,100,0],
+		["pct","envelope","Envelope",0,100,0],
+		["pct","chorus","Chorus",0,100,0]
+	],
+	"pages" : [
+		["main","Main",["instrument","octave","envelope","chorus"]]
+	]
+}

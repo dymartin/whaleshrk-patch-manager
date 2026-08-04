@@ -1,0 +1,156 @@
+[
+ {
+  "name": "Aquarius 5/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 16,
+  "is_dir": true
+ },
+ {
+  "name": "Aquarius 5/.DS_Store",
+  "size": 6148,
+  "compress_size": 351,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "Aquarius 5/blsaw.pd",
+  "size": 759,
+  "compress_size": 407,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "Aquarius 5/blsquare.pd",
+  "size": 1727,
+  "compress_size": 588,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "Aquarius 5/bltriangle~.pd",
+  "size": 3069,
+  "compress_size": 1096,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "Aquarius 5/bob~.pd_linux",
+  "size": 8496,
+  "compress_size": 3915,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "Aquarius 5/chorus.pd",
+  "size": 824,
+  "compress_size": 288,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "Aquarius 5/delay~.pd",
+  "size": 1708,
+  "compress_size": 516,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "Aquarius 5/encoder.pd",
+  "size": 13477,
+  "compress_size": 2037,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "Aquarius 5/freeverb~.pd_linux",
+  "size": 53588,
+  "compress_size": 22262,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "Aquarius 5/knobs.txt",
+  "size": 15,
+  "compress_size": 15,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "Aquarius 5/libcjson.so",
+  "size": 22012,
+  "compress_size": 7279,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "Aquarius 5/libnuilite.so",
+  "size": 116364,
+  "compress_size": 30823,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "Aquarius 5/main.pd",
+  "size": 35717,
+  "compress_size": 6980,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "Aquarius 5/mother.pd",
+  "size": 27709,
+  "compress_size": 6059,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "Aquarius 5/m_scale.pd",
+  "size": 5823,
+  "compress_size": 1859,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "Aquarius 5/NuiPd.pd_linux",
+  "size": 90696,
+  "compress_size": 21666,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "Aquarius 5/override2.pd",
+  "size": 2205,
+  "compress_size": 775,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "Aquarius 5/phaser.pd",
+  "size": 1665,
+  "compress_size": 441,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "Aquarius 5/splicetrans.pd",
+  "size": 4431,
+  "compress_size": 1550,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "Aquarius 5/tb_peakcomp~.pd_linux",
+  "size": 18500,
+  "compress_size": 8375,
+  "external_attr": 32,
+  "is_dir": false
+ },
+ {
+  "name": "Aquarius 5/voice.pd",
+  "size": 5352,
+  "compress_size": 1262,
+  "external_attr": 32,
+  "is_dir": false
+ }
+]

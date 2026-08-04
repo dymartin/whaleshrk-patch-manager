@@ -1,0 +1,41 @@
+{
+    "display" : "LFO",
+    "parameters" :  [ 
+        ["int","wave_1","Wave",1,5,1],
+        ["pct","speed_1","Speed",0.1,100,50],
+        ["pct","amount_1","Amount",-100,100,50],
+        ["pct","offset_1","Offset",0,100,1],
+        ["int","m_bus_1","Bus 1",13,16,13],
+
+        ["int","wave_2","Wave",1,5,1],
+        ["pct","speed_2","Speed",0.1,100,50],
+        ["pct","amount_2","Amount",-100,100,50],
+        ["pct","offset_2","Offset",0,100,1],
+        ["int","m_bus_2","Bus 2",13,16,14],
+
+        ["int","wave_3","Wave",1,5,1],
+        ["pct","speed_3","Speed",0.1,100,50],
+        ["pct","amount_3","Amount",-100,100,50],
+        ["pct","offset_3","Offset",0,100,1],
+        ["int","m_bus_3","Bus 3",13,16,15],
+
+        ["int","wave_4","Wave",1,5,1],
+        ["pct","speed_4","Speed",0.1,100,50],
+        ["pct","amount_4","Amount",-100,100,50],
+        ["pct","offset_4","Offset",0,100,1],
+        ["int","m_bus_4","Bus 4",13,16,16],
+
+        ["int","sync_1","LFO-1 Sync",0,4,0],
+        ["int","sync_2","LFO-2 Sync",0,4,0],
+        ["int","sync_3","LFO-3 Sync",0,4,0],
+        ["int","sync_4","LFO-4 Sync",0,4,0]
+    ],
+    "pages" : [ 
+        ["pg_lfo_1","LFO 1",["wave_1","speed_1","amount_1","offset_1"]],
+        ["pg_lfo_2","LFO 2",["wave_2","speed_2","amount_2","offset_2"]],
+        ["pg_lfo_3","LFO 3",["wave_3","speed_3","amount_3","offset_3"]],
+        ["pg_lfo_4","LFO 4",["wave_4","speed_4","amount_4","offset_4"]],
+        ["pg_sync","SYNC",["sync_1","sync_2","sync_3","sync_4"]]
+    ]
+}
+

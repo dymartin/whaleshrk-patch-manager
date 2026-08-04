@@ -1,0 +1,30 @@
+[
+ {
+  "name": "capture/deploy.sh",
+  "size": 411,
+  "compress_size": 210,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "capture/manifest.txt",
+  "size": 182,
+  "compress_size": 125,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "capture/module.json",
+  "size": 261,
+  "compress_size": 151,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "capture/module.pd",
+  "size": 16883,
+  "compress_size": 4171,
+  "external_attr": 2179792896,
+  "is_dir": false
+ }
+]

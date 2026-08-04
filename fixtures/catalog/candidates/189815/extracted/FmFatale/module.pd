@@ -1,0 +1,430 @@
+#N canvas 4 50 1518 847 10;
+#X obj 190 390 r \$0-read;
+#X obj 130 420 r \$0-all;
+#X obj 190 420 faust-control \$0;
+#X obj 190 450 s \$0-write;
+#X obj 130 450 r \$0-in;
+#X obj 130 720 s \$0-out;
+#X obj 130 480 NLFfmnorev~;
+#X obj 130 510 NLFfmnorev~;
+#X obj 130 540 NLFfmnorev~;
+#X obj 130 570 NLFfmnorev~;
+#X obj 130 600 NLFfmnorev~;
+#X obj 130 630 NLFfmnorev~;
+#X obj 130 660 NLFfmnorev~;
+#X obj 130 690 NLFfmnorev~;
+#X obj 10 30 hsl 128 15 0 2 0 0 \$0-NLFfmnorev/Envelopes-and-Vibrato/Envelope-Parameters/Envelope-Attack
+\$0-NLFfmnorev/Envelopes-and-Vibrato/Envelope-Parameters/Envelope-Attack
+Envelope-Attack -2 -6 0 10 -262144 -1 -1 635 1;
+#X obj 160 30 nbx 5 14 0 2 0 0 \$0-NLFfmnorev/Envelopes-and-Vibrato/Envelope-Parameters/Envelope-Attack
+\$0-NLFfmnorev/Envelopes-and-Vibrato/Envelope-Parameters/Envelope-Attack
+empty 0 -6 0 10 -262144 -1 -1 0.1 256;
+#X obj 10 60 hsl 128 15 0 2 0 0 \$0-NLFfmnorev/Envelopes-and-Vibrato/Envelope-Parameters/Envelope-Decay
+\$0-NLFfmnorev/Envelopes-and-Vibrato/Envelope-Parameters/Envelope-Decay
+Envelope-Decay -2 -6 0 10 -262144 -1 -1 635 1;
+#X obj 160 60 nbx 5 14 0 2 0 0 \$0-NLFfmnorev/Envelopes-and-Vibrato/Envelope-Parameters/Envelope-Decay
+\$0-NLFfmnorev/Envelopes-and-Vibrato/Envelope-Parameters/Envelope-Decay
+empty 0 -6 0 10 -262144 -1 -1 0.1 256;
+#X obj 10 90 hsl 128 15 0 2 0 0 \$0-NLFfmnorev/Envelopes-and-Vibrato/Envelope-Parameters/Envelope-Release
+\$0-NLFfmnorev/Envelopes-and-Vibrato/Envelope-Parameters/Envelope-Release
+Envelope-Release -2 -6 0 10 -262144 -1 -1 635 1;
+#X obj 160 90 nbx 5 14 0 2 0 0 \$0-NLFfmnorev/Envelopes-and-Vibrato/Envelope-Parameters/Envelope-Release
+\$0-NLFfmnorev/Envelopes-and-Vibrato/Envelope-Parameters/Envelope-Release
+empty 0 -6 0 10 -262144 -1 -1 0.1 256;
+#X obj 239 29 hsl 128 15 0 2 0 0 \$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Attack
+\$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Attack
+Vibrato-Attack -2 -6 0 10 -262144 -1 -1 635 1;
+#X obj 385 30 nbx 5 14 0 2 0 0 \$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Attack
+\$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Attack
+empty 0 -6 0 10 -262144 -1 -1 0.1 256;
+#X obj 242 58 hsl 128 15 1 15 0 0 \$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Freq
+\$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Freq
+Vibrato-Freq -2 -6 0 10 -262144 -1 -1 3629 1;
+#X obj 385 60 nbx 5 14 1 15 0 0 \$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Freq
+\$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Freq
+empty 0 -6 0 10 -262144 -1 -1 5 256;
+#X obj 241 91 hsl 128 15 0 1 0 0 \$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Gain
+\$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Gain
+Vibrato-Gain -2 -6 0 10 -262144 -1 -1 0 1;
+#X obj 385 90 nbx 5 14 0 1 0 0 \$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Gain
+\$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Gain
+empty 0 -6 0 10 -262144 -1 -1 0 256;
+#X obj 235 120 hsl 128 15 0 2 0 0 \$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Release
+\$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Release
+Vibrato-Release -2 -6 0 10 -262144 -1 -1 635 1;
+#X obj 385 120 nbx 5 14 0 2 0 0 \$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Release
+\$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Release
+empty 0 -6 0 10 -262144 -1 -1 0.1 256;
+#X obj 10 150 hsl 128 15 20 1000 0 0 \$0-NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Modulation*
+\$0-NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Modulation*
+Modulation-Frequency -2 -6 0 10 -262144 -1 -1 0 1;
+#X obj 160 150 nbx 5 14 20 1000 0 0 \$0-NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Modulation*
+\$0-NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Modulation*
+empty 0 -6 0 10 -262144 -1 -1 20 256;
+#X obj 11 184 nbx 5 14 0 4 0 0 \$0-NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Modulation*
+\$0-NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Modulation*
+Modulation-Type 0 -6 0 10 -262144 -1 -1 0 256;
+#X obj 10 210 hsl 128 15 0 1 0 0 \$0-NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Nonlineari*
+\$0-NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Nonlineari*
+Nonlinearity -2 -6 0 10 -262144 -1 -1 0 1;
+#X obj 160 210 nbx 5 14 0 1 0 0 \$0-NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Nonlineari*
+\$0-NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Nonlineari*
+empty 0 -6 0 10 -262144 -1 -1 0 256;
+#X obj 10 240 hsl 128 15 0 2 0 0 \$0-NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Nonlineari*
+\$0-NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Nonlineari*
+Nonlinearity-Attack -2 -6 0 10 -262144 -1 -1 0 1;
+#X obj 160 240 nbx 5 14 0 2 0 0 \$0-NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Nonlineari*
+\$0-NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Nonlineari*
+empty 0 -6 0 10 -262144 -1 -1 0 256;
+#X obj 10 270 hsl 128 15 0 1 0 0 \$0-NLFfmnorev/Spat/pan-angle \$0-NLFfmnorev/Spat/pan-angle
+pan-angle -2 -6 0 10 -262144 -1 -1 6350 1;
+#X obj 160 270 nbx 5 14 0 1 0 0 \$0-NLFfmnorev/Spat/pan-angle \$0-NLFfmnorev/Spat/pan-angle
+empty 0 -6 0 10 -262144 -1 -1 0.5 256;
+#X obj 10 300 hsl 128 15 0 1 0 0 \$0-NLFfmnorev/Spat/spatial-width
+\$0-NLFfmnorev/Spat/spatial-width spatial-width -2 -6 0 10 -262144
+-1 -1 6350 1;
+#X obj 160 300 nbx 5 14 0 1 0 0 \$0-NLFfmnorev/Spat/spatial-width \$0-NLFfmnorev/Spat/spatial-width
+empty 0 -6 0 10 -262144 -1 -1 0.5 256;
+#X obj 422 3 bng 15 250 50 1 \$0-init \$0-ignore empty 0 -6 0 10 -262144
+-1 -1;
+#X obj 442 3 tgl 15 1 \$0-active \$0-active empty 0 -6 0 10 -262144
+-1 -1 1 1;
+#X obj 855 6 r \$0-init;
+#X obj 1234 10 s \$0-all;
+#X obj 1606 10 s \$0-read;
+#X obj 1978 10 r \$0-write;
+#X msg 815 27 1;
+#X obj 855 46 s \$0-active;
+#X obj 1234 30 r \$0-active;
+#X msg 1234 50 active \$1;
+#X obj 1978 30 route active;
+#X obj 1978 50 s \$0-active;
+#X msg 817 66 0.05;
+#X obj 860 76 s \$0-NLFfmnorev/Envelopes-and-Vibrato/Envelope-Parameters/Envelope-Attack
+;
+#X obj 1234 70 r \$0-NLFfmnorev/Envelopes-and-Vibrato/Envelope-Parameters/Envelope-Attack
+;
+#X msg 1234 90 /NLFfmnorev/Envelopes-and-Vibrato/Envelope-Parameters/Envelope-Attack
+\$1;
+#X obj 1978 70 route /NLFfmnorev/Envelopes-and-Vibrato/Envelope-Parameters/Envelope-Attack
+;
+#X obj 1978 90 s \$0-NLFfmnorev/Envelopes-and-Vibrato/Envelope-Parameters/Envelope-Attack
+;
+#X msg 821 112 0.05;
+#X obj 862 118 s \$0-NLFfmnorev/Envelopes-and-Vibrato/Envelope-Parameters/Envelope-Decay
+;
+#X obj 1234 110 r \$0-NLFfmnorev/Envelopes-and-Vibrato/Envelope-Parameters/Envelope-Decay
+;
+#X msg 1234 130 /NLFfmnorev/Envelopes-and-Vibrato/Envelope-Parameters/Envelope-Decay
+\$1;
+#X obj 1978 110 route /NLFfmnorev/Envelopes-and-Vibrato/Envelope-Parameters/Envelope-Decay
+;
+#X obj 1978 130 s \$0-NLFfmnorev/Envelopes-and-Vibrato/Envelope-Parameters/Envelope-Decay
+;
+#X msg 816 150 0.05;
+#X obj 855 161 s \$0-NLFfmnorev/Envelopes-and-Vibrato/Envelope-Parameters/Envelope-Release
+;
+#X obj 1234 150 r \$0-NLFfmnorev/Envelopes-and-Vibrato/Envelope-Parameters/Envelope-Release
+;
+#X msg 1234 170 /NLFfmnorev/Envelopes-and-Vibrato/Envelope-Parameters/Envelope-Release
+\$1;
+#X obj 1978 150 route /NLFfmnorev/Envelopes-and-Vibrato/Envelope-Parameters/Envelope-Release
+;
+#X obj 1978 170 s \$0-NLFfmnorev/Envelopes-and-Vibrato/Envelope-Parameters/Envelope-Release
+;
+#X msg 817 198 0.5;
+#X obj 855 197 s \$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Attack
+;
+#X obj 1234 190 r \$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Attack
+;
+#X msg 1234 210 /NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Attack
+\$1;
+#X obj 1978 190 route /NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Attack
+;
+#X obj 1978 210 s \$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Attack
+;
+#X msg 809 235 5;
+#X obj 855 238 s \$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Freq
+;
+#X obj 1234 230 r \$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Freq
+;
+#X msg 1234 250 /NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Freq
+\$1;
+#X obj 1978 230 route /NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Freq
+;
+#X obj 1978 250 s \$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Freq
+;
+#X msg 815 276 0.1;
+#X obj 855 281 s \$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Gain
+;
+#X obj 1234 270 r \$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Gain
+;
+#X msg 1234 290 /NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Gain
+\$1;
+#X obj 1978 270 route /NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Gain
+;
+#X obj 1978 290 s \$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Gain
+;
+#X msg 813 315 0.01;
+#X obj 855 320 s \$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Release
+;
+#X obj 1234 310 r \$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Release
+;
+#X msg 1234 330 /NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Release
+\$1;
+#X obj 1978 310 route /NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Release
+;
+#X obj 1978 330 s \$0-NLFfmnorev/Envelopes-and-Vibrato/Vibrato-Parameters/Vibrato-Release
+;
+#X msg 811 350 220;
+#X obj 856 359 s \$0-NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Modulation-Frequency
+;
+#X obj 1234 350 r \$0-NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Modulation-Frequency
+;
+#X msg 1234 370 /NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Modulation-Frequency
+\$1;
+#X obj 1978 350 route /NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Modulation-Frequency
+;
+#X obj 1978 370 s \$0-NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Modulation-Frequency
+;
+#X msg 819 389 0;
+#X obj 855 394 s \$0-NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Modulation-Type
+;
+#X obj 1234 390 r \$0-NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Modulation-Type
+;
+#X msg 1234 410 /NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Modulation-Type
+\$1;
+#X obj 1978 390 route /NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Modulation-Type
+;
+#X obj 1978 410 s \$0-NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Modulation-Type
+;
+#X msg 816 425 0;
+#X obj 855 436 s \$0-NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Nonlinearity
+;
+#X obj 1234 430 r \$0-NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Nonlinearity
+;
+#X msg 1234 450 /NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Nonlinearity
+\$1;
+#X obj 1978 430 route /NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Nonlinearity
+;
+#X obj 1978 450 s \$0-NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Nonlinearity
+;
+#X msg 825 469 0.1;
+#X obj 897 504 s \$0-NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Nonlinearity-Attack
+;
+#X obj 1234 470 r \$0-NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Nonlinearity-Attack
+;
+#X msg 1234 490 /NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Nonlinearity-Attack
+\$1;
+#X obj 1978 470 route /NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Nonlinearity-Attack
+;
+#X obj 1978 490 s \$0-NLFfmnorev/Physical-and-Nonlinearity/Nonlinear-Filter-Parameters/Nonlinearity-Attack
+;
+#X obj 866 553 s \$0-NLFfmnorev/Spat/pan-angle;
+#X obj 1234 510 r \$0-NLFfmnorev/Spat/pan-angle;
+#X msg 1234 530 /NLFfmnorev/Spat/pan-angle \$1;
+#X obj 1978 510 route /NLFfmnorev/Spat/pan-angle;
+#X obj 1978 530 s \$0-NLFfmnorev/Spat/pan-angle;
+#X msg 811 566 0.5;
+#X obj 855 592 s \$0-NLFfmnorev/Spat/spatial-width;
+#X obj 1234 550 r \$0-NLFfmnorev/Spat/spatial-width;
+#X msg 1234 570 /NLFfmnorev/Spat/spatial-width \$1;
+#X obj 1978 550 route /NLFfmnorev/Spat/spatial-width;
+#X obj 1978 570 s \$0-NLFfmnorev/Spat/spatial-width;
+#X text 3 315 Generated Fri Apr 15 18:36:26 2022 by faust2pd v2.16.
+See http://faust.grame.fr and http://purelang.bitbucket.org.;
+#X msg 861 531 0.5;
+#X obj 634 433 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X floatatom 637 224 5 0 0 0 - - -;
+#X floatatom 656 247 5 0 0 0 - - -;
+#X floatatom 666 257 5 0 0 0 - - -;
+#X floatatom 676 267 5 0 0 0 - - -;
+#X obj 12 355 r notesIn-\$1;
+#X obj 14 387 unpack f f;
+#X obj 60 416 / 127;
+#X obj 13 444 poly 8 1;
+#X obj -14 491 route 1 2 3 4 5 6 7 8;
+#X obj 13 465 pack f f f;
+#X obj 661 40 r envattack-\$1;
+#X obj 664 60 r envdecay-\$1;
+#X obj 665 81 r envrelease-\$1;
+#X obj 695 221 r vibattack-\$1;
+#X obj 696 240 r vibfreq-\$1;
+#X obj 704 256 r vibgain-\$1;
+#X obj 699 276 r vibrelease-\$1;
+#X obj 634 326 r modfreq-\$1;
+#X obj 697 420 r modtype-\$1;
+#X obj 705 442 r nonlin-\$1;
+#X obj 686 467 r nonlinatt-\$1;
+#X obj 694 512 r spatialise-\$1;
+#X obj 164 891 outlet~ outL-\$1;
+#X obj 395 886 outlet~ outR-\$1;
+#X obj 473 673 r cutoff-\$1;
+#X obj 473 694 s cutoff;
+#X obj 16 517 newfaust-gate;
+#X obj 14 550 newfaust-gate;
+#X obj 14 580 newfaust-gate;
+#X obj 14 610 newfaust-gate;
+#X obj 14 640 newfaust-gate;
+#X obj 14 670 newfaust-gate;
+#X obj 14 700 newfaust-gate;
+#X obj 14 730 newfaust-gate;
+#X obj 192 859 *~ 0.25;
+#X obj 273 854 *~ 0.25;
+#X connect 0 0 2 0;
+#X connect 1 0 6 0;
+#X connect 1 0 7 0;
+#X connect 1 0 8 0;
+#X connect 1 0 9 0;
+#X connect 1 0 10 0;
+#X connect 1 0 11 0;
+#X connect 1 0 12 0;
+#X connect 1 0 13 0;
+#X connect 2 0 3 0;
+#X connect 4 0 6 0;
+#X connect 6 0 5 0;
+#X connect 6 1 165 0;
+#X connect 6 2 166 0;
+#X connect 7 1 165 0;
+#X connect 7 2 166 0;
+#X connect 8 1 165 0;
+#X connect 8 2 166 0;
+#X connect 9 1 165 0;
+#X connect 9 2 166 0;
+#X connect 10 1 165 0;
+#X connect 10 2 166 0;
+#X connect 11 1 165 0;
+#X connect 11 2 166 0;
+#X connect 12 1 165 0;
+#X connect 12 2 166 0;
+#X connect 13 1 165 0;
+#X connect 13 2 166 0;
+#X connect 41 0 51 0;
+#X connect 41 0 57 0;
+#X connect 41 0 63 0;
+#X connect 41 0 69 0;
+#X connect 41 0 75 0;
+#X connect 41 0 81 0;
+#X connect 41 0 87 0;
+#X connect 41 0 93 0;
+#X connect 41 0 99 0;
+#X connect 41 0 105 0;
+#X connect 41 0 111 0;
+#X connect 41 0 129 0;
+#X connect 41 0 122 0;
+#X connect 44 0 49 0;
+#X connect 45 0 46 0;
+#X connect 47 0 48 0;
+#X connect 48 0 42 0;
+#X connect 49 0 50 0;
+#X connect 49 1 55 0;
+#X connect 51 0 52 0;
+#X connect 53 0 54 0;
+#X connect 54 0 42 0;
+#X connect 55 0 56 0;
+#X connect 55 1 61 0;
+#X connect 57 0 58 0;
+#X connect 59 0 60 0;
+#X connect 60 0 42 0;
+#X connect 61 0 62 0;
+#X connect 61 1 67 0;
+#X connect 63 0 64 0;
+#X connect 65 0 66 0;
+#X connect 66 0 42 0;
+#X connect 67 0 68 0;
+#X connect 67 1 73 0;
+#X connect 69 0 70 0;
+#X connect 71 0 72 0;
+#X connect 72 0 42 0;
+#X connect 73 0 74 0;
+#X connect 73 1 79 0;
+#X connect 75 0 76 0;
+#X connect 77 0 78 0;
+#X connect 78 0 42 0;
+#X connect 79 0 80 0;
+#X connect 79 1 85 0;
+#X connect 81 0 82 0;
+#X connect 83 0 84 0;
+#X connect 84 0 42 0;
+#X connect 85 0 86 0;
+#X connect 85 1 91 0;
+#X connect 87 0 88 0;
+#X connect 89 0 90 0;
+#X connect 90 0 42 0;
+#X connect 91 0 92 0;
+#X connect 91 1 97 0;
+#X connect 93 0 94 0;
+#X connect 95 0 96 0;
+#X connect 96 0 42 0;
+#X connect 97 0 98 0;
+#X connect 97 1 103 0;
+#X connect 99 0 100 0;
+#X connect 101 0 102 0;
+#X connect 102 0 42 0;
+#X connect 103 0 104 0;
+#X connect 103 1 109 0;
+#X connect 105 0 106 0;
+#X connect 107 0 108 0;
+#X connect 108 0 42 0;
+#X connect 109 0 110 0;
+#X connect 109 1 115 0;
+#X connect 111 0 112 0;
+#X connect 113 0 114 0;
+#X connect 114 0 42 0;
+#X connect 115 0 116 0;
+#X connect 115 1 120 0;
+#X connect 118 0 119 0;
+#X connect 119 0 42 0;
+#X connect 120 0 121 0;
+#X connect 120 1 126 0;
+#X connect 122 0 123 0;
+#X connect 124 0 125 0;
+#X connect 125 0 42 0;
+#X connect 126 0 127 0;
+#X connect 129 0 117 0;
+#X connect 135 0 136 0;
+#X connect 136 0 138 0;
+#X connect 136 1 137 0;
+#X connect 137 0 138 1;
+#X connect 138 0 140 0;
+#X connect 138 1 140 1;
+#X connect 138 2 140 2;
+#X connect 139 0 157 0;
+#X connect 139 1 158 0;
+#X connect 139 2 159 0;
+#X connect 139 3 160 0;
+#X connect 139 4 161 0;
+#X connect 139 5 162 0;
+#X connect 139 6 163 0;
+#X connect 139 7 164 0;
+#X connect 140 0 139 0;
+#X connect 141 0 52 0;
+#X connect 142 0 58 0;
+#X connect 143 0 64 0;
+#X connect 144 0 70 0;
+#X connect 144 0 131 0;
+#X connect 145 0 76 0;
+#X connect 145 0 132 0;
+#X connect 146 0 82 0;
+#X connect 146 0 133 0;
+#X connect 147 0 88 0;
+#X connect 147 0 134 0;
+#X connect 148 0 94 0;
+#X connect 148 0 130 0;
+#X connect 149 0 100 0;
+#X connect 150 0 106 0;
+#X connect 151 0 112 0;
+#X connect 152 0 123 0;
+#X connect 155 0 156 0;
+#X connect 157 0 6 0;
+#X connect 158 0 7 0;
+#X connect 159 0 8 0;
+#X connect 160 0 9 0;
+#X connect 161 0 10 0;
+#X connect 162 0 11 0;
+#X connect 163 0 12 0;
+#X connect 164 0 13 0;
+#X connect 165 0 153 0;
+#X connect 166 0 154 0;
+#X coords 0 -1 1 1 460 320 1 0 0;

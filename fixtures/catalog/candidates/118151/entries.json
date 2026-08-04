@@ -1,0 +1,254 @@
+[
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/README.md",
+  "size": 98,
+  "compress_size": 90,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/sequencer/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/sequencer/seq3.pd",
+  "size": 39037,
+  "compress_size": 9166,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/sequencer/shortcut.pd",
+  "size": 9322,
+  "compress_size": 2546,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/sequencer/seq.pd",
+  "size": 4227,
+  "compress_size": 1297,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/sequencer/seq3-simple.pd",
+  "size": 12645,
+  "compress_size": 3687,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/sequencer/seq-player.pd",
+  "size": 4516,
+  "compress_size": 1433,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/sequencer/slot-tracker.txt",
+  "size": 28,
+  "compress_size": 6,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/sequencer/shortcut-mute-s.pd",
+  "size": 439,
+  "compress_size": 194,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/sequencer/5option-control.pd",
+  "size": 5123,
+  "compress_size": 1417,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/sequencer/seq-format-event.pd",
+  "size": 344,
+  "compress_size": 170,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/sequencer/shortcut-mute-list.pd",
+  "size": 673,
+  "compress_size": 255,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/sequencer/seq-recorder.pd",
+  "size": 4924,
+  "compress_size": 1588,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/sequencer/seq-overdubber.pd",
+  "size": 6966,
+  "compress_size": 1968,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/sequencer/5page-system.pd",
+  "size": 8281,
+  "compress_size": 2042,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/sequencer/print-line5.pd",
+  "size": 3616,
+  "compress_size": 1067,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/sequencer/shortcut-mute-f.pd",
+  "size": 515,
+  "compress_size": 211,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/sequencer/sc-module.pd",
+  "size": 1731,
+  "compress_size": 554,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/externals/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/externals/chord-muter.pd",
+  "size": 10920,
+  "compress_size": 2976,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/externals/note-tracker.pd",
+  "size": 1415,
+  "compress_size": 475,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/externals/chord-prob-old.pd",
+  "size": 7118,
+  "compress_size": 1610,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/externals/clockfix.pd_linux",
+  "size": 13500,
+  "compress_size": 6134,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/externals/clocker.pd_linux",
+  "size": 14072,
+  "compress_size": 6158,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/externals/libabl_link~.so",
+  "size": 536588,
+  "compress_size": 148132,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/externals/note-on-off.pd",
+  "size": 1497,
+  "compress_size": 496,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/externals/chord-prob.pd",
+  "size": 3482,
+  "compress_size": 1045,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/externals/abl_link~.pd_linux.orig",
+  "size": 36452,
+  "compress_size": 12435,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/metronome/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "pinkMode/CG-Pd-Library-Local/metronome/metronome360.pd",
+  "size": 8075,
+  "compress_size": 2578,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/deploy.sh",
+  "size": 554,
+  "compress_size": 285,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/manifest.txt",
+  "size": 2858,
+  "compress_size": 1144,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/module.json",
+  "size": 219,
+  "compress_size": 138,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/module.pd",
+  "size": 28518,
+  "compress_size": 6761,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pinkMode/orac-mod-sel.pd",
+  "size": 1269,
+  "compress_size": 501,
+  "external_attr": 2175008768,
+  "is_dir": false
+ }
+]

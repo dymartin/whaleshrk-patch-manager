@@ -1,0 +1,13 @@
+{
+    "display" : "Converb",
+    "parameters" :  [ 
+        ["int","amount","Amount",0,100,50],
+        ["float","select","Select",0,1,0],
+        ["freq","lopass","LPF",100,8000,8000],
+        ["freq","hipass","HPF",0,3000,0]
+    ],
+    "pages" : [ 
+        ["pg_main","Main",["amount","select","lopass","hipass"]]
+    ]
+}
+

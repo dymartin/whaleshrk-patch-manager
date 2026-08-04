@@ -1,0 +1,156 @@
+[
+ {
+  "name": "fusion-pd/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051072,
+  "is_dir": true
+ },
+ {
+  "name": "__MACOSX/._fusion-pd",
+  "size": 313,
+  "compress_size": 177,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "fusion-pd/plts~-help.pd",
+  "size": 13469,
+  "compress_size": 1608,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/fusion-pd/._plts~-help.pd",
+  "size": 213,
+  "compress_size": 134,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "fusion-pd/plts~-abs.pd",
+  "size": 3182,
+  "compress_size": 780,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/fusion-pd/._plts~-abs.pd",
+  "size": 213,
+  "compress_size": 134,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "fusion-pd/pd~-fusion.pd",
+  "size": 28997,
+  "compress_size": 4057,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/fusion-pd/._pd~-fusion.pd",
+  "size": 269,
+  "compress_size": 175,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "fusion-pd/.DS_Store",
+  "size": 6148,
+  "compress_size": 178,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/fusion-pd/._.DS_Store",
+  "size": 213,
+  "compress_size": 134,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "fusion-pd/plts~.dll",
+  "size": 749283,
+  "compress_size": 315611,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/fusion-pd/._plts~.dll",
+  "size": 213,
+  "compress_size": 134,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "fusion-pd/plts~.pd_linux",
+  "size": 256104,
+  "compress_size": 182532,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/fusion-pd/._plts~.pd_linux",
+  "size": 213,
+  "compress_size": 134,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "fusion-pd/notein_mono.pd",
+  "size": 4283,
+  "compress_size": 1219,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/fusion-pd/._notein_mono.pd",
+  "size": 213,
+  "compress_size": 134,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "fusion-pd/plts~-test.pd",
+  "size": 13662,
+  "compress_size": 2075,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/fusion-pd/._plts~-test.pd",
+  "size": 213,
+  "compress_size": 134,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "fusion-pd/module.json",
+  "size": 3147,
+  "compress_size": 642,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/fusion-pd/._module.json",
+  "size": 369,
+  "compress_size": 215,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "fusion-pd/module.pd",
+  "size": 11139,
+  "compress_size": 2941,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "__MACOSX/fusion-pd/._module.pd",
+  "size": 269,
+  "compress_size": 175,
+  "external_attr": 2175008768,
+  "is_dir": false
+ }
+]

@@ -1,0 +1,30 @@
+{
+    "display" : "CZZ+",
+    "parameters" :  [ 
+        ["int","transpose","Transpose",-24,24,0],
+        ["pct","pw","Pulse Width",0,100,50],
+        ["pct","filtamt","Filter Amt",0,100,35],
+        ["pct","syncamt","Sync Amt",0,100,100],
+        ["time","czz_attack","Attack",1,2000,1],
+        ["time","czz_decay","Decay",1,4000,500],
+        ["pct","czz_sustain","Sustain",0,100,75],
+        ["time","czz_release","Release",1,4000,500],
+        ["time","wid_attack","Width Att.",1,2000,100],
+        ["time","wid_decay","Width Dec.",1,4000,500],
+        ["pct","wid_sustain","Width Sus.",0,100,75],
+        ["time","wid_release","Width Rel.",1,4000,500],
+        ["time","ton_attack","Tone Att.",1,2000,200],
+        ["time","ton_decay","Tone Dec.",1,100,500],
+        ["pct","ton_sustain","Tone Sus.",0,100,80],
+        ["time","ton_release","Tone Rel.",1,4000,500],
+        ["pct","volume","Volume",0,100,50]
+    ],
+    "pages" : [ 
+        ["pg_amp","Amplitude",["czz_attack","czz_decay","czz_sustain","czz_release"]],
+        ["pg_width","Width",["wid_attack","wid_decay","wid_sustain","wid_release"]],
+        ["pg_tone","Tone",["ton_attack","ton_decay","ton_sustain","ton_release"]],
+        ["pg_master","Master",["transpose","pw","filtamt","syncamt"]],
+        ["pg_volume","Volume",["volume"]]
+    ]
+}
+

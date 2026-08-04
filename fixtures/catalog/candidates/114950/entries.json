@@ -1,0 +1,303 @@
+[
+ {
+  "name": "samplement/deploy.sh",
+  "size": 378,
+  "compress_size": 205,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/latch-notes.pd",
+  "size": 1183,
+  "compress_size": 393,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/manifest.txt",
+  "size": 2971,
+  "compress_size": 1196,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/module.json",
+  "size": 995,
+  "compress_size": 355,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/module.pd",
+  "size": 4018,
+  "compress_size": 1178,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/pd~-samplement.pd",
+  "size": 1350,
+  "compress_size": 393,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/samp/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "samplement/samp/loadsampleL.pd",
+  "size": 807,
+  "compress_size": 343,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/samp/soundfile_info.pd_linux",
+  "size": 7796,
+  "compress_size": 4223,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/samp/samp_param_noload.pd",
+  "size": 1604,
+  "compress_size": 524,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/samp/folder_list.pd_linux",
+  "size": 5272,
+  "compress_size": 2533,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/samp/s2l.pd_linux",
+  "size": 17276,
+  "compress_size": 8180,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/samp/s2l.dll",
+  "size": 35722,
+  "compress_size": 12064,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/samp/wavselect.pd",
+  "size": 1796,
+  "compress_size": 601,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/samp/folder_list.dll",
+  "size": 11790,
+  "compress_size": 4813,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/samp/loadsampleR.pd",
+  "size": 807,
+  "compress_size": 344,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/samp/samp_array.pd",
+  "size": 1582,
+  "compress_size": 333,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/samp/randcut_mod.pd",
+  "size": 4503,
+  "compress_size": 1193,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/samp/folder_list-help.pd",
+  "size": 2208,
+  "compress_size": 1022,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/samp/randpp_mod.pd",
+  "size": 3053,
+  "compress_size": 885,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/samp/samp_param_bu.pd",
+  "size": 3181,
+  "compress_size": 914,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/samp/tabread2.pd",
+  "size": 1398,
+  "compress_size": 369,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/samp/siglop~.pd",
+  "size": 234,
+  "compress_size": 137,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/samp/randcut.pd",
+  "size": 4561,
+  "compress_size": 1207,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/samp/samp_0.txt",
+  "size": 75,
+  "compress_size": 75,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/samp/samp_voice.pd",
+  "size": 13623,
+  "compress_size": 3462,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/samp/s2l-help.pd",
+  "size": 1893,
+  "compress_size": 808,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/samp/samp_param.pd",
+  "size": 3270,
+  "compress_size": 933,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/samp/randloop.pd",
+  "size": 3430,
+  "compress_size": 969,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/samp/sh_buffer.pd",
+  "size": 248,
+  "compress_size": 134,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/samp/soundfile_info-help.pd",
+  "size": 1832,
+  "compress_size": 850,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/soundshare/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "samplement/soundshare/os_switch.pd",
+  "size": 726,
+  "compress_size": 270,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/soundshare/soundshare_rec~.pd",
+  "size": 3381,
+  "compress_size": 950,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/soundshare/folder_list.pd_linux",
+  "size": 5272,
+  "compress_size": 2533,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/soundshare/s2l.pd_linux",
+  "size": 17276,
+  "compress_size": 8180,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/soundshare/s2l.dll",
+  "size": 35722,
+  "compress_size": 12064,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/soundshare/soundshare_select.pd",
+  "size": 5004,
+  "compress_size": 1160,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/soundshare/folder_list.dll",
+  "size": 11790,
+  "compress_size": 4813,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/soundshare/soundshare_recsync~.pd",
+  "size": 3696,
+  "compress_size": 1020,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/soundshare/folder_list-help.pd",
+  "size": 2208,
+  "compress_size": 1022,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/soundshare/s2l-help.pd",
+  "size": 1893,
+  "compress_size": 808,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "samplement/soundshare/soundshare_play~.pd",
+  "size": 2793,
+  "compress_size": 825,
+  "external_attr": 2179792896,
+  "is_dir": false
+ }
+]

@@ -1,0 +1,19 @@
+{
+    "display" : "E.Drum1.1",
+    "parameters" :  [ 
+       ["pct","k-gain","Gain",0,200,100],
+       ["pct","s-gain","Gain",0,200,100],
+       ["pct","h-gain","Gain",0,200,100],
+       ["pct","s2-gain","Gain",0,200,100],
+       ["time","s2-decay","Decay",0,800,400],
+       ["freq","s2-freq","BP frequence",0,10000,0],
+       ["pct","s2-Qfreq","BP Q",0,10,0]
+     ],
+    "pages" : [ 
+        ["pg_k","Kick",["k-gain"]],
+        ["pg_s","Snare",["s-gain"]],
+        ["pg_j","Hat",["h-gain"]],
+        ["pg_s2","Snare2",["s2-gain","s2-decay","s2-freq","s2-Qfreq"]]
+    ]
+}
+

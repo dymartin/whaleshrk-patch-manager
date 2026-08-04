@@ -1,0 +1,128 @@
+[
+ {
+  "name": "lemur/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "lemur/orac-ipad.jzml",
+  "size": 39964,
+  "compress_size": 2110,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "lemur/orac-iphone.jzml",
+  "size": 40096,
+  "compress_size": 2110,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pd/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "pd/ctrl.pd",
+  "size": 1141,
+  "compress_size": 418,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pd/externals/",
+  "size": 0,
+  "compress_size": 0,
+  "external_attr": 1106051088,
+  "is_dir": true
+ },
+ {
+  "name": "pd/externals/packOSC.dll",
+  "size": 21518,
+  "compress_size": 9237,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pd/externals/unpackOSC.l_arm",
+  "size": 33724,
+  "compress_size": 16577,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "pd/externals/unpackOSC.pd_darwin",
+  "size": 64024,
+  "compress_size": 10801,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "pd/externals/routeOSC.l_arm",
+  "size": 28600,
+  "compress_size": 13626,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "pd/externals/routeOSC.dll",
+  "size": 15886,
+  "compress_size": 6484,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pd/externals/routeOSC.pd_darwin",
+  "size": 64720,
+  "compress_size": 11220,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "pd/externals/unpackOSC.dll",
+  "size": 15374,
+  "compress_size": 6307,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pd/externals/packOSC.pd_darwin",
+  "size": 97592,
+  "compress_size": 22216,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "pd/externals/packOSC.l_arm",
+  "size": 67432,
+  "compress_size": 31207,
+  "external_attr": 2179792896,
+  "is_dir": false
+ },
+ {
+  "name": "pd/menudisp.pd",
+  "size": 2868,
+  "compress_size": 736,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "pd/main.pd",
+  "size": 5366,
+  "compress_size": 1600,
+  "external_attr": 2175008768,
+  "is_dir": false
+ },
+ {
+  "name": "readme.txt",
+  "size": 541,
+  "compress_size": 317,
+  "external_attr": 2175008768,
+  "is_dir": false
+ }
+]

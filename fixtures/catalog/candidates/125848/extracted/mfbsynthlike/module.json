@@ -1,0 +1,29 @@
+{
+    "name": "mfbsynthlike",
+    "display" : "MFB Synth like",
+    "parameters" :  [ 
+    	["int", "f_type", "type", 0, 4, 0],
+    	["pct", "f_cutoff", "cutoff", 0, 100, 80],
+    	["pct", "f_res", "resonance", 0, 100, 0],
+        ["pct","f_dist","distortion",0, 100, 0],
+	["time", "e_att", "attack", 0, 3000, 5],
+    	["time", "e_dec", "decay", 0, 100, 100],
+    	["pct", "e_sus", "substain", 0, 100, 100],
+        ["time","e_rel","release",0,3000,0],
+	["pct", "s1_wav", "osc1 wave", 0, 3, 0],
+    	["pct", "s1_vol", "osc1 volume", 0, 100, 100],
+    	["pitch", "s1_oct", "osc1 octave", -3, 3, -1],
+        ["pct","s1_vib","osc1 vibrato",0,20,0],
+	["pct", "s2_wav", "osc2 wave", 0, 3, 0],
+    	["pct", "s2_vol", "osc2 volume", 0, 100, 100],
+    	["pitch", "s2_oct", "osc2 octace", -3, 3, -1],
+        ["pct","s2_vib","osc2 vibrato",0,20,0]
+    ],
+    "pages" : [ 
+        ["pg_filter", "Filter",["f_type", "f_cutoff", "f_res", "f_dist"]],
+	["pg_env", "Enevelope",["e_att", "e_dec", "e_sus", "e_rel"]],
+	["pg_oscone", "Osc1",["s1_wav", "s1_vol", "s1_oct", "s1_vib"]],
+	["pg_osctwo", "Osc2",["s2_wav", "s2_vol", "s2_oct", "s2_vib"]]
+    ]
+}
+

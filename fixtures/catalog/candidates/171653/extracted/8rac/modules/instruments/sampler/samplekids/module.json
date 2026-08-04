@@ -1,0 +1,18 @@
+{
+    "display" : "samplekids",
+    "parameters" :  [
+    ["pct","eparam1","Global Start",0,100,0],
+    ["pct","eparam2","Global Length",0,100,100],
+    ["time","eparam3","Delay Time",0,1000,0],
+    ["pct","eparam4","Delay Fdback",0,100,0],
+    ["int","samp_src","Sample Source",-1,27,-1],
+    ["float","samp_select","Sample Select",0,1,0],
+    ["pct","samp_vol","Sample Vol",0,100,100]
+    ],
+    "pages" : [ 
+        ["pg_main","Main",["eparam1","eparam2","eparam3","eparam4"]],
+        ["pg_edit","Edit",[]],
+        ["pg_rec","Recording",["samp_src","samp_select","samp_vol"]]
+    ]
+}
+

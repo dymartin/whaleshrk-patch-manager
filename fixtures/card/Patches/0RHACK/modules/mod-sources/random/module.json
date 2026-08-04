@@ -1,0 +1,36 @@
+{
+    "display" : "Random",
+    "parameters" :  [ 
+        ["bool","r_on_1","Enable",0],
+	["pct","r_slew_1","Slew",0,100,0],
+        ["pct","r_min_1","Mod Min",0,100,10],
+        ["pct","r_max_1","Mod Max",0,100,100],
+        ["int","r_bus_1","Mod Bus",0,20,17],      
+        ["int","r_speed_1","Speed",1,10,7],
+        ["bool","r_on_2","Enable",0],
+	["pct","r_slew_2","Slew",0,100,0],
+        ["pct","r_min_2","Mod Min",0,100,10],
+        ["pct","r_max_2","Mod Max",0,100,100],
+        ["int","r_bus_2","Mod Bus",0,20,18],
+	["int","r_speed_2","Speed",1,10,7],
+        ["bool","r_on_3","Enable",0],
+	["pct","r_slew_3","Slew",0,100,0],
+        ["pct","r_min_3","Mod Min",0,100,10],
+        ["pct","r_max_3","Mod Max",0,100,100],
+        ["int","r_bus_3","Mod Bus",0,20,19],
+	["int","r_speed_3","Speed",1,10,7],
+        ["bool","r_on_4","Enable",0],
+	["pct","r_slew_4","Slew",0,100,0],
+        ["pct","r_min_4","Mod Min",0,100,10],
+        ["pct","r_max_4","Mod Max",0,100,100],
+        ["int","r_bus_4","Mod Bus",0,20,20],
+	["int","r_speed_4","Speed",1,10,7]
+    ],
+    "pages" : [ 
+        ["pg_mod_1","RND 1",["r_speed_1","r_slew_1","r_min_1","r_max_1"]],
+        ["pg_mod_2","RND 2",["r_speed_2","r_slew_2","r_min_2","r_max_2"]],
+        ["pg_mod_3","RND 3",["r_speed_3","r_slew_3","r_min_3","r_max_3"]],
+        ["pg_mod_4","RND 4",["r_speed_4","r_slew_4","r_min_4","r_max_4"]]
+    ]
+}
+

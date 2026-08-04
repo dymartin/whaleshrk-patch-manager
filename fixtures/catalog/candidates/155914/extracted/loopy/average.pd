@@ -1,0 +1,56 @@
+#N canvas 264 63 685 578 12;
+#N canvas 0 0 450 300 graph1 0;
+#X array array1 100 float 1;
+#A 0 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
+0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
+0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
+0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
+0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5
+0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5 0.5;
+#X coords 0 1 99 -1 200 140 1;
+#X restore 216 69 graph;
+#X obj 68 201 until;
+#X obj 68 228 f;
+#X obj 99 228 + 1;
+#X floatatom 99 296 5 0 0 0 - - -;
+#X obj 30 124 bng 15 250 50 0 empty empty empty 0 -6 0 8 -262144 -1
+-1;
+#X msg 29 178 -1;
+#X obj 99 318 tabread array1;
+#X obj 100 347 t b f;
+#X obj 116 397 +;
+#X obj 100 425 f;
+#X obj 100 488 print;
+#X msg 245 285 0;
+#X msg 307 256 \; array1 const 0.5;
+#X obj 30 146 t b b b;
+#X msg 68 178 101;
+#X obj 99 269 moses 99;
+#X obj 158 295 t b;
+#X obj 100 453 / 100;
+#X text 203 379 this patch sums the 100 values in array1 and divides
+that value by 100 \, provide the average array value. the one problem
+is that all of the intermediate sums 'bang' the output (print).;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 2 1;
+#X connect 3 0 16 0;
+#X connect 4 0 7 0;
+#X connect 5 0 14 0;
+#X connect 6 0 2 1;
+#X connect 7 0 8 0;
+#X connect 8 0 10 0;
+#X connect 8 1 9 1;
+#X connect 9 0 10 1;
+#X connect 10 0 9 0;
+#X connect 10 0 18 0;
+#X connect 12 0 9 1;
+#X connect 12 0 10 1;
+#X connect 14 0 15 0;
+#X connect 14 1 6 0;
+#X connect 14 2 12 0;
+#X connect 15 0 1 0;
+#X connect 16 0 4 0;
+#X connect 16 1 17 0;
+#X connect 17 0 10 0;
+#X connect 18 0 11 0;

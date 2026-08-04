@@ -1,0 +1,18 @@
+#N canvas 271 284 1540 760 10;
+#X obj 104 102 s notesIn-\$1, f 13;
+#X obj 245 178 r notesOut-\$1;
+#X obj 65 177 r~ outL-\$1;
+#X obj 155 177 r~ outR-\$1;
+#X obj 503 63 r loadbang-\$2;
+#X obj 503 40 r loadbang-\$1;
+#X obj 211 102 s ctrlIn-\$1, f 13;
+#X obj 339 177 r ctrlOut-\$1;
+#X text 615 63 router reloaded;
+#X text 614 42 moduled reloaded;
+#X obj 66 148 s~ inL-\$1;
+#X obj 156 148 s~ inR-\$1;
+#X obj 104 38 r actnote-\$1-\$2;
+#X obj 211 38 r actctrl-\$1-\$2;
+#X obj 503 94 r thru_gain-\$1;
+#X connect 12 0 0 0;
+#X connect 13 0 6 0;

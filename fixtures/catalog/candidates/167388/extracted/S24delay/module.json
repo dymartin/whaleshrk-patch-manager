@@ -1,0 +1,12 @@
+{
+    "display" : "Ocarina",
+    "parameters" :  [
+        ["pct","o_speed","Speed",-100,100,0],
+        ["pct","o_decay","Decay",0  ,100,0],
+        ["time","o_deltime","Deltime",0,1000,0],
+        ["pct","o_fback","Fback",0,100,0]
+    ],
+    "pages" : [
+        ["pg_main","Main",["o_speed","o_decay","o_deltime","o_fback"]]
+    ]
+}

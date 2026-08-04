@@ -1,0 +1,21 @@
+{
+    "name" : "sfplayer",
+    "display" : "sfplayer",
+    "parameters" :  [ 
+        ["float","sf_select","Select",0,100,0],
+        ["int","sf_semitone","Semitone",-24,24,0],
+        ["int","sf_pan","Pan",-500,500,0],
+        ["float","sf_vol","Volume",0,3,0.7],
+        ["int","sf_prog","Bank",1,128,1],
+        ["int","attack","Attack",0,10000,5],
+        ["int","decay","Decay",0,5000,200],
+        ["pct","sustain","Sustain",0,100,20],
+        ["int","release","Release",0,10000,3000]
+    ],
+    "pages" : [ 
+        ["pg_main","Main",["sf_select","sf_prog","sf_vol"]],
+        ["pg_pitch","Pitch",["sf_semitone","sf_pan"]],
+        ["pg_adsr","ADSR",["attack","decay","sustain","release"]]
+    ]
+}
+

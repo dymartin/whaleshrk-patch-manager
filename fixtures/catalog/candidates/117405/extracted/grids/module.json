@@ -1,0 +1,32 @@
+{
+    "display" : "Grids",
+    "parameters" :  [ 
+        ["pct","fill1","1.___________",0,100,40],
+        ["pct","fill2"," | 2.________",0,100,20],
+        ["pct","fill3"," |  | 3._____",0,100,90],
+        ["int","reset"," |  |  | Reset",1,32,32],
+        ["time","g_note_len","Note Length",10,150,10],
+        ["float","mapx","Map X",0,127,88],
+        ["float","mapy","Map Y",0,127,93],
+        ["float","chaos","Chaos",0,127,127],
+        ["int","offset","Offset",0,31,0],
+        ["int","g_e_kick","Kick PLen",1,32,5],
+        ["int","g_e_snare","Snare PLen",1,32,7],
+        ["int","g_e_hihat","Hihat PLen",1,32,11],
+        ["int","trig1note","Trig 1 : Note",1,96,60],
+        ["int","trig2note","Trig 2 : Note",1,96,61],
+        ["int","trig3note","Trig 3 : Note",1,96,62],
+        ["time","trigslength","Notes length",15,999.9,15],
+        ["int","accent1note","Accent 1 : Note",1,96,63],
+        ["int","accent2note","Accent 2 : Note",1,96,64],
+        ["int","accent3note","Accent 3 : Note",1,96,65],
+        ["time","accentslength","Notes length",15,999.9,15]
+    ],
+    "pages" : [ 
+        ["pg_fill","Fill",["fill1","fill2","fill3","reset"]],
+        ["pg_pattern","Pattern",["mapx","mapy","chaos","offset"]],
+        ["pg_routing1","Routing #1",["trig1note","trig2note","trig3note","trigslength"]],
+        ["pg_routing2","Routing #2",["accent1note","accent2note","accent3note","accentslength"]]
+    ]
+}
+

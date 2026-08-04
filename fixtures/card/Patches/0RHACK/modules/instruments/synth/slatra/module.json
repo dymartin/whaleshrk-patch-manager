@@ -1,0 +1,18 @@
+{
+    "display" : "Slatra",
+    "parameters" :  [
+        ["int","slatra_transpose","Transpose",-24,24,0],
+        ["pct","slatra_velocity","Vel Mod",0,100,0],
+        ["pct","slatra_ampdecay","Amp Decay",0,100,50],
+        ["pct","slatra_volume","Volume",0,100,80],
+        ["pct","slatra_vibrato","Vibrato",0,100,0],
+        ["pct","slatra_modscale","Mod Scale",12.5,800,100],
+        ["pct","slatra_moddepth","Mod Depth",0,100,0],
+        ["pct","slatra_moddecay","Mod Decay",0,100,10]
+    ],
+    "pages" : [
+        ["pg_main","Main",["slatra_transpose","slatra_velocity","slatra_ampdecay","slatra_volume"]],
+        ["pg_mod","Mod",["slatra_vibrato","slatra_modscale","slatra_moddepth", "slatra_moddecay"]]
+    ]
+}
+
