@@ -109,3 +109,24 @@ def test_rejects_paths_that_escape_the_root(path):
     t = InMemoryTransport()
     with pytest.raises(TransportPathError):
         t.write(path, b"x")
+
+
+def test_write_under_an_existing_file_raises_instead_of_corrupting_tree():
+    t = InMemoryTransport()
+    t.write("a", b"file contents")
+    with pytest.raises(TransportPathError):
+        t.write("a/b", b"nested")
+
+
+def test_mkdir_under_an_existing_file_raises():
+    t = InMemoryTransport()
+    t.write("a", b"file contents")
+    with pytest.raises(TransportPathError):
+        t.mkdir("a/b")
+
+
+def test_write_over_an_existing_directory_raises():
+    t = InMemoryTransport()
+    t.write("dir/a.txt", b"1")
+    with pytest.raises(TransportPathError):
+        t.write("dir", b"not a directory anymore")

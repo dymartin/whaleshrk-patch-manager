@@ -37,6 +37,20 @@ class InMemoryTransport:
             d.startswith(prefix) for d in self._dirs if d
         )
 
+    def _assert_parents_not_files(self, path: str) -> None:
+        """Nothing may be created under a path that is already a file -- that
+        would silently corrupt the tree instead of raising."""
+        for parent in self._parents(path):
+            if parent in self._files:
+                raise TransportPathError(f"{parent!r} is a file, cannot contain {path!r}")
+
+    def _assert_writable_path(self, path: str) -> None:
+        """A path cannot be created as a file if it, or any ancestor, is already
+        a file or a directory."""
+        if path in self._dirs or self._is_dir(path):
+            raise TransportPathError(f"{path!r} is a directory")
+        self._assert_parents_not_files(path)
+
     def exists(self, path: str) -> bool:
         path = normalize_path(path)
         return path in self._files or self._is_dir(path)
@@ -59,8 +73,7 @@ class InMemoryTransport:
 
     def write(self, path: str, data: bytes) -> None:
         path = normalize_path(path)
-        if path in self._dirs:
-            raise TransportPathError(f"{path!r} is a directory")
+        self._assert_writable_path(path)
         for parent in self._parents(path):
             self._dirs.add(parent)
         self._files[path] = data
@@ -83,6 +96,7 @@ class InMemoryTransport:
         path = normalize_path(path)
         if path in self._files:
             raise TransportPathError(f"{path!r} is a file")
+        self._assert_parents_not_files(path)
         for parent in self._parents(path) + [path]:
             self._dirs.add(parent)
 
@@ -93,6 +107,7 @@ class InMemoryTransport:
             data = self._files.pop(source)
             if target in self._dirs and target != "":
                 self.delete(target)
+            self._assert_parents_not_files(target)
             for parent in self._parents(target):
                 self._dirs.add(parent)
             self._files[target] = data
@@ -100,6 +115,7 @@ class InMemoryTransport:
         if self._is_dir(source):
             if self.exists(target):
                 self.delete(target)
+            self._assert_parents_not_files(target)
             prefix = source + "/" if source else ""
             moved_files = {
                 target + p[len(source):]: data
