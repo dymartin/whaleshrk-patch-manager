@@ -1,8 +1,11 @@
 """`rig.compile.sidecars` -- default `.txt` state for occupied stateful slots.
 
-Content is asserted byte-for-byte against the pinned `Init` preset itself
-(not re-derived), so these tests catch a wrong path or off-by-one in the
-retargeting logic, not just a wrong file count.
+Morpher content is asserted byte-for-byte against the pinned `Init` preset
+itself (not re-derived). The four sequencer module types all raise --
+`sequencers/overdrum`/`overflow` because a verified template covers only
+part of what they read on load, `sequencers/clips`/`polystep` because none
+of what they read has a verified template at all -- see
+`rig.compile.sidecars`'s module docstring for the source citations.
 """
 
 from __future__ import annotations
@@ -41,30 +44,6 @@ def _entry(module_type: str, sidecar_templates: list[str] | None = None) -> Cata
     )
 
 
-def test_overdrum_emits_loop_metric_and_step_seq_note_vel_but_not_length():
-    files = sidecar_files_for_slot(_entry("sequencers/overdrum"), "b2")
-    assert len(files) == 154  # docs/platform/state.md: 154 for a slot without step-seq-length
-    assert "loop-b2-a.txt" in files
-    assert "metric-b2-g.txt" in files
-    assert "step-seq-note-b2-c-p10.txt" in files
-    assert "step-seq-vel-b2-c-p1.txt" in files
-    assert not any(name.startswith("step-seq-length") for name in files)
-    assert "loop-a1-a.txt" not in files  # retargeted, not left at the template slot
-
-
-def test_overflow_emits_the_full_224_file_set_including_step_seq_length():
-    files = sidecar_files_for_slot(_entry("sequencers/overflow"), "d4")
-    assert len(files) == 224  # docs/platform/state.md: 224 for a1/b1/c1
-    assert "step-seq-length-d4-a-p1.txt" in files
-    assert "step-seq-length-d4-g-p10.txt" in files
-
-
-def test_retargeted_content_matches_the_pinned_init_template_bytes():
-    files = sidecar_files_for_slot(_entry("sequencers/overdrum"), "c3")
-    assert files["loop-c3-a.txt"] == (INIT_DIR / "loop-a1-a.txt").read_bytes()
-    assert files["step-seq-note-c3-b-p5.txt"] == (INIT_DIR / "step-seq-note-a1-b-p5.txt").read_bytes()
-
-
 def test_morpher_emits_16_global_banks_regardless_of_target_slot():
     files_m1 = sidecar_files_for_slot(_entry("mod-sources/morpher"), "m1")
     files_m3 = sidecar_files_for_slot(_entry("mod-sources/morpher"), "m3")
@@ -80,8 +59,21 @@ def test_morpher_content_matches_the_pinned_init_template_bytes():
     assert files["p16.txt"] == (INIT_DIR / "p16.txt").read_bytes()
 
 
-@pytest.mark.parametrize("module_type", ["sequencers/clips", "sequencers/polystep"])
+@pytest.mark.parametrize(
+    "module_type",
+    ["sequencers/overdrum", "sequencers/overflow", "sequencers/clips", "sequencers/polystep"],
+)
 def test_unverified_stateful_builtins_raise_rather_than_guess(module_type):
+    # overdrum/overflow raise alongside clips/polystep even though Init ships
+    # verified default content for *some* of what they read (loop-*,
+    # metric-*, step-seq-{note,vel,length}-*): both also read
+    # <slot>-slot-tracker.txt and <slot>-seq<n>x.txt unconditionally on load
+    # (seq3.pd's save-the-txts subpatch -- the read-bang inlet at line 595
+    # drives the seq<n>x read at line 597/602; `r loadbang-\$1` at line 639
+    # drives the slot-tracker read at line 604), and neither file family has
+    # a verified default anywhere in Init or jam. Emitting only the verified
+    # families would be a silently incomplete set -- see the module
+    # docstring and decision #69.
     with pytest.raises(UnverifiedStatefulModuleError):
         sidecar_files_for_slot(_entry(module_type), "a1")
 

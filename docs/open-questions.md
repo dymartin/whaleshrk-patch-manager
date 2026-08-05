@@ -20,13 +20,17 @@ blocks a phase. Both are one-liners through the web terminal
   falls back to `C`. [platform/midi.md](platform/midi.md) shows preset order is
   the same either way, so this only settles which of two proven paths is live.
 - **Default content of `<slot>-slot-tracker.txt`, `<slot>-seq<n>x.txt`
-  (`sequencers/overdrum`/`overflow`/`clips`) and `<slot>-{len,notes,vel}.txt`
+  (`sequencers/{overdrum,overflow,clips}`) and `<slot>-{len,notes,vel}.txt`
   (`sequencers/polystep`).** Neither shipped preset carries any of these for a
-  slot's own live occupant (decision #69), so the compiler refuses to compile
-  a song that needs them rather than guess. Saving a preset with each of these
-  modules freshly placed, then reading what the device wrote, would either
-  supply a verified template or show the files are recreated on demand and
-  compile can keep omitting them.
+  slot's own live occupant (decision #69). For `overdrum`/`overflow`, source
+  reading confirms both are read unconditionally on every load (not gated
+  behind a user action -- see decision #69's citation), so this is not merely
+  "unobserved", it is a real gap: the compiler refuses to compile a song that
+  places any of the four sequencer types at all, even though `Init` verifies
+  a template for *part* of what `overdrum`/`overflow` read. Saving a preset
+  with each module freshly placed, then reading what the device wrote, would
+  either supply the missing templates or show the files are recreated on
+  demand and compile can go back to emitting only the verified families.
 
 ## Waiting on first real numbers, not on a decision
 
