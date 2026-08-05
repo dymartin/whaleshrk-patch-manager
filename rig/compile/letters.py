@@ -81,7 +81,11 @@ def assign_letters(chains: list[ChainSlots], bindings: dict[str, str]) -> dict[s
             )
         pool.remove(letter)
         result[chain.name] = letter
-        if chain.slot_count == 4:
+        # Counted by which letter it occupies, not its own slot_count: nothing
+        # requires a bound chain to fill its letter's capacity (it may have
+        # shrunk since the push that recorded the binding), but a bound B or D
+        # still spends one of the two 4-slot letters either way.
+        if letter in FOUR_SLOT_LETTERS:
             four_slot_bound += 1
 
     needing_four = [c for c in unbound if c.slot_count == 4]
@@ -101,7 +105,10 @@ def assign_letters(chains: list[ChainSlots], bindings: dict[str, str]) -> dict[s
                 pool.remove(letter)
                 result[chain.name] = letter
                 break
-        else:  # pragma: no cover -- unreachable once the count check above holds
+        else:  # pragma: no cover -- unreachable: the count check above already
+            # rejected total_needing_four > 2, and every bound chain on B/D was
+            # counted into that total regardless of its own slot_count, so the
+            # two 4-slot letters can never run out here.
             raise LetterAssignmentError(
                 "CHAINS_NEEDING_4_SLOTS_EXCEEDED",
                 f"chain {chain.name!r} needs 4 slots but no letter is free",

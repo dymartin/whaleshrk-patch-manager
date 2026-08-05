@@ -44,6 +44,10 @@ pull uses it to attribute drift, `rename-chain` rewrites it, and the compiler
 assigns letters only where no binding exists. Read and write it only through
 `rig.song.bindings`, so those three call sites can't drift from one another.
 
+`kits.yaml` is a flat YAML mapping, alias to kit number: `warehouse: 1`. The
+value is the plain integer `deploy.sh` gave that slot (`1`-`24`), not the
+`kit-N` string. Read and write it only through `rig.song.kits`.
+
 **All state is keyed per song, never in a shared file.** A single manifest would
 be edited by every song's PR, entangling reviews that must stay independent.
 

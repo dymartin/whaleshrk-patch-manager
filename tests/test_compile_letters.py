@@ -56,6 +56,17 @@ def test_bound_chain_outgrowing_its_letter_is_an_error():
     assert exc_info.value.code == "BOUND_CHAIN_OUTGROWN"
 
 
+def test_bound_chain_squatting_a_four_slot_letter_counts_toward_the_budget():
+    """A chain bound to B needs no particular slot_count -- nothing requires a
+    bound chain to fill its letter's capacity, and it may have shrunk since
+    the push that recorded the binding. It still spends one of the two
+    4-slot letters, so two more unbound 4-slot chains is one too many."""
+    chains = slots(("old", 3), ("new-one", 4), ("new-two", 4))
+    with pytest.raises(LetterAssignmentError) as exc_info:
+        assign_letters(chains, {"old": "B"})
+    assert exc_info.value.code == "CHAINS_NEEDING_4_SLOTS_EXCEEDED"
+
+
 def test_cold_rebuild_from_full_bindings_reproduces_them():
     chains = slots(("pads", 3), ("lead", 4), ("bass", 3), ("fx", 4))
     bindings = {"pads": "A", "lead": "B", "bass": "C", "fx": "D"}
