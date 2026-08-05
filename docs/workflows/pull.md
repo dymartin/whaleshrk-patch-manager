@@ -119,6 +119,17 @@ declaration position would produce, so adoption writes an explicit
 `midi: { channel: N }` on any chain whose channel differs from its positional
 default.
 
+**A preset that cannot be cleanly minted refuses that one preset, not the
+whole run** (same all-or-nothing shape as reverse-mapping an existing song,
+`rig.pull.reverse.ReverseMapError`): an unknown module, mod-bus routing or a
+CC mapping outside a chain module (no schema field either way), a reserved
+CC/channel, a sample selecting the shared `samples/`/`loops`/`synths`
+folders, and an occupied slot sitting after an unoccupied one within the same
+group (chain modules, `sends:`, `master:`, `mod-sources:`) — the schema
+writes "N modules used" as exactly N list entries with no way to say "skip
+this one," so a gap has no index that would keep the later module's identity
+aligned on the next compile.
+
 **Adoption writes the drift baseline.** The observed `params.json` is
 snapshotted into `.rig/state/last-pushed/<song>.json` and the observed
 directory name into `<song>.meta.json`. Without the snapshot the song has no
