@@ -77,12 +77,20 @@ positional media use separate fixed roots.
 
 ## Implementation notes
 
-`.rig-push/` is a card path this tool reserves for its own journal and
-staging area (`.rig-push/journal.json`, `.rig-push/staging/`), plus a
-`<name>.rig-push-backup` sibling next to any directory mid-swap. Never a
-preset or media directory; other tooling (pull, a future hardware check)
-must not treat it as content and must not need to know its internal shape,
-only that it exists and is push's alone.
+`data/orhack/.rig-push/` is a card path this tool reserves for its own
+journal and staging area (`data/orhack/.rig-push/journal.json`,
+`data/orhack/.rig-push/staging/`), plus a `<name>.rig-push-backup` sibling
+next to any directory mid-swap. It sits beside `data/orhack/presets/`, not
+inside it, so it cannot be picked up by "a preset is any `presets/`
+subdirectory containing `params.json`" (`docs/platform/state.md`) — the one
+scan of `data/orhack/` this repo has actually read source for. That is a
+narrower claim than "this location is safe": no source has been read that
+rules out some other scan of `data/orhack/`'s children, or of the card root,
+existing elsewhere in the OS (Global Constraint 1) — only that the one
+documented, sourced risk does not apply. Cleaned up on every successful
+push; it only persists across an interrupted run, where the existing
+"reconnect and rerun push" guidance already applies. Other tooling (pull, a
+future hardware check) must not treat it as preset or media content.
 
 A gap placeholder is identified by its directory name alone — three bare
 digits, no slug suffix, a shape a real song's compiled directory can never

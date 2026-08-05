@@ -94,6 +94,39 @@ def test_failed_verification_restores_the_backup_and_raises():
     assert not transport.exists(op.backup)
 
 
+def test_failed_verification_of_one_root_rolls_back_every_healthy_sibling_too():
+    # run_transaction restores every op when any op fails verification -- a
+    # real push always has several roots (several songs, placeholders,
+    # media groups), so a single-op test can't actually exercise that
+    # "every", only "the one op that failed".
+    transport = InMemoryTransport()
+    transport.write("presets/a/params.json", b"{A-OLD}")
+    transport.write("presets/b/params.json", b"{B-OLD}")
+    transport.write("presets/c/params.json", b"{C-OLD}")
+    op_a = _staged_write(transport, 0, "presets/a", {"params.json": b"{A-NEW}"})
+    op_b = _staged_write(transport, 1, "presets/b", {"params.json": b"{B-NEW}"})
+    op_c_delete = plan_delete_op(2, "presets/c")
+
+    # Corrupt only op_b's manifest -- a and c-delete are otherwise healthy.
+    tampered_b = RootOp(
+        id=op_b.id, kind=op_b.kind, live=op_b.live, backup=op_b.backup, staged=op_b.staged,
+        manifest={"params.json": "0" * 64},
+    )
+
+    with pytest.raises(PushTransactionError) as exc:
+        run_transaction(transport, [op_a, tampered_b, op_c_delete])
+    assert exc.value.code == "TRANSACTION_VERIFY_FAILED"
+
+    # Every root restored, not just the one that failed.
+    assert transport.read("presets/a/params.json") == b"{A-OLD}"
+    assert transport.read("presets/b/params.json") == b"{B-OLD}"
+    assert transport.read("presets/c/params.json") == b"{C-OLD}"
+    assert not transport.exists(op_a.backup)
+    assert not transport.exists(op_b.backup)
+    assert not transport.exists(op_c_delete.backup)
+    assert not transport.exists(JOURNAL_PATH)
+
+
 def test_no_ops_is_a_no_op():
     transport = InMemoryTransport()
     result = run_transaction(transport, [])

@@ -3,7 +3,7 @@
 See docs/schema.md for the field set and every rule this package enforces.
 """
 
-from .bindings import read_bindings, write_bindings
+from .bindings import read_bindings, remove_bindings, write_bindings
 from .errors import Finding, SongParseError, SongValidationError
 from .kits import KitsConfig, KitsError, parse_kits
 from .model import (
@@ -22,6 +22,7 @@ from .validate import ValidationResult, validate_song, validate_songs
 
 __all__ = [
     "read_bindings",
+    "remove_bindings",
     "write_bindings",
     "Finding",
     "SongParseError",

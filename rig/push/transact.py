@@ -15,10 +15,10 @@ fresh push (docs/workflows/push.md: "read the journal and either complete
 or restore, deterministically") instead of a separate, harder-to-trust
 recovery implementation.
 
-Journal and staging live under `.rig-push/`, a card-relative path this tool
-reserves for itself -- never inside `data/orhack/presets/` or a mirrored
-media directory, so a partially-written stage is never mistaken for real
-content.
+Journal and staging live under `data/orhack/.rig-push/`, a sibling of
+`data/orhack/presets/`, never inside it or inside a mirrored media
+directory -- see this module's `JOURNAL_PATH`/`STAGING_ROOT` docstring
+comment for exactly what that placement is and is not evidenced by.
 """
 
 from __future__ import annotations
@@ -31,8 +31,20 @@ from rig.push.fsutil import list_files_recursive
 from rig.push.hashing import hash_bytes, per_file_hashes
 from rig.transport.base import Transport
 
-JOURNAL_PATH = ".rig-push/journal.json"
-STAGING_ROOT = ".rig-push/staging"
+# `data/orhack/` is deploy.sh-owned, and docs/platform/state.md's only
+# documented scan of anything under it is "a preset is a directory,
+# discovered as any presets/ subdirectory containing params.json" -- i.e.
+# the risk that is actually sourced is specific to *inside* `presets/`.
+# `.rig-push` sits beside `presets/`, not inside it, so it cannot be picked
+# up by that scan. This is a narrower, sourced claim than "the whole card
+# root is safe" -- it is NOT a verified claim that nothing else reads
+# `data/orhack/`'s other children, or that a card-root scan does not exist
+# elsewhere in the OS; no such source has been read (Global Constraint 1).
+# Cleaned up on every successful push; it only persists across an
+# interrupted run, which already carries its own "don't insert an
+# interrupted card" operator guidance.
+JOURNAL_PATH = "data/orhack/.rig-push/journal.json"
+STAGING_ROOT = "data/orhack/.rig-push/staging"
 BACKUP_SUFFIX = ".rig-push-backup"
 
 

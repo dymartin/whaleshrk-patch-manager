@@ -39,3 +39,12 @@ def write_bindings(state_dir: Path, song_slug: str, bindings: dict[str, str]) ->
     state_dir.mkdir(parents=True, exist_ok=True)
     path = bindings_path(state_dir, song_slug)
     path.write_text(json.dumps(bindings, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+
+
+def remove_bindings(state_dir: Path, song_slug: str) -> None:
+    """Drop a retired song's chain bindings. Without this, a later song
+    reusing the same YAML filename stem silently inherits the retired
+    song's name -> letter binding -- either a false un-commanded-rename
+    refusal on a song nobody renamed, or silent reuse of old letters
+    (`rig.push.plan.detect_chain_rename`, docs/workflows/push.md step 5)."""
+    bindings_path(state_dir, song_slug).unlink(missing_ok=True)

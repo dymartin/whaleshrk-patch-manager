@@ -36,6 +36,7 @@ from rig.push.media import build_media_plan
 from rig.push.modules import (
     ModuleSource,
     UpdateChecker,
+    module_install_dir,
     plan_module_reconciliation,
     verify_orhack_manifest,
     verify_orhack_structure,
@@ -53,11 +54,12 @@ from rig.push.transact import (
     RootOp,
     plan_delete_op,
     plan_write_op,
+    read_journal,
     recover_pending_transaction,
     run_transaction,
     stage_files,
 )
-from rig.song.bindings import read_bindings, write_bindings
+from rig.song.bindings import read_bindings, remove_bindings, write_bindings
 from rig.song.kits import KitsConfig
 from rig.song.model import Song
 from rig.transport.base import Transport
@@ -114,6 +116,19 @@ def push(
     # Step 1: resolve the card.
     if transport is None:
         transport = resolve_card(roots)  # raises CardDetectionError -- never picks silently
+
+    # `--dry-run` must touch nothing (Prompt/05-push.md "--dry-run", decision
+    # #59) -- recovering an interrupted transaction performs real renames,
+    # deletes and flushes, so a dry-run cannot be allowed to trigger it.
+    # Refuse instead of reporting a "planned" change set the run never
+    # actually computed against a settled card.
+    if dry_run and read_journal(transport) is not None:
+        raise PushError(
+            "PENDING_TRANSACTION_DRY_RUN",
+            "a previous push was interrupted and left a pending transaction on this card -- "
+            "--dry-run cannot safely inspect it without completing or restoring it first. "
+            "Run `rig push` without --dry-run to recover, then retry.",
+        )
 
     # Recover any interrupted transaction before doing anything else.
     recover_pending_transaction(transport)  # raises PushTransactionError if a swap cannot be verified
@@ -213,6 +228,15 @@ def push(
         ops.append(plan_delete_op(op_id, live_path))
         op_id += 1
 
+    # Community module install/replace (docs/workflows/push.md step 2):
+    # "install what is missing, replace what does not match" is push's own
+    # write, through the same staged transaction as everything else -- a
+    # module that only *reconciled cleanly in memory* is not on the card.
+    for install in reconcile.to_install:
+        _add_write(module_install_dir(install.entry), install.files)
+    for install in reconcile.to_replace:
+        _add_write(module_install_dir(install.entry), install.files)
+
     written: list[str] = []
     renamed: dict[str, tuple[str, str]] = {}
 
@@ -293,6 +317,7 @@ def push(
         song_id = directory_to_song_id.get(directory)
         if song_id is not None:
             state_io.remove_last_pushed(state_dir, song_id)
+            remove_bindings(chains_state_dir, song_id)
 
     state_io.write_recorded_lock_hash(state_dir, current_lock_hash)
 

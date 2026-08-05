@@ -16,6 +16,7 @@ from rig.push.errors import PushError
 from rig.push.modules import ModuleSourceUnavailable
 from rig.push.runner import push
 from rig.push import state as state_io
+from rig.push.transact import plan_write_op, stage_files, write_journal
 from rig.song.bindings import read_bindings
 from rig.song.kits import KitsConfig
 from rig.song.model import Chain, ModuleSlot, Song
@@ -136,6 +137,21 @@ def test_retiring_a_song_deletes_its_preset_without_force(tmp_path):
     assert state_io.read_meta(state_dir, "vellichor") is None
 
 
+def test_retiring_a_song_also_drops_its_chain_bindings(tmp_path):
+    # Without this, a later song reusing the same YAML filename stem
+    # silently inherits the retired song's name -> letter binding.
+    transport = _bare_card()
+    media_root = tmp_path / "media"
+    state_dir = tmp_path / ".rig" / "state"
+    song = _song("Vellichor", program=3)
+    _push(songs={"vellichor": song}, selected=None, transport=transport, media_root=media_root, state_dir=state_dir)
+    assert read_bindings(state_dir / "chains", "vellichor") == {"lead": "A"}
+
+    _push(songs={}, selected=None, transport=transport, media_root=media_root, state_dir=state_dir)
+
+    assert read_bindings(state_dir / "chains", "vellichor") == {}
+
+
 def test_unrecorded_preset_refuses_without_force(tmp_path):
     transport = _bare_card()
     transport.write(f"{PRESETS_ROOT}/099-mystery/params.json", b"{}")
@@ -235,6 +251,50 @@ def test_module_unavailable_and_uninstalled_is_a_hard_error(tmp_path):
     assert exc.value.code == "MODULE_UNAVAILABLE"
 
 
+def test_missing_community_module_is_actually_installed_on_the_card(tmp_path):
+    transport = _bare_card()
+    media_root = tmp_path / "media"
+    state_dir = tmp_path / ".rig" / "state"
+    community = make_entry("warble@warble", "warble", "Warble", "effects/mod/warble@warble", [])
+    lock = {"modules": {"warble@warble": {"updated_at": "x", "file_id": 1, "archive_sha256": "y"}}}
+
+    class _WorkingModuleSource:
+        def fetch(self, entry):
+            return {"module.json": b"{}", "module.pd": b"patch"}
+
+    result = _push(
+        songs={}, selected=None, transport=transport, media_root=media_root, state_dir=state_dir,
+        catalog=_catalog(_synth_entry(), community), lock=lock, module_source=_WorkingModuleSource(),
+    )
+
+    assert result.modules_installed == ["warble@warble"]
+    install_dir = "media/orhack/user-modules/effects/mod/warble@warble"
+    assert transport.read(f"{install_dir}/module.json") == b"{}"
+    assert transport.read(f"{install_dir}/module.pd") == b"patch"
+
+
+def test_mismatched_community_module_is_actually_replaced_on_the_card(tmp_path):
+    transport = _bare_card()
+    install_dir = "media/orhack/user-modules/effects/mod/warble@warble"
+    transport.write(f"{install_dir}/module.json", b"{OLD}")
+    media_root = tmp_path / "media"
+    state_dir = tmp_path / ".rig" / "state"
+    community = make_entry("warble@warble", "warble", "Warble", "effects/mod/warble@warble", [])
+    lock = {"modules": {"warble@warble": {"updated_at": "x", "file_id": 1, "archive_sha256": "y"}}}
+
+    class _WorkingModuleSource:
+        def fetch(self, entry):
+            return {"module.json": b"{NEW}"}
+
+    result = _push(
+        songs={}, selected=None, transport=transport, media_root=media_root, state_dir=state_dir,
+        catalog=_catalog(_synth_entry(), community), lock=lock, module_source=_WorkingModuleSource(),
+    )
+
+    assert result.modules_replaced == ["warble@warble"]
+    assert transport.read(f"{install_dir}/module.json") == b"{NEW}"
+
+
 def test_uncommanded_chain_rename_refuses(tmp_path):
     transport = _bare_card()
     media_root = tmp_path / "media"
@@ -262,6 +322,29 @@ def test_dry_run_leaves_card_and_state_untouched(tmp_path):
     assert result.written == ["vellichor"]
     assert transport._files == before
     assert not state_dir.exists()
+
+
+def test_dry_run_refuses_rather_than_recover_a_pending_transaction(tmp_path):
+    # recover_pending_transaction performs real renames/deletes/flushes --
+    # --dry-run must never trigger it (Prompt/05-push.md "--dry-run",
+    # decision #59: "touches nothing").
+    transport = _bare_card()
+    media_root = tmp_path / "media"
+    state_dir = tmp_path / ".rig" / "state"
+    op = plan_write_op(0, f"{PRESETS_ROOT}/003-vellichor", {"params.json": b"{NEW}"})
+    stage_files(transport, op.staged, {"params.json": b"{NEW}"})
+    write_journal(transport, [op])
+    before = dict(transport._files)
+
+    song = _song("Vellichor", program=3)
+    with pytest.raises(PushError) as exc:
+        _push(
+            songs={"vellichor": song}, selected=None, transport=transport, media_root=media_root,
+            state_dir=state_dir, dry_run=True,
+        )
+
+    assert exc.value.code == "PENDING_TRANSACTION_DRY_RUN"
+    assert transport._files == before  # untouched -- the journal is still exactly as seeded
 
 
 def test_current_preset_repaired_when_it_pointed_at_a_retired_preset(tmp_path):
