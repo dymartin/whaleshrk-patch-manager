@@ -36,13 +36,43 @@ Every other drifted song still processes.
 
 ## What drift covers
 
-Captured: module placement, all module parameters, CC mappings, mod-bus
-routing, router settings including per-chain input gains and MIDI channels.
+Captured and reverse-mapped into a song field: all chain-module parameters,
+module `midi:` CC mappings, per-slot `send:` amounts, `note-thru`, router
+settings (per-chain input/output gain, balance/width, MIDI channel), and
+sample selection.
+
+**Module placement is captured only as a precondition, not as an edit.**
+Every occupied or empty slot's `moduleType` must match what the song already
+declares before any of its parameter drift is trusted; a mismatch (a
+different module physically occupying the slot, or a slot the song leaves
+undeclared now holding something) aborts that song with `MODULE_IDENTITY_DRIFT`
+rather than minting a new module reference — the reverse mapper is a patch
+applier over an existing song, not an emitter (that is adoption's job, below).
 
 **Sample *selection* is captured; sample *files* are not.** `samp_source` and
 `samp_select` are ordinary parameters, so a sampler pointed at a different file
 reverse-maps to a changed `sample:` field like any other drift. What pull
-ignores is the media tree itself.
+ignores is the media tree itself. `samp_source` selecting the shared
+`samples/`, `loops/` or `synths/` folders (25-27) has no kit-alias form in the
+schema at all (`docs/platform/samples.md`) and aborts that song with
+`SAMPLE_FOLDER_UNREPRESENTABLE` rather than guessing.
+
+**Mod-bus routing and CC mappings outside a chain module slot have no song
+field to receive them**, even though the device's `params.json` can carry
+both (`mod-mapping.bus` on any slot; `midi-mapping.cc` on `f1`-`f3`, `m1`-`m3`,
+`p1`-`p2` — `midi:` is a chain-module-only field, see `rig.song.model`). Drift
+there aborts that song with `UNSUPPORTED_DRIFT` instead of being silently
+dropped. The same abort catches drift on the router's compiler-pinned safety
+fields (`r-midi-ch`, `r-midi-pgmgate`, `r-chin-midigate-N` —
+[../platform/routing.md](../platform/routing.md) "Traps") and on `s2` transport
+params (decision #26: no song field exists for tempo/clock) — both worth a
+human looking at rather than the tool guessing.
+
+**Program is not reverse-mapped.** A preset is matched to its song by the
+*recorded* directory name (decision #55), never by comparing prefixes, so a
+changed numeric prefix means the recorded name is missing from the card
+(warns and is skipped, above) rather than drift this step ever sees. The
+numeric-prefix decode is Adoption's concern, below.
 
 Not captured: sequencer patterns, morpher banks, media files. See
 [../decisions.md](../decisions.md) #1 and #5.
