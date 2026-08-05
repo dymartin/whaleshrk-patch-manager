@@ -19,6 +19,14 @@ blocks a phase. Both are one-liners through the web terminal
 - **`locale -a`.** ORAC requests `en_US.UTF-8` before every preset scan and
   falls back to `C`. [platform/midi.md](platform/midi.md) shows preset order is
   the same either way, so this only settles which of two proven paths is live.
+- **Default content of `<slot>-slot-tracker.txt`, `<slot>-seq<n>x.txt`
+  (`sequencers/overdrum`/`overflow`/`clips`) and `<slot>-{len,notes,vel}.txt`
+  (`sequencers/polystep`).** Neither shipped preset carries any of these for a
+  slot's own live occupant (decision #69), so the compiler refuses to compile
+  a song that needs them rather than guess. Saving a preset with each of these
+  modules freshly placed, then reading what the device wrote, would either
+  supply a verified template or show the files are recreated on demand and
+  compile can keep omitting them.
 
 ## Waiting on first real numbers, not on a decision
 
