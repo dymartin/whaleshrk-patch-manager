@@ -1,0 +1,42 @@
+song: Vellichor
+program: 12                         # MIDI PC 12 on channel 16
+
+sends:
+  reverb:                          # -> p1
+    module: plateverb@orhack
+    size: 70
+  space:                           # -> p2
+    module: clouds@orhack
+
+master:                            # -> f1, f2, f3 in order
+  - marginal@orhack: {low: 40}
+  - bus-comp@orhack
+
+mod-sources:                       # -> m1, m2, m3; empty unless declared
+  - lfo@orhack: {speed-1: 30}
+
+chains:
+  - name: pads                     # 1st declared -> MIDI channel 1
+    input: {guitar: false}         # 4 modules -> compiler assigns chain B
+    mix: {output-gain: 90, balance: 50}
+    modules:
+      - rings@orhack:
+          structure: 45
+          midi: {structure: 71}    # channel 1 implied
+          note-thru: true
+      - warp@orhack:
+          drive: 30
+          send: {reverb: 40}
+      - spiraldelay@orhack:
+          send: {space: 25}
+      - eq-iv@orhack
+
+  - name: guitar                   # 2nd declared -> MIDI channel 2
+    input: {guitar: true}          # 2 modules -> compiler assigns chain A
+    mix: {input-gain: 100, output-gain: 100, balance: 50, width: 100}
+    modules:
+      - warp@orhack:
+          drive: 55
+          send: {reverb: 20}
+      - samplement@orhack:
+          sample: warehouse/kick_808.wav
