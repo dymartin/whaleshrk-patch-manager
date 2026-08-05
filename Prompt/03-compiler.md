@@ -160,6 +160,19 @@ samp_select = 100 × (k + 0.5) / (N − 0.05)
 Listing order is POSIX `glob()`, which sorts — stable given identical folder
 contents. Push owns those folders, which is what makes this exact.
 
+**Validate each folder as you enumerate it** (`docs/media.md`). Task 2 validated
+`.rig/kits.yaml` — the alias cap, duplicate `kit-N`, symlinked aliases. The
+folder *contents* are checked here, because this is the phase that lists them:
+
+- Playback files must use lowercase `.wav` and portable names — hard error
+  otherwise.
+- **No case-insensitive filename collisions within a folder** — hard error. The
+  card is `vfat`/`exfat`, so two names differing only in case collapse into one
+  file and every position after it shifts.
+- Non-`.wav` files are ignored but **warned about** — they do not count toward
+  `N`, and a musician who dropped an `.aif` in the folder needs to know it will
+  never play.
+
 ## Sidecars
 
 Retarget the pinned ORHACK `Init` sidecar templates to occupied stateful slots.

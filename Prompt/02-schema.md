@@ -136,8 +136,8 @@ MPE-style voice-split. Point only genuinely single-channel material at it.
 
 ```yaml
 midi:
-  size: 74                        # channel implied from the chain
-  damping: { channel: 1, cc: 20 } # explicit channel
+  size: 71                        # channel implied from the chain
+  damping: {channel: 1, cc: 20}   # explicit channel
 ```
 
 Implied form keeps the same CC number independent across chains, because the
