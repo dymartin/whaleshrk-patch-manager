@@ -17,38 +17,44 @@ sends:
     module: clouds@orhack
 
 master:                            # -> f1, f2, f3 in order
-  - marginal@orhack: { low: 40 }
+  - marginal@orhack: {low: 40}
   - bus-comp@orhack
 
 mod-sources:                       # -> m1, m2, m3; empty unless declared
-  - lfo@orhack: { speed-1: 30 }
+  - lfo@orhack: {speed-1: 30}
 
 chains:
   - name: pads                     # 1st declared -> MIDI channel 1
-    input: { guitar: false }       # 4 modules -> compiler assigns chain B
-    mix: { output-gain: 90, balance: 50 }
+    input: {guitar: false}         # 4 modules -> compiler assigns chain B
+    mix: {output-gain: 90, balance: 50}
     modules:
       - rings@orhack:
           structure: 45
-          midi: { structure: 74 }  # channel 1 implied
+          midi: {structure: 71}    # channel 1 implied
           note-thru: true
       - warp@orhack:
           drive: 30
-          send: { reverb: 40 }
+          send: {reverb: 40}
       - spiraldelay@orhack:
-          send: { space: 25 }
+          send: {space: 25}
       - eq-iv@orhack
 
   - name: guitar                   # 2nd declared -> MIDI channel 2
-    input: { guitar: true }        # 2 modules -> compiler assigns chain A
-    mix: { input-gain: 100, output-gain: 100, balance: 50, width: 100 }
+    input: {guitar: true}          # 2 modules -> compiler assigns chain A
+    mix: {input-gain: 100, output-gain: 100, balance: 50, width: 100}
     modules:
       - warp@orhack:
           drive: 55
-          send: { reverb: 20 }
+          send: {reverb: 20}
       - samplement@orhack:
           sample: warehouse/kick_808.wav
 ```
+
+Flow-style maps (`{key: value}`) never carry inner padding. Verified against
+ruamel.yaml 0.19.1: its round-trip emitter re-serialises `{ x: y }` as
+`{x: y}` unconditionally -- there is no setting to preserve the padding. Since
+round-tripping a song file byte-identically is required (see "Invariants"
+below), no song file, including this one, may rely on it.
 
 ## What the song file does not contain
 
@@ -165,7 +171,7 @@ Anything unmentioned compiles to the catalog default for the pinned version.
 
 ```yaml
 midi:
-  size: 74                        # channel implied from the chain
+  size: 71                        # channel implied from the chain
   damping: { channel: 1, cc: 20 } # explicit channel
 ```
 

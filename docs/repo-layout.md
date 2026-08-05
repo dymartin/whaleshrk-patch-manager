@@ -18,7 +18,8 @@ media/                      musician-facing
     last-pushed/
       <song>.json           compiled params.json per song, byte-exact
       <song>.meta.json      preset directory name + program as pushed
-    chains/                 chain name -> letter bindings, one file per song
+    chains/
+      <song>.json           chain name -> letter binding, this song only
     hardware/               <song>.json — load time + CPU baseline per subject
   kits.yaml                 kit alias -> kit-N
   modules.lock              pinned versions + content hashes
@@ -34,6 +35,14 @@ reproducible. Both must travel with the repo and stay reviewable.
 `<song>.json` is a byte-exact copy of what was written to the card, so push
 verification is a plain hash comparison and the drift diff needs no unwrapping.
 The directory name push chose lives in a sidecar for that reason.
+
+`state/chains/<song>.json` is a flat JSON object, chain name to letter
+("A"-"D"), keys sorted, two-space indent, trailing newline -- the same
+convention as every other `.rig/` JSON file. A recorded binding is
+authoritative (see [schema.md](schema.md) "Chain letters"): push writes it,
+pull uses it to attribute drift, `rename-chain` rewrites it, and the compiler
+assigns letters only where no binding exists. Read and write it only through
+`rig.song.bindings`, so those three call sites can't drift from one another.
 
 **All state is keyed per song, never in a shared file.** A single manifest would
 be edited by every song's PR, entangling reviews that must stay independent.
