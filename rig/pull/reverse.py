@@ -48,6 +48,18 @@ compiler-pinned safety fields (`r-midi-ch`, `r-midi-pgmgate`,
 `r-chin-midigate-N` -- docs/platform/routing.md "Traps") and on `s2`
 transport params (decision #26: fully compiler-defaulted, no song field) --
 both cases where a human should look before this tool guesses anything.
+
+**A decoded channel or CC that `rig.song.validate` would hard-reject is
+never written, even though it has a song field.** The device can hold
+values the compiler itself would never have produced -- CC 1/74, channel 16,
+channel 0 or anything outside a field's valid range -- because drift is
+exactly "the device diverged from what the compiler would have produced".
+Writing one of those into `midi: {channel:}` or a module's `midi:` block
+would hand back a song file that parses but fails validation later, in a
+more confusing place than where the problem was actually found; both
+call sites raise `ReverseMapError("RESERVED_MIDI_VALUE_DRIFT", ...)` instead
+(`_check_chain_channel_writable`, `_check_module_cc_writable`), reusing the
+exact ranges `rig.song.validate` itself checks.
 """
 
 from __future__ import annotations
@@ -65,6 +77,7 @@ from rig.compile.router import LETTER_TO_N
 from rig.compile.samples import scan_wav_folder
 from rig.song.kits import KitsConfig
 from rig.song.parser import SongDocument
+from rig.song.validate import CHAIN_CHANNEL_RANGE, MODULE_CHANNEL_RANGE, RESERVED_CCS
 
 _NON_SYSTEM_SLOT_IDS = [s for s in FIXED_SLOT_IDS if s not in ("s1", "s2")]
 
@@ -135,6 +148,35 @@ def _invert_cc(cc_map: dict) -> dict[str, int]:
         for pid in ids:
             inverted[pid] = key
     return inverted
+
+
+def _check_chain_channel_writable(channel: int, context: str) -> None:
+    """A chain's note channel is a hard validation error outside 0-15
+    (`rig.song.validate.CHAIN_CHANNEL_RANGE`, `docs/schema.md` "Channel 16 is
+    forbidden"). The device can hold a value validation would reject -- the
+    whole premise of drift is that it can diverge from anything the compiler
+    would ever have produced -- so writing it straight into `midi: {channel:}`
+    would hand the musician a song file that fails validation later, in a
+    more confusing place than where the actual problem was found."""
+    if channel not in CHAIN_CHANNEL_RANGE:
+        raise ReverseMapError(
+            "RESERVED_MIDI_VALUE_DRIFT", f"{context}: chain channel {channel} is reserved or out of range"
+        )
+
+
+def _check_module_cc_writable(channel: int, cc: int, context: str) -> None:
+    """Same guard as `_check_chain_channel_writable`, for a module `midi:`
+    entry: CC 1/74 are hardwired per-chain modulation sources
+    (`rig.song.validate.RESERVED_CCS`), and a module mapping's channel is a
+    hard error outside 1-15 (`rig.song.validate.MODULE_CHANNEL_RANGE`) --
+    channel 0 is never emitted by `ctlin` and channel 16 is reserved for
+    Program Change."""
+    if cc in RESERVED_CCS:
+        raise ReverseMapError("RESERVED_MIDI_VALUE_DRIFT", f"{context}: CC {cc} is reserved")
+    if channel not in MODULE_CHANNEL_RANGE:
+        raise ReverseMapError(
+            "RESERVED_MIDI_VALUE_DRIFT", f"{context}: module CC channel {channel} is reserved or out of range"
+        )
 
 
 def _raw_diffs(baseline: dict, observed: dict) -> list[_RawDiff]:
@@ -435,6 +477,7 @@ def reverse_map_song(
         d = remaining.pop(("s1", ("params", f"r-chin-midich-{n}")), None)
         if d is not None:
             effective_channel = int(d.new)
+            _check_chain_channel_writable(effective_channel, f"chains[{chain_index}] ({chain.name!r})")
             edits.append(_make_set_nested(chain_raw, "midi", "channel", effective_channel))
             changes.append(FieldChange(f"chains[{chain_index}].midi.channel", effective_channel))
 
@@ -524,6 +567,7 @@ def reverse_map_song(
                     continue
                 key = int(d.new)
                 channel, cc = divmod(key, 128)
+                _check_module_cc_writable(channel, cc, f"{slot_id}.midi.{spec.name}")
                 # Shorthand only when the decoded channel matches the
                 # chain's own resolved channel, and never on an omni chain
                 # (Prompt/06 "CC keys"): a bare CC number on an omni chain

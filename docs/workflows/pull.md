@@ -45,9 +45,13 @@ sample selection.
 Every occupied or empty slot's `moduleType` must match what the song already
 declares before any of its parameter drift is trusted; a mismatch (a
 different module physically occupying the slot, or a slot the song leaves
-undeclared now holding something) aborts that song with `MODULE_IDENTITY_DRIFT`
-rather than minting a new module reference — the reverse mapper is a patch
-applier over an existing song, not an emitter (that is adoption's job, below).
+undeclared now holding something) aborts that song with `MODULE_IDENTITY_DRIFT`.
+This is not a missing-schema-field case — `rig.song.model`'s `ModuleSlot.key`/
+`ModuleUse.key` is exactly where a module-identity change would land.
+Capturing it would mean re-deriving that slot's whole parameter set against
+the newly-observed module (an emission, not an edit to what moved), and scope
+was deliberately kept narrower than that because the rig's owner does not
+edit module placement on the device.
 
 **Sample *selection* is captured; sample *files* are not.** `samp_source` and
 `samp_select` are ordinary parameters, so a sampler pointed at a different file
@@ -67,6 +71,15 @@ fields (`r-midi-ch`, `r-midi-pgmgate`, `r-chin-midigate-N` —
 [../platform/routing.md](../platform/routing.md) "Traps") and on `s2` transport
 params (decision #26: no song field exists for tempo/clock) — both worth a
 human looking at rather than the tool guessing.
+
+**A decoded value that `rig.song.validate` would hard-reject is never
+written.** CC 1/74, channel 16, and any channel outside a field's valid
+range are all hard validation errors, but the device can hold them anyway —
+that's the nature of drift, the device diverging from anything the compiler
+would produce. Writing one straight into `midi: {channel:}` or a module's
+`midi:` block would hand back a song file that parses but fails validation
+later, in a more confusing place than where the problem was actually found;
+that aborts the song with `RESERVED_MIDI_VALUE_DRIFT` instead.
 
 **Program is not reverse-mapped.** A preset is matched to its song by the
 *recorded* directory name (decision #55), never by comparing prefixes, so a

@@ -214,6 +214,26 @@ def test_chain_channel_drift_uses_the_letter_not_declaration_position(tmp_path):
         assert comment in text
 
 
+def test_chain_channel_16_drift_aborts_before_any_write(tmp_path):
+    doc, baseline, catalog, kits, media_root = _base(tmp_path)
+    # pads -> letter A -> n=1. 16 is reserved for Program Change/preset
+    # control, a hard validation error (rig.song.validate.CHAIN_CHANNEL_RANGE).
+    observed = _mutate(baseline, "s1", "params", "r-chin-midich-1", 16)
+    with pytest.raises(ReverseMapError) as exc_info:
+        reverse_map_song(doc, baseline=baseline, observed=observed, catalog=catalog, kits=kits, media_root=media_root)
+    assert exc_info.value.code == "RESERVED_MIDI_VALUE_DRIFT"
+    assert dump_song(doc) == BASE_YAML
+
+
+def test_chain_channel_out_of_range_drift_aborts_before_any_write(tmp_path):
+    doc, baseline, catalog, kits, media_root = _base(tmp_path)
+    observed = _mutate(baseline, "s1", "params", "r-chin-midich-1", 42)
+    with pytest.raises(ReverseMapError) as exc_info:
+        reverse_map_song(doc, baseline=baseline, observed=observed, catalog=catalog, kits=kits, media_root=media_root)
+    assert exc_info.value.code == "RESERVED_MIDI_VALUE_DRIFT"
+    assert dump_song(doc) == BASE_YAML
+
+
 # --- send amount --------------------------------------------------------------
 
 
@@ -259,6 +279,31 @@ def test_module_midi_cc_removed_drops_the_mapping(tmp_path):
     assert changes == [FieldChange("a1.midi.level", None)]
     text = dump_song(doc)
     assert "midi:" not in text.split("level: 50")[1].split("note-thru")[0]
+
+
+def test_module_midi_reserved_cc_drift_aborts_before_any_write(tmp_path):
+    doc, baseline, catalog, kits, media_root = _base(tmp_path)
+    # Channel 1 still matches the chain (shorthand-eligible), but CC 74 is
+    # hardwired per-chain modulation (rig.song.validate.RESERVED_CCS) and a
+    # hard validation error -- must not be written even in shorthand form.
+    observed = copy.deepcopy(baseline)
+    del observed["a1"]["midi-mapping"]["cc"][str(1 * 128 + 71)]
+    observed["a1"]["midi-mapping"]["cc"][str(1 * 128 + 74)] = ["lvl"]
+    with pytest.raises(ReverseMapError) as exc_info:
+        reverse_map_song(doc, baseline=baseline, observed=observed, catalog=catalog, kits=kits, media_root=media_root)
+    assert exc_info.value.code == "RESERVED_MIDI_VALUE_DRIFT"
+    assert dump_song(doc) == BASE_YAML
+
+
+def test_module_midi_cc_channel_out_of_range_drift_aborts_before_any_write(tmp_path):
+    doc, baseline, catalog, kits, media_root = _base(tmp_path)
+    observed = copy.deepcopy(baseline)
+    del observed["a1"]["midi-mapping"]["cc"][str(1 * 128 + 71)]
+    observed["a1"]["midi-mapping"]["cc"][str(20 * 128 + 71)] = ["lvl"]
+    with pytest.raises(ReverseMapError) as exc_info:
+        reverse_map_song(doc, baseline=baseline, observed=observed, catalog=catalog, kits=kits, media_root=media_root)
+    assert exc_info.value.code == "RESERVED_MIDI_VALUE_DRIFT"
+    assert dump_song(doc) == BASE_YAML
 
 
 def test_omni_chain_always_uses_explicit_cc_form(tmp_path):
