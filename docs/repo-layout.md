@@ -18,12 +18,25 @@ media/                      musician-facing
     last-pushed/
       <song>.json           compiled params.json per song, byte-exact
       <song>.meta.json      preset directory name + program as pushed
+      .modules-lock-hash    hash of modules.lock as of the last push
     chains/
       <song>.json           chain name -> letter binding, this song only
     hardware/               <song>.json — load time + CPU baseline per subject
   kits.yaml                 kit alias -> kit-N
   modules.lock              pinned versions + content hashes
 ```
+
+`<song>` is the song's YAML filename stem (`songs/vellichor.yaml` -> `vellichor`),
+never `slug(song's "name:")`. It has to be the stable one: a musician can
+change `name:` — that is exactly the rename push's classify step detects by
+comparing the recorded directory against what the song compiles to now — and
+the state lookup key has to survive that change, or a rename reads as
+delete-then-create instead.
+
+`.modules-lock-hash` is a single hash, not per-song: reconciliation is
+repo-wide (one card, one module set), so a selective push can refuse by
+comparing it to the current lock's hash rather than re-deriving anything
+(see [workflows/push.md](workflows/push.md)).
 
 Musicians edit `songs/` and `media/`; the CLI owns `.rig/`.
 

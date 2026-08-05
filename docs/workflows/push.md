@@ -74,3 +74,19 @@ swaps; the next push reads the journal and completes or restores
 deterministically. Do not insert an interrupted card into the device —
 reconnect it and rerun push. Global atomicity is impossible because presets and
 positional media use separate fixed roots.
+
+## Implementation notes
+
+`.rig-push/` is a card path this tool reserves for its own journal and
+staging area (`.rig-push/journal.json`, `.rig-push/staging/`), plus a
+`<name>.rig-push-backup` sibling next to any directory mid-swap. Never a
+preset or media directory; other tooling (pull, a future hardware check)
+must not treat it as content and must not need to know its internal shape,
+only that it exists and is push's alone.
+
+A gap placeholder is identified by its directory name alone — three bare
+digits, no slug suffix, a shape a real song's compiled directory can never
+produce (`rig.compile.compiler.build_placeholder`'s `directory` is always
+`""`). That is what lets push reconcile placeholders unconditionally, with
+no `--force` and no `.rig/state/` record of its own: the pattern is
+self-verifying, so there is nothing to look up.
