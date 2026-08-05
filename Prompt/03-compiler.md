@@ -114,8 +114,11 @@ Change **directly as a zero-based vector index**. So:
 
 - Unpadded, `"10-x"` sorts before `"2-x"` and every song above program 9 loads
   the wrong preset.
-- **Emit a gap placeholder for every unused program value below the highest one
-  in use**, keeping the vector contiguous.
+- Unused program values below the highest one in use need gap placeholders to
+  keep the vector contiguous. **Deciding which programs need one is push's job**
+  (`docs/workflows/push.md`) — it is the only phase that sees the whole selected
+  song set. Compile owns the *shape*: expose a function that builds one
+  placeholder preset for a given program number, and let push call it.
 
 A gap placeholder is a preset holding `s1 = routers/hybrid`, `s2 =
 clocks/transport` and 22 `-empty-` slots, **with no sidecar files** (#50). It has
@@ -164,11 +167,16 @@ Retarget the pinned ORHACK `Init` sidecar templates to occupied stateful slots.
 retarget to any occupied supported stateful slot. The 16 morpher `p<N>.txt`
 files are global.
 
-**Mirror with deletions, never additively** (#40). Sidecars are slot-keyed, not
-module-keyed: swap `overdrum` for `polystep` in the same slot and the new module
-reads whatever the old one left in those arrays. Pd's `array read` on a missing
-file logs an error and leaves the array holding the **previously loaded
-preset's** contents.
+Compile emits exactly the sidecars this song's occupied slots need — nothing
+more. Removing a *previous* occupant's files is **push's job**
+(`docs/workflows/push.md`): mirroring with deletions requires reading what the
+card already holds, which is not a compile input.
+
+Why push must do it at all — **mirror with deletions, never additively** (#40).
+Sidecars are slot-keyed, not module-keyed: swap `overdrum` for `polystep` in the
+same slot and the new module reads whatever the old one left in those arrays.
+Pd's `array read` on a missing file logs an error and leaves the array holding
+the **previously loaded preset's** contents.
 
 ## Verification
 
@@ -187,5 +195,5 @@ plain `strcmp` must place each preset at the index equal to its `program` value.
 ## Done when
 
 Compiled `params.json` matches the hand-built expected file byte for byte, the
-`strcmp` ordering assertion passes, sample encoding has a test per folder class,
-and sidecar mirroring deletes a previous occupant's files.
+`strcmp` ordering assertion passes, and sample encoding has a test per folder
+class.

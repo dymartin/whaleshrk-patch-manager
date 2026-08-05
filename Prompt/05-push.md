@@ -173,6 +173,11 @@ performs the same network update *check*, under the same silent-skip rule.
 - **Rename, delete and `currentPreset` repair each need a seeded-card test** —
   all three are comparisons against recorded state, not pure functions of the
   repo.
+- **Gap placeholders and sidecar mirror-with-deletion are push's, not the
+  compiler's** — the compiler cannot see the whole song set or the card. Assert
+  a placeholder appears for every unused program below the highest in use, and
+  that pushing a song whose slot occupant changed removes the previous module's
+  sidecar files.
 - `--dry-run` leaves both card and repo byte-identical.
 
 ## Done when
