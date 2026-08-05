@@ -249,6 +249,14 @@ A module with no such message is stateless and passes. This is a *textual*
 scan, deliberately conservative: dynamic path construction it cannot resolve
 rejects rather than warns.
 
+**Pd wraps long box text across physical lines with no inserted separator**,
+ending the logical statement on the first line whose *unescaped* `;`
+terminates it (`\;` inside box text is a literal semicolon, not the
+terminator). `sequencers/overflow/overflow.pd`'s `step-seq-length` read/write
+messages are long enough to wrap this way; a naive per-line scan silently
+dropped them instead of resolving or rejecting them, which is worse than
+either. `scan_pd_text` rejoins wrapped lines before matching.
+
 The ABI check is a one-byte test catching real shipping breakage. Every
 wrong-arch hit found was the same x86 `tb_peakcomp~` / `ds_peakcomp~` pair,
 propagated into `bus-comp`, `strip`, `percussions+`, `8rac` — and ORHACK itself.

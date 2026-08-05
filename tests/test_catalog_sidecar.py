@@ -95,6 +95,36 @@ def test_module_with_no_sidecar_message_is_stateless_and_passes():
     assert result.resolved == []
 
 
+def test_wrapped_message_across_two_physical_lines_still_resolves():
+    # Real case from sequencers/overflow/overflow.pd: Pd's own file writer
+    # wraps a long box's text across physical lines with no inserted
+    # separator, terminating the *logical* statement on the semicolon. A
+    # naive per-line scan silently drops this instead of resolving it.
+    text = (
+        "#X msg 1394 51 write \\$1/presets/\\$2/step-seq-length-\\$3-\\$4-p1.txt\n"
+        ";\n"
+    )
+    result = scan_pd_text(text)
+    assert result.is_modelled
+    assert result.resolved == [r"\$1/presets/\$2/step-seq-length-\$3-\$4-p1.txt"]
+
+
+def test_wrapped_message_with_escaped_semicolon_is_not_mistaken_for_the_terminator():
+    # An escaped ';' (Pd's own convention for a literal semicolon inside box
+    # text) must not be read as ending the statement early -- the two
+    # physical lines are one logical message, not two truncated ones. The
+    # joined path itself is not a modellable filename (a literal ';' is not
+    # a template character), so it must land in `unresolved`, never be
+    # silently dropped.
+    text = (
+        "#X msg 100 100 write \\$1/presets/\\$2/\\$3-a\\;\n"
+        "b.txt;\n"
+    )
+    result = scan_pd_text(text)
+    assert not result.is_modelled
+    assert result.unresolved == [r"\$1/presets/\$2/\$3-a\;b.txt"]
+
+
 def test_scan_module_sidecars_aggregates_across_files():
     pd_files = {
         "a.pd": r"#X msg 1 1 read \$1/presets/\$2/\$3-a.txt;",

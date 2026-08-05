@@ -49,11 +49,53 @@ class SidecarScanResult:
         return not self.unresolved
 
 
+def _is_statement_end(line: str) -> bool:
+    """True if `line` ends a Pd declaration with an unescaped ';'.
+
+    Pd escapes a semicolon inside box text as '\\;'; that must not be read
+    as the statement terminator (see `test_wrapped_message_with_escaped_
+    semicolon_is_not_mistaken_for_the_terminator`).
+    """
+    stripped = line.rstrip()
+    if not stripped.endswith(";"):
+        return False
+    backslashes = 0
+    i = len(stripped) - 2
+    while i >= 0 and stripped[i] == "\\":
+        backslashes += 1
+        i -= 1
+    return backslashes % 2 == 0
+
+
+def _logical_lines(text: str) -> list[str]:
+    """Rejoin declarations Pd wrapped across multiple physical lines.
+
+    Every Pd declaration (`#X msg ...;`, `#X obj ...;`, ...) normally
+    occupies one physical line, but Pd's own file writer wraps long box text
+    at a column width with no inserted separator, so the wrapped remainder
+    is the *same* declaration continuing on the next line. Verified against
+    sequencers/overflow/overflow.pd's step-seq-length read/write messages,
+    whose long filename wraps across two physical lines -- a real case a
+    naive per-line scan silently drops instead of resolving, which is worse
+    than flagging it unresolved (Prompt.md Global Constraint #3).
+    """
+    logical: list[str] = []
+    buffer = ""
+    for raw in text.splitlines():
+        buffer += raw
+        if not buffer or _is_statement_end(buffer):
+            logical.append(buffer)
+            buffer = ""
+    if buffer:
+        logical.append(buffer)
+    return logical
+
+
 def scan_pd_text(text: str) -> SidecarScanResult:
     """Scan one .pd file's text for read/write-to-presets messages."""
     resolved: list[str] = []
     unresolved: list[str] = []
-    for line in text.splitlines():
+    for line in _logical_lines(text):
         m = _MSG_RE.search(line)
         if not m:
             continue
