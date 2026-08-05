@@ -19,8 +19,9 @@ Pull turns drift into reviewable PRs.
    one song.
 4. Per drifted song: reverse-map only what moved, edit the song YAML in place
    preserving comments, commit to its own branch, open a PR via `gh`.
-5. Adopt presets with no song file as new songs, one PR each — see
-   [Adoption](#adoption).
+5. Only when adoption is explicitly requested: adopt presets with no song file
+   as new songs, one PR each — see [Adoption](#adoption). A routine pull skips
+   this step.
 6. Ignore media entirely.
 
 One branch and PR per drifted song; unrelated songs never share reviews.
@@ -92,8 +93,13 @@ Not captured: sequencer patterns, morpher banks, media files. See
 
 ## Adoption
 
-Adoption *mints* a song file. Device presets carry no friendly names, so names
-are derived without exposing device identifiers.
+Adoption *mints* a song file, and so runs **only when explicitly requested** —
+never as part of a routine pull. Everything else pull does changes what a song
+says; adoption changes whether a song exists, which the device is not authority
+over.
+
+Device presets carry no friendly names, so names are derived without exposing
+device identifiers.
 
 **Song slug.** The preset name, lowercased, non-alphanumerics collapsed to `-`.
 Collisions take `-2`, `-3`. The slug is both the filename and the branch name.

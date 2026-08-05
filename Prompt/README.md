@@ -139,8 +139,9 @@ Python package `rig`, managed by `uv`. Dependencies: `ruamel.yaml` (round-trip
 mode — pull rewrites song files in place preserving comments), `typer`, `httpx`.
 Stdlib for `zipfile`, `struct`, `pathlib`, `subprocess`, `hashlib`, `json`.
 
-Runtime prerequisite for real `pull` runs: the `gh` CLI. Not installed on the
-development machine as of 2026-08-02; tests stub it.
+Runtime prerequisite for real `pull` runs: the `gh` CLI. Present on the
+development machine (2.97.0, checked 2026-08-06). Tests stub it regardless — a
+test that shells out to the real `gh` would open pull requests.
 
 ## Target module layout
 
