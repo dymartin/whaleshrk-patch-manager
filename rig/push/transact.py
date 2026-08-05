@@ -15,10 +15,10 @@ fresh push (docs/workflows/push.md: "read the journal and either complete
 or restore, deterministically") instead of a separate, harder-to-trust
 recovery implementation.
 
-Journal and staging live under `data/orhack/.rig-push/`, a sibling of
-`data/orhack/presets/`, never inside it or inside a mirrored media
-directory -- see this module's `JOURNAL_PATH`/`STAGING_ROOT` docstring
-comment for exactly what that placement is and is not evidenced by.
+Journal, staging and backups all live under `data/orhack/.rig-push/`, a
+sibling of `data/orhack/presets/`, never inside it or inside a mirrored
+media directory -- see the comment below for exactly what that placement is
+and is not evidenced by.
 """
 
 from __future__ import annotations
@@ -40,12 +40,29 @@ from rig.transport.base import Transport
 # root is safe" -- it is NOT a verified claim that nothing else reads
 # `data/orhack/`'s other children, or that a card-root scan does not exist
 # elsewhere in the OS; no such source has been read (Global Constraint 1).
-# Cleaned up on every successful push; it only persists across an
-# interrupted run, which already carries its own "don't insert an
-# interrupted card" operator guidance.
+#
+# A backup is a full copy of a root's pre-swap content, so for a preset
+# root that copy includes a `params.json` -- indistinguishable from a real
+# preset to the scan above by content alone. Suffixing the live name and
+# leaving it inside `presets/` (the previous design) would have made an
+# interrupted push's leftover backup an admissible extra preset: byte
+# ordering puts the shorter real name first, so it inserts one extra
+# Program Change vector slot immediately after the real one and shifts
+# every later index by one, silently. Backups are therefore mirrored under
+# `.rig-push/backups/` instead -- same reserved, `presets/`-sibling tree as
+# the journal and staging area, keyed by the live path so a backup's origin
+# stays unambiguous.
+#
+# All three (journal, staging, backups) are cleaned up on every successful
+# push; they only persist across an interrupted run, which already carries
+# its own "don't insert an interrupted card" operator guidance.
 JOURNAL_PATH = "data/orhack/.rig-push/journal.json"
 STAGING_ROOT = "data/orhack/.rig-push/staging"
-BACKUP_SUFFIX = ".rig-push-backup"
+BACKUP_ROOT = "data/orhack/.rig-push/backups"
+
+
+def _backup_path(live_path: str) -> str:
+    return f"{BACKUP_ROOT}/{live_path}"
 
 
 class PushTransactionError(ValueError):
@@ -98,14 +115,14 @@ def plan_write_op(op_id: int, live_path: str, files: dict[str, bytes]) -> RootOp
         id=op_id,
         kind="write",
         live=live_path,
-        backup=f"{live_path}{BACKUP_SUFFIX}",
+        backup=_backup_path(live_path),
         staged=f"{STAGING_ROOT}/{op_id}",
         manifest=per_file_hashes(files),
     )
 
 
 def plan_delete_op(op_id: int, live_path: str) -> RootOp:
-    return RootOp(id=op_id, kind="delete", live=live_path, backup=f"{live_path}{BACKUP_SUFFIX}", staged=None, manifest={})
+    return RootOp(id=op_id, kind="delete", live=live_path, backup=_backup_path(live_path), staged=None, manifest={})
 
 
 def stage_files(transport: Transport, staged_path: str, files: dict[str, bytes]) -> None:

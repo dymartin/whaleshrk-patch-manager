@@ -11,10 +11,10 @@ from __future__ import annotations
 import pytest
 
 from rig.push.transact import (
-    BACKUP_SUFFIX,
     JOURNAL_PATH,
     PushTransactionError,
     RootOp,
+    _ensure_swapped,
     plan_delete_op,
     plan_write_op,
     read_journal,
@@ -24,6 +24,8 @@ from rig.push.transact import (
     write_journal,
 )
 from rig.transport.memory import InMemoryTransport
+
+PRESETS_ROOT = "data/orhack/presets"
 
 
 def _staged_write(transport, op_id, live_path, files):
@@ -125,6 +127,33 @@ def test_failed_verification_of_one_root_rolls_back_every_healthy_sibling_too():
     assert not transport.exists(op_b.backup)
     assert not transport.exists(op_c_delete.backup)
     assert not transport.exists(JOURNAL_PATH)
+
+
+def test_no_extraneous_params_json_ever_appears_under_presets_during_a_swap():
+    # mec admits any presets/ subdirectory holding a params.json
+    # (docs/platform/state.md) as a real, indexed preset. A backup or
+    # staging artifact left there during an interrupted swap would be an
+    # admissible extra preset and shift every later Program Change index --
+    # assert the invariant directly against a mid-swap snapshot (the exact
+    # state an interruption would leave), not just where `op.backup`
+    # happens to point.
+    transport = InMemoryTransport()
+    transport.write(f"{PRESETS_ROOT}/003-vellichor/params.json", b"{OLD}")
+    transport.write(f"{PRESETS_ROOT}/004-retiring/params.json", b"{GONE}")
+    write_op = _staged_write(transport, 0, f"{PRESETS_ROOT}/003-vellichor", {"params.json": b"{NEW}"})
+    delete_op = plan_delete_op(1, f"{PRESETS_ROOT}/004-retiring")
+
+    for op in (write_op, delete_op):
+        _ensure_swapped(transport, op)  # mid-swap: what an interruption right here leaves behind
+
+    real_presets = {"003-vellichor"}
+    for name in transport.list(PRESETS_ROOT):
+        if name in real_presets:
+            continue
+        assert not transport.exists(f"{PRESETS_ROOT}/{name}/params.json"), (
+            f"{PRESETS_ROOT}/{name} holds params.json but is not a real preset -- would be "
+            "an admissible extra Program Change vector slot"
+        )
 
 
 def test_no_ops_is_a_no_op():

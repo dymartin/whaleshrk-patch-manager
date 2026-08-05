@@ -78,19 +78,28 @@ positional media use separate fixed roots.
 ## Implementation notes
 
 `data/orhack/.rig-push/` is a card path this tool reserves for its own
-journal and staging area (`data/orhack/.rig-push/journal.json`,
-`data/orhack/.rig-push/staging/`), plus a `<name>.rig-push-backup` sibling
-next to any directory mid-swap. It sits beside `data/orhack/presets/`, not
-inside it, so it cannot be picked up by "a preset is any `presets/`
-subdirectory containing `params.json`" (`docs/platform/state.md`) — the one
-scan of `data/orhack/` this repo has actually read source for. That is a
-narrower claim than "this location is safe": no source has been read that
-rules out some other scan of `data/orhack/`'s children, or of the card root,
-existing elsewhere in the OS (Global Constraint 1) — only that the one
-documented, sourced risk does not apply. Cleaned up on every successful
-push; it only persists across an interrupted run, where the existing
-"reconnect and rerun push" guidance already applies. Other tooling (pull, a
-future hardware check) must not treat it as preset or media content.
+journal, staging area and backups (`data/orhack/.rig-push/journal.json`,
+`data/orhack/.rig-push/staging/`, `data/orhack/.rig-push/backups/<mirrored
+live path>`). A backup is a full copy of a root's pre-swap content, so for a
+preset root that includes its `params.json` — indistinguishable, by content
+alone, from a real preset to the scan below. All three sit beside
+`data/orhack/presets/`, not inside it, so none can be picked up by "a
+preset is any `presets/` subdirectory containing `params.json`"
+(`docs/platform/state.md`) — the one scan of `data/orhack/` this repo has
+actually read source for. Leaving a backup inside `presets/` (an earlier
+design, since corrected) would have made an interrupted push's leftover
+backup an admissible extra preset: byte ordering puts the shorter real name
+first, so it inserts one extra Program Change vector slot immediately after
+the real one and shifts every later index by one, silently.
+
+This is a narrower claim than "this location is safe": no source has been
+read that rules out some other scan of `data/orhack/`'s children, or of the
+card root, existing elsewhere in the OS (Global Constraint 1) — only that
+the one documented, sourced risk does not apply. Cleaned up on every
+successful push; the tree only persists across an interrupted run, where
+the existing "reconnect and rerun push" guidance already applies. Other
+tooling (pull, a future hardware check) must not treat it as preset or
+media content.
 
 A gap placeholder is identified by its directory name alone — three bare
 digits, no slug suffix, a shape a real song's compiled directory can never
