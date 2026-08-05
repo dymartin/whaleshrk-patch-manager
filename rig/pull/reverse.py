@@ -22,17 +22,31 @@ and none of them run until every field has decoded successfully -- so a song
 that turns out not to be cleanly reverse-mappable raises `ReverseMapError`
 having touched `doc.raw` not at all (the brief's "Abort rule").
 
-**Program is deliberately not reverse-mapped here.** Prompt/06's field table
-lists "directory-name numeric prefix -> program", but
-`docs/workflows/pull.md`'s own "What drift covers" list does not mention
-program, and pull matches a preset to a song by the *recorded* directory
-name, never by comparing prefixes -- a prefix mismatch means the recorded
-name is not on the card at all (pull.md step 3's "warns and is skipped"
-path), not a drifted field this module ever sees. The table's row exists for
-Adoption instead (pull.md "Adoption" section, a separate emitter Task 7
-owns), which is why `decode_program_prefix` is exported standalone rather
-than wired into `reverse_map_song`. Doc wins over brief per the task's own
-instruction; flagged in the Task 6 report rather than guessed at silently.
+**Program is deliberately not reverse-mapped here.** `reverse_map_song` only
+ever receives two `params.json`-shaped dicts -- it never sees a directory
+name -- so it cannot observe a program change even in principle. Separately,
+pull matches a preset to a song by the *recorded* directory name, never by
+comparing prefixes, so a changed prefix surfaces earlier as a recorded
+preset absent from the card (pull.md step 3's "warns and is skipped" path)
+rather than reaching this function as drift at all. Prompt/06's field table
+lists a directory-prefix-to-program row, but that decode belongs to
+Adoption (a preset with no song file yet, which does have to mint a
+`program:` from the prefix) -- which is why `decode_program_prefix` is
+exported standalone here rather than wired into `reverse_map_song`; Task 7's
+adoption path should import it from here.
+
+**A slot's module identity is checked as a precondition, never edited --
+by scope choice, not because the model has nowhere to put it.**
+`rig.song.model`'s `ModuleSlot.key` (chain modules) and `ModuleUse.key`
+(master/mod-source/send modules) are exactly the field a module swap would
+land in, so this is not a missing-field case. What it would take is
+re-deriving that slot's whole parameter set against the newly-observed
+module -- an emission, not an edit to what moved -- and that was ruled out
+of scope: the rig's owner does not edit module placement on the device.
+`reverse_map_song` instead requires every slot's observed `moduleType` to
+already match what the song declares before trusting any of that slot's
+other drift, aborting with `ReverseMapError("MODULE_IDENTITY_DRIFT", ...)`
+otherwise (see docs/decisions.md #70).
 
 **What has no song-schema field at all cannot be edited, so it aborts.**
 Two whole categories of documented "captured" drift have no YAML field to
@@ -406,9 +420,10 @@ def reverse_map_song(
     Raises `ReverseMapError` -- and leaves `doc.raw` byte-identical to how
     it was passed in -- when the song cannot be cleanly reverse-mapped: an
     unknown module, a slot whose occupant no longer matches what the song
-    declares (module placement changed -- out of scope, see module
-    docstring's "Scope"/"patch applier, not a song emitter"), or any drift
-    left over once every documented field has had a chance to claim it.
+    declares (module placement changed -- out of scope by deliberate choice,
+    not a missing field; see the module docstring's "A slot's module
+    identity is checked as a precondition" paragraph), or any drift left
+    over once every documented field has had a chance to claim it.
 
     Assumes `doc.song` last compiled successfully (mirrors `compile_song`'s
     own assumption that `validate_song` already ran) -- capacity limits are
