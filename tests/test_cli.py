@@ -145,10 +145,39 @@ def test_catalog_update_help_documents_the_command():
     assert "--dry-run" in result.output
 
 
-def test_validate_tier_form_not_implemented():
+def test_validate_static_unknown_song_is_a_clean_refusal(repo):
     result = runner.invoke(app, ["validate", "--tier", "static", "song1", "song2"])
     assert result.exit_code != 0
-    assert "not implemented" in result.output
+    assert "rig validate: UNKNOWN_SONG: unknown song(s): song1, song2" in result.output
+
+
+def test_validate_static_passes_for_a_clean_song_and_writes_a_report(repo):
+    _seed_catalog([_synth_entry(), *_system_entries()])
+    _write_song(repo / "songs", "Vellichor", 3)
+
+    result = runner.invoke(app, ["validate", "--tier", "static"])
+
+    assert result.exit_code == 0, result.output
+    assert "verdict: pass" in result.output
+    assert "confidence: static-only" in result.output
+    assert "not evidence the rig is stage-ready" in result.output
+    reports = list((repo / ".rig" / "state" / "reports").glob("static-*.json"))
+    assert len(reports) == 1
+
+
+def test_validate_static_fails_for_a_song_with_a_hard_error(repo):
+    _seed_catalog([_synth_entry(), *_system_entries()])
+    (repo / "songs").mkdir()
+    (repo / "songs" / "bad.yaml").write_text(
+        "song: Bad\nprogram: 3\nchains:\n  - name: pads\n    modules:\n      - nope@orhack: {}\n",
+        encoding="utf-8",
+    )
+
+    result = runner.invoke(app, ["validate", "--tier", "static"])
+
+    assert result.exit_code != 0
+    assert "verdict: fail" in result.output
+    assert "UNKNOWN_MODULE" in result.output
 
 
 def test_validate_hardware_tier_with_no_songs():
@@ -157,10 +186,31 @@ def test_validate_hardware_tier_with_no_songs():
     assert "not implemented" in result.output
 
 
-def test_validate_verify_report_not_implemented():
-    result = runner.invoke(app, ["validate", "verify-report", "report.json"])
+def test_validate_verify_report_round_trips(repo):
+    _seed_catalog([_synth_entry(), *_system_entries()])
+    _write_song(repo / "songs", "Vellichor", 3)
+    first = runner.invoke(app, ["validate", "--tier", "static"])
+    assert first.exit_code == 0, first.output
+    report_path = next((repo / ".rig" / "state" / "reports").glob("static-*.json"))
+
+    result = runner.invoke(app, ["validate", "verify-report", str(report_path)])
+
+    assert result.exit_code == 0, result.output
+    assert "ok" in result.output
+
+
+def test_validate_verify_report_rejects_a_hand_edited_report(repo):
+    _seed_catalog([_synth_entry(), *_system_entries()])
+    _write_song(repo / "songs", "Vellichor", 3)
+    assert runner.invoke(app, ["validate", "--tier", "static"]).exit_code == 0
+    report_path = next((repo / ".rig" / "state" / "reports").glob("static-*.json"))
+    text = report_path.read_text(encoding="utf-8").replace('"verdict": "pass"', '"verdict": "fail"')
+    report_path.write_text(text, encoding="utf-8")
+
+    result = runner.invoke(app, ["validate", "verify-report", str(report_path)])
+
     assert result.exit_code != 0
-    assert "not implemented" in result.output
+    assert "REPORT_INTEGRITY_ERROR" in result.output
 
 
 def test_validate_help_documents_both_invocation_forms():

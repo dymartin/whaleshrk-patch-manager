@@ -72,6 +72,7 @@ from rig.song import (
     write_bindings,
 )
 from rig.transport import CardDetectionError, Transport, TransportPathError
+from rig.validate import ReportIntegrityError, run_static, verify_report, write_report
 
 app = typer.Typer(no_args_is_help=True, add_completion=False)
 catalog_app = typer.Typer(no_args_is_help=True)
@@ -85,6 +86,10 @@ CATALOG_DIR = Path(".rig/catalog")
 LOCK_PATH = Path(".rig/modules.lock")
 STATE_DIR = Path(".rig/state")
 KITS_PATH = Path(".rig/kits.yaml")
+# Reports are run output, not repo state -- committed baselines live under
+# .rig/state/ (docs/validation.md "reports are not [committed]"), so this
+# gets its own .gitignore'd subtree rather than sitting alongside them.
+REPORTS_DIR = Path(".rig/state/reports")
 
 # Test-only override points. Every real invocation leaves these None, so
 # push()/pull() fall back to their own real behaviour: auto-detecting the
@@ -757,13 +762,64 @@ def rename_chain(
 # group argument, makes any non-empty SONG list fail with "No such command".
 # Do not turn this back into a group; dispatch on args[0] instead.
 #
-# Static and hardware validation themselves belong to Phases 9 and 10
-# (docs/validation.md "Implementation order") -- the report schema and
-# `rig.validate` package they need do not exist yet (`rig/validate/__init__.py`
-# is empty). This phase only owns the command surface and the lint policy in
-# docs/schema.md, which `rig lint` above implements; the bodies below stay
-# stubs until Phase 9/10 land, per Global Constraint #1: never cite a planned
-# tier as if it had already run.
+# Hardware validation (Phase 10) has no hardware feedback channel yet, so
+# `--tier hardware` stays a documented stub -- Global Constraint #1: never
+# cite a planned tier as if it had already run.
+def _validate_static(command: str, song_args: list[str]) -> None:
+    try:
+        song_docs = _load_all_song_docs(SONGS_DIR)
+    except SongParseError as exc:
+        _fail(command, "SONG_PARSE_ERROR", str(exc))
+
+    selected = _resolve_selection(command, song_args, song_docs)
+    catalog, lock, kits = _read_catalog_lock_kits(command)
+    songs = {sid: doc.song for sid, doc in song_docs.items()}
+
+    commit = None
+    try:
+        commit = GitRepo(Path(".")).rev_parse("HEAD")
+    except GitError:
+        pass  # no repo, or no commits yet -- Subject.commit stays None
+
+    module_lock_digest = hashlib.sha256(LOCK_PATH.read_bytes()).hexdigest() if LOCK_PATH.exists() else None
+
+    report = run_static(
+        songs=songs,
+        selected=selected,
+        catalog=catalog,
+        lock=lock,
+        kits=kits,
+        media_root=MEDIA_ROOT,
+        bindings_dir=STATE_DIR / "chains",
+        commit=commit,
+        module_lock_digest=module_lock_digest,
+    )
+
+    report_path = REPORTS_DIR / f"static-{report.run_id}.json"
+    write_report(report, report_path)
+
+    typer.echo(f"verdict: {report.verdict}")
+    for f in report.failures:
+        typer.echo(f"failure: {f.id}: {f.message}")
+    typer.echo(f"confidence: {report.confidence}")
+    typer.echo(report.scope_note)
+    typer.echo(f"report written: {report_path}")
+
+    if report.verdict != "pass":
+        raise typer.Exit(code=1)
+
+
+def _validate_verify_report(command: str, report_arg: str) -> None:
+    report_path = Path(report_arg)
+    try:
+        verify_report(report_path)
+    except FileNotFoundError:
+        _fail(command, "REPORT_NOT_FOUND", f"no report at {report_path}")
+    except ReportIntegrityError as exc:
+        _fail(command, "REPORT_INTEGRITY_ERROR", str(exc))
+    typer.echo(f"rig validate verify-report: ok: {report_path}")
+
+
 @app.command(
     context_settings={"ignore_unknown_options": True},
     epilog=(
@@ -793,8 +849,16 @@ def validate(
         if len(args) != 2:
             typer.echo("usage: rig validate verify-report REPORT", err=True)
             raise typer.Exit(code=2)
-        _not_implemented("validate verify-report")
-    _not_implemented("validate")
+        _validate_verify_report("validate verify-report", args[1])
+        return
+
+    if tier == "hardware":
+        _not_implemented("validate --tier hardware")
+    if tier != "static":
+        typer.echo("rig validate: --tier static|hardware is required", err=True)
+        raise typer.Exit(code=2)
+
+    _validate_static("validate", args)
 
 
 if __name__ == "__main__":

@@ -43,7 +43,17 @@ rig validate verify-report REPORT
 
 Each run emits canonical, versioned JSON: verdict (`pass`, `fail`,
 `unavailable`), tier, the subject above, run id, per-song checks, metrics,
-failures, and start/end times. Individual checks may be `unavailable`.
+failures, start/end times, a `confidence` label (below) and a `scope_note` --
+a fixed disclaimer carried in the report data itself, not just CLI output, so
+a saved or forwarded report cannot be misread as proof of anything the tier
+did not check. Individual checks may be `unavailable`.
+
+`rig validate --tier static` writes its report to `.rig/state/reports/`
+(gitignored, not committed -- see [repo-layout.md](repo-layout.md)) and
+prints the path. `verify-report` recomputes a sha256 digest embedded in the
+file and rejects it if the content no longer matches -- not a signature (no
+third party needs convincing, per #62's reasoning), just enough to catch a
+hand edit.
 
 Hardware runs also write a baseline per song to
 `.rig/state/hardware/<song>.json` — median load time and CPU, keyed by subject.
@@ -65,6 +75,18 @@ No symbol or Pd-object resolution. It was specified once and dropped; see
 
 A local song filter is diagnostic only. Static success never claims CPU cost or
 that a module loads.
+
+**Re-running the gate needs an archive, and the repo keeps none.**
+`.rig/catalog/` and `.rig/modules.lock` are themselves built by gating the
+frozen fixture (`rig.catalog.frozen`), so `rig validate --tier static`
+re-gates the same way — every module `.rig/modules.lock` currently pins,
+replayed against the frozen fixture, rather than a live Patchstorage
+re-fetch (only `rig catalog update` does that). A locked module whose
+candidate is not in the fixture — ingested by a later `rig catalog update`
+run after the fixture was frozen — cannot be re-gated offline; its check
+reports `unavailable`, never a silent pass. CI's own "regenerate from the
+frozen fixture and fail on diff" is a separate check, over the whole
+committed catalog rather than only what one repo's songs use.
 
 ## Tier 2: hardware check
 

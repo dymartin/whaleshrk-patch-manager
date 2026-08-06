@@ -22,9 +22,15 @@ media/                      musician-facing
     chains/
       <song>.json           chain name -> letter binding, this song only
     hardware/               <song>.json — load time + CPU baseline per subject
+    reports/                rig validate output, gitignored — not committed
   kits.yaml                 kit alias -> kit-N
   modules.lock              pinned versions + content hashes
 ```
+
+`state/reports/` is the one `.rig/` subtree that is *not* committed: a
+validation report is this run's evidence, not repo state to review later
+(`.rig/state/hardware/` holds the committed baseline a report is compared
+against — see [validation.md](validation.md)).
 
 `<song>` is the song's YAML filename stem (`songs/vellichor.yaml` -> `vellichor`),
 never `slug(song's "name:")`. It has to be the stable one: a musician can
