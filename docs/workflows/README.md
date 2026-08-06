@@ -4,7 +4,7 @@ Run manually around rehearsals and gigs; no daemon.
 
 ```text
 rig push [SONG...] [--dry-run] [--force]
-rig pull [SONG...] [--dry-run]
+rig pull [SONG...] [--dry-run] [--adopt]
 rig lint [SONG...]
 rig catalog update [--dry-run]
 rig upgrade MODULE... [--dry-run]

@@ -1,17 +1,22 @@
-"""Every hard error and the two chain-level lint warnings from
-`Prompt/02-schema.md`'s hard-error table, plus `docs/schema.md`'s "Rules" and
-"mix:" sections (Prompt.md's Global Constraint #3: every capacity, collision
-and out-of-range condition documented is a hard error with its own message).
+"""Every hard error, plus the full lint-warning policy from `docs/schema.md`
+("Lint policy") and `Prompt/08-cli.md`.
 
 Findings accumulate rather than raising on the first problem, so `rig lint`
-(Phase 8) can report everything wrong with a song in one pass. A caller that
-wants fail-fast can raise `SongValidationError(result.errors)` itself.
+can report everything wrong with a song in one pass. A caller that wants
+fail-fast can raise `SongValidationError(result.errors)` itself.
 
-The fuller lint policy in `docs/schema.md` ("Lint policy") -- instrument
-ordering, multi-target CC, unused sends, and so on -- is Phase 8's job. This
-module implements exactly the two warnings the schema phase's own brief
-requires to be distinguishable from errors: a shared numbered channel, and
-`note-thru` on a chain's last module.
+Of the policy's error list, "unsafe, reserved, overlong or case-colliding
+paths", "duplicate runtime module paths" and "unsafe archives" are not
+re-checked here: they are catalog-ingest concerns (`docs/catalog.md`
+"Validation gate", already enforced by `rig.catalog.ingest`/`rig.catalog.gate`
+before a module can ever reach `.rig/catalog/`), not something a song file
+can express. "Wrong slot class" has no separate mechanism of its own either:
+a song can only place a module key into a slot by writing that key under
+`sends:`/`master:`/`mod-sources:`/a chain's `modules:`, and any key that does
+not resolve in the catalog is already `UNKNOWN_MODULE` -- there is no
+narrower, checkable "right module, wrong slot" condition beyond that, since
+`docs/platform/modules.md` is explicit that a module's role cannot be
+derived from anything ingest records.
 """
 
 from __future__ import annotations
@@ -39,6 +44,50 @@ MIX_RANGES = {
     "balance": (0.0, 100.0),
     "width": (-100.0, 100.0),
 }
+
+# input-gain's documented default/unity is 100 (docs/schema.md "mix:");
+# output-gain's own hard cap is already 100, so it can never read as
+# above-unity -- only input-gain can.
+UNITY_INPUT_GAIN = 100.0
+
+# Below this fraction of full width (100), a chain reads as collapsed toward
+# mono. No doc pins a number -- a lint heuristic, not a device constant;
+# picked as a starting point, cheap to revisit if it proves noisy.
+NARROW_WIDTH_THRESHOLD = 20.0
+
+
+def _module_role(entry: CatalogEntry) -> Optional[str]:
+    """"instrument" or "effect" if the module's install folder says so,
+    else None -- the best available signal, not an authoritative one.
+
+    `docs/platform/modules.md` is explicit that a module's role cannot be
+    derived from its patch (signal I/O does not discriminate), and
+    `docs/catalog.md` calls the category folder "functionally inert" on the
+    device. For a community module, `category_override` or `category` (the
+    folder ingest mapped from its Patchstorage upload category) is that
+    folder. `@orhack` built-ins never carry `category` (`rig.catalog.builtins`
+    leaves it None) -- their `module_type` *is* their real install path
+    inside ORHACK, filed under the identical `instruments/`/`effects/` top
+    level for the same reason, so it stands in. A wrong guess here costs a
+    stray or missing lint warning, never device behaviour.
+    """
+    folder = entry.category_override or entry.category
+    if folder is None and entry.source == "orhack":
+        folder = entry.module_type
+    if folder is None:
+        return None
+    if folder.startswith("instruments/"):
+        return "instrument"
+    if folder.startswith("effects/"):
+        return "effect"
+    return None
+
+
+def _is_sampler(entry: CatalogEntry) -> bool:
+    folder = entry.category_override or entry.category
+    if folder is None and entry.source == "orhack":
+        folder = entry.module_type
+    return folder is not None and folder.startswith("instruments/sampler")
 
 
 @dataclass
@@ -165,7 +214,7 @@ def _validate_chain_channel(chain: Chain, findings: list[Finding]) -> None:
         )
 
 
-def _validate_mix(chain: Chain, findings: list[Finding]) -> None:
+def _validate_mix(chain: Chain, findings: list[Finding], warnings: list[Finding]) -> None:
     mix = chain.mix
     values = {
         "input-gain": mix.input_gain,
@@ -194,6 +243,21 @@ def _validate_mix(chain: Chain, findings: list[Finding]) -> None:
                     f"chain {chain.name!r} mix.{name} = {value} is outside {lo}-{hi}",
                 )
             )
+
+    if in_range["input-gain"] and mix.input_gain is not None and mix.input_gain > UNITY_INPUT_GAIN:
+        warnings.append(
+            Finding(
+                "ABOVE_UNITY_GAIN",
+                f"chain {chain.name!r} mix.input-gain = {mix.input_gain} is above unity ({UNITY_INPUT_GAIN})",
+            )
+        )
+    if in_range["width"] and mix.width is not None and abs(mix.width) < NARROW_WIDTH_THRESHOLD:
+        warnings.append(
+            Finding(
+                "NARROW_WIDTH",
+                f"chain {chain.name!r} mix.width = {mix.width} is narrow, close to mono",
+            )
+        )
 
     if in_range["balance"] and in_range["width"]:
         balance = mix.balance if mix.balance is not None else 50.0
@@ -351,11 +415,18 @@ def validate_song(
         except LetterAssignmentError as exc:
             findings.append(Finding(exc.code, str(exc)))
 
+    cc_targets: dict[tuple[int, int], list[str]] = {}
+
+    for chain in song.chains:
+        if not chain.modules:
+            warnings.append(Finding("EMPTY_CHAIN", f"chain {chain.name!r} has no modules"))
+
     for position, chain in enumerate(song.chains, start=1):
         _validate_chain_channel(chain, findings)
-        _validate_mix(chain, findings)
+        _validate_mix(chain, findings, warnings)
 
         chain_channel = _resolved_channel(chain, position)
+        seen_effect = False
         for index, module in enumerate(chain.modules):
             entry = _validate_module_params(
                 module_key=module.key,
@@ -368,6 +439,30 @@ def validate_song(
             _validate_module_send(chain, module, song, findings)
             _validate_sample(chain, module, kits, media_root, findings)
 
+            if entry is not None:
+                role = _module_role(entry)
+                if role == "effect":
+                    seen_effect = True
+                elif role == "instrument" and seen_effect:
+                    warnings.append(
+                        Finding(
+                            "INSTRUMENT_AFTER_EFFECT",
+                            f"chain {chain.name!r} module {module.key!r} is an instrument placed "
+                            "after an effect earlier in the same chain",
+                        )
+                    )
+                if _is_sampler(entry) and module.sample is None:
+                    warnings.append(
+                        Finding(
+                            "UNSELECTED_SAMPLER",
+                            f"chain {chain.name!r} module {module.key!r} has no 'sample:' selected",
+                        )
+                    )
+                for param_name, mapping in module.midi.items():
+                    channel = mapping.channel if mapping.channel is not None else chain_channel
+                    target = f"chain {chain.name!r} module {module.key!r} midi.{param_name}"
+                    cc_targets.setdefault((channel, mapping.cc), []).append(target)
+
             if module.note_thru and index == len(chain.modules) - 1:
                 warnings.append(
                     Finding(
@@ -376,6 +471,23 @@ def validate_song(
                         "note-thru has nothing to forward to",
                     )
                 )
+
+    for (channel, cc), targets in cc_targets.items():
+        if len(targets) > 1:
+            warnings.append(
+                Finding(
+                    "MULTI_TARGET_CC",
+                    f"channel {channel} CC {cc} is mapped to more than one target: {targets}",
+                )
+            )
+
+    used_sends: set[str] = set()
+    for chain in song.chains:
+        for module in chain.modules:
+            used_sends.update(module.send)
+    for send in song.sends:
+        if send.name not in used_sends:
+            warnings.append(Finding("UNUSED_SEND", f"send {send.name!r} is declared but never used by a module"))
 
     channel_groups: dict[int, list[str]] = {}
     for position, chain in enumerate(song.chains, start=1):

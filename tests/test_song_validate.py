@@ -8,6 +8,7 @@ from __future__ import annotations
 import math
 from pathlib import Path
 
+from rig.catalog.entry import CatalogEntry, VersionInfo
 from rig.song.kits import KitsConfig
 from rig.song.model import (
     Chain,
@@ -259,11 +260,12 @@ def test_shared_numbered_channel_is_a_warning_not_an_error():
 
 
 def test_two_omni_chains_are_not_a_shared_channel_warning():
+    catalog = [make_entry("foo@orhack", "orhack", "Foo", [])]
     song = Song(name="x", program=0, chains=[
-        Chain(name="a", midi=ChainMidi(channel=0)),
-        Chain(name="b", midi=ChainMidi(channel=0)),
+        Chain(name="a", midi=ChainMidi(channel=0), modules=[ModuleSlot(key="foo@orhack")]),
+        Chain(name="b", midi=ChainMidi(channel=0), modules=[ModuleSlot(key="foo@orhack")]),
     ])
-    result = validate_song(song, catalog=[])
+    result = validate_song(song, catalog=catalog)
     assert codes(result, "warnings") == set()
 
 
@@ -282,3 +284,139 @@ def test_note_thru_on_non_last_module_is_not_flagged():
     song = Song(name="x", program=0, chains=[Chain(name="pads", modules=modules)])
     result = validate_song(song, catalog=catalog)
     assert codes(result, "warnings") == set()
+
+
+# --- Phase 8 lint policy: the rest of docs/schema.md's warning list --------
+
+
+def _role_entry(key: str, display: str, module_type: str, params=()) -> CatalogEntry:
+    """A built-in-shaped entry (category=None, source='orhack') whose
+    module_type carries a real ORHACK install prefix, so `_module_role`/
+    `_is_sampler` can read a role from it -- `song_helpers.make_entry` always
+    uses `module_type=f"test/{display.lower()}"`, deliberately roleless, so
+    it cannot be reused for these."""
+    return CatalogEntry(
+        key=key, source="orhack", display=display, module_type=module_type,
+        category=None, category_override=None, tags=[], params=list(params), version=VersionInfo(),
+    )
+
+
+def test_instrument_after_effect_is_a_warning_not_an_error():
+    catalog = [
+        _role_entry("warp@orhack", "Warp", "effects/drive/warp"),
+        _role_entry("samplement@orhack", "Samplement", "instruments/sampler/samplement"),
+    ]
+    modules = [
+        ModuleSlot(key="warp@orhack"),
+        ModuleSlot(key="samplement@orhack", sample="warehouse/kick.wav"),
+    ]
+    song = Song(name="x", program=0, chains=[Chain(name="guitar", modules=modules)])
+    result = validate_song(song, catalog=catalog, kits=KitsConfig({"warehouse": 1}))
+    assert "INSTRUMENT_AFTER_EFFECT" in codes(result, "warnings")
+    assert "INSTRUMENT_AFTER_EFFECT" not in codes(result, "errors")
+
+
+def test_instrument_before_effect_is_not_flagged():
+    catalog = [
+        _role_entry("rings@orhack", "Rings", "instruments/synth/rings"),
+        _role_entry("warp@orhack", "Warp", "effects/drive/warp"),
+    ]
+    modules = [ModuleSlot(key="rings@orhack"), ModuleSlot(key="warp@orhack")]
+    song = Song(name="x", program=0, chains=[Chain(name="pads", modules=modules)])
+    result = validate_song(song, catalog=catalog)
+    assert "INSTRUMENT_AFTER_EFFECT" not in codes(result, "warnings")
+
+
+def test_unselected_sampler_is_a_warning():
+    catalog = [_role_entry("samplement@orhack", "Samplement", "instruments/sampler/samplement")]
+    song = Song(name="x", program=0, chains=[
+        Chain(name="pads", modules=[ModuleSlot(key="samplement@orhack")])
+    ])
+    result = validate_song(song, catalog=catalog)
+    assert "UNSELECTED_SAMPLER" in codes(result, "warnings")
+
+
+def test_selected_sampler_is_not_flagged():
+    catalog = [_role_entry("samplement@orhack", "Samplement", "instruments/sampler/samplement")]
+    song = Song(name="x", program=0, chains=[
+        Chain(name="pads", modules=[ModuleSlot(key="samplement@orhack", sample="warehouse/kick.wav")])
+    ])
+    result = validate_song(song, catalog=catalog, kits=KitsConfig({"warehouse": 1}))
+    assert "UNSELECTED_SAMPLER" not in codes(result, "warnings")
+
+
+def test_empty_chain_is_a_warning():
+    song = Song(name="x", program=0, chains=[Chain(name="pads")])
+    result = validate_song(song, catalog=[])
+    assert "EMPTY_CHAIN" in codes(result, "warnings")
+
+
+def test_unused_send_is_a_warning():
+    catalog = [make_entry("verb@orhack", "orhack", "Verb", [])]
+    song = Song(name="x", program=0, sends=[Send(name="reverb", module="verb@orhack")])
+    result = validate_song(song, catalog=catalog)
+    assert "UNUSED_SEND" in codes(result, "warnings")
+
+
+def test_used_send_is_not_flagged():
+    catalog = [make_entry("verb@orhack", "orhack", "Verb", []), make_entry("foo@orhack", "orhack", "Foo", [])]
+    slot = ModuleSlot(key="foo@orhack", send={"reverb": 40})
+    song = Song(
+        name="x", program=0,
+        sends=[Send(name="reverb", module="verb@orhack")],
+        chains=[Chain(name="pads", modules=[slot])],
+    )
+    result = validate_song(song, catalog=catalog)
+    assert "UNUSED_SEND" not in codes(result, "warnings")
+
+
+def test_multi_target_cc_is_a_warning():
+    catalog = [make_entry("foo@orhack", "orhack", "Foo", [param("size"), param("depth")])]
+    slot = ModuleSlot(
+        key="foo@orhack",
+        midi={
+            "size": MidiMapping(cc=20, channel=1),
+            "depth": MidiMapping(cc=20, channel=1),
+        },
+    )
+    song = Song(name="x", program=0, chains=[Chain(name="pads", modules=[slot])])
+    result = validate_song(song, catalog=catalog)
+    assert "MULTI_TARGET_CC" in codes(result, "warnings")
+
+
+def test_distinct_cc_targets_are_not_flagged():
+    catalog = [make_entry("foo@orhack", "orhack", "Foo", [param("size"), param("depth")])]
+    slot = ModuleSlot(
+        key="foo@orhack",
+        midi={
+            "size": MidiMapping(cc=20, channel=1),
+            "depth": MidiMapping(cc=21, channel=1),
+        },
+    )
+    song = Song(name="x", program=0, chains=[Chain(name="pads", modules=[slot])])
+    result = validate_song(song, catalog=catalog)
+    assert "MULTI_TARGET_CC" not in codes(result, "warnings")
+
+
+def test_above_unity_input_gain_is_a_warning():
+    song = Song(name="x", program=0, chains=[Chain(name="pads", mix=ChainMix(input_gain=150))])
+    result = validate_song(song, catalog=[])
+    assert "ABOVE_UNITY_GAIN" in codes(result, "warnings")
+
+
+def test_unity_input_gain_is_not_flagged():
+    song = Song(name="x", program=0, chains=[Chain(name="pads", mix=ChainMix(input_gain=100))])
+    result = validate_song(song, catalog=[])
+    assert "ABOVE_UNITY_GAIN" not in codes(result, "warnings")
+
+
+def test_narrow_width_is_a_warning():
+    song = Song(name="x", program=0, chains=[Chain(name="pads", mix=ChainMix(width=5))])
+    result = validate_song(song, catalog=[])
+    assert "NARROW_WIDTH" in codes(result, "warnings")
+
+
+def test_full_width_is_not_flagged():
+    song = Song(name="x", program=0, chains=[Chain(name="pads", mix=ChainMix(width=100))])
+    result = validate_song(song, catalog=[])
+    assert "NARROW_WIDTH" not in codes(result, "warnings")

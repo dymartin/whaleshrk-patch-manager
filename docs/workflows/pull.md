@@ -93,10 +93,10 @@ Not captured: sequencer patterns, morpher banks, media files. See
 
 ## Adoption
 
-Adoption *mints* a song file, and so runs **only when explicitly requested** —
-never as part of a routine pull. Everything else pull does changes what a song
-says; adoption changes whether a song exists, which the device is not authority
-over.
+Adoption *mints* a song file, and so runs **only when explicitly requested**,
+via `rig pull --adopt` — never as part of a routine pull. Everything else pull
+does changes what a song says; adoption changes whether a song exists, which
+the device is not authority over.
 
 Device presets carry no friendly names, so names are derived without exposing
 device identifiers.
