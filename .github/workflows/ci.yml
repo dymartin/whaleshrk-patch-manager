@@ -14,6 +14,12 @@ on:
   push:
   pull_request:
 
+# Least privilege: this job only reads the checkout and runs tests, so the
+# default token must not carry write scope -- guards against a future job
+# addition silently inheriting more than it needs.
+permissions:
+  contents: read
+
 jobs:
   test:
     runs-on: ubuntu-latest

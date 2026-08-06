@@ -157,6 +157,52 @@ def test_locked_module_gate_checks_skips_builtins():
     assert results == []
 
 
+def test_locked_module_gate_checks_fails_a_genuine_duplicate_runtime_path():
+    # A community module admitted from the gate replay whose derived
+    # moduleType ("effects/mod/test-module@dup-mod" -- MODULE_JSON's
+    # display "Test Module", slugified, at source "dup-mod", filed under
+    # the "effect" category) collides with a built-in already claiming that
+    # exact runtime path. docs/catalog.md: a community path shadowing a
+    # built-in is a hard reject, not a warning.
+    colliding_source = _source(
+        {"mymod/module.json": MODULE_JSON, "mymod/module.pd": MODULE_PD}, slug="dup-mod"
+    )
+    builtin_claiming_the_path = CatalogEntry(
+        key="incumbent@orhack", source="orhack", display="Incumbent",
+        module_type="effects/mod/test-module@dup-mod", category=None, category_override=None,
+        tags=[], params=[], version=VersionInfo(),
+    )
+    catalog = [builtin_claiming_the_path, _catalog_entry("mod@dup-mod", "dup-mod")]
+    lock = {"modules": {"mod@dup-mod": {}}}
+
+    results = locked_module_gate_checks(catalog=catalog, lock=lock, frozen_sources=[colliding_source])
+
+    assert any(
+        c.id == RejectReason.DUPLICATE_MODULE_PATH.value and c.status == STATUS_FAIL for c in results
+    )
+
+
+def test_locked_module_gate_checks_reports_no_duplicate_path_failure_for_a_clean_set():
+    # Two locked community modules with genuinely distinct derived
+    # moduleTypes (different display names -> different keys -> different
+    # runtime paths) must not trip the duplicate-path check.
+    first = _source(
+        {"one/module.json": b'{"display": "One", "parameters": []}', "one/module.pd": MODULE_PD},
+        slug="mod-one",
+    )
+    second = _source(
+        {"two/module.json": b'{"display": "Two", "parameters": []}', "two/module.pd": MODULE_PD},
+        slug="mod-two",
+    )
+    catalog = [_catalog_entry("mod@mod-one", "mod-one"), _catalog_entry("mod@mod-two", "mod-two")]
+    lock = {"modules": {"mod@mod-one": {}, "mod@mod-two": {}}}
+
+    results = locked_module_gate_checks(catalog=catalog, lock=lock, frozen_sources=[first, second])
+
+    assert not any(c.id == RejectReason.DUPLICATE_MODULE_PATH.value for c in results)
+    assert sum(1 for c in results if c.status == STATUS_PASS) == 2
+
+
 # --- run_static orchestration -------------------------------------------------
 
 

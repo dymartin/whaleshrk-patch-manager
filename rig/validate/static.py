@@ -35,7 +35,7 @@ from typing import Iterable, Optional
 
 from rig.catalog.entry import CatalogEntry
 from rig.catalog.frozen import load_frozen_sources
-from rig.catalog.ingest import CandidateSource, build_community_catalog
+from rig.catalog.ingest import CandidateSource, build_community_catalog, resolve_duplicate_module_paths
 from rig.song.bindings import read_bindings
 from rig.song.kits import KitsConfig
 from rig.song.model import Song
@@ -76,17 +76,34 @@ SCOPE_NOTE = (
 )
 
 
-def catalog_gate_checks(source: CandidateSource) -> list[CheckResult]:
-    """Replay the catalog gate over one candidate archive, translating every
-    `IngestReject`/admitted module into a `CheckResult` keyed by its check
-    id -- a catalog `RejectReason` value for a reject, `catalog-gate` for an
-    admitted module."""
+def _gate_source(source: CandidateSource) -> tuple[list[CheckResult], list[CatalogEntry]]:
+    """Replay the catalog gate over one candidate archive. Returns the
+    `CheckResult`s (a `RejectReason` value per reject, `catalog-gate` per
+    admitted module) alongside the admitted `CatalogEntry` objects
+    themselves -- `locked_module_gate_checks` needs the latter to re-derive
+    the cross-candidate duplicate-runtime-path check, which only means
+    anything with every locked module's entries in view together."""
     entries, rejects = build_community_catalog([source])
     results = [CheckResult(id=r.reason.value, status=STATUS_FAIL, message=r.message) for r in rejects]
     results += [
         CheckResult(id=CATALOG_GATE_CHECK_ID, status=STATUS_PASS, message=f"{e.key}: admitted")
         for e in entries
     ]
+    return results, entries
+
+
+def catalog_gate_checks(source: CandidateSource) -> list[CheckResult]:
+    """Replay the catalog gate over one candidate archive, translating every
+    `IngestReject`/admitted module into a `CheckResult` keyed by its check
+    id -- a catalog `RejectReason` value for a reject, `catalog-gate` for an
+    admitted module.
+
+    Candidate-scoped only -- does not check duplicate runtime paths, since
+    that check is inherently cross-candidate (`resolve_duplicate_module_paths`
+    needs every locked module's entries in view at once). See
+    `locked_module_gate_checks`.
+    """
+    results, _entries = _gate_source(source)
     return results
 
 
@@ -94,9 +111,19 @@ def locked_module_gate_checks(
     *, catalog: Iterable[CatalogEntry], lock: dict, frozen_sources: Iterable[CandidateSource]
 ) -> list[CheckResult]:
     """Every check in `catalog_gate_checks`, over every community module
-    `.rig/modules.lock` currently pins -- built-ins are excluded, since they
-    are pinned to the ORHACK build rather than gated as a Patchstorage
-    candidate (docs/catalog.md "Versioning")."""
+    `.rig/modules.lock` currently pins -- built-ins are excluded from being
+    gated themselves, since they are pinned to the ORHACK build rather than
+    gated as a Patchstorage candidate (docs/catalog.md "Versioning") -- but
+    still feed the duplicate-runtime-path check below as the paths a
+    community module cannot legally reuse.
+
+    docs/validation.md lists "unique runtime path" among what static
+    validation re-derives from the catalog gate; `rig.catalog.ingest.
+    resolve_duplicate_module_paths` is the function that check actually
+    lives in, so it is re-run here (not reimplemented) once every locked
+    module's admitted entry is in view -- matching how real ingest runs it,
+    and catching a real collision as a `fail`, not silently.
+    """
     catalog_index = {e.key: e for e in catalog}
     locked_keys = set(lock.get("modules", {}))
     wanted_slugs = {
@@ -110,6 +137,7 @@ def locked_module_gate_checks(
             source_by_slug[slug] = source
 
     results: list[CheckResult] = []
+    admitted_entries: list[CatalogEntry] = []
     for slug in sorted(wanted_slugs):
         source = source_by_slug.get(slug)
         if source is None:
@@ -121,7 +149,14 @@ def locked_module_gate_checks(
                 )
             )
             continue
-        results.extend(catalog_gate_checks(source))
+        source_results, source_entries = _gate_source(source)
+        results.extend(source_results)
+        admitted_entries.extend(source_entries)
+
+    builtin_entries = [e for e in catalog if e.source == "orhack"]
+    _kept, path_rejects = resolve_duplicate_module_paths(builtin_entries, admitted_entries)
+    results += [CheckResult(id=r.reason.value, status=STATUS_FAIL, message=r.message) for r in path_rejects]
+
     return results
 
 
@@ -188,12 +223,16 @@ def run_static(
     failures = cross_failures + gate_failures + song_failures
     verdict = VERDICT_FAIL if failures else VERDICT_PASS
 
+    # Namespaced so Task 10's per-song measurements (keyed by song id, under
+    # "songs") can never collide with this tier's catalog-wide counts --
+    # a song literally named "catalog" must not land in the same slot.
     metrics = {
         "catalog": {
             "modules_gated": sum(1 for c in gate_results if c.status == STATUS_PASS),
             "modules_failed": len(gate_failures),
             "modules_unavailable": sum(1 for c in gate_results if c.status == STATUS_UNAVAILABLE),
-        }
+        },
+        "songs": {},
     }
 
     subject = Subject(

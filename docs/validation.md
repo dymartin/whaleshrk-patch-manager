@@ -88,6 +88,12 @@ reports `unavailable`, never a silent pass. CI's own "regenerate from the
 frozen fixture and fail on diff" is a separate check, over the whole
 committed catalog rather than only what one repo's songs use.
 
+A locked module is matched back to its frozen candidate by Patchstorage
+upload slug — the same identifier `rig.catalog.entry.CatalogEntry.source`
+already stores for a community module and the catalog's own key relies on
+for uniqueness (`docs/catalog.md` "Keys"), so it is the uniqueness anchor
+this matching relies on too, not a new assumption.
+
 ## Tier 2: hardware check
 
 Run by hand — `rig validate --tier hardware` — from the laptop, with the S2 on
