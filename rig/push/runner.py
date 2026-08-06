@@ -4,8 +4,10 @@ package into the sequence `docs/workflows/push.md` describes.
 See that doc and `Prompt/05-push.md` for the numbered steps this function's
 body follows in order. Every refusal raises `rig.push.errors.PushError` (or,
 for card detection, the existing `rig.transport.CardDetectionError`; for a
-failed swap, `rig.push.transact.PushTransactionError`) -- never a downgrade
-to a warning (Ruling #3).
+failed swap, `rig.push.transact.PushTransactionError`; for ORHACK itself
+missing or not matching its manifest, `rig.push.modules.OrhackIntegrityError`,
+raised by step 2a's `verify_orhack_structure`/`verify_orhack_manifest` on
+every push) -- never a downgrade to a warning (Ruling #3).
 
 Precondition this function does not re-check: every song in `songs` is
 already schema- and catalog-valid (`rig.song.validate.validate_songs` has

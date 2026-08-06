@@ -14,9 +14,16 @@ can express. "Wrong slot class" has no separate mechanism of its own either:
 a song can only place a module key into a slot by writing that key under
 `sends:`/`master:`/`mod-sources:`/a chain's `modules:`, and any key that does
 not resolve in the catalog is already `UNKNOWN_MODULE` -- there is no
-narrower, checkable "right module, wrong slot" condition beyond that, since
-`docs/platform/modules.md` is explicit that a module's role cannot be
-derived from anything ingest records.
+narrower, checkable "right module, wrong slot" condition beyond that, as a
+*hard error*. `category`/`module_type` are ingest-recorded and do let
+`_module_role`/`_is_sampler` (below) guess a module's role for the
+`INSTRUMENT_AFTER_EFFECT`/`UNSELECTED_SAMPLER` warnings -- `docs/platform/
+modules.md` bans classifying by inspecting the *patch itself* (signal I/O
+does not discriminate instrument from effect), not by this ingest-recorded
+metadata. What that guess is not is *reliable* enough to error on: category
+is "functionally inert" on the device (`docs/catalog.md`) and can be a bad
+guess for a community upload, so a slot-class mismatch stays a warning, not
+a hard error.
 """
 
 from __future__ import annotations

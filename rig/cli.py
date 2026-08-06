@@ -122,7 +122,7 @@ def _load_all_song_docs(songs_dir: Path) -> dict[str, SongDocument]:
 
 
 def _resolve_selection(
-    song_args: Optional[list[str]], available: dict[str, SongDocument]
+    command: str, song_args: Optional[list[str]], available: dict[str, SongDocument]
 ) -> Optional[set[str]]:
     """`None` means every song (`push`/`pull`'s own convention) -- empty
     selection means all songs, per every workflow doc."""
@@ -130,8 +130,7 @@ def _resolve_selection(
         return None
     unknown = sorted(set(song_args) - set(available))
     if unknown:
-        typer.echo(f"rig: unknown song(s): {', '.join(unknown)}", err=True)
-        raise typer.Exit(code=1)
+        _fail(command, "UNKNOWN_SONG", f"unknown song(s): {', '.join(unknown)}")
     return set(song_args)
 
 
@@ -350,7 +349,7 @@ def push(
     except SongParseError as exc:
         _fail("push", "SONG_PARSE_ERROR", str(exc))
 
-    selected = _resolve_selection(song, song_docs)
+    selected = _resolve_selection("push", song, song_docs)
     catalog, lock, kits = _read_catalog_lock_kits("push")
     songs = {sid: doc.song for sid, doc in song_docs.items()}
 
@@ -438,7 +437,7 @@ def pull(
     except SongParseError as exc:
         _fail("pull", "SONG_PARSE_ERROR", str(exc))
 
-    selected = _resolve_selection(song, song_docs)
+    selected = _resolve_selection("pull", song, song_docs)
     catalog, lock, kits = _read_catalog_lock_kits("pull")
 
     try:
@@ -500,7 +499,7 @@ def lint(
     except SongParseError as exc:
         _fail("lint", "SONG_PARSE_ERROR", str(exc))
 
-    selection = _resolve_selection(song, song_docs)
+    selection = _resolve_selection("lint", song, song_docs)
     selected_ids = sorted(song_docs) if selection is None else sorted(selection)
 
     catalog, lock, kits = _read_catalog_lock_kits("lint")

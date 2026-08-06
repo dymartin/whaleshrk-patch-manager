@@ -13,22 +13,36 @@ git repo plus `FakeGhClient` (never the real `gh` on this machine -- see
 `tests/pull_helpers.py`). `rig.cli` exposes `_transport`/`_card_roots`/
 `_git`/`_gh`/`_upgrade_fetcher` as the seams tests reach with `monkeypatch`,
 so the command bodies under test are the real ones, not a stand-in.
+
+`_PatchstorageModuleSource` (push's live `ModuleSource`/`UpdateChecker`) is
+tested directly, without going through a CLI invocation or the network:
+`_resolve()` only populates `self._sources` lazily, so a test can construct
+the object and set that dict itself from an in-memory zip built with the
+stdlib `zipfile` module -- the same seam-injection idea `_upgrade_fetcher`
+already uses, one level lower.
 """
 
 from __future__ import annotations
 
+import dataclasses
+import io
 import json
+import zipfile
 from pathlib import Path
 
 import pytest
 from typer.testing import CliRunner
 
 import rig.cli as cli
+from rig.catalog.archive import ZipCandidateArchive
 from rig.catalog.builtins import ingest_pinned_builtins
 from rig.catalog.entry import CatalogEntry, VersionInfo
+from rig.catalog.ingest import CandidateSource
 from rig.catalog.io import write_catalog, write_lock
 from rig.catalog.params import ParamSpec
+from rig.catalog.slugs import module_key
 from rig.cli import app
+from rig.push.modules import ModuleSourceUnavailable
 from rig.song.bindings import write_bindings
 from rig.transport.memory import InMemoryTransport
 
@@ -164,7 +178,15 @@ def test_validate_help_documents_both_invocation_forms():
 def test_unknown_song_selection_is_a_clean_refusal(repo):
     result = runner.invoke(app, ["lint", "nosuch"])
     assert result.exit_code != 0
-    assert "unknown song(s): nosuch" in result.output
+    # Same "rig <command>: <CODE>: <message>" shape as every other refusal
+    # (_fail) -- this used to be an ad hoc, unprefixed message.
+    assert "rig lint: UNKNOWN_SONG: unknown song(s): nosuch" in result.output
+
+
+def test_unknown_song_selection_on_push_uses_the_same_refusal_shape(repo):
+    result = runner.invoke(app, ["push", "nosuch"])
+    assert result.exit_code != 0
+    assert "rig push: UNKNOWN_SONG: unknown song(s): nosuch" in result.output
 
 
 # --- lint ---------------------------------------------------------------
@@ -513,3 +535,114 @@ def test_rename_chain_unknown_song_is_a_clean_refusal(repo):
     result = runner.invoke(app, ["rename-chain", "nosuch", "lead", "pads"])
     assert result.exit_code != 0
     assert "UNKNOWN_SONG" in result.output
+
+
+# --- _PatchstorageModuleSource (push's live ModuleSource/UpdateChecker) -----
+
+
+def _make_zip(files: dict[str, bytes]) -> bytes:
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w") as zf:
+        for name, content in files.items():
+            zf.writestr(name, content)
+    return buf.getvalue()
+
+
+def _seeded_module_source(archive_bytes: bytes, *, slug: str = "warble", display: str = "Warble"):
+    """A `_PatchstorageModuleSource` with `_sources` pre-populated -- skips
+    `_resolve()`'s network call entirely, same seam `_upgrade_fetcher` uses
+    one level up. Returns `(module_source, entry)` where `entry.key` is
+    exactly what a real ingest of this archive would have produced."""
+    entry_key = module_key(display, slug)
+    source = CandidateSource(
+        id=1,
+        archive=ZipCandidateArchive(archive_bytes),
+        detail={"slug": slug, "updated_at": "2020-01-01", "files": [{"url": "https://example.invalid/x.zip"}]},
+        archive_sha256="deadbeef",
+    )
+    module_source = cli._PatchstorageModuleSource({slug})
+    module_source._sources = {slug: source}
+    entry = CatalogEntry(
+        key=entry_key, source=slug, display=display,
+        module_type=f"effects/mod/{entry_key}", category="effects/mod", category_override=None,
+        tags=[], params=[], version=VersionInfo(updated_at="2019-01-01", file_id=1, archive_sha256="old"),
+    )
+    return module_source, entry
+
+
+def test_module_source_fetch_strips_junk_and_keeps_real_files():
+    archive_bytes = _make_zip(
+        {
+            "module.json": b'{"display": "Warble", "parameters": []}',
+            "module.pd": b"#N canvas;",
+            "README.md": b"hello",
+            "__MACOSX/somefile.txt": b"junk",  # Mac zip-export sibling directory
+            "._module.pd": b"junk",  # AppleDouble resource-fork twin
+            ".DS_Store": b"junk",
+            "notes.txt~": b"junk",  # editor backup
+            "scratch.swp": b"junk",  # vim swap
+            "lib.dll": b"junk",  # Windows binary, never runs on the S2
+        }
+    )
+    module_source, entry = _seeded_module_source(archive_bytes)
+
+    files = module_source.fetch(entry)
+
+    assert files["module.json"] == b'{"display": "Warble", "parameters": []}'
+    assert files["module.pd"] == b"#N canvas;"
+    assert files["README.md"] == b"hello"
+    for junk in ("__MACOSX/somefile.txt", "._module.pd", ".DS_Store", "notes.txt~", "scratch.swp", "lib.dll"):
+        assert junk not in files, f"{junk!r} should have been stripped"
+
+
+def test_module_source_fetch_refuses_a_module_needing_abl_link():
+    archive_bytes = _make_zip(
+        {
+            "module.json": b'{"display": "Warble", "parameters": []}',
+            "module.pd": b"#N canvas;",
+            "abl_link~.pd_linux": b"binary",
+        }
+    )
+    module_source, entry = _seeded_module_source(archive_bytes)
+
+    with pytest.raises(ModuleSourceUnavailable) as exc_info:
+        module_source.fetch(entry)
+
+    assert "abl_link~.pd_linux" in str(exc_info.value)
+    assert entry.key in str(exc_info.value)
+
+
+def test_module_source_fetch_raises_when_slug_not_found():
+    module_source = cli._PatchstorageModuleSource({"warble"})
+    module_source._sources = {}
+    entry = CatalogEntry(
+        key="warble@warble", source="warble", display="Warble",
+        module_type="effects/mod/warble@warble", category="effects/mod", category_override=None,
+        tags=[], params=[], version=VersionInfo(),
+    )
+
+    with pytest.raises(ModuleSourceUnavailable):
+        module_source.fetch(entry)
+
+
+def test_module_source_check_update_reports_a_changed_updated_at():
+    archive_bytes = _make_zip(
+        {"module.json": b'{"display": "Warble", "parameters": []}', "module.pd": b"#N canvas;"}
+    )
+    module_source, entry = _seeded_module_source(archive_bytes)
+
+    description = module_source.check_update(entry)
+
+    assert description is not None
+    assert entry.key in description
+
+
+def test_module_source_check_update_is_none_when_updated_at_matches():
+    archive_bytes = _make_zip(
+        {"module.json": b'{"display": "Warble", "parameters": []}', "module.pd": b"#N canvas;"}
+    )
+    module_source, entry = _seeded_module_source(archive_bytes)
+    # Match the seeded source's own detail['updated_at'] (see _seeded_module_source).
+    entry = dataclasses.replace(entry, version=VersionInfo(updated_at="2020-01-01", file_id=1, archive_sha256="old"))
+
+    assert module_source.check_update(entry) is None
