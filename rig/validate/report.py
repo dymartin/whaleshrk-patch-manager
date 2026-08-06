@@ -9,10 +9,11 @@ CLI stdout, so a report saved, forwarded or read later still cannot be
 misread as proof of anything the tier producing it did not check (Task 9
 Ruling #2; decisions #61/#63).
 
-Nothing here is tier-specific. Task 10 adds hardware measurements into the
-existing `metrics` dict (keyed by song) and fills the device-only `Subject`
-members this tier leaves `None` -- it does not need a new field or a new
-shape (Task 9 Ruling #1).
+Nothing here is tier-specific. `metrics` is namespaced -- `{"catalog": {...},
+"songs": {...}}` -- so a song id can never collide with a catalog-wide key.
+Task 10 adds its hardware measurements under `metrics["songs"][<song id>]` and
+fills the device-only `Subject` members this tier leaves `None`; it needs no
+new field and no new shape.
 """
 
 from __future__ import annotations
