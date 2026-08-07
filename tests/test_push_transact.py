@@ -17,7 +17,6 @@ from rig.push.transact import (
     _ensure_swapped,
     plan_delete_op,
     plan_write_op,
-    read_journal,
     recover_pending_transaction,
     run_transaction,
     stage_files,

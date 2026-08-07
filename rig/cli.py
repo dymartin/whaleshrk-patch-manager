@@ -21,24 +21,25 @@ from typing import Callable, Iterable, NoReturn, Optional
 import httpx
 import typer
 
-from rig.catalog.archive import CandidateArchive, ZipCandidateArchive
-from rig.catalog.builtins import ingest_pinned_builtins
-from rig.catalog.entry import CatalogEntry
-from rig.catalog.gate import GateAccept, gate_candidate
-from rig.catalog.ingest import (
+from rig.catalog import (
     CandidateSource,
+    CatalogEntry,
     KeyCollisionError,
+    PatchstorageError,
+    ZipCandidateArchive,
     build_catalog,
     build_community_catalog,
-)
-from rig.catalog.io import read_catalog, read_lock, write_catalog, write_lock
-from rig.catalog.patchstorage import (
-    PatchstorageError,
     discover_union,
     fetch_archive_bytes,
     fetch_detail,
+    find_sources_by_slug,
+    ingest_pinned_builtins,
+    live_httpx_client,
+    read_catalog,
+    read_lock,
+    write_catalog,
+    write_lock,
 )
-from rig.catalog.slugs import module_key
 from rig.compile import CompileError, SampleCompileError, scan_wav_folder
 from rig.pull import (
     GhClient,
@@ -50,8 +51,8 @@ from rig.pull import (
     pull as run_pull,
 )
 from rig.push import (
-    ModuleSourceUnavailable,
     OrhackIntegrityError,
+    PatchstorageModuleSource,
     PushError,
     PushResult,
     PushTransactionError,
@@ -101,7 +102,7 @@ _transport: Optional[Transport] = None
 _card_roots: Optional[Iterable[Path]] = None
 _git: Optional[GitRepo] = None
 _gh: Optional[GhClient] = None
-_module_source: Optional[_PatchstorageModuleSource] = None
+_module_source: Optional[PatchstorageModuleSource] = None
 _upgrade_fetcher: Optional[Callable[[dict[str, CatalogEntry]], dict[str, CatalogEntry]]] = None
 
 
@@ -185,155 +186,6 @@ def _require_valid(
 # --- Patchstorage lookup shared by `rig upgrade` and push's live ModuleSource -
 
 
-def _live_httpx_client() -> httpx.Client:
-    return httpx.Client(timeout=30.0)
-
-
-def _find_sources_by_slug(client: httpx.Client, wanted_slugs: set[str]) -> dict[str, CandidateSource]:
-    """Every live Patchstorage candidate whose upload slug is in
-    `wanted_slugs`, fully fetched (detail + archive bytes).
-
-    Patchstorage's API (docs/platform/patchstorage.md) has no lookup-by-slug
-    filter -- only platform, tag, category, author and a fuzzy `search`, none
-    an exact identifier match -- so finding one upload's current candidate id
-    means walking the same full discovery list `rig catalog update` already
-    walks. Stops early once every wanted slug is found.
-    """
-    if not wanted_slugs:
-        return {}
-    found: dict[str, CandidateSource] = {}
-    ids = discover_union(client)
-    for patch_id in ids:
-        if len(found) == len(wanted_slugs):
-            break
-        detail = fetch_detail(client, patch_id)
-        detail_slug = detail.get("slug")
-        if detail_slug not in wanted_slugs or detail_slug in found:
-            continue
-        files = detail.get("files") or []
-        if not files:
-            continue
-        archive_bytes = fetch_archive_bytes(client, files[0]["url"])
-        found[detail_slug] = CandidateSource(
-            id=patch_id,
-            archive=ZipCandidateArchive(archive_bytes),
-            detail=detail,
-            archive_sha256=hashlib.sha256(archive_bytes).hexdigest(),
-        )
-    return found
-
-
-# --- push: a real, network-backed ModuleSource / UpdateChecker ---------------
-
-# docs/catalog.md "Strip on install": junk every real archive carries. No doc
-# pins an exact editor-swap-file pattern -- vim/emacs' own conventions
-# (trailing "~", ".swp"/".swo") are used as a reasonable, documented default,
-# a design call rather than a verified spec.
-_EDITOR_SWAP_SUFFIXES = ("~", ".swp", ".swo")
-ABL_LINK_FILENAME = "abl_link~.pd_linux"
-
-
-def _should_strip(rel_path: str) -> bool:
-    lower = rel_path.lower()
-    if "__macosx" in lower.split("/"):
-        return True
-    name = lower.rsplit("/", 1)[-1]
-    if name.startswith("._") or name == ".ds_store":
-        return True
-    if lower.endswith(".dll"):
-        return True
-    if name.endswith(_EDITOR_SWAP_SUFFIXES):
-        return True
-    return False
-
-
-def _extract_module_files(archive: CandidateArchive, module_dir: str) -> dict[str, bytes]:
-    """Every real file under one module's own directory, relative to that
-    directory, junk stripped -- the shape `ModuleSource.fetch` must return
-    (relative to `rig.push.modules.module_install_dir(entry)`)."""
-    prefix = f"{module_dir}/" if module_dir else ""
-    files: dict[str, bytes] = {}
-    for entry in archive.entries():
-        if entry.is_dir:
-            continue
-        if module_dir and not entry.name.startswith(prefix):
-            continue
-        rel = entry.name[len(prefix):] if module_dir else entry.name
-        if not rel or _should_strip(rel):
-            continue
-        files[rel] = archive.read(entry.name)
-    return files
-
-
-class _PatchstorageModuleSource:
-    """Live, network-backed `ModuleSource` *and* `UpdateChecker` for push's
-    module reconciliation step -- `rig.push.modules`'s own docstring says
-    Task 8's CLI is responsible for wiring this up; never reached by a test
-    (`tests/conftest.py` blocks every socket for the whole session).
-
-    One discovery pass covers every locked community module's slug at once,
-    cached for the lifetime of one push -- `_find_sources_by_slug` has no
-    cheaper way to find a specific upload (see its own docstring), so calling
-    it once per module would multiply an already-expensive full candidate
-    walk by the number of locked community modules.
-    """
-
-    def __init__(self, wanted_slugs: set[str]):
-        self._wanted = wanted_slugs
-        self._sources: Optional[dict[str, CandidateSource]] = None
-
-    def _resolve(self) -> dict[str, CandidateSource]:
-        if self._sources is None:
-            try:
-                with _live_httpx_client() as client:
-                    self._sources = _find_sources_by_slug(client, self._wanted)
-            except (httpx.HTTPError, PatchstorageError) as exc:
-                raise ModuleSourceUnavailable(f"could not reach Patchstorage: {exc}") from exc
-        return self._sources
-
-    def fetch(self, entry: CatalogEntry) -> dict[str, bytes]:
-        source = self._resolve().get(entry.source)
-        if source is None:
-            raise ModuleSourceUnavailable(f"{entry.key}: no longer found on Patchstorage")
-
-        # Re-gate to find this module's own directory inside the (possibly
-        # multi-module) archive -- the same walk ingest did originally, so
-        # matching on the recomputed key finds the directory that produced
-        # this exact catalog entry.
-        gated = gate_candidate(source.archive)
-        if not isinstance(gated, GateAccept):
-            raise ModuleSourceUnavailable(f"{entry.key}: archive no longer passes the catalog gate")
-        module_dir = next(
-            (d for d in gated.module_dirs if module_key(d.module_json["display"], entry.source) == entry.key),
-            None,
-        )
-        if module_dir is None:
-            raise ModuleSourceUnavailable(f"{entry.key}: module no longer found inside its archive")
-
-        files = _extract_module_files(source.archive, module_dir.path)
-        if any(Path(rel).name.lower() == ABL_LINK_FILENAME for rel in files):
-            # docs/catalog.md "Strip on install": Organelle_OS renames this
-            # file away on every patch launch, so a module needing it never
-            # loads its external -- unsupported, not merely stripped.
-            raise ModuleSourceUnavailable(
-                f"{entry.key}: ships {ABL_LINK_FILENAME}, which Organelle_OS renames away on "
-                "every patch launch -- unsupported"
-            )
-        return files
-
-    def check_update(self, entry: CatalogEntry) -> Optional[str]:
-        source = self._resolve().get(entry.source)
-        if source is None:
-            return None
-        live_updated = source.detail.get("updated_at")
-        if live_updated and live_updated != entry.version.updated_at:
-            return (
-                f"updated_at changed ({entry.version.updated_at!r} -> {live_updated!r}); "
-                f"run `rig upgrade {entry.key}`"
-            )
-        return None
-
-
 def _locked_community_slugs(catalog: list[CatalogEntry], lock: dict) -> set[str]:
     locked_keys = set(lock.get("modules", {}))
     return {e.source for e in catalog if e.source != "orhack" and e.key in locked_keys}
@@ -360,7 +212,7 @@ def push(
 
     _require_valid("push", songs, catalog, kits, MEDIA_ROOT)
 
-    module_source = _module_source or _PatchstorageModuleSource(_locked_community_slugs(catalog, lock))
+    module_source = _module_source or PatchstorageModuleSource(_locked_community_slugs(catalog, lock))
 
     try:
         result = run_push(
@@ -619,10 +471,10 @@ def _fetch_upgraded_entries(requested: dict[str, CatalogEntry]) -> dict[str, Cat
     still passes the catalog gate. A key absent from the result means it
     could not be refreshed -- the caller treats that as a refusal."""
     wanted_slugs = {entry.source for entry in requested.values()}
-    with _live_httpx_client() as client:
-        sources = _find_sources_by_slug(client, wanted_slugs)
-    fresh_entries, _rejects = build_community_catalog(list(sources.values()))
-    return {entry.key: entry for entry in fresh_entries if entry.key in requested}
+    with live_httpx_client() as client:
+        sources = find_sources_by_slug(client, wanted_slugs)
+    fresh = build_community_catalog(list(sources.values()))
+    return {entry.key: entry for entry in fresh.entries if entry.key in requested}
 
 
 @app.command()

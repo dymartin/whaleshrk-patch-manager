@@ -158,9 +158,7 @@ def _build_community_module(
     )
 
 
-def build_community_catalog(
-    sources: list[CandidateSource],
-) -> tuple[list[CatalogEntry], list[IngestReject]]:
+def build_community_catalog(sources: list[CandidateSource]) -> CatalogBuildResult:
     """Gate every candidate and build its surviving modules' catalog entries.
 
     Candidate-level rejects (not-a-module, bad-json, wrong-arch, rack-
@@ -186,12 +184,12 @@ def build_community_catalog(
             else:
                 entries.append(built)
 
-    return entries, rejects
+    return CatalogBuildResult(entries=entries, rejects=rejects)
 
 
 def resolve_duplicate_module_paths(
     builtin_entries: list[CatalogEntry], community_entries: list[CatalogEntry]
-) -> tuple[list[CatalogEntry], list[IngestReject]]:
+) -> CatalogBuildResult:
     """Drop any community entry whose moduleType collides with an already-claimed path.
 
     Built-in paths are fixed, pinned truth and always win outright.
@@ -221,7 +219,7 @@ def resolve_duplicate_module_paths(
         claimed[entry.module_type] = entry.key
         kept.append(entry)
 
-    return kept, rejects
+    return CatalogBuildResult(entries=kept, rejects=rejects)
 
 
 def _check_no_key_collisions(entries: list[CatalogEntry]) -> None:
@@ -238,11 +236,8 @@ def _check_no_key_collisions(entries: list[CatalogEntry]) -> None:
 def build_catalog(
     builtin_entries: list[CatalogEntry], sources: list[CandidateSource]
 ) -> CatalogBuildResult:
-    community_entries, sidecar_rejects = build_community_catalog(sources)
-    surviving_community, path_rejects = resolve_duplicate_module_paths(
-        builtin_entries, community_entries
-    )
-    all_entries = list(builtin_entries) + surviving_community
+    community = build_community_catalog(sources)
+    surviving = resolve_duplicate_module_paths(builtin_entries, community.entries)
+    all_entries = list(builtin_entries) + surviving.entries
     _check_no_key_collisions(all_entries)
-    all_rejects = sidecar_rejects + path_rejects
-    return CatalogBuildResult(entries=all_entries, rejects=all_rejects)
+    return CatalogBuildResult(entries=all_entries, rejects=community.rejects + surviving.rejects)

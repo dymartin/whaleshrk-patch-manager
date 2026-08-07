@@ -14,7 +14,7 @@ git repo plus `FakeGhClient` (never the real `gh` on this machine -- see
 `_git`/`_gh`/`_upgrade_fetcher` as the seams tests reach with `monkeypatch`,
 so the command bodies under test are the real ones, not a stand-in.
 
-`_PatchstorageModuleSource` (push's live `ModuleSource`/`UpdateChecker`) is
+`PatchstorageModuleSource` (push's live `ModuleSource`/`UpdateChecker`) is
 tested directly, without going through a CLI invocation or the network:
 `_resolve()` only populates `self._sources` lazily, so a test can construct
 the object and set that dict itself from an in-memory zip built with the
@@ -43,29 +43,16 @@ from rig.catalog.params import ParamSpec
 from rig.catalog.slugs import module_key
 from rig.cli import app
 from rig.push.modules import ModuleSourceUnavailable
+from rig.push.patchstorage_source import PatchstorageModuleSource
 from rig.song.bindings import write_bindings
 from rig.transport.memory import InMemoryTransport
 
+from .compile_helpers import system_catalog
 from .pull_helpers import FakeGhClient, make_git_repo
 
 runner = CliRunner()
 
 PRESETS_ROOT = "data/orhack/presets"
-
-# routers/hybrid and clocks/transport (s1/s2) are compiled into every song
-# regardless of its own modules (docs/schema.md "System slots") -- any test
-# that pushes a real preset needs them in the seeded catalog, same as
-# tests/compile_helpers.py's system_catalog().
-_SYSTEM_MODULE_TYPES = {"routers/hybrid", "clocks/transport"}
-_system_entries_cache: list[CatalogEntry] | None = None
-
-
-def _system_entries() -> list[CatalogEntry]:
-    global _system_entries_cache
-    if _system_entries_cache is None:
-        _system_entries_cache = [e for e in ingest_pinned_builtins() if e.module_type in _SYSTEM_MODULE_TYPES]
-    return list(_system_entries_cache)
-
 
 # --- shared fixtures/helpers -------------------------------------------------
 
@@ -152,7 +139,7 @@ def test_validate_static_unknown_song_is_a_clean_refusal(repo):
 
 
 def test_validate_static_passes_for_a_clean_song_and_writes_a_report(repo):
-    _seed_catalog([_synth_entry(), *_system_entries()])
+    _seed_catalog([_synth_entry(), *system_catalog()])
     _write_song(repo / "songs", "Vellichor", 3)
 
     result = runner.invoke(app, ["validate", "--tier", "static"])
@@ -166,7 +153,7 @@ def test_validate_static_passes_for_a_clean_song_and_writes_a_report(repo):
 
 
 def test_validate_static_fails_for_a_song_with_a_hard_error(repo):
-    _seed_catalog([_synth_entry(), *_system_entries()])
+    _seed_catalog([_synth_entry(), *system_catalog()])
     (repo / "songs").mkdir()
     (repo / "songs" / "bad.yaml").write_text(
         "song: Bad\nprogram: 3\nchains:\n  - name: pads\n    modules:\n      - nope@orhack: {}\n",
@@ -187,7 +174,7 @@ def test_validate_hardware_tier_with_no_songs():
 
 
 def test_validate_verify_report_round_trips(repo):
-    _seed_catalog([_synth_entry(), *_system_entries()])
+    _seed_catalog([_synth_entry(), *system_catalog()])
     _write_song(repo / "songs", "Vellichor", 3)
     first = runner.invoke(app, ["validate", "--tier", "static"])
     assert first.exit_code == 0, first.output
@@ -200,7 +187,7 @@ def test_validate_verify_report_round_trips(repo):
 
 
 def test_validate_verify_report_rejects_a_hand_edited_report(repo):
-    _seed_catalog([_synth_entry(), *_system_entries()])
+    _seed_catalog([_synth_entry(), *system_catalog()])
     _write_song(repo / "songs", "Vellichor", 3)
     assert runner.invoke(app, ["validate", "--tier", "static"]).exit_code == 0
     report_path = next((repo / ".rig" / "state" / "reports").glob("static-*.json"))
@@ -243,7 +230,7 @@ def test_unknown_song_selection_on_push_uses_the_same_refusal_shape(repo):
 
 
 def test_lint_ok_for_a_valid_song_exits_zero(repo):
-    _seed_catalog([_synth_entry(), *_system_entries()])
+    _seed_catalog([_synth_entry(), *system_catalog()])
     _write_song(repo / "songs", "Vellichor", 3)
     result = runner.invoke(app, ["lint"])
     assert result.exit_code == 0, result.output
@@ -251,7 +238,7 @@ def test_lint_ok_for_a_valid_song_exits_zero(repo):
 
 
 def test_lint_reports_errors_and_exits_nonzero(repo):
-    _seed_catalog([_synth_entry(), *_system_entries()])
+    _seed_catalog([_synth_entry(), *system_catalog()])
     (repo / "songs").mkdir()
     (repo / "songs" / "bad.yaml").write_text(
         "song: Bad\nprogram: 3\nchains:\n  - name: pads\n    modules:\n      - nope@orhack: {}\n",
@@ -263,7 +250,7 @@ def test_lint_reports_errors_and_exits_nonzero(repo):
 
 
 def test_lint_reports_warnings_without_failing(repo):
-    _seed_catalog([_synth_entry(), *_system_entries()])
+    _seed_catalog([_synth_entry(), *system_catalog()])
     (repo / "songs").mkdir()
     (repo / "songs" / "vellichor.yaml").write_text(
         "song: Vellichor\nprogram: 3\n\n"
@@ -280,7 +267,7 @@ def test_lint_reports_warnings_without_failing(repo):
 
 
 def test_push_writes_selected_songs_and_exits_zero(repo, monkeypatch):
-    _seed_catalog([_synth_entry(), *_system_entries()])
+    _seed_catalog([_synth_entry(), *system_catalog()])
     _write_song(repo / "songs", "Vellichor", 3)
     transport = _bare_card()
     monkeypatch.setattr(cli, "_transport", transport)
@@ -293,7 +280,7 @@ def test_push_writes_selected_songs_and_exits_zero(repo, monkeypatch):
 
 
 def test_push_refuses_when_a_song_fails_validation(repo, monkeypatch):
-    _seed_catalog([_synth_entry(), *_system_entries()])
+    _seed_catalog([_synth_entry(), *system_catalog()])
     (repo / "songs").mkdir()
     (repo / "songs" / "bad.yaml").write_text(
         "song: Bad\nprogram: 3\nchains:\n  - name: pads\n    modules:\n      - nope@orhack: {}\n",
@@ -310,7 +297,7 @@ def test_push_refuses_when_a_song_fails_validation(repo, monkeypatch):
 
 
 def test_push_dry_run_leaves_card_and_repo_untouched(repo, monkeypatch):
-    _seed_catalog([_synth_entry(), *_system_entries()])
+    _seed_catalog([_synth_entry(), *system_catalog()])
     _write_song(repo / "songs", "Vellichor", 3)
     transport = _bare_card()
     before = dict(transport._files)
@@ -328,7 +315,7 @@ def test_push_reports_orhack_integrity_error_cleanly(repo, monkeypatch):
     # verify_orhack_structure raises rig.push.modules.OrhackIntegrityError,
     # a distinct type from PushError -- must not leak as an uncaught
     # traceback (Ruling #2).
-    _seed_catalog([_synth_entry(), *_system_entries()])
+    _seed_catalog([_synth_entry(), *system_catalog()])
     _write_song(repo / "songs", "Vellichor", 3)
     transport = InMemoryTransport()  # no Patches/0RHACK/manifest.txt at all
     monkeypatch.setattr(cli, "_transport", transport)
@@ -341,7 +328,7 @@ def test_push_reports_orhack_integrity_error_cleanly(repo, monkeypatch):
 
 
 def test_push_no_card_found_is_a_clean_refusal(repo, monkeypatch):
-    _seed_catalog([_synth_entry(), *_system_entries()])
+    _seed_catalog([_synth_entry(), *system_catalog()])
     _write_song(repo / "songs", "Vellichor", 3)
     monkeypatch.setattr(cli, "_card_roots", [])  # empty, not None -- never a live OS scan in a test
 
@@ -353,7 +340,7 @@ def test_push_no_card_found_is_a_clean_refusal(repo, monkeypatch):
 
 def test_push_refuses_hand_renamed_chain_and_names_rename_chain(repo, monkeypatch):
     songs_dir = repo / "songs"
-    _seed_catalog([_synth_entry(), *_system_entries()])
+    _seed_catalog([_synth_entry(), *system_catalog()])
     _write_song(songs_dir, "Vellichor", 3, chain_name="lead")
     transport = _bare_card()
     monkeypatch.setattr(cli, "_transport", transport)
@@ -387,7 +374,7 @@ def _drift_level(transport: InMemoryTransport, directory: str, new_level: float)
 
 
 def test_pull_reports_drift_and_opens_a_pr(repo, monkeypatch):
-    _seed_catalog([_synth_entry(), *_system_entries()])
+    _seed_catalog([_synth_entry(), *system_catalog()])
     _write_song(repo / "songs", "Vellichor", 3)
     transport = _bare_card()
     monkeypatch.setattr(cli, "_transport", transport)
@@ -409,7 +396,7 @@ def test_pull_reports_drift_and_opens_a_pr(repo, monkeypatch):
 
 
 def test_pull_dry_run_leaves_card_and_repo_untouched(repo, monkeypatch):
-    _seed_catalog([_synth_entry(), *_system_entries()])
+    _seed_catalog([_synth_entry(), *system_catalog()])
     _write_song(repo / "songs", "Vellichor", 3)
     transport = _bare_card()
     monkeypatch.setattr(cli, "_transport", transport)
@@ -432,7 +419,7 @@ def test_pull_dry_run_leaves_card_and_repo_untouched(repo, monkeypatch):
 
 
 def test_pull_no_card_found_is_a_clean_refusal(repo, monkeypatch):
-    _seed_catalog([_synth_entry(), *_system_entries()])
+    _seed_catalog([_synth_entry(), *system_catalog()])
     monkeypatch.setattr(cli, "_card_roots", [])
 
     result = runner.invoke(app, ["pull"])
@@ -443,7 +430,7 @@ def test_pull_no_card_found_is_a_clean_refusal(repo, monkeypatch):
 
 def test_pull_without_adopt_flag_never_adopts(repo, monkeypatch):
     # Ruling #1: adoption is off by default.
-    _seed_catalog([_synth_entry(), *_system_entries()])
+    _seed_catalog([_synth_entry(), *system_catalog()])
     transport = _bare_card()
     transport.write(f"{PRESETS_ROOT}/005-stranger/params.json", b"{}")
     monkeypatch.setattr(cli, "_transport", transport)
@@ -528,7 +515,7 @@ def test_upgrade_unknown_module_is_a_clean_refusal(repo):
 
 
 def test_upgrade_refuses_a_builtin_module(repo):
-    _seed_catalog([_synth_entry(), *_system_entries()])
+    _seed_catalog([_synth_entry(), *system_catalog()])
     result = runner.invoke(app, ["upgrade", "synth@orhack"])
     assert result.exit_code != 0
     assert "BUILTIN_NOT_UPGRADABLE" in result.output
@@ -587,7 +574,7 @@ def test_rename_chain_unknown_song_is_a_clean_refusal(repo):
     assert "UNKNOWN_SONG" in result.output
 
 
-# --- _PatchstorageModuleSource (push's live ModuleSource/UpdateChecker) -----
+# --- PatchstorageModuleSource (push's live ModuleSource/UpdateChecker) -----
 
 
 def _make_zip(files: dict[str, bytes]) -> bytes:
@@ -599,7 +586,7 @@ def _make_zip(files: dict[str, bytes]) -> bytes:
 
 
 def _seeded_module_source(archive_bytes: bytes, *, slug: str = "warble", display: str = "Warble"):
-    """A `_PatchstorageModuleSource` with `_sources` pre-populated -- skips
+    """A `PatchstorageModuleSource` with `_sources` pre-populated -- skips
     `_resolve()`'s network call entirely, same seam `_upgrade_fetcher` uses
     one level up. Returns `(module_source, entry)` where `entry.key` is
     exactly what a real ingest of this archive would have produced."""
@@ -610,7 +597,7 @@ def _seeded_module_source(archive_bytes: bytes, *, slug: str = "warble", display
         detail={"slug": slug, "updated_at": "2020-01-01", "files": [{"url": "https://example.invalid/x.zip"}]},
         archive_sha256="deadbeef",
     )
-    module_source = cli._PatchstorageModuleSource({slug})
+    module_source = PatchstorageModuleSource({slug})
     module_source._sources = {slug: source}
     entry = CatalogEntry(
         key=entry_key, source=slug, display=display,
@@ -663,7 +650,7 @@ def test_module_source_fetch_refuses_a_module_needing_abl_link():
 
 
 def test_module_source_fetch_raises_when_slug_not_found():
-    module_source = cli._PatchstorageModuleSource({"warble"})
+    module_source = PatchstorageModuleSource({"warble"})
     module_source._sources = {}
     entry = CatalogEntry(
         key="warble@warble", source="warble", display="Warble",

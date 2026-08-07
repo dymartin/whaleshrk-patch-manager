@@ -12,7 +12,6 @@ from rig.catalog.entry import CatalogEntry, VersionInfo
 from rig.song.kits import KitsConfig
 from rig.song.model import (
     Chain,
-    ChainInput,
     ChainMidi,
     ChainMix,
     MidiMapping,

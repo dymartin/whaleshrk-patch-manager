@@ -16,19 +16,16 @@ import pytest
 from rig.catalog.entry import CatalogEntry
 from rig.compile.compiler import (
     FIXED_SLOT_IDS,
-    CompiledPreset,
     build_placeholder,
     compile_song,
     format_program_prefix,
 )
 from rig.compile.errors import CompileError
 from rig.compile.jsonfmt import dumps as device_dumps
-from rig.compile.sidecars import UnverifiedStatefulModuleError
 from rig.song.kits import KitsConfig
 from rig.song.model import (
     Chain,
     ChainInput,
-    ChainMidi,
     ChainMix,
     MidiMapping,
     ModuleSlot,
@@ -132,7 +129,7 @@ def test_strcmp_ordering_places_each_preset_at_its_program_index():
     used_programs = {p for p, _ in programs_and_names}
     for program in range(0, max(used_programs) + 1):
         if program not in used_programs:
-            placeholder = build_placeholder(program, catalog=catalog)
+            build_placeholder(program, catalog=catalog)
             programs_and_names.append((program, format_program_prefix(program)))
 
     ordered = sorted(programs_and_names, key=lambda pair: pair[1])  # plain strcmp

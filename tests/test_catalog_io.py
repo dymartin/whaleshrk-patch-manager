@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from pathlib import Path
-
 from rig.catalog.entry import CatalogEntry, ParamSpec, VersionInfo
 from rig.catalog.io import read_catalog, read_lock, write_catalog, write_lock
 

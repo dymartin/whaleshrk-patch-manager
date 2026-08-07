@@ -83,13 +83,15 @@ def _gate_source(source: CandidateSource) -> tuple[list[CheckResult], list[Catal
     themselves -- `locked_module_gate_checks` needs the latter to re-derive
     the cross-candidate duplicate-runtime-path check, which only means
     anything with every locked module's entries in view together."""
-    entries, rejects = build_community_catalog([source])
-    results = [CheckResult(id=r.reason.value, status=STATUS_FAIL, message=r.message) for r in rejects]
+    built = build_community_catalog([source])
+    results = [
+        CheckResult(id=r.reason.value, status=STATUS_FAIL, message=r.message) for r in built.rejects
+    ]
     results += [
         CheckResult(id=CATALOG_GATE_CHECK_ID, status=STATUS_PASS, message=f"{e.key}: admitted")
-        for e in entries
+        for e in built.entries
     ]
-    return results, entries
+    return results, built.entries
 
 
 def catalog_gate_checks(source: CandidateSource) -> list[CheckResult]:
@@ -154,8 +156,10 @@ def locked_module_gate_checks(
         admitted_entries.extend(source_entries)
 
     builtin_entries = [e for e in catalog if e.source == "orhack"]
-    _kept, path_rejects = resolve_duplicate_module_paths(builtin_entries, admitted_entries)
-    results += [CheckResult(id=r.reason.value, status=STATUS_FAIL, message=r.message) for r in path_rejects]
+    resolved = resolve_duplicate_module_paths(builtin_entries, admitted_entries)
+    results += [
+        CheckResult(id=r.reason.value, status=STATUS_FAIL, message=r.message) for r in resolved.rejects
+    ]
 
     return results
 

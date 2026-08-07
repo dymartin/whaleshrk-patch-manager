@@ -478,6 +478,18 @@ def validate_song(
                     )
                 )
 
+    _warn_multi_target_ccs(cc_targets, warnings)
+    _warn_unused_sends(song, warnings)
+    _warn_shared_channels(song, warnings)
+
+    return ValidationResult(errors=findings, warnings=warnings)
+
+
+def _warn_multi_target_ccs(
+    cc_targets: dict[tuple[int, int], list[str]], warnings: list[Finding]
+) -> None:
+    """One (channel, CC) pair driving several parameters at once. Cross-chain,
+    so it can only be judged after every chain has been walked."""
     for (channel, cc), targets in cc_targets.items():
         if len(targets) > 1:
             warnings.append(
@@ -487,6 +499,10 @@ def validate_song(
                 )
             )
 
+
+def _warn_unused_sends(song: Song, warnings: list[Finding]) -> None:
+    """A declared send no module routes into: harmless, but almost always a
+    leftover or a typo in a module's `send:`."""
     used_sends: set[str] = set()
     for chain in song.chains:
         for module in chain.modules:
@@ -495,6 +511,10 @@ def validate_song(
         if send.name not in used_sends:
             warnings.append(Finding("UNUSED_SEND", f"send {send.name!r} is declared but never used by a module"))
 
+
+def _warn_shared_channels(song: Song, warnings: list[Finding]) -> None:
+    """Two chains listening on one note channel both answer every note sent to
+    it -- legal, and occasionally deliberate, so a warning rather than an error."""
     channel_groups: dict[int, list[str]] = {}
     for position, chain in enumerate(song.chains, start=1):
         channel = _resolved_channel(chain, position)
@@ -506,8 +526,6 @@ def validate_song(
             warnings.append(
                 Finding("SHARED_CHANNEL", f"chains {names} share note channel {channel}")
             )
-
-    return ValidationResult(errors=findings, warnings=warnings)
 
 
 def validate_songs(songs: list[Song]) -> ValidationResult:

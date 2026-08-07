@@ -21,6 +21,7 @@ from .modules import (
     verify_orhack_manifest,
     verify_orhack_structure,
 )
+from .patchstorage_source import PatchstorageModuleSource
 from .plan import (
     Classification,
     ChainRenameSuspect,
@@ -50,6 +51,7 @@ __all__ = [
     "plan_module_reconciliation",
     "verify_orhack_manifest",
     "verify_orhack_structure",
+    "PatchstorageModuleSource",
     "Classification",
     "ChainRenameSuspect",
     "chain_rename_message",
