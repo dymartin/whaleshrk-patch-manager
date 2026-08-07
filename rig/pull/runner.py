@@ -57,6 +57,10 @@ def _song_path(repo_root: Path, doc: SongDocument, song_id: str) -> str:
         try:
             return doc.path.resolve().relative_to(repo_root.resolve()).as_posix()
         except ValueError:
+            # `relative_to` raises when the song was loaded from outside the
+            # repo (a test's tmp_path, a path on another drive). A commit can
+            # only carry repo-relative paths, so fall back to the conventional
+            # location for this song id rather than committing an absolute one.
             pass
     return f"songs/{song_id}.yaml"
 

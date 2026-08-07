@@ -12,6 +12,8 @@ result count against `X-WP-Total` instead of trusting the filter worked.
 
 from __future__ import annotations
 
+from typing import Any
+
 import httpx
 
 BASE_URL = "https://patchstorage.com/api/beta/"
@@ -86,7 +88,7 @@ def discover_union(client: httpx.Client) -> list[int]:
     return sorted(ids)
 
 
-def fetch_detail(client: httpx.Client, patch_id: int) -> dict:
+def fetch_detail(client: httpx.Client, patch_id: int) -> dict[str, Any]:
     response = client.get(BASE_URL + f"patches/{patch_id}")
     response.raise_for_status()
     detail = response.json()

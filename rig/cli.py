@@ -629,7 +629,9 @@ def _validate_static(command: str, song_args: list[str]) -> None:
     try:
         commit = GitRepo(Path(".")).rev_parse("HEAD")
     except GitError:
-        pass  # no repo, or no commits yet -- Subject.commit stays None
+        # No repo, or a repo with no commits yet. A report is still valid
+        # without a commit -- Subject.commit is Optional precisely for this.
+        pass
 
     module_lock_digest = hashlib.sha256(LOCK_PATH.read_bytes()).hexdigest() if LOCK_PATH.exists() else None
 

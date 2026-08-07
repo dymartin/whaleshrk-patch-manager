@@ -21,6 +21,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional
 
+from rig.atomicio import write_bytes_atomic, write_text_atomic
+
 
 @dataclass(frozen=True)
 class LastPushedMeta:
@@ -74,10 +76,10 @@ def write_last_pushed(state_dir: Path, song_id: str, params_bytes: bytes, meta: 
     first would let a failed transaction fabricate a baseline pull could
     never actually observe."""
     _last_pushed_dir(state_dir).mkdir(parents=True, exist_ok=True)
-    params_path(state_dir, song_id).write_bytes(params_bytes)
-    meta_path(state_dir, song_id).write_text(
+    write_bytes_atomic(params_path(state_dir, song_id), params_bytes)
+    write_text_atomic(
+        meta_path(state_dir, song_id),
         json.dumps({"directory": meta.directory, "program": meta.program}, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
     )
 
 
@@ -109,4 +111,4 @@ def read_recorded_lock_hash(state_dir: Path) -> Optional[str]:
 
 def write_recorded_lock_hash(state_dir: Path, lock_hash: str) -> None:
     _last_pushed_dir(state_dir).mkdir(parents=True, exist_ok=True)
-    lock_hash_path(state_dir).write_text(lock_hash + "\n", encoding="utf-8")
+    write_text_atomic(lock_hash_path(state_dir), lock_hash + "\n")

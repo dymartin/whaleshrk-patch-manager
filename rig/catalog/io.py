@@ -10,6 +10,8 @@ import json
 from pathlib import Path
 from typing import Any
 
+from rig.atomicio import write_text_atomic
+
 from .entry import CatalogEntry, entry_filename
 
 GENERATOR = "rig catalog update"
@@ -23,7 +25,7 @@ def write_catalog(entries: list[CatalogEntry], catalog_dir: Path) -> None:
         existing.unlink()
     for entry in entries:
         path = catalog_dir / entry_filename(entry.key)
-        path.write_text(json.dumps(entry.to_dict(), indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        write_text_atomic(path, json.dumps(entry.to_dict(), indent=2, sort_keys=True) + "\n")
 
 
 def read_catalog(catalog_dir: Path) -> list[CatalogEntry]:
@@ -55,8 +57,7 @@ def write_lock(entries: list[CatalogEntry], lock_path: Path) -> None:
         "generator": GENERATOR,
         "modules": modules,
     }
-    lock_path.parent.mkdir(parents=True, exist_ok=True)
-    lock_path.write_text(json.dumps(lock, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_text_atomic(lock_path, json.dumps(lock, indent=2, sort_keys=True) + "\n")
 
 
 def read_lock(lock_path: Path) -> dict[str, Any]:

@@ -18,6 +18,8 @@ docs/platform/routing.md "Transport / clock".
 
 from __future__ import annotations
 
+from typing import Any
+
 from rig.catalog.entry import CatalogEntry
 from rig.song.model import Chain, Send
 
@@ -51,7 +53,7 @@ def _send_index(sends: list[Send], name: str, context: str) -> int:
     raise CompileError("UNDECLARED_SEND", f"{context}: send {name!r} is not declared in 'sends:'")
 
 
-def compile_transport(catalog_by_type: dict[str, CatalogEntry]) -> dict:
+def compile_transport(catalog_by_type: dict[str, CatalogEntry]) -> dict[str, Any]:
     entry = _find_by_module_type(catalog_by_type, TRANSPORT_MODULE_TYPE)
     params = {p.id: p.default for p in entry.params}
     return {
@@ -67,7 +69,7 @@ def compile_router(
     sends: list[Send],
     letters: dict[str, str],
     catalog_by_type: dict[str, CatalogEntry],
-) -> dict:
+) -> dict[str, Any]:
     """Build `s1`'s full parameter dict.
 
     `letters` is chain name -> assigned letter (`rig.song.letters.

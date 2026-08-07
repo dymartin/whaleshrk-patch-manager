@@ -17,6 +17,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from rig.atomicio import write_text_atomic
+
 from .letters import CHAIN_LETTERS
 
 
@@ -37,8 +39,7 @@ def write_bindings(state_dir: Path, song_slug: str, bindings: dict[str, str]) ->
         if letter not in CHAIN_LETTERS:
             raise ValueError(f"chain {name!r}: {letter!r} is not a chain letter (A-D)")
     state_dir.mkdir(parents=True, exist_ok=True)
-    path = bindings_path(state_dir, song_slug)
-    path.write_text(json.dumps(bindings, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_text_atomic(bindings_path(state_dir, song_slug), json.dumps(bindings, indent=2, sort_keys=True) + "\n")
 
 
 def remove_bindings(state_dir: Path, song_slug: str) -> None:

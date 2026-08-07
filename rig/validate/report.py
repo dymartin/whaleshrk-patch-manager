@@ -24,6 +24,8 @@ from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any, Literal, Optional
 
+from rig.atomicio import write_text_atomic
+
 REPORT_SCHEMA_VERSION = 1
 
 # docs/validation.md "Confidence levels".
@@ -133,8 +135,7 @@ def write_report(report: Report, path: Path) -> None:
     body = report.to_dict()
     digest = compute_digest(body)
     body["integrity"] = {"algorithm": "sha256", "digest": digest}
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(body, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    write_text_atomic(path, json.dumps(body, indent=2, sort_keys=True) + "\n")
 
 
 def verify_report(path: Path) -> None:
