@@ -91,6 +91,7 @@ from rig.compile.samples import scan_wav_folder
 from rig.errors import CodedError
 from rig.song.kits import KitsConfig
 from rig.song.letters import ChainSlots, LetterAssignmentError, assign_letters
+from rig.song.model import Chain
 from rig.song.parser import SongDocument
 from rig.song.validate import CHAIN_CHANNEL_RANGE, MODULE_CHANNEL_RANGE, RESERVED_CCS
 
@@ -399,6 +400,70 @@ def _match_send_param_diffs(
         changes.append(FieldChange(f"{slot_id}.{spec.name}", value))
 
 
+def _match_chain_mix_gain_diff(
+    edits: list, changes: list, remaining: dict, chain_raw, chain_index: int, *, param: str, field: str
+) -> None:
+    """One `mix:` gain that is a straight number with no further decoding --
+    `input-gain` and `output-gain` differ only in which s1 parameter carries
+    them and which field receives them."""
+    d = remaining.pop(("s1", ("params", param)), None)
+    if d is None:
+        return
+    value = clean_number(d.new)
+    edits.append(_make_set_nested(chain_raw, "mix", field, value))
+    changes.append(FieldChange(f"chains[{chain_index}].mix.{field}", value))
+
+
+def _match_chain_field_diffs(
+    edits: list,
+    changes: list,
+    remaining: dict,
+    chain_raw,
+    chain_index: int,
+    chain: Chain,
+    *,
+    n: int,
+    s1_observed: dict,
+    effective_channel: int,
+) -> int:
+    """Every chain-level field: note channel, the two mix gains, and the
+    balance/width pair. Returns the chain's channel, which the module loop
+    needs afterwards to decide whether a CC key can use the bare-number
+    shorthand -- drift may have just changed it.
+
+    Balance and width stay inline rather than going through
+    `_match_chain_mix_gain_diff`: they are one derived pair recomputed from
+    both observed pan values together, not two independent numbers.
+    """
+    d = remaining.pop(("s1", ("params", f"r-chin-midich-{n}")), None)
+    if d is not None:
+        effective_channel = int(d.new)
+        check_chain_channel_writable(effective_channel, f"chains[{chain_index}] ({chain.name!r})")
+        edits.append(_make_set_nested(chain_raw, "midi", "channel", effective_channel))
+        changes.append(FieldChange(f"chains[{chain_index}].midi.channel", effective_channel))
+
+    _match_chain_mix_gain_diff(
+        edits, changes, remaining, chain_raw, chain_index, param=f"r-chin-l-gain-{n}", field="input-gain"
+    )
+    _match_chain_mix_gain_diff(
+        edits, changes, remaining, chain_raw, chain_index, param=f"r-chout-gain-{n}", field="output-gain"
+    )
+
+    dl = remaining.pop(("s1", ("params", f"r-chout-l-pan-{n}")), None)
+    dr = remaining.pop(("s1", ("params", f"r-chout-r-pan-{n}")), None)
+    if dl is not None or dr is not None:
+        l_pan = s1_observed[f"r-chout-l-pan-{n}"]
+        r_pan = s1_observed[f"r-chout-r-pan-{n}"]
+        balance = clean_number(100.0 * (float(l_pan) + float(r_pan)) / 2.0)
+        width = clean_number(100.0 * (float(r_pan) - float(l_pan)))
+        edits.append(_make_set_nested(chain_raw, "mix", "balance", balance))
+        edits.append(_make_set_nested(chain_raw, "mix", "width", width))
+        changes.append(FieldChange(f"chains[{chain_index}].mix.balance", balance))
+        changes.append(FieldChange(f"chains[{chain_index}].mix.width", width))
+
+    return effective_channel
+
+
 def reverse_map_song(
     doc: SongDocument,
     *,
@@ -485,36 +550,10 @@ def reverse_map_song(
         position = chain_index + 1
         effective_channel = chain.midi.channel if chain.midi.channel is not None else position
 
-        d = remaining.pop(("s1", ("params", f"r-chin-midich-{n}")), None)
-        if d is not None:
-            effective_channel = int(d.new)
-            check_chain_channel_writable(effective_channel, f"chains[{chain_index}] ({chain.name!r})")
-            edits.append(_make_set_nested(chain_raw, "midi", "channel", effective_channel))
-            changes.append(FieldChange(f"chains[{chain_index}].midi.channel", effective_channel))
-
-        d = remaining.pop(("s1", ("params", f"r-chin-l-gain-{n}")), None)
-        if d is not None:
-            value = clean_number(d.new)
-            edits.append(_make_set_nested(chain_raw, "mix", "input-gain", value))
-            changes.append(FieldChange(f"chains[{chain_index}].mix.input-gain", value))
-
-        d = remaining.pop(("s1", ("params", f"r-chout-gain-{n}")), None)
-        if d is not None:
-            value = clean_number(d.new)
-            edits.append(_make_set_nested(chain_raw, "mix", "output-gain", value))
-            changes.append(FieldChange(f"chains[{chain_index}].mix.output-gain", value))
-
-        dl = remaining.pop(("s1", ("params", f"r-chout-l-pan-{n}")), None)
-        dr = remaining.pop(("s1", ("params", f"r-chout-r-pan-{n}")), None)
-        if dl is not None or dr is not None:
-            l_pan = s1_observed[f"r-chout-l-pan-{n}"]
-            r_pan = s1_observed[f"r-chout-r-pan-{n}"]
-            balance = clean_number(100.0 * (float(l_pan) + float(r_pan)) / 2.0)
-            width = clean_number(100.0 * (float(r_pan) - float(l_pan)))
-            edits.append(_make_set_nested(chain_raw, "mix", "balance", balance))
-            edits.append(_make_set_nested(chain_raw, "mix", "width", width))
-            changes.append(FieldChange(f"chains[{chain_index}].mix.balance", balance))
-            changes.append(FieldChange(f"chains[{chain_index}].mix.width", width))
+        effective_channel = _match_chain_field_diffs(
+            edits, changes, remaining, chain_raw, chain_index, chain,
+            n=n, s1_observed=s1_observed, effective_channel=effective_channel,
+        )
 
         modules_seq = chain_raw["modules"]
         for module_index, module in enumerate(chain.modules):
