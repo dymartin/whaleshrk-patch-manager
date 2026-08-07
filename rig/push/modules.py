@@ -20,6 +20,7 @@ from dataclasses import dataclass
 from typing import Optional, Protocol
 
 from rig.catalog.entry import CatalogEntry
+from rig.errors import CodedError
 from rig.push.fsutil import list_files_recursive
 from rig.push.hashing import hash_file_map
 from rig.transport.base import Transport
@@ -28,10 +29,8 @@ MANIFEST_PATH = "Patches/0RHACK/manifest.txt"
 USER_MODULES_ROOT = "media/orhack/user-modules"
 
 
-class OrhackIntegrityError(ValueError):
-    def __init__(self, code: str, message: str):
-        self.code = code
-        super().__init__(message)
+class OrhackIntegrityError(CodedError):
+    pass
 
 
 def verify_orhack_structure(transport: Transport) -> None:

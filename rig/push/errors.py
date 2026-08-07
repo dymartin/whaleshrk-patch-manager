@@ -10,8 +10,8 @@ fired without parsing the message.
 
 from __future__ import annotations
 
+from rig.errors import CodedError
 
-class PushError(ValueError):
-    def __init__(self, code: str, message: str):
-        self.code = code
-        super().__init__(message)
+
+class PushError(CodedError):
+    pass

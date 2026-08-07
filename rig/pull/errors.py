@@ -9,8 +9,8 @@ preset is missing" (docs/workflows/pull.md, decision #55).
 
 from __future__ import annotations
 
+from rig.errors import CodedError
 
-class PullError(ValueError):
-    def __init__(self, code: str, message: str):
-        self.code = code
-        super().__init__(message)
+
+class PullError(CodedError):
+    pass

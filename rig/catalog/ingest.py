@@ -82,6 +82,10 @@ def _module_pd_texts(archive: CandidateArchive, module_dir: str) -> dict[str, st
         try:
             texts[entry.name] = archive.read(entry.name).decode("utf-8", errors="replace")
         except FileNotFoundError:
+            # An archive can list an entry it cannot then produce -- a stale or
+            # truncated central directory. A .pd file that is named but not
+            # readable simply contributes no text to gate against; the gate
+            # decides on what it can actually read.
             continue
     return texts
 

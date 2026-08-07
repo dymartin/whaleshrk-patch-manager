@@ -26,12 +26,19 @@ from pathlib import Path
 from typing import Optional, Protocol
 
 
+# Every call here is non-interactive plumbing, so anything still running after
+# this long is hung rather than slow -- an unauthenticated `gh` waiting on a
+# prompt, or a `git push` stalled on an unreachable remote. A pull run that
+# hangs forever reports nothing at all, which is worse than a clear refusal.
+SUBPROCESS_TIMEOUT_SECONDS = 120
+
+
 class GitError(RuntimeError):
-    """A `git` plumbing command failed, or `git` itself is not installed."""
+    """A `git` plumbing command failed, timed out, or `git` is not installed."""
 
 
 class GhError(RuntimeError):
-    """A `gh` command failed, or `gh` itself is not installed."""
+    """A `gh` command failed, timed out, or `gh` itself is not installed."""
 
 
 class GitRepo:
@@ -53,9 +60,14 @@ class GitRepo:
                 capture_output=True,
                 input=input_bytes,
                 env=env,
+                timeout=SUBPROCESS_TIMEOUT_SECONDS,
             )
         except FileNotFoundError as exc:
             raise GitError("`git` is not installed") from exc
+        except subprocess.TimeoutExpired as exc:
+            raise GitError(
+                f"git {' '.join(args)} did not finish within {SUBPROCESS_TIMEOUT_SECONDS}s"
+            ) from exc
         if result.returncode != 0:
             raise GitError(f"git {' '.join(args)} failed: {result.stderr.decode(errors='replace').strip()}")
         return result.stdout
@@ -127,11 +139,22 @@ class SubprocessGhClient:
 
     def _run(self, *args: str) -> str:
         try:
-            result = subprocess.run(["gh", *args], cwd=self.repo_dir, capture_output=True, text=True)
+            result = subprocess.run(
+                ["gh", *args],
+                cwd=self.repo_dir,
+                capture_output=True,
+                text=True,
+                timeout=SUBPROCESS_TIMEOUT_SECONDS,
+            )
         except FileNotFoundError as exc:
             raise GhError(
                 "the `gh` CLI is not installed -- required to open pull requests. "
                 "Install it (https://cli.github.com) and retry."
+            ) from exc
+        except subprocess.TimeoutExpired as exc:
+            raise GhError(
+                f"gh {' '.join(args)} did not finish within {SUBPROCESS_TIMEOUT_SECONDS}s -- "
+                "if `gh` is waiting on an authentication prompt, run `gh auth login` and retry."
             ) from exc
         if result.returncode != 0:
             raise GhError(f"gh {' '.join(args)} failed: {result.stderr.strip()}")

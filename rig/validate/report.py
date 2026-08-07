@@ -22,7 +22,7 @@ import hashlib
 import json
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
-from typing import Optional
+from typing import Any, Literal, Optional
 
 REPORT_SCHEMA_VERSION = 1
 
@@ -41,6 +41,12 @@ STATUS_UNAVAILABLE = "unavailable"
 TIER_STATIC = "static"
 TIER_HARDWARE = "hardware"
 
+# The closed value sets above, stated as types so a wrong string is a type
+# error rather than a comment nobody checks.
+Verdict = Literal["pass", "fail", "unavailable"]
+Tier = Literal["static", "hardware"]
+Confidence = Literal["static-only", "hardware-observed"]
+
 
 @dataclass(frozen=True)
 class CheckResult:
@@ -49,7 +55,7 @@ class CheckResult:
     free-text, so a caller (or a later run) can match checks across reports."""
 
     id: str
-    status: str  # pass | fail | unavailable
+    status: Verdict
     message: str = ""
 
 
@@ -60,7 +66,7 @@ class SongChecks:
     (device-only, never true for the static tier), else `pass`."""
 
     song: str
-    status: str
+    status: Verdict
     checks: list[CheckResult] = field(default_factory=list)
 
 
@@ -86,19 +92,19 @@ class Subject:
 @dataclass(frozen=True)
 class Report:
     schema_version: int
-    verdict: str  # pass | fail | unavailable
-    tier: str  # static | hardware
+    verdict: Verdict
+    tier: Tier
     subject: Subject
     run_id: str
     checks: list[SongChecks]
-    metrics: dict
+    metrics: dict[str, Any]
     failures: list[CheckResult]
     started_at: str  # ISO 8601, UTC
     ended_at: str  # ISO 8601, UTC
-    confidence: str  # static-only | hardware-observed
+    confidence: Confidence
     scope_note: str
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> dict[str, Any]:
         return asdict(self)
 
 

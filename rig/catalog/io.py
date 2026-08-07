@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+from typing import Any
 
 from .entry import CatalogEntry, entry_filename
 
@@ -58,7 +59,7 @@ def write_lock(entries: list[CatalogEntry], lock_path: Path) -> None:
     lock_path.write_text(json.dumps(lock, indent=2, sort_keys=True) + "\n", encoding="utf-8")
 
 
-def read_lock(lock_path: Path) -> dict:
+def read_lock(lock_path: Path) -> dict[str, Any]:
     if not lock_path.exists():
         return {"schema_version": LOCK_SCHEMA_VERSION, "generator": GENERATOR, "modules": {}}
     return json.loads(lock_path.read_text(encoding="utf-8"))

@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import hashlib
 from pathlib import Path
-from typing import Iterable, Optional
+from typing import Callable, Iterable, NoReturn, Optional
 
 import httpx
 import typer
@@ -102,15 +102,15 @@ _card_roots: Optional[Iterable[Path]] = None
 _git: Optional[GitRepo] = None
 _gh: Optional[GhClient] = None
 _module_source: Optional[_PatchstorageModuleSource] = None
-_upgrade_fetcher = None  # Optional[Callable[[dict[str, CatalogEntry]], dict[str, CatalogEntry]]]
+_upgrade_fetcher: Optional[Callable[[dict[str, CatalogEntry]], dict[str, CatalogEntry]]] = None
 
 
-def _fail(command: str, code: str, message: str) -> None:
+def _fail(command: str, code: str, message: str) -> NoReturn:
     typer.echo(f"rig {command}: {code}: {message}", err=True)
     raise typer.Exit(code=1)
 
 
-def _not_implemented(command: str) -> None:
+def _not_implemented(command: str) -> NoReturn:
     typer.echo(f"rig {command}: not implemented", err=True)
     raise typer.Exit(code=1)
 
@@ -572,14 +572,12 @@ def catalog_update(
                     )
                 )
     except (httpx.HTTPError, PatchstorageError) as exc:
-        typer.echo(f"rig catalog update: could not reach Patchstorage: {exc}", err=True)
-        raise typer.Exit(code=1) from exc
+        _fail("catalog update", "SOURCE_UNREACHABLE", f"could not reach Patchstorage: {exc}")
 
     try:
         result = build_catalog(builtin_entries, sources)
     except KeyCollisionError as exc:
-        typer.echo(f"rig catalog update: {exc}", err=True)
-        raise typer.Exit(code=1) from exc
+        _fail("catalog update", "KEY_COLLISION", str(exc))
 
     for reject in result.rejects:
         typer.echo(f"rejected {reject.candidate_id} ({reject.reason.value}): {reject.message}")

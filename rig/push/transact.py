@@ -25,7 +25,11 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass
-from typing import Optional
+from typing import Any, Literal, Optional
+
+from rig.errors import CodedError
+
+RootOpKind = Literal["write", "delete"]
 
 from rig.push.fsutil import list_files_recursive
 from rig.push.hashing import hash_bytes, per_file_hashes
@@ -65,10 +69,8 @@ def _backup_path(live_path: str) -> str:
     return f"{BACKUP_ROOT}/{live_path}"
 
 
-class PushTransactionError(ValueError):
-    def __init__(self, code: str, message: str):
-        self.code = code
-        super().__init__(message)
+class PushTransactionError(CodedError):
+    pass
 
 
 @dataclass(frozen=True)
@@ -82,13 +84,13 @@ class RootOp:
     """
 
     id: int
-    kind: str  # "write" | "delete"
+    kind: RootOpKind
     live: str
     backup: str
     staged: Optional[str]
     manifest: dict[str, str]
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> dict[str, Any]:
         return {
             "id": self.id,
             "kind": self.kind,
@@ -99,7 +101,7 @@ class RootOp:
         }
 
     @staticmethod
-    def from_dict(data: dict) -> "RootOp":
+    def from_dict(data: dict[str, Any]) -> "RootOp":
         return RootOp(
             id=data["id"],
             kind=data["kind"],

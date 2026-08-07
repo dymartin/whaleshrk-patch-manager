@@ -30,12 +30,10 @@ class InMemoryTransport:
         return parents
 
     def _is_dir(self, path: str) -> bool:
-        if path in self._dirs:
-            return True
-        prefix = path + "/" if path else ""
-        return any(p.startswith(prefix) for p in self._files) or any(
-            d.startswith(prefix) for d in self._dirs if d
-        )
+        """`_dirs` alone is authoritative: every mutator (`write`, `mkdir`,
+        `rename`) adds each ancestor of what it creates, so any path that has
+        something beneath it is already recorded here."""
+        return path in self._dirs
 
     def _assert_parents_not_files(self, path: str) -> None:
         """Nothing may be created under a path that is already a file -- that

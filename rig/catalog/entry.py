@@ -8,6 +8,7 @@ min/max/default/type, version/hash) without pinning an exact JSON shape.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from typing import Any
 
 from .params import ParamSpec
 
@@ -40,7 +41,7 @@ class CatalogEntry:
     version: VersionInfo
     sidecar_templates: list[str] = field(default_factory=list)
 
-    def to_dict(self) -> dict:
+    def to_dict(self) -> dict[str, Any]:
         return {
             "schema_version": SCHEMA_VERSION,
             "key": self.key,
@@ -71,7 +72,7 @@ class CatalogEntry:
         }
 
     @staticmethod
-    def from_dict(data: dict) -> "CatalogEntry":
+    def from_dict(data: dict[str, Any]) -> "CatalogEntry":
         return CatalogEntry(
             key=data["key"],
             source=data["source"],
