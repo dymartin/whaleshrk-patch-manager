@@ -6,3 +6,5 @@ __pycache__/
 .venv/
 .pytest_cache/
 .rig/state/reports/
+.desloppify/
+scorecard.png
