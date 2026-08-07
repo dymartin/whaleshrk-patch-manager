@@ -32,14 +32,13 @@ from rig.pull.adopt import AdoptedSong, adopt_preset
 from rig.pull.errors import PullError
 from rig.pull.gitio import GhClient, GitRepo, SubprocessGhClient
 from rig.pull.reverse import FieldChange, ReverseMapError, reverse_map_song
-from rig.push.plan import PROTECTED_PRESET_NAMES, is_placeholder_directory
-from rig.push.runner import PRESETS_ROOT
-from rig.push import state as state_io
+from rig.push.plan import is_placeholder_directory
+from rig.push.state import LastPushedMeta, read_all_meta, read_params
 from rig.song.bindings import read_bindings
 from rig.song.kits import KitsConfig
 from rig.song.parser import SongDocument, dump_song
 from rig.transport.base import Transport
-from rig.transport.card import resolve_card
+from rig.transport.card import PRESETS_ROOT, PROTECTED_PRESET_NAMES, resolve_card
 
 
 @dataclass(frozen=True)
@@ -87,6 +86,95 @@ def _adoption_pr_body(song_id: str, directory: str) -> str:
     )
 
 
+def _publish_branch(
+    git: GitRepo,
+    gh: GhClient,
+    *,
+    branch: str,
+    files: dict[str, bytes],
+    message: str,
+    title: str,
+    body: str,
+    base_branch: str,
+    remote: str,
+) -> str:
+    """One song's worth of output: commit the files onto `branch`, push it, and
+    make sure a PR is open. One PR per song (docs/workflows/pull.md "Branches
+    and PRs") -- drift and adoption differ only in what they put in the commit,
+    so they share this tail."""
+    git.commit_branch(base_ref=base_branch, branch=branch, files=files, message=message)
+    git.push_branch(branch, remote=remote)
+    return gh.ensure_pr(branch=branch, base=base_branch, title=title, body=body)
+
+
+def _run_adoption(
+    transport: Transport,
+    git: GitRepo,
+    gh: GhClient,
+    *,
+    card_dirs: set[str],
+    all_meta: dict[str, LastPushedMeta],
+    song_docs: dict[str, SongDocument],
+    catalog: list[CatalogEntry],
+    kits: KitsConfig,
+    media_root: Path,
+    dry_run: bool,
+    base_branch: str,
+    remote: str,
+) -> tuple[dict[str, Optional[str]], dict[str, str]]:
+    """`--adopt`'s own phase: mint a song for every card preset no recorded
+    song claims. Independent of drift reconciliation -- it reads a disjoint set
+    of presets and shares no state with it beyond the card listing -- and
+    returns (adopted song id -> PR url, failed directory -> reason)."""
+    adopted: dict[str, Optional[str]] = {}
+    adoption_failed: dict[str, str] = {}
+
+    recorded_directories = {meta.directory for meta in all_meta.values()}
+    adoptable = sorted(
+        d for d in card_dirs
+        if d not in recorded_directories and d not in PROTECTED_PRESET_NAMES and not is_placeholder_directory(d)
+    )
+    existing_ids = set(song_docs) | set(all_meta)
+    used_programs = {doc.song.program for doc in song_docs.values()}
+
+    for directory in adoptable:
+        observed_bytes = transport.read(f"{PRESETS_ROOT}/{directory}/params.json")
+        observed = json.loads(observed_bytes)
+        try:
+            result: AdoptedSong = adopt_preset(
+                directory, observed, catalog=catalog, kits=kits, media_root=media_root,
+                existing_song_ids=existing_ids, used_programs=used_programs,
+            )
+        except ReverseMapError as exc:
+            adoption_failed[directory] = f"{exc.code}: {exc}"
+            continue
+
+        existing_ids.add(result.song_id)
+        used_programs.add(result.program)
+
+        if dry_run:
+            adopted[result.song_id] = None
+            continue
+
+        adopted[result.song_id] = _publish_branch(
+            git, gh,
+            branch=f"pull/{result.song_id}",
+            files={
+                f"songs/{result.song_id}.yaml": result.text.encode("utf-8"),
+                f".rig/state/last-pushed/{result.song_id}.json": observed_bytes,
+                f".rig/state/last-pushed/{result.song_id}.meta.json": _meta_bytes(directory, result.program),
+                f".rig/state/chains/{result.song_id}.json": _bindings_bytes(result.bindings),
+            },
+            message=f"pull: adopt {result.song_id!r} from card preset {directory!r}",
+            title=f"pull: adopt {result.song_id!r}",
+            body=_adoption_pr_body(result.song_id, directory),
+            base_branch=base_branch,
+            remote=remote,
+        )
+
+    return adopted, adoption_failed
+
+
 def pull(
     *,
     song_docs: dict[str, SongDocument],
@@ -114,7 +202,7 @@ def pull(
     card_dirs = set(transport.list(PRESETS_ROOT))
     chains_state_dir = state_dir / "chains"
 
-    all_meta = state_io.read_all_meta(state_dir)
+    all_meta = read_all_meta(state_dir)
     recorded_present = {sid: meta for sid, meta in all_meta.items() if meta.directory in card_dirs}
     recorded_missing = {sid: meta for sid, meta in all_meta.items() if meta.directory not in card_dirs}
 
@@ -146,7 +234,7 @@ def pull(
 
     for song_id in process_ids:
         meta = recorded_present[song_id]
-        baseline = json.loads(state_io.read_params(state_dir, song_id))
+        baseline = json.loads(read_params(state_dir, song_id))
         observed_bytes = transport.read(f"{PRESETS_ROOT}/{meta.directory}/params.json")
         observed = json.loads(observed_bytes)
 
@@ -169,66 +257,36 @@ def pull(
             drifted[song_id] = None
             continue
 
-        branch = f"pull/{song_id}"
-        files = {
-            _song_path(repo_root, doc, song_id): dump_song(doc).encode("utf-8"),
-            f".rig/state/last-pushed/{song_id}.json": observed_bytes,
-        }
-        message = f"pull: {song_id} drifted from the device\n\n" + "\n".join(f"- {c.field} -> {c.new!r}" for c in changes)
-        git.commit_branch(base_ref=base_branch, branch=branch, files=files, message=message)
-        git.push_branch(branch, remote=remote)
-        url = gh.ensure_pr(
-            branch=branch, base=base_branch, title=f"pull: {song_id} drifted from the device",
+        title = f"pull: {song_id} drifted from the device"
+        drifted[song_id] = _publish_branch(
+            git, gh,
+            branch=f"pull/{song_id}",
+            files={
+                _song_path(repo_root, doc, song_id): dump_song(doc).encode("utf-8"),
+                f".rig/state/last-pushed/{song_id}.json": observed_bytes,
+            },
+            message=f"{title}\n\n" + "\n".join(f"- {c.field} -> {c.new!r}" for c in changes),
+            title=title,
             body=_drift_pr_body(song_id, changes),
+            base_branch=base_branch,
+            remote=remote,
         )
-        drifted[song_id] = url
-
-    adopted: dict[str, Optional[str]] = {}
-    adoption_failed: dict[str, str] = {}
 
     if adopt:
-        recorded_directories = {meta.directory for meta in all_meta.values()}
-        adoptable = sorted(
-            d for d in card_dirs
-            if d not in recorded_directories and d not in PROTECTED_PRESET_NAMES and not is_placeholder_directory(d)
+        adopted, adoption_failed = _run_adoption(
+            transport, git, gh,
+            card_dirs=card_dirs,
+            all_meta=all_meta,
+            song_docs=song_docs,
+            catalog=catalog,
+            kits=kits,
+            media_root=media_root,
+            dry_run=dry_run,
+            base_branch=base_branch,
+            remote=remote,
         )
-        existing_ids = set(song_docs) | set(all_meta)
-        used_programs = {doc.song.program for doc in song_docs.values()}
-
-        for directory in adoptable:
-            observed_bytes = transport.read(f"{PRESETS_ROOT}/{directory}/params.json")
-            observed = json.loads(observed_bytes)
-            try:
-                result: AdoptedSong = adopt_preset(
-                    directory, observed, catalog=catalog, kits=kits, media_root=media_root,
-                    existing_song_ids=existing_ids, used_programs=used_programs,
-                )
-            except ReverseMapError as exc:
-                adoption_failed[directory] = f"{exc.code}: {exc}"
-                continue
-
-            existing_ids.add(result.song_id)
-            used_programs.add(result.program)
-
-            if dry_run:
-                adopted[result.song_id] = None
-                continue
-
-            branch = f"pull/{result.song_id}"
-            files = {
-                f"songs/{result.song_id}.yaml": result.text.encode("utf-8"),
-                f".rig/state/last-pushed/{result.song_id}.json": observed_bytes,
-                f".rig/state/last-pushed/{result.song_id}.meta.json": _meta_bytes(directory, result.program),
-                f".rig/state/chains/{result.song_id}.json": _bindings_bytes(result.bindings),
-            }
-            message = f"pull: adopt {result.song_id!r} from card preset {directory!r}"
-            git.commit_branch(base_ref=base_branch, branch=branch, files=files, message=message)
-            git.push_branch(branch, remote=remote)
-            url = gh.ensure_pr(
-                branch=branch, base=base_branch, title=f"pull: adopt {result.song_id!r}",
-                body=_adoption_pr_body(result.song_id, directory),
-            )
-            adopted[result.song_id] = url
+    else:
+        adopted, adoption_failed = {}, {}
 
     return PullResult(
         dry_run=dry_run,

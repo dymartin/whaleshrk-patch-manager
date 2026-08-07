@@ -21,22 +21,21 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
+from rig.errors import CodedError
+
+CHAIN_LETTERS = ("A", "B", "C", "D")
 CAPACITY = {"A": 3, "B": 4, "C": 3, "D": 4}
 PASS2_ORDER = ("A", "C", "B", "D")
 FOUR_SLOT_LETTERS = ("B", "D")
 MAX_FOUR_SLOT_CHAINS = len(FOUR_SLOT_LETTERS)
 
 
-class LetterAssignmentError(ValueError):
+class LetterAssignmentError(CodedError):
     """A chain layout has no valid letter assignment, or a binding is invalid.
 
     `code` identifies which rule failed, for callers that fold this into a
     song's list of validation findings.
     """
-
-    def __init__(self, code: str, message: str):
-        self.code = code
-        super().__init__(message)
 
 
 @dataclass(frozen=True)

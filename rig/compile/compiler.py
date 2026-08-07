@@ -17,28 +17,26 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable, Optional
 
+from rig.catalog.builtins import EMPTY_MODULE_TYPE
 from rig.catalog.entry import CatalogEntry
 from rig.catalog.slugs import slug
 from rig.song.kits import KitsConfig
+from rig.song.letters import CAPACITY, CHAIN_LETTERS, ChainSlots, LetterAssignmentError, assign_letters
 from rig.song.model import ModuleSlot, ModuleUse, Song
 
 from . import sidecars
 from .errors import CompileError
 from .jsonfmt import dumps as _dumps_device_json
-from .letters import ChainSlots, LetterAssignmentError, assign_letters
 from .router import compile_router, compile_transport
 from .samples import resolve_sample
 
-EMPTY_MODULE_TYPE = "-empty-"
 # Verified against fixtures/card/Patches/0RHACK/modules/-empty-/module.json
 # and every -empty- slot in the shipped Init and jam presets: the wrapper's
 # only parameter, always at its declared default.
 EMPTY_PARAMS: dict[str, float] = {"thru_gain": 100}
 
-_CHAIN_LETTERS = ("A", "B", "C", "D")
-_CHAIN_SLOT_COUNT = {"A": 3, "B": 4, "C": 3, "D": 4}
 _CHAIN_SLOT_IDS = [
-    f"{letter.lower()}{n}" for letter in _CHAIN_LETTERS for n in range(1, _CHAIN_SLOT_COUNT[letter] + 1)
+    f"{letter.lower()}{n}" for letter in CHAIN_LETTERS for n in range(1, CAPACITY[letter] + 1)
 ]
 FIXED_SLOT_IDS = _CHAIN_SLOT_IDS + ["f1", "f2", "f3", "m1", "m2", "m3", "p1", "p2", "s1", "s2"]
 

@@ -1,4 +1,4 @@
-"""`push()` -- the orchestrator that composes every other module in this
+﻿"""`push()` -- the orchestrator that composes every other module in this
 package into the sequence `docs/workflows/push.md` describes.
 
 See that doc and `Prompt/05-push.md` for the numbered steps this function's
@@ -25,10 +25,7 @@ from typing import Iterable, Optional
 
 from rig.catalog.entry import CatalogEntry
 from rig.compile import (
-    ChainSlots,
     CompileError,
-    LetterAssignmentError,
-    assign_letters,
     build_placeholder,
     compile_song,
     format_program_prefix,
@@ -51,7 +48,15 @@ from rig.push.plan import (
     gap_programs,
     is_placeholder_directory,
 )
-from rig.push import state as state_io
+from rig.push.state import (
+    LastPushedMeta,
+    hash_lock,
+    read_all_meta,
+    read_recorded_lock_hash,
+    remove_last_pushed,
+    write_last_pushed,
+    write_recorded_lock_hash,
+)
 from rig.push.transact import (
     RootOp,
     plan_delete_op,
@@ -63,13 +68,12 @@ from rig.push.transact import (
 )
 from rig.song.bindings import read_bindings, remove_bindings, write_bindings
 from rig.song.kits import KitsConfig
+from rig.song.letters import ChainSlots, LetterAssignmentError, assign_letters
 from rig.song.model import Song
 from rig.transport.base import Transport
-from rig.transport.card import resolve_card
+from rig.transport.card import INIT_PRESET_NAME, PRESETS_ROOT, resolve_card
 
-PRESETS_ROOT = "data/orhack/presets"
 RACK_JSON_PATH = "data/orhack/rack.json"
-INIT_PRESET_NAME = "Init"
 
 
 @dataclass(frozen=True)
@@ -147,8 +151,8 @@ def push(
 
     # Step 2b: reconcile community modules against the lock, repo-wide --
     # never scoped to `selected_ids` (decision #57).
-    current_lock_hash = state_io.hash_lock(lock)
-    recorded_lock_hash = state_io.read_recorded_lock_hash(state_dir)
+    current_lock_hash = hash_lock(lock)
+    recorded_lock_hash = read_recorded_lock_hash(state_dir)
     if is_selective and recorded_lock_hash is not None and recorded_lock_hash != current_lock_hash:
         raise PushError(
             "LOCK_CHANGED_SELECTIVE_PUSH",
@@ -173,7 +177,7 @@ def push(
     # happens per song, before its letters are assigned, since a rename
     # would otherwise just get a fresh letter silently.
     chains_state_dir = state_dir / "chains"
-    last_pushed_meta = state_io.read_all_meta(state_dir)
+    last_pushed_meta = read_all_meta(state_dir)
     last_pushed_directories = {sid: meta.directory for sid, meta in last_pushed_meta.items()}
 
     compiled_by_song: dict[str, tuple[Song, object]] = {}
@@ -307,23 +311,35 @@ def push(
     # already verified before returning).
     for song_id in written:
         song, compiled = compiled_by_song[song_id]
-        state_io.write_last_pushed(
+        write_last_pushed(
             state_dir,
             song_id,
             compiled.files["params.json"],
-            state_io.LastPushedMeta(directory=new_directory_by_song[song_id], program=song.program),
+            LastPushedMeta(directory=new_directory_by_song[song_id], program=song.program),
         )
         write_bindings(chains_state_dir, song_id, letters_by_song[song_id])
 
     for directory in list(classification.deletions):
         song_id = directory_to_song_id.get(directory)
         if song_id is not None:
-            state_io.remove_last_pushed(state_dir, song_id)
+            remove_last_pushed(state_dir, song_id)
             remove_bindings(chains_state_dir, song_id)
 
-    state_io.write_recorded_lock_hash(state_dir, current_lock_hash)
+    write_recorded_lock_hash(state_dir, current_lock_hash)
 
     return PushResult(dry_run=False, current_preset_repaired=current_preset_repaired, **result_common)
+
+
+def _pick_current_preset(card_dirs: Iterable[str]) -> str:
+    """The preset `currentPreset` should point at, given the directories that
+    exist (or will exist): the lowest-numbered managed preset, falling back to
+    `Init` when the card holds none. Placeholders and un-prefixed foreign
+    directories are never a performance cursor target."""
+    managed = sorted(
+        (d for d in card_dirs if not is_placeholder_directory(d) and d != INIT_PRESET_NAME and _program_of(d) is not None),
+        key=lambda d: (_program_of(d), d),
+    )
+    return managed[0] if managed else INIT_PRESET_NAME
 
 
 def _repair_current_preset(transport: Transport) -> Optional[str]:
@@ -340,12 +356,7 @@ def _repair_current_preset(transport: Transport) -> Optional[str]:
     if transport.exists(f"{PRESETS_ROOT}/{current}/params.json"):
         return None  # still resolves -- leave the performance cursor alone
 
-    card_dirs = transport.list(PRESETS_ROOT)
-    managed = sorted(
-        (d for d in card_dirs if not is_placeholder_directory(d) and d != INIT_PRESET_NAME and _program_of(d) is not None),
-        key=lambda d: (_program_of(d), d),
-    )
-    new_current = managed[0] if managed else INIT_PRESET_NAME
+    new_current = _pick_current_preset(transport.list(PRESETS_ROOT))
     rack["currentPreset"] = new_current
     transport.write(RACK_JSON_PATH, json.dumps(rack, indent=2, sort_keys=True).encode("utf-8"))
     transport.flush()
@@ -358,8 +369,10 @@ def _project_current_preset(
     renamed: dict[str, tuple[str, str]],
     force_deleted: list[str],
 ) -> Optional[str]:
-    """Same rule as `_repair_current_preset`, computed from the plan instead
-    of the (untouched) card, for `--dry-run`'s report."""
+    """What `_repair_current_preset` would land on, computed from the plan
+    instead of the (untouched) card, for `--dry-run`'s report. Both route the
+    choice itself through `_pick_current_preset`; only the directory set they
+    feed it differs."""
     if not transport.exists(RACK_JSON_PATH):
         return None
     rack = json.loads(transport.read(RACK_JSON_PATH).decode("utf-8"))
@@ -374,8 +387,4 @@ def _project_current_preset(
 
     card_dirs = set(transport.list(PRESETS_ROOT)) - removed_names
     card_dirs |= {new for _, new in renamed.values()}
-    managed = sorted(
-        (d for d in card_dirs if not is_placeholder_directory(d) and d != INIT_PRESET_NAME and _program_of(d) is not None),
-        key=lambda d: (_program_of(d), d),
-    )
-    return managed[0] if managed else INIT_PRESET_NAME
+    return _pick_current_preset(card_dirs)

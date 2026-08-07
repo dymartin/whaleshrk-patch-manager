@@ -16,8 +16,8 @@ from dataclasses import dataclass, field
 from typing import Iterable, Optional
 
 from rig.song.model import Song
+from rig.transport.card import PROTECTED_PRESET_NAMES
 
-PROTECTED_PRESET_NAMES = {"Init"}
 _PLACEHOLDER_NAME_RE = re.compile(r"^\d{3}$")
 
 

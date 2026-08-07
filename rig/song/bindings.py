@@ -7,7 +7,7 @@ convention `rig.catalog.io` already uses for `.rig/catalog/*.json`.
 
 A recorded binding is authoritative (`docs/decisions.md` #8, #37, #58): push
 writes it, pull uses it to attribute drift, `rename-chain` rewrites it, and
-the compiler's letter assignment (`rig.compile.letters`) only fills in what
+letter assignment (`rig.song.letters`) only fills in what
 it does not cover. One module so all four reuse the same format rather than
 reimplementing it.
 """
@@ -17,7 +17,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-VALID_LETTERS = {"A", "B", "C", "D"}
+from .letters import CHAIN_LETTERS
 
 
 def bindings_path(state_dir: Path, song_slug: str) -> Path:
@@ -34,7 +34,7 @@ def read_bindings(state_dir: Path, song_slug: str) -> dict[str, str]:
 
 def write_bindings(state_dir: Path, song_slug: str, bindings: dict[str, str]) -> None:
     for name, letter in bindings.items():
-        if letter not in VALID_LETTERS:
+        if letter not in CHAIN_LETTERS:
             raise ValueError(f"chain {name!r}: {letter!r} is not a chain letter (A-D)")
     state_dir.mkdir(parents=True, exist_ok=True)
     path = bindings_path(state_dir, song_slug)

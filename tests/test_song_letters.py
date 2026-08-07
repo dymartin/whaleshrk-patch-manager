@@ -5,7 +5,7 @@ from __future__ import annotations
 
 import pytest
 
-from rig.compile.letters import ChainSlots, LetterAssignmentError, assign_letters
+from rig.song.letters import ChainSlots, LetterAssignmentError, assign_letters
 
 
 def slots(*pairs: tuple[str, int]) -> list[ChainSlots]:

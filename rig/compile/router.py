@@ -70,7 +70,7 @@ def compile_router(
 ) -> dict:
     """Build `s1`'s full parameter dict.
 
-    `letters` is chain name -> assigned letter (`rig.compile.letters.
+    `letters` is chain name -> assigned letter (`rig.song.letters.
     assign_letters`'s output) -- the caller resolves letter assignment
     once and shares it with the top-level slot compilation, since both need
     the same mapping.

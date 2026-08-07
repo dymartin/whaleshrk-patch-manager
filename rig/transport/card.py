@@ -16,17 +16,23 @@ import string
 from pathlib import Path
 from typing import Iterable
 
+from rig.errors import CodedError
+
 from .usb import UsbMassStorage
 
 CARD_MARKERS = ("data/orhack", "Patches/0RHACK")
 
+# Card layout facts, not push's or pull's own policy: where ORHACK keeps
+# presets, and the one preset it ships that no repo song may ever own or
+# delete. Both push and pull already depend on this module, so they read the
+# layout from here rather than one reaching into the other's internals.
+PRESETS_ROOT = "data/orhack/presets"
+INIT_PRESET_NAME = "Init"
+PROTECTED_PRESET_NAMES = {INIT_PRESET_NAME}
 
-class CardDetectionError(ValueError):
+
+class CardDetectionError(CodedError):
     """Zero or multiple candidate card roots found; refuses rather than guessing."""
-
-    def __init__(self, code: str, message: str):
-        self.code = code
-        super().__init__(message)
 
 
 def is_card_root(root: Path) -> bool:

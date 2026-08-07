@@ -72,7 +72,7 @@ Writing one of those into `midi: {channel:}` or a module's `midi:` block
 would hand back a song file that parses but fails validation later, in a
 more confusing place than where the problem was actually found; both
 call sites raise `ReverseMapError("RESERVED_MIDI_VALUE_DRIFT", ...)` instead
-(`_check_chain_channel_writable`, `_check_module_cc_writable`), reusing the
+(`check_chain_channel_writable`, `check_module_cc_writable`), reusing the
 exact ranges `rig.song.validate` itself checks.
 """
 
@@ -86,27 +86,23 @@ from ruamel.yaml.comments import CommentedMap
 
 from rig.catalog.entry import CatalogEntry
 from rig.compile.compiler import EMPTY_MODULE_TYPE, FIXED_SLOT_IDS
-from rig.compile.letters import ChainSlots, LetterAssignmentError, assign_letters
 from rig.compile.router import LETTER_TO_N
 from rig.compile.samples import scan_wav_folder
+from rig.errors import CodedError
 from rig.song.kits import KitsConfig
+from rig.song.letters import ChainSlots, LetterAssignmentError, assign_letters
 from rig.song.parser import SongDocument
 from rig.song.validate import CHAIN_CHANNEL_RANGE, MODULE_CHANNEL_RANGE, RESERVED_CCS
 
 _NON_SYSTEM_SLOT_IDS = [s for s in FIXED_SLOT_IDS if s not in ("s1", "s2")]
 
 
-class ReverseMapError(ValueError):
+class ReverseMapError(CodedError):
     """A song cannot be cleanly reverse-mapped; `doc.raw` is left untouched.
 
-    `code` identifies which rule fired, matching `rig.compile.errors.
-    CompileError`'s (code, message) shape so callers can report this the
-    same way as a compile failure.
+    `code` identifies which rule fired, so callers can report this the same
+    way as a compile failure.
     """
-
-    def __init__(self, code: str, message: str):
-        self.code = code
-        super().__init__(message)
 
 
 @dataclass(frozen=True)
@@ -143,7 +139,7 @@ def decode_program_prefix(directory_name: str) -> Optional[int]:
     return None
 
 
-def _clean_number(value):
+def clean_number(value):
     """Round device float noise away and prefer a plain int when the result
     is whole, matching how numbers already read in every song fixture
     (`output-gain: 90`, not `90.0`)."""
@@ -153,7 +149,7 @@ def _clean_number(value):
     return int(rounded) if rounded.is_integer() else rounded
 
 
-def _invert_cc(cc_map: dict) -> dict[str, int]:
+def invert_cc(cc_map: dict) -> dict[str, int]:
     """`{key_str: [param_id, ...]}` -> `{param_id: key}`. Each parameter has
     at most one CC mapping at a time, so this is a clean inversion."""
     inverted: dict[str, int] = {}
@@ -164,7 +160,7 @@ def _invert_cc(cc_map: dict) -> dict[str, int]:
     return inverted
 
 
-def _check_chain_channel_writable(channel: int, context: str) -> None:
+def check_chain_channel_writable(channel: int, context: str) -> None:
     """A chain's note channel is a hard validation error outside 0-15
     (`rig.song.validate.CHAIN_CHANNEL_RANGE`, `docs/schema.md` "Channel 16 is
     forbidden"). The device can hold a value validation would reject -- the
@@ -178,8 +174,8 @@ def _check_chain_channel_writable(channel: int, context: str) -> None:
         )
 
 
-def _check_module_cc_writable(channel: int, cc: int, context: str) -> None:
-    """Same guard as `_check_chain_channel_writable`, for a module `midi:`
+def check_module_cc_writable(channel: int, cc: int, context: str) -> None:
+    """Same guard as `check_chain_channel_writable`, for a module `midi:`
     entry: CC 1/74 are hardwired per-chain modulation sources
     (`rig.song.validate.RESERVED_CCS`), and a module mapping's channel is a
     hard error outside 1-15 (`rig.song.validate.MODULE_CHANNEL_RANGE`) --
@@ -214,8 +210,8 @@ def _raw_diffs(baseline: dict, observed: dict) -> list[_RawDiff]:
             if bv != ov:
                 diffs.append(_RawDiff(slot_id, ("params", pid), bv, ov))
 
-        b_cc = _invert_cc(b.get("midi-mapping", {}).get("cc", {}))
-        o_cc = _invert_cc(o.get("midi-mapping", {}).get("cc", {}))
+        b_cc = invert_cc(b.get("midi-mapping", {}).get("cc", {}))
+        o_cc = invert_cc(o.get("midi-mapping", {}).get("cc", {}))
         for pid in set(b_cc) | set(o_cc):
             bv, ov = b_cc.get(pid), o_cc.get(pid)
             if bv != ov:
@@ -322,7 +318,7 @@ def _make_set_send_field(sends_map, send_name: str, field: str, value) -> Callab
     return _apply
 
 
-def _decode_sample(
+def decode_sample(
     samp_source, samp_select, kits: Optional[KitsConfig], media_root: Optional[Path], context: str
 ) -> Optional[str]:
     """`samp_source`/`samp_select` -> `<alias>/<file>`, or `None` for
@@ -373,7 +369,7 @@ def _decode_sample(
     return f"{alias}/{wav_names[index]}"
 
 
-def _process_use_params(
+def _match_use_param_diffs(
     edits: list, changes: list, seq, index: int, key: str, entry: CatalogEntry, remaining: dict, slot_id: str,
     *, skip_ids: frozenset = frozenset(),
 ) -> None:
@@ -386,19 +382,19 @@ def _process_use_params(
         d = remaining.pop((slot_id, ("params", spec.id)), None)
         if d is None:
             continue
-        value = _clean_number(d.new)
+        value = clean_number(d.new)
         edits.append(_make_set_module_field(seq, index, key, spec.name, value))
         changes.append(FieldChange(f"{slot_id}.{spec.name}", value))
 
 
-def _process_send_params(
+def _match_send_param_diffs(
     edits: list, changes: list, sends_map, send_name: str, entry: CatalogEntry, remaining: dict, slot_id: str
 ) -> None:
     for spec in entry.params:
         d = remaining.pop((slot_id, ("params", spec.id)), None)
         if d is None:
             continue
-        value = _clean_number(d.new)
+        value = clean_number(d.new)
         edits.append(_make_set_send_field(sends_map, send_name, spec.name, value))
         changes.append(FieldChange(f"{slot_id}.{spec.name}", value))
 
@@ -492,19 +488,19 @@ def reverse_map_song(
         d = remaining.pop(("s1", ("params", f"r-chin-midich-{n}")), None)
         if d is not None:
             effective_channel = int(d.new)
-            _check_chain_channel_writable(effective_channel, f"chains[{chain_index}] ({chain.name!r})")
+            check_chain_channel_writable(effective_channel, f"chains[{chain_index}] ({chain.name!r})")
             edits.append(_make_set_nested(chain_raw, "midi", "channel", effective_channel))
             changes.append(FieldChange(f"chains[{chain_index}].midi.channel", effective_channel))
 
         d = remaining.pop(("s1", ("params", f"r-chin-l-gain-{n}")), None)
         if d is not None:
-            value = _clean_number(d.new)
+            value = clean_number(d.new)
             edits.append(_make_set_nested(chain_raw, "mix", "input-gain", value))
             changes.append(FieldChange(f"chains[{chain_index}].mix.input-gain", value))
 
         d = remaining.pop(("s1", ("params", f"r-chout-gain-{n}")), None)
         if d is not None:
-            value = _clean_number(d.new)
+            value = clean_number(d.new)
             edits.append(_make_set_nested(chain_raw, "mix", "output-gain", value))
             changes.append(FieldChange(f"chains[{chain_index}].mix.output-gain", value))
 
@@ -513,8 +509,8 @@ def reverse_map_song(
         if dl is not None or dr is not None:
             l_pan = s1_observed[f"r-chout-l-pan-{n}"]
             r_pan = s1_observed[f"r-chout-r-pan-{n}"]
-            balance = _clean_number(100.0 * (float(l_pan) + float(r_pan)) / 2.0)
-            width = _clean_number(100.0 * (float(r_pan) - float(l_pan)))
+            balance = clean_number(100.0 * (float(l_pan) + float(r_pan)) / 2.0)
+            width = clean_number(100.0 * (float(r_pan) - float(l_pan)))
             edits.append(_make_set_nested(chain_raw, "mix", "balance", balance))
             edits.append(_make_set_nested(chain_raw, "mix", "width", width))
             changes.append(FieldChange(f"chains[{chain_index}].mix.balance", balance))
@@ -527,7 +523,7 @@ def reverse_map_song(
             sampler = {"samp_source", "samp_select"} <= {p.id for p in entry.params}
             skip_ids = frozenset({"samp_source", "samp_select"}) if sampler else frozenset()
 
-            _process_use_params(
+            _match_use_param_diffs(
                 edits, changes, modules_seq, module_index, module.key, entry, remaining, slot_id, skip_ids=skip_ids
             )
 
@@ -547,7 +543,7 @@ def reverse_map_song(
                         f"{slot_id}: send amount changed for {prefix} but 'sends:' has no matching entry",
                     )
                 send_name = song.sends[send_index].name
-                value = _clean_number(d.new)
+                value = clean_number(d.new)
                 edits.append(
                     _make_set_module_nested(modules_seq, module_index, module.key, "send", send_name, value)
                 )
@@ -559,7 +555,7 @@ def reverse_map_song(
                 if d_source is not None or d_select is not None:
                     obs_params = observed[slot_id]["params"]
                     context = f"{slot_id} ({module.key})"
-                    new_sample = _decode_sample(
+                    new_sample = decode_sample(
                         obs_params.get("samp_source", 0), obs_params.get("samp_select", 0.0), kits, media_root, context
                     )
                     if new_sample is None:
@@ -582,7 +578,7 @@ def reverse_map_song(
                     continue
                 key = int(d.new)
                 channel, cc = divmod(key, 128)
-                _check_module_cc_writable(channel, cc, f"{slot_id}.midi.{spec.name}")
+                check_module_cc_writable(channel, cc, f"{slot_id}.midi.{spec.name}")
                 # Shorthand only when the decoded channel matches the
                 # chain's own resolved channel, and never on an omni chain
                 # (Prompt/06 "CC keys"): a bare CC number on an omni chain
@@ -597,17 +593,17 @@ def reverse_map_song(
     sends_map = doc.raw.get("sends")
     for i, send in enumerate(song.sends):
         slot_id = "p1" if i == 0 else "p2"
-        _process_send_params(edits, changes, sends_map, send.name, slot_plan[slot_id], remaining, slot_id)
+        _match_send_param_diffs(edits, changes, sends_map, send.name, slot_plan[slot_id], remaining, slot_id)
 
     master_seq = doc.raw.get("master")
     for i, use in enumerate(song.master):
         slot_id = f"f{i + 1}"
-        _process_use_params(edits, changes, master_seq, i, use.key, slot_plan[slot_id], remaining, slot_id)
+        _match_use_param_diffs(edits, changes, master_seq, i, use.key, slot_plan[slot_id], remaining, slot_id)
 
     mod_seq = doc.raw.get("mod-sources")
     for i, use in enumerate(song.mod_sources):
         slot_id = f"m{i + 1}"
-        _process_use_params(edits, changes, mod_seq, i, use.key, slot_plan[slot_id], remaining, slot_id)
+        _match_use_param_diffs(edits, changes, mod_seq, i, use.key, slot_plan[slot_id], remaining, slot_id)
 
     if remaining:
         details = "; ".join(

@@ -8,7 +8,9 @@ path. What they do share -- number cleanup, the reserved-CC/channel guards,
 sample-selection decoding, the program-prefix decoder -- is imported
 straight from `rig.pull.reverse` rather than re-derived, since both modules
 live in the same package and the rules are identical (Ruling: reuse existing
-abstractions).
+abstractions). Those shared names carry no leading underscore precisely
+because this module imports them: they are `reverse`'s contract with
+`adopt`, not its internals.
 
 Every field this module writes is documented in docs/workflows/pull.md
 "Adoption"; anything with no schema field to receive it (mod-bus routing, a
@@ -29,21 +31,19 @@ from ruamel.yaml.comments import CommentedMap, CommentedSeq
 from rig.catalog.entry import CatalogEntry
 from rig.catalog.slugs import slug
 from rig.compile.compiler import EMPTY_MODULE_TYPE
-from rig.compile.letters import CAPACITY
 from rig.compile.router import LETTER_TO_N
 from rig.pull.reverse import (
     ReverseMapError,
-    _check_chain_channel_writable,
-    _check_module_cc_writable,
-    _clean_number,
-    _decode_sample,
-    _invert_cc,
+    check_chain_channel_writable,
+    check_module_cc_writable,
+    clean_number,
     decode_program_prefix,
+    decode_sample,
+    invert_cc,
 )
 from rig.song.kits import KitsConfig
+from rig.song.letters import CAPACITY, CHAIN_LETTERS
 from rig.song.parser import SongDocument, parse_song
-
-_CHAIN_LETTERS = ("A", "B", "C", "D")
 
 # Matches rig.song.parser's own ruamel configuration (see that module's
 # docstring): a fresh document has no existing formatting to preserve, but
@@ -121,8 +121,8 @@ def _decode_params(entry: CatalogEntry, params: dict, *, skip_ids: frozenset = f
     for spec in entry.params:
         if spec.id in skip_ids:
             continue
-        value = _clean_number(params.get(spec.id, spec.default))
-        if value != _clean_number(spec.default):
+        value = clean_number(params.get(spec.id, spec.default))
+        if value != clean_number(spec.default):
             body[spec.name] = value
     return body
 
@@ -223,7 +223,7 @@ def _decode_chain(
             key = f"{prefix}-{sid}"
             if key not in s1:
                 continue
-            amount = _clean_number(s1[key])
+            amount = clean_number(s1[key])
             if amount and index < len(send_names) and send_names[index] is not None:
                 send_body[send_names[index]] = amount
         if send_body:
@@ -233,7 +233,7 @@ def _decode_chain(
         # the chain's own resolved channel, and never on an omni chain (same
         # rule and rationale as rig.pull.reverse: a bare number on an omni
         # chain would be ambiguous about which channel it came from).
-        cc_map = _invert_cc(slot.get("midi-mapping", {}).get("cc", {}))
+        cc_map = invert_cc(slot.get("midi-mapping", {}).get("cc", {}))
         if cc_map:
             midi_body = CommentedMap()
             id_to_name = {p.id: p.name for p in entry.params}
@@ -242,7 +242,7 @@ def _decode_chain(
                 if name is None:
                     continue
                 channel, cc = divmod(key, 128)
-                _check_module_cc_writable(channel, cc, f"{context}.midi.{name}")
+                check_module_cc_writable(channel, cc, f"{context}.midi.{name}")
                 if observed_channel != 0 and channel == observed_channel:
                     midi_body[name] = cc
                 else:
@@ -252,7 +252,7 @@ def _decode_chain(
 
         # sample selection
         if sampler:
-            new_sample = _decode_sample(
+            new_sample = decode_sample(
                 slot["params"].get("samp_source", 0), slot["params"].get("samp_select", 0.0),
                 kits, media_root, f"{context} ({entry.key})",
             )
@@ -261,7 +261,11 @@ def _decode_chain(
 
         modules_raw.append(_as_item(entry.key, body))
 
-    assert first_entry is not None
+    if first_entry is None:
+        # The all-empty chain is rejected earlier, so a chain reaching here
+        # always has at least one occupied slot. Raising keeps the failure
+        # legible (and survives `python -O`) if that ever stops holding.
+        raise ReverseMapError("INTERNAL_ERROR", f"{context}: chain has no occupied slot to name")
     name = _dedupe(slug(_module_short_name(first_entry)), used_names)
 
     chain_raw = CommentedMap()
@@ -273,21 +277,21 @@ def _decode_chain(
         chain_raw["input"] = CommentedMap({"guitar": True})
 
     if observed_channel != position:
-        _check_chain_channel_writable(observed_channel, f"chain {name!r}")
+        check_chain_channel_writable(observed_channel, f"chain {name!r}")
         chain_raw["midi"] = CommentedMap({"channel": observed_channel})
 
     mix_body = CommentedMap()
     if guitar:
-        input_gain = _clean_number(s1.get(f"r-chin-l-gain-{n}", 100.0))
+        input_gain = clean_number(s1.get(f"r-chin-l-gain-{n}", 100.0))
         if input_gain != 100:
             mix_body["input-gain"] = input_gain
-    output_gain = _clean_number(s1.get(f"r-chout-gain-{n}", 100.0))
+    output_gain = clean_number(s1.get(f"r-chout-gain-{n}", 100.0))
     if output_gain != 100:
         mix_body["output-gain"] = output_gain
     l_out = float(s1.get(f"r-chout-l-pan-{n}", 0.5))
     r_out = float(s1.get(f"r-chout-r-pan-{n}", 0.5))
-    balance = _clean_number(100.0 * (l_out + r_out) / 2.0)
-    width = _clean_number(100.0 * (r_out - l_out))
+    balance = clean_number(100.0 * (l_out + r_out) / 2.0)
+    width = clean_number(100.0 * (r_out - l_out))
     if balance != 50:
         mix_body["balance"] = balance
     if width != 100:
@@ -345,7 +349,7 @@ def adopt_preset(
     bindings: dict[str, str] = {}
     chain_name_counts: dict[str, int] = {}
     position = 0
-    for letter in _CHAIN_LETTERS:
+    for letter in CHAIN_LETTERS:
         decoded = _decode_chain(
             letter, position + 1, observed, catalog_by_type, kits, media_root, send_names, chain_name_counts
         )

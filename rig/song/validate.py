@@ -35,9 +35,8 @@ from typing import Iterable, Optional
 
 from rig.catalog.entry import CatalogEntry
 from rig.catalog.slugs import slug
-from rig.compile.letters import ChainSlots, LetterAssignmentError, assign_letters
-
 from .errors import Finding
+from .letters import ChainSlots, LetterAssignmentError, assign_letters
 from .kits import KitsConfig
 from .model import Chain, ModuleSlot, ModuleUse, Song
 

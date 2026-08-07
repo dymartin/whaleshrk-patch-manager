@@ -8,7 +8,6 @@ docs/workflows/push.md and `rig.compile.compiler`'s module docstring.
 
 from .compiler import CompiledPreset, build_placeholder, compile_song, format_program_prefix
 from .errors import CompileError
-from .letters import ChainSlots, LetterAssignmentError, assign_letters
 from .samples import ResolvedSample, SampleCompileError, resolve_sample, scan_wav_folder, scan_wav_names
 from .sidecars import UnverifiedStatefulModuleError, sidecar_files_for_slot
 
@@ -18,9 +17,6 @@ __all__ = [
     "compile_song",
     "format_program_prefix",
     "CompileError",
-    "ChainSlots",
-    "LetterAssignmentError",
-    "assign_letters",
     "ResolvedSample",
     "SampleCompileError",
     "resolve_sample",
