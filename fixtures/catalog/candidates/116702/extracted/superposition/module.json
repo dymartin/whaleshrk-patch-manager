@@ -1,9 +1,0 @@
-{
-    "display" : "Superposition",
-    "parameters" :  [ 
-        ["int","transposition","Transposition",-24,24,0]
-    ],
-    "pages" : [ 
-        ["pg_superposition","Superposition",["transposition"]]
-    ]
-}
