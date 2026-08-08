@@ -16,6 +16,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from ruamel.yaml import YAML
+from ruamel.yaml.error import YAMLError
 
 MAX_ALIASES = 24
 
@@ -47,7 +48,12 @@ def parse_kits(path: Path, media_root: Path | None = None) -> KitsConfig:
     if not path.exists():
         return KitsConfig({})
 
-    raw = _yaml.load(path.read_text(encoding="utf-8")) or {}
+    try:
+        raw = _yaml.load(path.read_text(encoding="utf-8")) or {}
+    except YAMLError as exc:
+        # Same rule as rig.song.parser: a malformed file is a refusal with a
+        # message, never a ruamel traceback out of the CLI.
+        raise KitsError(f"{path}: invalid YAML: {exc}") from exc
     if not isinstance(raw, dict):
         raise KitsError(f"{path}: expected a mapping of alias to kit number, got {type(raw).__name__}")
 

@@ -21,6 +21,7 @@ from typing import Callable, Iterable, NoReturn, Optional
 import httpx
 import typer
 
+from rig.atomicio import write_text_atomic
 from rig.catalog import (
     CandidateSource,
     CatalogEntry,
@@ -589,7 +590,7 @@ def rename_chain(
         # raw list -- but never silently no-op a rename (Global Constraint #3).
         _fail("rename-chain", "CHAIN_NOT_FOUND", f"song {song!r} has no chain named {old!r} in its YAML")
 
-    path.write_text(dump_song(doc), encoding="utf-8")
+    write_text_atomic(path, dump_song(doc))
 
     chains_state_dir = STATE_DIR / "chains"
     bindings = read_bindings(chains_state_dir, song)

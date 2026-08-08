@@ -129,6 +129,14 @@ chains:
         parse_song(text)
 
 
+def test_malformed_yaml_is_a_parse_error_not_a_ruamel_error():
+    """A mistyped song file must arrive as the same refusal type as any other
+    bad shape -- the CLI turns SongParseError into a coded message, and anything
+    else reaches the musician as a traceback (Ruling #2)."""
+    with pytest.raises(SongParseError, match="invalid YAML"):
+        parse_song("song: Test\nchains: [unclosed\n", source="songs/broken.yaml")
+
+
 def test_bare_module_use_has_no_params():
     text = """
 song: Test

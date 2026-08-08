@@ -37,6 +37,14 @@ def test_duplicate_kit_number_is_a_hard_error(tmp_path: Path):
         parse_kits(path)
 
 
+def test_malformed_yaml_is_a_kits_error_not_a_ruamel_error(tmp_path: Path):
+    """Same rule as the song parser: the CLI only knows how to report KitsError,
+    so a mistyped file must not escape as a ruamel traceback."""
+    path = write_kits(tmp_path, "warehouse: [unclosed\n")
+    with pytest.raises(KitsError, match="invalid YAML"):
+        parse_kits(path)
+
+
 def test_symlinked_kit_directory_is_a_hard_error(tmp_path: Path):
     path = write_kits(tmp_path, "warehouse: 1\n")
     media_root = tmp_path / "media"

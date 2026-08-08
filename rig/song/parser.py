@@ -20,6 +20,7 @@ from pathlib import Path
 from typing import Any, Optional
 
 from ruamel.yaml import YAML
+from ruamel.yaml.error import YAMLError
 
 from .errors import SongParseError
 from .model import (
@@ -60,7 +61,13 @@ class SongDocument:
 
 
 def parse_song(text: str, *, source: str = "<string>") -> SongDocument:
-    raw = _yaml.load(text)
+    try:
+        raw = _yaml.load(text)
+    except YAMLError as exc:
+        # Malformed YAML is a song the musician mistyped, not a crash: it has
+        # to arrive as SongParseError like every other bad-shape failure, or
+        # the CLI reports it as a ruamel traceback instead of a refusal.
+        raise SongParseError(f"{source}: invalid YAML: {exc}") from exc
     if raw is None:
         raise SongParseError(f"{source}: empty song file")
     song = _build_song(raw, source)
