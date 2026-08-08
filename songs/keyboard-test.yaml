@@ -1,0 +1,9 @@
+song: Keyboard Test
+program: 0
+keyboard: keys
+
+chains:
+  - name: keys
+    modules:
+      - braids@orhack
+      - chorus@orhack
