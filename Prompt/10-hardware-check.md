@@ -1,20 +1,26 @@
-# Phase 10 — Hardware check (Tier 2)
+# Phase 10 — Hardware check
 
 ## Goal
 
-`rig validate --tier hardware [SONG...]` — run by hand from the laptop against
-the S2 on the same network. No CI, no runner, no attestation.
+Its own command, run by hand from the laptop against the S2 on the same
+network. No CI, no runner, no attestation.
 
 **This is the project's first and only hardware feedback channel**, and it covers
 exactly four things: load time, CPU, Pd load errors, ALSA underruns. Until this
-lands, source reading is the only evidence. Never cite a planned tier as if it
-had already run.
+lands, source reading is the only evidence. Never cite it as if it had already
+run.
+
+**No report artifact** (#73). Measurements are printed, alongside the stimulus
+profile version they were taken under. Sections below that predate that
+decision and speak of writing or verifying a report are superseded by
+`../docs/validation.md`, which owns this phase.
 
 ## Read first
 
 `../docs/validation.md` (owns this phase), `../docs/platform/surfaces.md`,
 `../docs/platform/midi.md`, `../docs/platform/runtime.md`,
-`../docs/open-questions.md`, `../docs/decisions.md` #62, #64, #65, #66, #67.
+`../docs/open-questions.md`, `../docs/decisions.md` #62, #64, #65, #66, #67,
+#73.
 
 ## Security constraint — read before connecting
 

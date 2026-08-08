@@ -12,6 +12,9 @@ media/                      musician-facing
   kits/warehouse/*.wav      alias-named, not kit-N
   kits/tape/*.wav
 
+modules/                    vendored, committed
+  <slug>@v<revision>.zip    the Patchstorage upload, byte-identical
+
 .rig/                       machine-owned, committed
   catalog/                  generated module metadata
   state/
@@ -21,16 +24,15 @@ media/                      musician-facing
       .modules-lock-hash    hash of modules.lock as of the last push
     chains/
       <song>.json           chain name -> letter binding, this song only
-    hardware/               <song>.json — load time + CPU baseline per subject
-    reports/                rig validate output, gitignored — not committed
   kits.yaml                 kit alias -> kit-N
   modules.lock              pinned versions + content hashes
 ```
 
-`state/reports/` is the one `.rig/` subtree that is *not* committed: a
-validation report is this run's evidence, not repo state to review later
-(`.rig/state/hardware/` holds the committed baseline a report is compared
-against — see [validation.md](validation.md)).
+`modules/` is top-level rather than under `.rig/` because these are vendored
+inputs the repo owns, not state the CLI generates. Musicians never open it;
+it is beside `songs/` and `media/` so the repo's dependencies are visible
+rather than hidden in a dot-directory. See [catalog.md](catalog.md) "The
+archive store".
 
 `<song>` is the song's YAML filename stem (`songs/vellichor.yaml` -> `vellichor`),
 never `slug(song's "name:")`. It has to be the stable one: a musician can
@@ -44,7 +46,7 @@ repo-wide (one card, one module set), so a selective push can refuse by
 comparing it to the current lock's hash rather than re-deriving anything
 (see [workflows/push.md](workflows/push.md)).
 
-Musicians edit `songs/` and `media/`; the CLI owns `.rig/`.
+Musicians edit `songs/` and `media/`; the CLI owns `.rig/` and `modules/`.
 
 ## Why `.rig/` is committed
 

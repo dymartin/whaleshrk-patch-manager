@@ -19,9 +19,10 @@ Pull turns drift into reviewable PRs.
    one song.
 4. Per drifted song: reverse-map only what moved, edit the song YAML in place
    preserving comments, commit to its own branch, open a PR via `gh`.
-5. Only when adoption is explicitly requested: adopt presets with no song file
-   as new songs, one PR each — see [Adoption](#adoption). A routine pull skips
-   this step.
+5. Ignore card presets no recorded song claims. The repo is authoritative for
+   whether a song exists; the device is not. Songs are hand-authored, and
+   parameters are then experimented with on the device — that direction, never
+   the reverse.
 6. Ignore media entirely.
 
 One branch and PR per drifted song; unrelated songs never share reviews.
@@ -85,66 +86,30 @@ that aborts the song with `RESERVED_MIDI_VALUE_DRIFT` instead.
 **Program is not reverse-mapped.** A preset is matched to its song by the
 *recorded* directory name (decision #55), never by comparing prefixes, so a
 changed numeric prefix means the recorded name is missing from the card
-(warns and is skipped, above) rather than drift this step ever sees. The
-numeric-prefix decode is Adoption's concern, below.
+(warns and is skipped, above) rather than drift this step ever sees.
 
 Not captured: sequencer patterns, morpher banks, media files. See
 [../decisions.md](../decisions.md) #1 and #5.
 
-## Adoption
+**The drift baseline is written by push**, into
+`.rig/state/last-pushed/<song>.json` (the compiled `params.json`, byte-exact)
+and `<song>.meta.json` (the directory name and program as pushed). A song
+that has never been pushed therefore has no baseline and cannot drift; that
+is the correct reading, since the repo defined it and the device has not been
+told about it yet.
 
-Adoption *mints* a song file, and so runs **only when explicitly requested**,
-via `rig pull --adopt` — never as part of a routine pull. Everything else pull
-does changes what a song says; adoption changes whether a song exists, which
-the device is not authority over.
-
-Device presets carry no friendly names, so names are derived without exposing
-device identifiers.
-
-**Song slug.** The preset name, lowercased, non-alphanumerics collapsed to `-`.
-Collisions take `-2`, `-3`. The slug is both the filename and the branch name.
-
-**Program.** A recognised numeric prefix becomes the YAML `program`; otherwise
-adoption assigns the next free value. The PR invites correction before merge.
-
-**Chain and send names.** Each takes the catalog key of its first module with
-the `@source` suffix dropped — a chain starting with `rings@orhack` becomes
-`rings`. Duplicates within a song take `-2`, `-3`. Empty chains and sends are
-omitted rather than named.
-
-**Chain letters must be preserved, not recomputed.** Declaration order alone
-will not reproduce the device's assignment — a 3-module chain on D would be
-reassigned to C by the capacity rule, and the next pull would report drift on a
-song nobody touched. So adoption writes the observed name→letter binding into
-`.rig/state/chains/`, and **the compiler honours a recorded binding instead of
+**Chain letters are honoured, not recomputed.** Declaration order alone will
+not reproduce an existing assignment — a 3-module chain on D would be
+reassigned to C by the capacity rule, and the next pull would report drift on
+a song nobody touched. So `.rig/state/chains/<song>.json` records each
+name→letter binding and **the compiler honours a recorded binding instead of
 assigning a letter**. Fresh assignment applies only to unbound chains. If a
-later edit makes a bound chain outgrow its letter, that is a hard compile error.
-
-**MIDI channels likewise.** Device `r-chin-midich-N` values need not match what
-declaration position would produce, so adoption writes an explicit
-`midi: { channel: N }` on any chain whose channel differs from its positional
-default.
-
-**A preset that cannot be cleanly minted refuses that one preset, not the
-whole run** (same all-or-nothing shape as reverse-mapping an existing song,
-`rig.pull.reverse.ReverseMapError`): an unknown module, mod-bus routing or a
-CC mapping outside a chain module (no schema field either way), a reserved
-CC/channel, a sample selecting the shared `samples/`/`loops`/`synths`
-folders, and an occupied slot sitting after an unoccupied one within the same
-group (chain modules, `sends:`, `master:`, `mod-sources:`) — the schema
-writes "N modules used" as exactly N list entries with no way to say "skip
-this one," so a gap has no index that would keep the later module's identity
-aligned on the next compile.
-
-**Adoption writes the drift baseline.** The observed `params.json` is
-snapshotted into `.rig/state/last-pushed/<song>.json` and the observed
-directory name into `<song>.meta.json`. Without the snapshot the song has no
-baseline — it is never pushed, being already correct on the device — and the
-next pull reports the whole preset as drift. Without the `.meta.json` the next
-push refuses the directory as a stranger.
+later edit makes a bound chain outgrow its letter, that is a hard compile
+error. Renaming a chain moves its binding — see
+[maintenance.md](maintenance.md).
 
 **Sample selection is reverse-mapped, not defaulted.** A `samplement` module
-carries `samp_source` and `samp_select`; adoption turns those back into a
+carries `samp_source` and `samp_select`; pull turns those back into a
 `sample:` field:
 
 1. `samp_source` → folder via the decode table in

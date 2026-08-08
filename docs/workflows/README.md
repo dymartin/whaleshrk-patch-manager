@@ -4,24 +4,25 @@ Run manually around rehearsals and gigs; no daemon.
 
 ```text
 rig push [SONG...] [--dry-run] [--force]
-rig pull [SONG...] [--dry-run] [--adopt]
+rig pull [SONG...] [--dry-run]
 rig lint [SONG...]
+rig catalog add SLUG...
 rig catalog update [--dry-run]
 rig upgrade MODULE... [--dry-run]
 rig rename-chain SONG OLD NEW
-rig validate --tier static|hardware [SONG...]
-rig validate verify-report REPORT
 ```
 
 Empty song selection means all songs.
 
+`catalog add` and `upgrade` are the only commands that reach the network.
+
 | Doc | Covers |
 |---|---|
 | [push.md](push.md) | Card reconciliation, compile, preset classification, transaction |
-| [pull.md](pull.md) | Drift detection, PRs, adoption, what drift covers |
+| [pull.md](pull.md) | Drift detection, PRs, what drift covers |
 | [maintenance.md](maintenance.md) | `rename-chain`, `upgrade` |
 
-`validate` belongs to [../validation.md](../validation.md).
+`lint` belongs to [../validation.md](../validation.md).
 
 ## Song identity
 
@@ -37,8 +38,8 @@ the directory inside the same transaction. No command, no `--force`.
 removes the directory. Because the ordering rule is pull-before-push, any
 unmerged device drift on that song is already captured as a PR.
 
-**Adoption writes the record too**, so the preset a song was adopted from is
-recognised as managed on the next push rather than refused as a stranger.
+**A song exists because the repo says so.** Pull never mints one; a card
+preset no record claims is reported and otherwise ignored.
 
 State is per song by design. A single shared manifest would be edited by every
 song's PR — the entanglement one-PR-per-song forbids.
@@ -53,9 +54,9 @@ module replacement — is a comparison of card against repo, so a cardless
 dry-run could only report the harmless part while appearing complete. `rig lint`
 is the offline check.
 
-Dry-run still performs the same network update *check* as a real push, under the
-same rule: unreachable source skips silently. `pull --dry-run` creates no branch,
-commit or PR; read-only `gh` queries to detect an existing open PR are fine.
+Push reaches no network at all, dry-run or not — it installs from `modules/`.
+`pull --dry-run` creates no branch, commit or PR; read-only `gh` queries to
+detect an existing open PR are fine.
 
 ## Ordering
 

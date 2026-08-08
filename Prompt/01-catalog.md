@@ -12,18 +12,20 @@ and `.rig/modules.lock`.
 `../docs/platform/runtime.md`, `../docs/platform/state.md` (sidecar inventory),
 `../docs/decisions.md` #11, #12, #13, #20, #23, #27, #32, #42, #60.
 
-## Discovery
+## Slug lookup
 
-Union of Patchstorage platform `3371` and tag `1483`, deduped. 145 candidates as
-measured.
+`rig catalog add SLUG` fetches one named upload. Patchstorage has no
+lookup-by-slug filter, so finding it means walking the union of platform `3371`
+and tag `1483`, deduped (145 candidates when surveyed), stopping once every
+wanted slug is found. That walk is a lookup mechanism, not an ingest scope —
+only the named uploads are gated and stored. See `../docs/decisions.md` #71.
 
 **Assert result counts.** Unknown query parameters are silently ignored by the
 API — `authors=<id>` returns all 17,000+ patches while `author=<id>` filters
 correctly. A filter that silently does nothing must be caught by a count
 assertion, not trusted.
 
-List endpoint omits `files`; only `/patches/<id>` carries download URLs. Two
-list calls give `updated_at` for every candidate; detail-fetch only what changed.
+List endpoint omits `files`; only `/patches/<id>` carries download URLs.
 
 ## Validation gate
 
@@ -38,7 +40,7 @@ land in their measured bucket because of it.
 
 | Condition | Note |
 |---|---|
-| Archive lacks `<dir>/module.json` **and** `<dir>/module.pd` | Catches mis-tagged plain Organelle patches — 14 of 145 |
+| Archive lacks `<dir>/module.json` **and** `<dir>/module.pd` | Catches mis-tagged plain Organelle patches — 14 of the 145 surveyed |
 | `main.pd` whose directory is neither a module directory nor nested inside one | Rack redistribution. All three measured ship `orac/main.pd`; neither module pack ships one. A `main.pd` in, or nested inside, a module's own directory: **warn**, do not reject — see `../docs/catalog.md` "Reject ordering" for the precise containment test and why "package root" alone under-specifies it |
 | `module.json` does not parse | Real modules ship invalid JSON — at least one has an unquoted property name |
 | Any bundled external fails the ABI check | Table below |
@@ -181,45 +183,50 @@ CLI. Required so Phase 11 needs no re-ingest (#24).
 
 ## Versioning
 
-`revision` is author-authored free text and unusable — real values include
-`0.00200.0220.220` and `87798176543`. Track `updated_at` plus the detail
-endpoint's file `id`, verified with a content hash of the archive.
+`revision` is author-authored free text and **never an identity** — real values
+include `0.00200.0220.220` and `87798176543`, and across the 145 surveyed
+uploads it took only 33 distinct values with `1.0` alone covering 55. Identity
+is `updated_at` plus the detail endpoint's file `id`, verified with
+`archive_sha256`. Carry `revision` anyway: it names the stored archive
+readably, and a same-revision-different-bytes archive is the silent-re-upload
+case worth refusing (#72).
 
 `.rig/modules.lock` pins versions and content hashes. Push installs exactly what
-the lock names and never auto-upgrades (#20, supersedes Prompt.md).
+the lock names, from `modules/`, and never auto-upgrades (#20, supersedes
+Prompt.md).
 
 ## Outputs
 
 - `.rig/catalog/` — one generated entry per module. Committed.
 - `.rig/modules.lock` — pinned versions plus content hashes. Committed.
+- `modules/<slug>@v<revision>.zip` — the upload itself, byte-identical.
+  Committed (`../docs/decisions.md` #72). Refuse a same-revision archive whose
+  bytes differ; warn past 5MB.
 - Each build records generator and schema version.
 
-`rig catalog update` is the only rebuild path. Ordinary builds and pushes never
-discover live data. CI regenerates from the frozen fixture and fails on diff.
+`rig catalog add` and `rig upgrade` are the only network paths. Ordinary
+builds, pushes and lint runs read the committed files.
+
+## The one-time ecosystem survey
+
+The gate was designed against the whole ORAC ecosystem, surveyed once: 145
+candidates, 122 passing (14 not-a-module, 5 wrong-arch, 3 rack-redistribution,
+1 bad-JSON), which would have yielded 200 entries alongside the 65 selectable
+built-ins. Those numbers are recorded in `../docs/catalog.md` as evidence for
+the gate's shape — in particular why its check order is load-bearing — not as
+counts anything reproduces now. No test asserts them; the corpus is gone.
 
 ## Verification
 
-Replaying the **frozen** fixture reproduces exactly:
+Per gate branch, one synthetic archive that fires exactly that branch and no
+other. Plus: a clean archive ingests; two uploads shipping the same display
+name produce distinct qualified keys; no community entry shadows a built-in
+runtime path; both slug rules have a test.
 
-| Outcome | Count |
-|---|---|
-| Candidates | 145 |
-| Pass the gate | 122 |
-| Not a module | 14 |
-| Wrong architecture | 5 |
-| Rack redistribution | 3 |
-| Bad JSON | 1 |
-
-and, from the 122: 120 single-module uploads contributing 120, plus 2 module
-packs (`sequencers-bpm` → 7, `orac-cvtools` → 8) contributing 15. Plus 65
-selectable ORHACK built-ins. **Total 200 catalog entries, zero qualified key
-collisions, no built-in runtime path collision.**
-
-Never assert these against the live API — they change as people upload.
+Never assert counts against the live API — they change as people upload.
 
 ## Done when
 
-Frozen replay reproduces every count above, both slug rules have a test, each
-hard-reject condition has a fixture, and the ELF check rejects the x86
-`tb_peakcomp~`/`ds_peakcomp~` pair that propagates into `bus-comp`, `strip`,
-`percussions+`, `8rac` — and into ORHACK itself.
+Every hard-reject condition has its own archive fixture, and the ELF check
+rejects the x86 `tb_peakcomp~`/`ds_peakcomp~` pair that propagates into
+`bus-comp`, `strip`, `percussions+`, `8rac` — and into ORHACK itself.

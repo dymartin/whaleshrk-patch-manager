@@ -13,8 +13,9 @@ reviewable history and reconstructs any past show's rig.
 
 ## Goals
 
-- A song's rig state is fully described by its YAML file plus pinned module
-  versions. Same repo, same push, same rig — on any day.
+- A song's rig state is fully described by its YAML file plus the module
+  archives the repo carries. Same repo, same push, same rig — on any day, with
+  no network.
 - Musicians read and write only friendly YAML. No device slot ids, no raw CC
   numbers, no `moduleType` paths, no Pure Data internals.
 - Device drift made during rehearsal becomes a reviewable PR, one per song.
@@ -31,13 +32,22 @@ CLI works. Ingest populates `tags` to avoid a later re-ingest; see
 
 - No daemon, no background device watching. The CLI runs by hand around
   rehearsals and gigs.
-- No SSH or network transport for push/pull yet; transport stays pluggable. The
-  hardware check does talk to the device, but only reads and never moves files —
-  see [validation.md](validation.md).
-- No vendoring of patch binaries or Pure Data source. Band-authored samples are
-  user content and exempt — see [media.md](media.md).
+- No SSH or network transport for push/pull; transport stays pluggable. The
+  planned hardware check does talk to the device, but only reads and never
+  moves files — see [validation.md](validation.md).
+- No mirroring of Patchstorage. The catalog holds the modules this rig uses,
+  added one at a time — see [catalog.md](catalog.md).
 - No custom Pure Data patches. Chains use ORHACK built-ins and community
   modules.
+- The device never mints a song. Pull edits songs the repo already declares;
+  a card preset nothing claims is reported and left alone.
+
+Prompt.md's "no vendoring of patch binaries" non-goal is **reversed**: the
+repo commits each module's upload archive to `modules/`. That non-goal was
+written when vendoring meant mirroring all of Patchstorage; vendoring a
+handful of chosen modules is what makes the reproducibility goal above true,
+and what lets push work without wifi. Band-authored samples are user content
+and were always exempt — see [media.md](media.md).
 
 ## The guarantee, and its edges
 

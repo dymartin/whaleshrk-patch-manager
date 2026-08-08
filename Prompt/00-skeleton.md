@@ -2,8 +2,8 @@
 
 ## Goal
 
-A `uv`-managed Python package `rig`, plus the two fixtures every later phase
-tests against.
+A `uv`-managed Python package `rig`, plus the fixtures every later phase tests
+against.
 
 ## Read first
 
@@ -15,18 +15,17 @@ tests against.
 1. `pyproject.toml` — package `rig`, `uv`-managed, console script `rig`.
    Dependencies exactly: `ruamel.yaml`, `typer`, `httpx`. Dev: `pytest`.
 2. `rig/` package skeleton matching the layout in [README.md](README.md).
-3. `rig/cli.py` — a typer app with the seven commands registered as stubs that
-   exit non-zero with "not implemented". Command surface is fixed now so later
+3. `rig/cli.py` — a typer app with every command registered as a stub that
+   exits non-zero with "not implemented". Command surface is fixed now so later
    phases only fill bodies:
    ```
    rig push [SONG...] [--dry-run] [--force]
    rig pull [SONG...] [--dry-run]
    rig lint [SONG...]
+   rig catalog add SLUG...
    rig catalog update [--dry-run]
    rig upgrade MODULE... [--dry-run]
    rig rename-chain SONG OLD NEW
-   rig validate --tier static|hardware [SONG...]
-   rig validate verify-report REPORT
    ```
 4. **Fixture card** under `fixtures/card/`, built from the real ORHACK 0.52b
    archive. Directory shape is `deploy.sh`'s, per `../docs/platform/card.md`:
@@ -49,17 +48,22 @@ tests against.
    verbatim: `exists list read write delete mkdir rename flush`. It is the test
    double for every later phase; Phase 4 makes it pass a shared conformance
    suite alongside `UsbMassStorage`.
-6. **Frozen catalog fixture** under `fixtures/catalog/`: all 145 Patchstorage
-   candidates — list responses, detail responses, and archive content hashes —
-   committed as an offline artifact. Store archives or their hashes such that
-   Phase 1's gate can run without network.
+6. **Synthetic module archives**, built in-process with `zipfile`: one clean
+   archive, plus one per gate branch (bad ELF arch, unsafe archive path,
+   malformed `module.json`, rack redistribution, unmodelled sidecar).
 
-## Why the catalog fixture is frozen
+## Why no corpus of real uploads
 
-Live upstream edits invalidate Phase 1's asserted counts. Hermetic ingest tests
-replay frozen data. Live discovery is a separate, occasional, manual check —
-never part of a test run and never part of a push. See `../docs/decisions.md`
-#42.
+An earlier revision froze all 145 Patchstorage candidates under
+`fixtures/catalog/` so Phase 1's asserted counts could not be invalidated by
+upstream edits. That cost 101MB and 5,269 tracked files in every clone and CI
+checkout, to exercise six gate branches 145 times over — and the counts it
+protected stopped being a target once the catalog became a shopping list.
+Deleted; see `../docs/decisions.md` #71.
+
+Hermetic tests still hold: every socket is blocked for the whole pytest
+session, and the gate now runs over synthetic archives plus whatever real
+archives `modules/` carries.
 
 ## Verification
 

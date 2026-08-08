@@ -8,8 +8,13 @@ Push makes the card match the source-of-truth repo.
    manifest; never install or repair ORHACK. Reconcile installed modules
    against `.rig/modules.lock` **by content hash** — install what is missing,
    replace what does not match, since an upgraded module is present at the
-   wrong version rather than absent. Report available updates; never install
-   them.
+   wrong version rather than absent.
+
+   **Module content comes from `modules/`, not the network.** Each archive is
+   verified against its pinned `archive_sha256`, extracted to a temp
+   directory, junk-stripped, and copied to the card. Push therefore works with
+   no wifi, at a venue — see [../catalog.md](../catalog.md) "The archive
+   store". It does not check for updates either; that is `rig catalog update`.
 
    Modules are repo-wide: one card holds one copy, so reconciliation cannot be
    scoped to a song selection without leaving the card matching no commit. **A
@@ -17,15 +22,11 @@ Push makes the card match the source-of-truth repo.
    push** — rerun with no selection. This triggers only after `rig upgrade` or
    `rig catalog update`.
 
-   Two offline cases, deliberately different:
-
-   | Situation | Behaviour |
-   |---|---|
-   | Cannot reach a source to *check* for updates | Silent skip. Never blocks push |
-   | A module named in the lock is absent from the card and its source is unreachable | **Hard error, push aborts** |
-
-   The second cannot be skipped: the preset would reference a `moduleType` that
-   does not resolve, producing a silently broken slot.
+   **A module the lock pins whose archive cannot be read aborts the push** —
+   missing from `modules/`, failing its digest, or no longer holding the module
+   the catalog entry names. Unlike an unreachable network this is never
+   transient: the repo pins something it does not carry, and the compiled preset
+   would reference a `moduleType` that never resolves.
 
 3. **Compile** each selected song to a preset directory, per
    [../schema.md](../schema.md) and [../platform/](../platform/README.md). Two

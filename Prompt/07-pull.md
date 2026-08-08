@@ -3,7 +3,7 @@
 ## Goal
 
 `rig pull [SONG...] [--dry-run]` — turn device drift into one branch and PR per
-drifted song, and adopt unknown presets as new songs.
+drifted song.
 
 ## Read first
 
@@ -22,7 +22,8 @@ drifted song, and adopt unknown presets as new songs.
 3. Diff each `params.json` against `.rig/state/last-pushed/<song>.json`.
 4. Per drifted song: reverse-map only what moved (Phase 6), edit the song YAML
    in place preserving comments, commit, branch, PR.
-5. Adopt presets with no song file as new songs, one PR each.
+5. **Ignore presets no recorded song claims.** Pull never mints a song file
+   (#74).
 6. **Ignore media entirely** (#5). Sample *selection* is captured — `samp_source`
    and `samp_select` are ordinary parameters — but the media tree is not.
 
@@ -53,49 +54,26 @@ unrecoverable.
 as of 2026-08-02**. Tests stub it. The command must fail with a clear message
 when it is absent.
 
-## Adoption
+## Presets no song claims
 
-Adoption **mints** a song file. Build it as a **separate emitter**, not a
-special case of the reverse mapper.
+Reported, never turned into a song file. The repo is authoritative for whether
+a song exists; the device is not (#54, #74). Songs are hand-authored and their
+parameters are then experimented with on the device — that direction only.
 
-Device presets carry no friendly names, so derive them without exposing device
-identifiers:
+**Chain letters are honoured, not recomputed.** Declaration order alone will
+not reproduce an existing assignment — a 3-module chain on D would be
+reassigned to C by the capacity rule, and the next pull would report drift on a
+song nobody touched. `.rig/state/chains/` records each name→letter binding and
+the compiler honours it instead of assigning (#37).
 
-| Field | Rule |
-|---|---|
-| Song slug | Preset name, lowercased, non-alphanumerics collapsed to `-`. Collisions take `-2`, `-3`. Used as both filename and branch name |
-| `program` | A recognised numeric prefix becomes the YAML `program`; otherwise assign the next free value. The PR invites correction before merge |
-| Chain and send names | Catalog key of the first module with `@source` dropped — a chain starting with `rings@orhack` becomes `rings`. Duplicates within a song take `-2`, `-3`. **Empty chains and sends are omitted, not named** |
-
-Never name a chain `chain-a` — that would embed a slot letter, the exact class of
-device identifier the schema hides (#36).
-
-**Preserve chain letters, do not recompute them.** Declaration order alone will
-not reproduce the device's assignment — a 3-module chain on D would be reassigned
-to C by the capacity rule, and the next pull would report drift on a song nobody
-touched. Adoption writes the observed name→letter binding into
-`.rig/state/chains/`; the compiler honours a recorded binding instead of
-assigning (#37).
-
-**Preserve MIDI channels likewise.** Device `r-chin-midich-N` values need not
-match what declaration position produces, so write an explicit
-`midi: { channel: N }` on any chain whose channel differs from its positional
-default.
-
-**Adoption writes both `.rig/state/last-pushed/` files:**
-
-- `<song>.json` — the observed `params.json`, snapshotted. Without it the song
-  has no drift baseline — it is never pushed, being already correct on the
-  device — and the next pull reports the whole preset as drift (#38).
-- `<song>.meta.json` — the observed directory name and program. Without it the
-  next push refuses the preset it just adopted as a stranger.
+**The drift baseline is written by push**, into `.rig/state/last-pushed/`:
+`<song>.json` (the compiled `params.json`, byte-exact) and `<song>.meta.json`
+(the directory name and program). A song never pushed has no baseline and
+cannot drift.
 
 **Reverse-map the sample selection, never default it.** With no `sample:` field,
 #13 fills `samp_source` from its catalog default of `0` and the next push
 replaces a working sampler chain with silence.
-
-The PR body states that names were derived and invites renaming before merge,
-pointing at `rig rename-chain` for chains.
 
 ## `--dry-run`
 
@@ -112,9 +90,7 @@ Fixture card with seeded drift produces the expected branch and PR set, with
 - a second pull on the same drift force-pushes and reuses the open PR;
 - an unmapped module aborts that song only, others still process;
 - one recorded preset missing warns; all missing aborts;
-- an unknown preset adopts, writing both state files and the chain binding;
-- an adopted song, pushed immediately, is recognised as managed;
-- an adopted song, pulled immediately again, reports no drift.
+- a card preset no record claims produces no branch and no PR.
 
 ## Done when
 
