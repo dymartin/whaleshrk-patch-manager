@@ -25,6 +25,7 @@ plain-load parser cannot be retrofitted.
 ```yaml
 song: Vellichor
 program: 12
+keyboard: pads # optional chain name; built-in keys initially control it
 sends:      { <name>: { module: <key>, <param>: <value>, ... } }   # -> p1, p2
 master:     [ { <key>: {params} }, ... ]                            # -> f1, f2, f3
 mod-sources:[ { <key>: {params} }, ... ]                            # -> m1, m2, m3
@@ -51,9 +52,9 @@ chains:
   `midiin = 1`; the rig slaves to the DAW's MIDI clock. `set_signature` stays 4 —
   MIDI clock cannot transmit time signature.
 - **No sequencer patterns or morpher banks.** Compiler-owned (#1).
-- **No keyboard field.** The Organelle's physical keyboard routes to one global
-  active destination (`r-main-dest`), gated off by default — not a per-chain
-  gate (#35).
+- **`keyboard:` is optional and global.** It names one non-empty chain whose
+  first slot becomes the initial active destination. Channel 16 / CC 20 changes
+  that destination while playing (#81).
 - **No sample-playback input type.** Sample playback is a module
   (`samplement@orhack`) occupying a chain slot, selected like any other module.
 
@@ -65,6 +66,7 @@ chains:
 | Unknown parameter name | Not a slug for that module version |
 | Out-of-range value | Against the catalog's min/max |
 | Duplicate chain names within a song | |
+| `keyboard` names a missing or empty chain | |
 | Duplicate `program` across songs | Device would index one unreachably |
 | `program` outside 0-127 | Raw MIDI Program Change value |
 | Song names colliding after sanitisation | Portable, case-insensitive filenames |

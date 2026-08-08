@@ -71,6 +71,14 @@ def test_duplicate_chain_names():
     assert "DUPLICATE_CHAIN_NAME" in codes(result)
 
 
+def test_keyboard_must_target_a_declared_nonempty_chain():
+    missing = validate_song(Song("x", 0, keyboard="keys"), catalog=[])
+    assert "UNKNOWN_KEYBOARD_CHAIN" in codes(missing)
+
+    empty = validate_song(Song("x", 0, chains=[Chain("keys")], keyboard="keys"), catalog=[])
+    assert "EMPTY_KEYBOARD_CHAIN" in codes(empty)
+
+
 def test_duplicate_program_across_songs():
     a = Song(name="A", program=5)
     b = Song(name="B", program=5)

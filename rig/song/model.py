@@ -104,3 +104,4 @@ class Song:
     master: list[ModuleUse] = field(default_factory=list)
     mod_sources: list[ModuleUse] = field(default_factory=list)
     chains: list[Chain] = field(default_factory=list)
+    keyboard: Optional[str] = None

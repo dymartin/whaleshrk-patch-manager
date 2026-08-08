@@ -29,6 +29,8 @@ ROUTER_MODULE_TYPE = "routers/hybrid"
 TRANSPORT_MODULE_TYPE = "clocks/transport"
 
 LETTER_TO_N = {"A": 1, "B": 2, "C": 3, "D": 4}
+LETTER_TO_ACTIVE_DEST = {"A": 1, "B": 4, "C": 8, "D": 11}
+KEYBOARD_SELECT_CC = 20
 
 
 def _clamp01(value: float) -> float:
@@ -69,6 +71,7 @@ def compile_router(
     sends: list[Send],
     letters: dict[str, str],
     catalog_by_type: dict[str, CatalogEntry],
+    keyboard: str | None = None,
 ) -> dict[str, Any]:
     """Build `s1`'s full parameter dict.
 
@@ -86,6 +89,13 @@ def compile_router(
     # schema toggle -- it is always on.
     params["r-midi-ch"] = 16
     params["r-midi-pgmgate"] = 1
+    params["r-midi-module-cc"] = KEYBOARD_SELECT_CC
+    if keyboard is not None:
+        if keyboard not in letters:
+            raise CompileError("UNKNOWN_KEYBOARD_CHAIN", f"keyboard targets undeclared chain {keyboard!r}")
+        params["r-main-dest"] = LETTER_TO_ACTIVE_DEST[letters[keyboard]]
+        params["r-midi-notegate"] = 1
+        params["r-midi-ctrlgate"] = 1
     for n in range(1, 5):
         params[f"r-chin-midigate-{n}"] = 1
 

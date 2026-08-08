@@ -33,6 +33,10 @@ Derive role from catalog metadata, never signal I/O:
 - `utility/` belongs only where its display, tags, and parameters support the
   requested job.
 
+When the built-in keyboard is requested, set the top-level `keyboard` field to
+the chosen non-empty chain. It is one global destination, never a per-chain
+`input` value.
+
 If no catalog entry supports a required capability, stop and name the missing
 capability. Do not browse Patchstorage or substitute an imagined module.
 

@@ -72,6 +72,10 @@ the compiler does not write takes the `module.json` default.
 | Preset control | `r-midi-pgmgate`, `r-midi-ppreset-cc`, `r-midi-npreset-cc`, `r-midi-save-preset-cc` | 1, 100, 101, **102** |
 | Active gates | `r-midi-notegate`, `r-midi-ctrlgate` | 0, 0 |
 
+Always write `r-midi-module-cc = 20`. When `keyboard` names a chain, write
+`r-main-dest` to its first assigned slot and enable both active gates. Keep
+channel 16 / CC 20 reserved as the global live destination selector.
+
 Traps:
 
 - **`r-chin-midich-4` declares default `3`**, duplicating chain C — an upstream

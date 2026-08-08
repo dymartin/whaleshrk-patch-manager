@@ -8,6 +8,7 @@ One musician-facing file per song: `songs/<slug>.yaml`. No device slot ids,
 ```yaml
 song: Vellichor
 program: 12                         # MIDI PC 12 on channel 16
+keyboard: pads                      # built-in keys initially control this chain
 
 sends:
   reverb:                          # -> p1
@@ -74,9 +75,9 @@ MIDI note in are per-chain gates on the device:
 
 - *Sample playback* is a module — `samplement@orhack` in a chain slot, selected
   like any other rather than gated.
-- *The Organelle's physical keyboard* routes to a single global active
-  destination via the router's `r-main-dest`, gated off by default. Not
-  per-chain, so it has no schema field. See [platform/midi.md](platform/midi.md).
+- *The Organelle's physical keyboard* routes to one chain named by the optional
+  top-level `keyboard` field. It is a single global destination, not a per-chain
+  input. See [platform/midi.md](platform/midi.md).
 
 **Tempo and clock.** `clocks/transport` compiles to defaults with `midiin = 1`,
 so the rig slaves to the DAW's MIDI clock for tempo, start and continue. Nothing
@@ -113,6 +114,11 @@ not collide after sanitisation.
 capacity-aware: chains needing 4 slots get B or D, others get A or C. Letters
 and channels are decoupled deliberately — adding a module can change a chain's
 letter, and a shifting MIDI channel would silently break the DAW mapping.
+
+**`keyboard:`** names the chain initially controlled by the built-in keyboard.
+It must exist and contain a module. The compiler selects its first slot and
+enables note and control routing. MIDI channel 16 / CC 20 is globally reserved
+to change that active destination while playing; it is fixed across songs.
 
 Assignment runs in two passes, both in declaration order:
 

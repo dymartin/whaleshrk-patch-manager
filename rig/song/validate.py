@@ -386,6 +386,17 @@ def validate_song(
             )
         seen_names.add(chain.name)
 
+    if song.keyboard is not None:
+        targets = [chain for chain in song.chains if chain.name == song.keyboard]
+        if not targets:
+            findings.append(
+                Finding("UNKNOWN_KEYBOARD_CHAIN", f"keyboard targets undeclared chain {song.keyboard!r}")
+            )
+        elif not targets[0].modules:
+            findings.append(
+                Finding("EMPTY_KEYBOARD_CHAIN", f"keyboard targets empty chain {song.keyboard!r}")
+            )
+
     _validate_sends(song, catalog_index, findings)
     _validate_module_use_list(song.master, catalog_index, findings, "master")
     _validate_capacity(

@@ -22,6 +22,16 @@ def test_load_song_sets_path():
     assert doc.path == FIXTURE
 
 
+def test_keyboard_parses_as_a_friendly_chain_name():
+    song = parse_song("song: Test\nprogram: 0\nkeyboard: keys\n").song
+    assert song.keyboard == "keys"
+
+
+def test_keyboard_rejects_a_non_string():
+    with pytest.raises(SongParseError, match="keyboard"):
+        parse_song("song: Test\nprogram: 0\nkeyboard: 1\n")
+
+
 def test_canonical_example_parses_into_the_song_model():
     doc = parse_song(FIXTURE.read_text(encoding="utf-8"))
     song = doc.song

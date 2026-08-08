@@ -43,7 +43,7 @@ _yaml.preserve_quotes = True
 # song's exact indentation style incorrectly without this.
 _yaml.indent(mapping=2, sequence=4, offset=2)
 
-_TOP_LEVEL_KEYS = {"song", "program", "sends", "master", "mod-sources", "chains"}
+_TOP_LEVEL_KEYS = {"song", "program", "keyboard", "sends", "master", "mod-sources", "chains"}
 _CHAIN_KEYS = {"name", "input", "midi", "mix", "modules"}
 _INPUT_KEYS = {"guitar"}
 _CHAIN_MIDI_KEYS = {"channel"}
@@ -112,6 +112,10 @@ def _build_song(raw: Any, source: str) -> Song:
     if not isinstance(program, int) or isinstance(program, bool):
         raise SongParseError(f"{source}: 'program' must be an integer")
 
+    keyboard = raw.get("keyboard")
+    if keyboard is not None and (not isinstance(keyboard, str) or not keyboard.strip()):
+        raise SongParseError(f"{source}: 'keyboard' must be a non-empty chain name")
+
     sends = _build_sends(raw.get("sends"), source)
     master = _build_module_use_list(raw.get("master"), source, "master")
     mod_sources = _build_module_use_list(raw.get("mod-sources"), source, "mod-sources")
@@ -124,6 +128,7 @@ def _build_song(raw: Any, source: str) -> Song:
         master=master,
         mod_sources=mod_sources,
         chains=chains,
+        keyboard=keyboard,
     )
 
 

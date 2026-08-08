@@ -86,6 +86,7 @@ Settled design calls and rationale. Prompt.md overrides are explicit.
 | 78 | Existing catalog metadata is sufficient for auto-assembly; no re-ingest | Built-in tags are empty, so tags alone are not discriminating. Display names, qualified keys, module paths and parameter labels already distinguish role and broad function; community categories and tags add ranking evidence where present |
 | 79 | The skill enforces slot classes and capacities before writing and accepts a result only after `rig lint <song>` passes | Pre-checking gives a useful correction instead of emitting known-bad YAML; lint remains the single authoritative schema and capacity gate, avoiding a second validator |
 | 80 | Push and pull use keyed SSH by default; USB mass storage is selected explicitly as fallback | SSH is configured on the performance device and avoids removing or mounting the card. Reusing the transport protocol preserves the existing transaction, verification and rollback logic; explicit USB selection prevents an unavailable SSH host from silently changing the target |
+| 81 | Songs may name one initial built-in-keyboard chain; channel 16 / CC 20 is the global active-destination selector | The hardware exposes one rack-global active destination rather than a per-chain keyboard gate. A friendly chain name compiles to its first assigned slot, while one fixed CC permits live switching without per-song MIDI setup. Supersedes #35's schema omission |
 
 ## Superseded from Prompt.md
 

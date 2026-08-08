@@ -73,6 +73,7 @@ def test_compiles_to_the_hand_built_expected_params_json_byte_for_byte():
     s1_params = {p.id: p.default for p in router_entry.params}
     s1_params["r-midi-ch"] = 16
     s1_params["r-midi-pgmgate"] = 1
+    s1_params["r-midi-module-cc"] = 20
     for n in range(1, 5):
         s1_params[f"r-chin-midigate-{n}"] = 1
     s1_params["r-chin-midich-1"] = 1
@@ -110,6 +111,24 @@ def test_compiles_to_the_hand_built_expected_params_json_byte_for_byte():
     assert result.files["params.json"] == expected_bytes
     assert result.directory == "lead-only"
     assert set(result.files) == {"params.json"}  # no sidecars -- synth is stateless
+
+
+def test_keyboard_targets_the_assigned_chains_first_slot_and_enables_global_cc():
+    synth = make_entry("synth@orhack", "orhack", "Synth", "instruments/synth/synth", [])
+    song = Song(
+        "Keyboard",
+        0,
+        chains=[Chain("keys", modules=[ModuleSlot("synth@orhack")])],
+        keyboard="keys",
+    )
+
+    router = json.loads(compile_song(song, catalog=_catalog(synth)).files["params.json"])["s1"]["params"]
+
+    assert router["r-main-dest"] == 1
+    assert router["r-midi-notegate"] == 1
+    assert router["r-midi-ctrlgate"] == 1
+    assert router["r-midi-ch"] == 16
+    assert router["r-midi-module-cc"] == 20
 
 
 # --- Directory-name / program-index ordering --------------------------------

@@ -125,6 +125,9 @@ the `module.json` default.
 | Preset control | `r-midi-pgmgate`, `r-midi-ppreset-cc`, `r-midi-npreset-cc`, `r-midi-save-preset-cc` | 1, 100, 101, **102** |
 | Active gates | `r-midi-notegate`, `r-midi-ctrlgate` | 0, 0 |
 
+The compiler pins `r-midi-module-cc` to 20. When a song declares `keyboard`, it
+sets `r-main-dest` to that chain's first slot and enables both active gates.
+
 The four pans per chain are `r-chin-l-pan-N`, `r-chin-r-pan-N`,
 `r-chout-l-pan-N`, `r-chout-r-pan-N` — type `pan`, range 0-1, labelled "A In L
 Pan", "A Out L Pan" and so on. Both sides default to the same hard-apart pair:

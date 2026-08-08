@@ -232,7 +232,7 @@ def compile_song(
         slots[slot_id] = slot
         sidecar_files.update(_slot_sidecars(entry, slot_id))
 
-    slots["s1"] = compile_router(song.chains, song.sends, letters, catalog_by_type)
+    slots["s1"] = compile_router(song.chains, song.sends, letters, catalog_by_type, song.keyboard)
     slots["s2"] = compile_transport(catalog_by_type)
 
     params_obj = {slot_id: slots[slot_id] for slot_id in sorted(slots)}

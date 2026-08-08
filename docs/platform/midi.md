@@ -113,10 +113,13 @@ never emit CC 100/101/102 there.
 Flip side worth remembering: CC 100/101 is a legitimate way to advance a setlist
 from the DAW. Out of scope, but it is the mechanism if that is ever wanted.
 
-## The physical keyboard is not a chain input
+## The physical keyboard has one global destination
 
 Keys arrive over OSC from the firmware — `r oscIn` → `routeOSC /key` →
 `key <n> <v>` → KontrolRack — and are routed by the router's "Active" page:
 `r-main-dest` (0-14) selects a single global active destination, gated by
 `r-midi-notegate` (default 0, off). One destination for the whole rack, not a
-per-chain gate like audio and MIDI note in.
+per-chain gate like audio and MIDI note in. A song's top-level `keyboard` field
+selects the initial chain; the compiler enables the note and control gates and
+targets that chain's first slot. Channel 16 / CC 20 is the fixed global active-
+destination selector for changing it while playing.
