@@ -24,39 +24,59 @@ decision and speak of writing or verifying a report are superseded by
 
 ## Security constraint — read before connecting
 
-OS 5.1 serves a Flask app **unauthenticated** on `0.0.0.0:8080`, and its
-`/terminal` endpoint is a real bash PTY. SSH ships disabled; the web terminal is
-the access path. Treat the Organelle as a device that trusts its LAN completely.
+The check uses the operator's `organelle` OpenSSH alias and key. It never stores
+an address, username or credential in the repo, never enables sshd itself, and
+runs every remote command with `BatchMode=yes` so a missing key fails instead of
+falling back to an interactive prompt. The one-time device bootstrap is owned by
+`../docs/platform/surfaces.md`.
 
-Run this check **only on a network you control**, and never expose the S2 to an
-untrusted one. The check adds no exposure, but it depends on that property.
+OS 5.1 still serves its stock Flask app **unauthenticated** on `0.0.0.0:8080`,
+and its `/terminal` endpoint is effectively a root shell. The hardware check no
+longer depends on that app, but enabling SSH does not remove the exposure. Run
+the check only on a network you control and never expose the S2 to an untrusted
+one.
 
 ## 1. Device session
 
-Connect to the web app on port 8080:
+Use read-only SSH subprocesses through the `organelle` alias:
 
-| Endpoint | Use |
+| Process | Use |
 |---|---|
-| `/log_stream` | websocket streaming `journalctl -f -o cat -t Organelle` |
-| `/terminal` | websocket to a live bash PTY, for `/proc` sampling |
+| `ssh -T -o BatchMode=yes organelle <ready marker; exec journalctl -f -n 0 -o cat -t Organelle>` | prove the follower is attached, then stream new Organelle journal lines |
+| short-lived `ssh -T -o BatchMode=yes organelle <command>` calls | `/proc` sampling, subject metadata and card hashes |
+
+Use the system `ssh` executable, not a Python SSH dependency. OpenSSH already
+owns host aliases, keys, host-key verification and connection errors. Keep the
+log stream separate from sampling commands so a slow sample cannot delay the
+`preset loaded` timestamp. Timestamp each received log line immediately with
+the laptop's monotonic clock. Do not send the first Program Change until the
+remote readiness marker has been received; process creation alone does not prove
+`journalctl` is attached.
 
 Everything Pd prints reaches journald: `start-mother.sh` runs
 `mother 2>&1 | systemd-cat --identifier=Organelle`, and Pd inherits mother's
 stdout. Journald storage is volatile and `/var/log` is tmpfs — the log survives
 until reboot, not past it.
 
-The web UI filters `(snd_pcm_recover) underrun occurred` out of its log view;
-**the raw stream still carries them**, which makes xruns observable for free.
+The web UI filters `(snd_pcm_recover) underrun occurred` out of its view;
+`journalctl` carries the unfiltered line, which makes xruns observable for free.
 
-Device unreachable → verdict `unavailable`, not a failure. Write no baseline.
+An unresolved alias, failed host-key check, rejected key, unreachable sshd, or
+remote command that exits before readiness → verdict `unavailable`, not a
+failure. Write no baseline. Never weaken host-key checking or authentication to
+turn an unavailable device into a connection.
 
-**On the first successful connection**, record `pd -version` and `locale -a`,
-then update the two confirm-on-contact entries in `../docs/open-questions.md`
-and the Pd line in `../docs/validation.md`.
+The first-contact `pd -version` and `locale -a` observations were recorded on
+2026-08-08 in `../docs/validation.md`, `../docs/platform/midi.md`, and
+`../docs/open-questions.md`; the command does not repeat or mutate that
+documentation.
 
-Nothing is installed. No sudo. No agent. Off-device observation goes through the
-journal because the mec OSC broadcaster hardcodes host `127.0.0.1` — commands can
-come from the network, events cannot leave it.
+Nothing is installed. No sudo. No agent. The command runs only `journalctl`,
+`sh`, `pgrep`, `getconf`, `cat`, `sleep`, `printf`, `find`, `sort`, `xargs`,
+`sha256sum`, and `pd` on the
+device. Off-device observation goes through the journal because the mec OSC
+broadcaster hardcodes host `127.0.0.1` — commands can come from the network,
+events cannot leave it.
 
 ## 2. Load timing
 
@@ -67,7 +87,9 @@ for the log line
 preset loaded  : <name>
 ```
 
-and take that timestamp as load complete. Error is network plus journald
+and take that timestamp as load complete. Require the reported name to equal
+the expected `<zero-padded program>-<song slug>`; otherwise the Program Change
+ordering check failed. Error is network plus journald
 latency — milliseconds against loads measured in hundreds of milliseconds.
 
 That event is emitted by `PdCallback::loadPreset`, which `Rack::loadFilePreset`
@@ -88,12 +110,17 @@ clearing a slot and `pd dsp 1` after building it.
 ## 3. CPU and errors
 
 Sample the Pd process over a fixed idle window, then again under a fixed note
-pattern on each chain's channel. Count ALSA underruns and Pd load-error lines
-from the same stream.
+pattern on each chain's channel. Resolve the process once with `pgrep -n pd`,
+obtain clock ticks once with `getconf CLK_TCK`, and read `/proc/<pid>/stat` plus
+`/proc/uptime` through one SSH sampling command per window. A vanished or
+replaced Pd process makes the song check fail; silently changing the sampled PID
+would join two incomparable windows. Count ALSA underruns and Pd load-error
+lines from the journal stream.
 
 ### Stimulus profile v1
 
-Committed alongside the baselines, versioned, and named in every report.
+Versioned in the implementation and named alongside every printed measurement
+and committed baseline.
 
 | Setting | Value |
 |---|---|
@@ -103,7 +130,7 @@ Committed alongside the baselines, versioned, and named in every report.
 | Note timing | 500 ms on, 250 ms off, looped for 20 s |
 | Chains | every chain in the song, simultaneously, each on its own channel |
 | Omni chains | **skipped** — an omni chain would receive every other chain's notes |
-| CPU statistic | mean and p95 of the samples in each window |
+| CPU statistic | mean and nearest-rank p95 of the samples in each window |
 
 Notes go on each chain's compiled note channel, **never on channel 16**.
 Sustaining modules get the full window rather than being cut off, so the CPU
@@ -131,8 +158,11 @@ Organelle S2 and OS 5.1 only.
 
 ## 5. Prove it is read-only
 
-The command sends **only** Program Change and notes. Never CC 102. Never any
-save command.
+The command sends **only** Program Change, Note On and explicit Note Off
+messages. Never any Control Change — including CC 102 and CC 123 — and never any
+save command. MIDI libraries generally number channels from zero: channel 16 on
+the wire is `15` in such an API, while a song chain's 1-based channel is sent as
+`channel - 1`.
 
 This matters concretely: with stock values, a CC 102 of value ≥ 64 on MIDI
 channel 16 overwrites the currently loaded preset on the device. There is no
@@ -146,16 +176,27 @@ That is what removes any need for backup, restore or quarantine (#64) — the
 most dangerous machinery in the plan, a restore path that could destroy the card
 it was protecting.
 
-**Assert it: hash the card before and after a run and require byte-identity.**
+**Assert it:** before starting the journal stream and after every explicit Note
+Off has been sent, calculate this digest through SSH and
+require equality:
+
+```sh
+cd /sdcard && find . -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum
+```
+
+The inner hashes cover contents and include paths; the sorted stream makes the
+outer digest independent of directory enumeration order. Failure to calculate
+either digest is a failed check, not permission to skip the assertion.
 
 ## Not covered by this or any tier
 
-Full list in `../docs/validation.md` — "Deliberately not covered". No report may
-be read as "this sounds right"; the band's ears are the oracle (#63).
+Full list in `../docs/validation.md` — "Deliberately not covered". No printed
+verdict or baseline may be read as "this sounds right"; the band's ears are the
+oracle (#63).
 
 ## Verification
 
-A **stubbed device session replays recorded log streams**:
+A **stubbed device session replays recorded remote observations**:
 
 | Recording | Expected verdict |
 |---|---|
@@ -163,12 +204,15 @@ A **stubbed device session replays recorded log streams**:
 | Run containing a load-error line | `fail` |
 | Run containing an underrun | `fail` |
 | Regressed run, >20% over baseline | `pass` with a warning |
-| Unreachable device | `unavailable`, no baseline written |
+| SSH alias/key missing or device unreachable | `unavailable`, no baseline written |
 
+The fake SSH boundary supplies recorded journal lines, `/proc` samples and card
+digests. The fake MIDI boundary records messages; assert that every message is
+Program Change, Note On or Note Off, and that Program Change is on channel 16.
 Plus the card byte-identity assertion around a real run.
 
 ## Done when
 
-All five replay cases produce the intended verdict, the card hash assertion
-passes, and `../docs/open-questions.md`'s two confirm-on-contact entries are
-replaced with observed values.
+All five replay cases produce the intended verdict, the fake MIDI boundary
+proves no Control Change was sent, and the card hash assertion passes on a real
+run.

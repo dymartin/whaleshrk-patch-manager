@@ -1,7 +1,7 @@
 # Validation
 
 Two things check the rig: `rig lint`, which runs in CI, and a hand-run
-hardware check that does not exist yet. No simulated-OS tier — see
+hardware check. No simulated-OS tier — see
 [decisions.md](decisions.md) #61.
 
 Neither claims DSP correctness or audio quality. Nothing does — see
@@ -41,16 +41,19 @@ No symbol or Pd-object resolution. It was specified once and dropped; see
 `rig lint` never claims a module loads or what it costs in CPU. Nothing
 off-device can.
 
-## The hardware check — planned, not built
+## `rig hardware-check`
 
 Phase 10 of `../Prompt/PLAN.md`. Nothing below has run; do not cite it as
 evidence.
 
-Run by hand from the laptop, with the S2 on the same network and a MIDI port
-connected. Not CI, not scheduled, no runner. Intended use is soundcheck or
+```
+rig hardware-check [SONG...] --midi-port "<exact Windows output name>" [--host organelle]
+```
+
+Run by hand from the Windows laptop, with the S2 on the same network and a MIDI
+port connected. Not CI, not scheduled, no runner. Intended use is soundcheck or
 after a push that changed a song. It reports four things — load time, CPU, Pd
-load errors, ALSA underruns — and prints them; there is no report schema to
-fill.
+load errors, ALSA underruns — and prints them; there is no report schema to fill.
 
 **Read-only on the device.** `Rack::loadPreset` and `loadFilePreset` write
 nothing; `rack.json` is written only by an explicit `savesettings` and
@@ -64,21 +67,24 @@ only inputs that would break that property.
 |---|---|
 | Load a song | MIDI Program Change on channel 16 |
 | Note stimulus | MIDI notes on each chain's own channel |
-| Ready signal, errors, xruns | `/log_stream` websocket on port 8080 |
-| CPU sampling | `/terminal` websocket, reading `/proc` |
+| Ready signal, errors, xruns | keyed OpenSSH, following the Organelle journal |
+| CPU sampling | keyed OpenSSH, reading `/proc/<pd-pid>/stat` and `/proc/uptime` |
 
-All three device endpoints already exist in OS 5.1. Nothing is installed and no
-sudo is used. See [platform/surfaces.md](platform/surfaces.md) for the endpoints
-and the `preset loaded` event.
+Nothing is installed and no sudo is used during a check. The one-time keyed SSH
+bootstrap is manual; see [platform/surfaces.md](platform/surfaces.md). The
+system OpenSSH client owns aliases, keys and host-key verification. The MIDI
+boundary uses Windows' built-in WinMM API, so there is no Python MIDI dependency.
+The journal subprocess emits a remote readiness marker before following; no
+Program Change is sent until that marker arrives.
 
 Program Change is used rather than OSC load-by-name because it also proves what
 the compiler bets on: that zero-padded prefixes and gap placeholders put each
 song at the program number its YAML declares.
 
-**Security constraint.** OS 5.1 serves that web app unauthenticated on
-`0.0.0.0:8080`, and `/terminal` is a real shell. Run the check only on a network
-you control, and never expose the S2 to an untrusted one. The check adds no
-exposure, but it depends on this one.
+**Security constraint.** OS 5.1 still serves its stock web app unauthenticated
+on `0.0.0.0:8080`, and `/terminal` is effectively a root shell. The check does
+not use it, but enabling SSH does not remove it. Run only on a network you
+control, and never expose the S2 to an untrusted one.
 
 ### The subject
 
@@ -97,9 +103,10 @@ design, rather than silently comparing against numbers taken a different way.
 V1 supports Organelle S2 and OS 5.1 only.
 
 The Pd member is **Pd 0.53.1**, Debian bookworm's `puredata`
-(`0.53.1+ds-2+deb12u1`) at `/usr/bin/pd`. Derived from the OS build recipe and
-confirmed against upstream source, not yet observed: record `pd -version` at
-first device contact and replace this line. Audio subject is 44100 Hz,
+(`0.53.1+ds-2+deb12u1`) at `/usr/bin/pd`. **Observed 2026-08-08**, confirming
+what the OS build recipe implied: `pd -version` reports `Pd-0.53.1 ("")
+compiled for Debian (0.53.1+ds-2+deb12u1) on 2024/09/26 at 07:17:50 UTC`.
+Audio subject is 44100 Hz,
 64-sample blocks, `-audiobuf 6` headless — see
 [platform/runtime.md](platform/runtime.md).
 
@@ -127,7 +134,7 @@ Versioned, and named alongside every set of measurements.
 | Note timing | 500 ms on, 250 ms off, looped for 20 s |
 | Chains | every chain in the song, simultaneously, each on its own channel |
 | Omni chains | skipped — an omni chain would receive every other chain's notes |
-| CPU statistic | mean and p95 of the samples in each window |
+| CPU statistic | mean and nearest-rank p95 of the samples in each window |
 
 Notes are sent on each chain's compiled note channel, never on channel 16.
 Sustaining modules get the full window rather than being cut off, so the CPU

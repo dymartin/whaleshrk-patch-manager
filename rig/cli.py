@@ -40,6 +40,21 @@ from rig.catalog import (
     write_lock,
 )
 from rig.compile import CompileError, SampleCompileError, scan_wav_folder
+from rig.hardware import (
+    Device,
+    DeviceUnavailable,
+    HardwareCheckError,
+    MidiOutput,
+    MidiUnavailable,
+    SongMeasurement,
+    SshDevice,
+    WinMidiOutput,
+    make_subject,
+    measure_song,
+    read_baseline,
+    regression_warnings,
+    write_baseline,
+)
 from rig.pull import (
     GhClient,
     GhError,
@@ -104,6 +119,8 @@ _module_source: Optional[StoredArchiveModuleSource] = None
 _upgrade_fetcher: Optional[
     Callable[[dict[str, CatalogEntry]], tuple[dict[str, CatalogEntry], dict[str, CandidateSource]]]
 ] = None
+_hardware_device: Optional[Device] = None
+_midi_output: Optional[MidiOutput] = None
 
 
 def _fail(command: str, code: str, message: str) -> NoReturn:
@@ -436,6 +453,80 @@ def lint(
         typer.echo("lint: ok")
     if has_error:
         raise typer.Exit(code=1)
+
+
+def _echo_hardware_measurement(measurement: SongMeasurement) -> None:
+    verdict = "pass" if measurement.passed else "fail"
+    typer.echo(
+        f"{measurement.song_id}: {verdict}; stimulus v1; "
+        f"load median {measurement.load_ms:.1f} ms; "
+        f"idle CPU mean/p95 {measurement.idle_cpu.mean:.1f}/{measurement.idle_cpu.p95:.1f}%; "
+        f"active CPU mean/p95 {measurement.active_cpu.mean:.1f}/{measurement.active_cpu.p95:.1f}%"
+    )
+    for line in measurement.errors:
+        typer.echo(f"error: {measurement.song_id}: PD_LOAD_ERROR: {line}")
+    if measurement.underruns:
+        typer.echo(f"error: {measurement.song_id}: ALSA_UNDERRUN: {measurement.underruns}")
+    for warning in measurement.warnings:
+        typer.echo(f"warning: {measurement.song_id}: {warning}")
+
+
+@app.command("hardware-check")
+def hardware_check(
+    song: Optional[list[str]] = typer.Argument(None),
+    host: str = typer.Option("organelle", "--host", help="OpenSSH host alias"),
+    midi_port: str = typer.Option(..., "--midi-port", help="Exact Windows MIDI output name"),
+) -> None:
+    """Measure load time and Pd CPU on an Organelle S2."""
+    try:
+        song_docs = _load_all_song_docs(SONGS_DIR)
+    except SongParseError as exc:
+        _fail("hardware-check", "SONG_PARSE_ERROR", str(exc))
+    selected = _resolve_selection("hardware-check", song, song_docs)
+    selected_ids = sorted(song_docs) if selected is None else sorted(selected)
+    catalog, lock, kits = _read_catalog_lock_kits("hardware-check")
+    songs = {sid: doc.song for sid, doc in song_docs.items()}
+    _require_valid("hardware-check", songs, catalog, kits, MEDIA_ROOT)
+
+    device = _hardware_device or SshDevice(host)
+    midi: MidiOutput | None = _midi_output
+    own_midi = midi is None
+    try:
+        subject = make_subject(device, midi_port, lock)
+        before = device.card_hash()
+        if midi is None:
+            midi = WinMidiOutput(midi_port)
+        failed = False
+        pending_baselines: list[SongMeasurement] = []
+        for song_id in selected_ids:
+            measured = measure_song(song_id, songs[song_id], device, midi)
+            baseline = read_baseline(STATE_DIR, song_id)
+            warnings = regression_warnings(measured, baseline, subject)
+            measured = SongMeasurement(
+                measured.song_id, measured.load_ms, measured.idle_cpu,
+                measured.active_cpu, measured.errors, measured.underruns, warnings,
+            )
+            _echo_hardware_measurement(measured)
+            failed |= not measured.passed
+            if measured.passed and (baseline is None or baseline.subject.key != subject.key):
+                pending_baselines.append(measured)
+        after = device.card_hash()
+        if before != after:
+            typer.echo("error: CARD_CHANGED: /sdcard changed during hardware check", err=True)
+            failed = True
+        else:
+            for measured in pending_baselines:
+                write_baseline(STATE_DIR, measured, subject)
+                typer.echo(f"baseline written: {measured.song_id}")
+        if failed:
+            raise typer.Exit(code=1)
+    except DeviceUnavailable as exc:
+        typer.echo(f"hardware-check: unavailable: {exc}")
+    except (HardwareCheckError, MidiUnavailable) as exc:
+        _fail("hardware-check", "CHECK_FAILED", str(exc))
+    finally:
+        if own_midi and midi is not None:
+            midi.close()
 
 
 def _rebuild(command: str, sources: dict[str, CandidateSource]) -> list[CatalogEntry]:

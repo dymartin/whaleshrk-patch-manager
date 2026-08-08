@@ -174,9 +174,9 @@ confirm only the mutated values changed and all comments survived.
 *Verified by:* fixture card with seeded drift produces the expected branch and
 PR set, with `gh` stubbed.
 
-`gh` is a runtime prerequisite for real pull runs and is not installed on the
-development machine as of 2026-08-02. Tests stub it; the command must fail with
-a clear message when it is absent.
+`gh` is a runtime prerequisite for real pull runs. It **is** installed on the
+development machine as of 2026-08-08. Tests still stub it, and the command must
+still fail with a clear message when it is absent.
 
 ## Phase 8 — Lint and CLI surface
 
@@ -225,12 +225,10 @@ network. No CI, no runner, no attestation, and **no report artifact** — it
 prints its measurements (decision #73). Full spec in
 [docs/validation.md](docs/validation.md).
 
-1. **Device session.** Connect to the OS 5.1 web app on port 8080: the
-   `/log_stream` websocket for events and the `/terminal` websocket for `/proc`
-   sampling. Say so and stop when the device is unreachable. Record
-   `pd -version` and `locale -a` on the first successful connection and update
-   the two confirm-on-contact entries in
-   [docs/open-questions.md](docs/open-questions.md).
+1. **Device session.** Use the operator's keyed `organelle` OpenSSH alias: one
+   process follows the Organelle journal and read-only commands collect `/proc`
+   samples and card hashes. Say so and stop when the device is unreachable.
+   First-contact `pd -version` and `locale -a` observations are already recorded.
 2. **Load timing.** Send Program Change on channel 16, wait for
    `preset loaded  : <name>`, take the laptop-clock delta. Three repetitions per
    song, median reported.

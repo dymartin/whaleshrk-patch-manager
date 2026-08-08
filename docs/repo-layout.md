@@ -24,6 +24,8 @@ modules/                    vendored, committed
       .modules-lock-hash    hash of modules.lock as of the last push
     chains/
       <song>.json           chain name -> letter binding, this song only
+    hardware/
+      <song>.json           subject-scoped hardware baseline
   kits.yaml                 kit alias -> kit-N
   modules.lock              pinned versions + content hashes
 ```
@@ -45,6 +47,11 @@ delete-then-create instead.
 repo-wide (one card, one module set), so a selective push can refuse by
 comparing it to the current lock's hash rather than re-deriving anything
 (see [workflows/push.md](workflows/push.md)).
+
+`state/hardware/<song>.json` records the first passing load-time and CPU
+measurement for one complete hardware subject. A subject change replaces the
+baseline on the next passing run; ordinary regressions warn against the existing
+baseline rather than moving it.
 
 Musicians edit `songs/` and `media/`; the CLI owns `.rig/` and `modules/`.
 

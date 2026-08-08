@@ -36,17 +36,22 @@ Two consequences the compiler depends on:
 
 ### The scan order is locale-independent for this scheme
 
-`alphasort` compares with `strcoll`, so the sort depends on `LC_COLLATE`. Two
-candidate locales are in play and both give the same answer here.
+`alphasort` compares with `strcoll`, so the sort depends on `LC_COLLATE`.
 
 `Rack::loadSettings` and `KontrolRack_loadresources` each call
 `setlocale(LC_ALL, "en_US.UTF-8")` immediately before their `scandir`. Nothing
 else in the process sets a locale — Pd 0.53.1's only `setlocale` call is in
-`z_libpd.c`, which is not part of the `pd` binary — so the effective locale is
-`en_US.UTF-8` when that locale is generated in the image and `C` when it is not.
-The documented OS build recipe never runs `locale-gen`, and Raspberry Pi OS Lite
-generates `en_GB.UTF-8` only, so `C` is the likely outcome; a failed `setlocale`
-returns `NULL` and changes nothing.
+`z_libpd.c`, which is not part of the `pd` binary.
+
+**Observed 2026-08-08:** `locale -a` on the S2 returns `C`, `C.utf8`,
+`en_GB.utf8`, `POSIX`. **`en_US.UTF-8` is not generated**, so that `setlocale`
+always fails, returns `NULL` and changes nothing. The effective collation is
+`C` — not one of two possible outcomes, the only reachable one. `en_GB.utf8`
+exists but nothing requests it.
+
+The `en_US.UTF-8` analysis below is kept as the counterfactual, because the
+source still asks for that locale: an image that ran `locale-gen` for it would
+silently switch collation.
 
 Under `C`, `strcoll` is bytewise `strcmp`. Under glibc's `en_US.UTF-8`,
 collation comes from `iso14651_t1`, whose primary weight order places the ten

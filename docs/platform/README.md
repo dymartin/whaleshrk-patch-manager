@@ -12,7 +12,7 @@ Read the file that covers your task.
 | [samples.md](samples.md) | Positional sample selection |
 | [card.md](card.md) | Install layout, `deploy.sh`, buffered writes |
 | [runtime.md](runtime.md) | Pd version, launch line, external resolution |
-| [surfaces.md](surfaces.md) | Log, preset-loaded event, web API, OSC, per-slot injection points |
+| [surfaces.md](surfaces.md) | Log, preset-loaded event, web API, OSC, per-slot injection points, storage layout, device bootstrap |
 | [patchstorage.md](patchstorage.md) | Catalog API behaviour |
 
 ## Provenance
@@ -29,6 +29,13 @@ Every fact in these files was read out of one of these, at these revisions:
 | glibc `localedata` | 2.36 |
 
 Re-verify these findings against any newer revision before trusting them.
+
+**One exception, and it is new.** A few facts now come from the band's own S2
+rather than from source, observed 2026-08-08 on first device contact: the Pd
+version string, `locale -a`, the partition and mount layout, and the shipped
+state of `ssh.service` and `avahi-daemon`. Each is marked "observed" with that
+date where it appears. Facts about *one* device are weaker than facts from
+source — they describe this unit, not every S2.
 
 **ORHACK's compiled binaries are byte-identical to upstream ORAC's.**
 `KontrolRack.pd_linux`, `libmec-kontrol-api.so`, `libmec-api.so` and

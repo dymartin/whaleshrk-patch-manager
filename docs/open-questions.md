@@ -10,15 +10,18 @@ was scoped down on 2026-08-02; see [decisions.md](decisions.md) #61-#68.
 
 ## Confirm on first device contact
 
-Both are answered well enough to build on; neither is observed, and neither
-blocks a phase. Both are one-liners through the web terminal
-([platform/surfaces.md](platform/surfaces.md)).
+First device contact happened 2026-08-08 and closed the first two entries. Both
+are recorded in the doc that owns them; neither changed any design.
 
-- **`pd -version`.** [validation.md](validation.md) pins Pd 0.53.1 from the OS
-  build recipe, which never pulls backports. Replace with the observed string.
-- **`locale -a`.** ORAC requests `en_US.UTF-8` before every preset scan and
-  falls back to `C`. [platform/midi.md](platform/midi.md) shows preset order is
-  the same either way, so this only settles which of two proven paths is live.
+- ~~`pd -version`~~ — **observed**, matches the recipe. See
+  [validation.md](validation.md).
+- ~~`locale -a`~~ — **observed**, and it settles the question rather than
+  confirming it: `en_US.UTF-8` is absent from the image, so ORAC's `setlocale`
+  always fails and `C` collation is the only reachable path. See
+  [platform/midi.md](platform/midi.md).
+
+Still open:
+
 - **Default content of `<slot>-slot-tracker.txt`, `<slot>-seq<n>x.txt`
   (`sequencers/{overdrum,overflow,clips}`) and `<slot>-{len,notes,vel}.txt`
   (`sequencers/polystep`).** Neither shipped preset carries any of these for a

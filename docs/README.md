@@ -12,7 +12,7 @@ Read `overview` first, then the task-relevant doc.
 | [workflows/](workflows/README.md) | Push, pull, drift detection, PRs |
 | [repo-layout.md](repo-layout.md) | Directory structure, what is generated |
 | [transport.md](transport.md) | Device access abstraction |
-| [validation.md](validation.md) | `rig lint` in CI, and the planned hand-run hardware check |
+| [validation.md](validation.md) | `rig lint` in CI, and the hand-run S2 hardware check |
 | [decisions.md](decisions.md) | Decision record with rationale |
 | [open-questions.md](open-questions.md) | Remaining unknowns — read before starting any phase |
 

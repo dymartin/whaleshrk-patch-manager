@@ -36,6 +36,7 @@ from rig.catalog.params import ParamSpec
 from rig.catalog.slugs import module_key
 from rig.catalog.store import archive_path, write_archive
 from rig.cli import app
+from rig.hardware import CpuStats, DeviceUnavailable, SongMeasurement, Subject
 from rig.push.archive_source import StoredArchiveModuleSource
 from rig.push.modules import ModuleSourceUnavailable
 from rig.song.bindings import write_bindings
@@ -78,6 +79,76 @@ def _community_entry(param_id: str = "amt", updated_at: str = "2020-01-01") -> C
         params=[ParamSpec(name="amount", id=param_id, label="Amount", type="pct", min=0, max=100, default=50)],
         version=VersionInfo(updated_at=updated_at, file_id=1, archive_sha256="abc"),
     )
+
+
+class _HardwareDevice:
+    def __init__(self, hashes=("same", "same")):
+        self.hashes = iter(hashes)
+
+    def card_hash(self):
+        return next(self.hashes)
+
+
+class _MidiOutput:
+    name = "fake"
+
+    def close(self):
+        pass
+
+
+def _hardware_repo(repo):
+    _seed_catalog([_synth_entry(), *system_catalog()])
+    _write_song(repo / "songs", "Vellichor", 3)
+
+
+def _measurement():
+    return SongMeasurement("vellichor", 100, CpuStats(10, 12), CpuStats(20, 24), (), 0)
+
+
+def _subject():
+    return Subject("commit", "lock", "device", "Organelle OS 5.1", "Pd", "ORHACK 0.52b", "fake")
+
+
+def test_hardware_check_writes_a_new_baseline_after_card_identity(repo, monkeypatch):
+    _hardware_repo(repo)
+    monkeypatch.setattr(cli, "_hardware_device", _HardwareDevice())
+    monkeypatch.setattr(cli, "_midi_output", _MidiOutput())
+    monkeypatch.setattr(cli, "make_subject", lambda *args: _subject())
+    monkeypatch.setattr(cli, "measure_song", lambda *args, **kwargs: _measurement())
+
+    result = runner.invoke(app, ["hardware-check", "--midi-port", "fake"])
+
+    assert result.exit_code == 0, result.output
+    assert "vellichor: pass" in result.output
+    assert "baseline written: vellichor" in result.output
+    assert (repo / ".rig/state/hardware/vellichor.json").is_file()
+
+
+def test_hardware_check_changed_card_fails_without_writing_baseline(repo, monkeypatch):
+    _hardware_repo(repo)
+    monkeypatch.setattr(cli, "_hardware_device", _HardwareDevice(("before", "after")))
+    monkeypatch.setattr(cli, "_midi_output", _MidiOutput())
+    monkeypatch.setattr(cli, "make_subject", lambda *args: _subject())
+    monkeypatch.setattr(cli, "measure_song", lambda *args, **kwargs: _measurement())
+
+    result = runner.invoke(app, ["hardware-check", "--midi-port", "fake"])
+
+    assert result.exit_code != 0
+    assert "CARD_CHANGED" in result.output
+    assert not (repo / ".rig/state/hardware/vellichor.json").exists()
+
+
+def test_hardware_check_unreachable_is_unavailable_and_writes_nothing(repo, monkeypatch):
+    _hardware_repo(repo)
+    monkeypatch.setattr(cli, "_hardware_device", _HardwareDevice())
+    monkeypatch.setattr(cli, "_midi_output", _MidiOutput())
+    monkeypatch.setattr(cli, "make_subject", lambda *args: (_ for _ in ()).throw(DeviceUnavailable("offline")))
+
+    result = runner.invoke(app, ["hardware-check", "--midi-port", "fake"])
+
+    assert result.exit_code == 0, result.output
+    assert "unavailable: offline" in result.output
+    assert not (repo / ".rig/state/hardware/vellichor.json").exists()
 
 
 def _write_song(songs_dir: Path, name: str, program: int, *, chain_name: str = "lead", level: float = 50) -> str:

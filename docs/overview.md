@@ -33,7 +33,7 @@ CLI works. Ingest populates `tags` to avoid a later re-ingest; see
 - No daemon, no background device watching. The CLI runs by hand around
   rehearsals and gigs.
 - No SSH or network transport for push/pull; transport stays pluggable. The
-  planned hardware check does talk to the device, but only reads and never
+  hardware check does talk to the device, but only reads and never
   moves files — see [validation.md](validation.md).
 - No mirroring of Patchstorage. The catalog holds the modules this rig uses,
   added one at a time — see [catalog.md](catalog.md).

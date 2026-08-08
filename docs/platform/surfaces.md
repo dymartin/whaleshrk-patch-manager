@@ -1,7 +1,9 @@
 # Control and observation surfaces
 
-What the device already exposes. Nothing here requires installing anything.
-[../validation.md](../validation.md) is what uses it.
+What the device already exposes, plus the one procedure that changes it.
+[../validation.md](../validation.md) is what uses the observation surfaces.
+Everything up to "Device bootstrap" is stock and installs nothing; that last
+section is a deliberate deviation from the shipped image.
 
 ## Everything Pd prints reaches journald
 
@@ -44,13 +46,39 @@ The UI filters `(snd_pcm_recover) underrun occurred` lines out of the log view;
 the raw stream still carries them, which makes xruns observable for free.
 
 **SSH is disabled** in shipped S2 images — the build recipe ends with
-`systemctl disable ssh.service`. The web terminal is the access path, and it is
-unauthenticated to anyone on the network. Treat the Organelle as a device that
-trusts its LAN completely.
+`systemctl disable ssh.service`. The web terminal is the stock access path, and
+it is unauthenticated to anyone on the network. "Device bootstrap" below enables
+sshd; until that is run on a given device, the web terminal is all there is.
 
-Root filesystem is mounted read-only; `fw_dir/scripts/remount-rw.sh` is what
-changes that. `/tmp`, `/var/log` and `/var/tmp` are tmpfs. `vcgencmd` and
-`python3-psutil` are present.
+**The web terminal is a root shell in practice.** Observed 2026-08-08: it runs
+as `music` (uid 1000), and `music` has passwordless `sudo` (`sudo -n true`
+returns 0). So an unauthenticated port-8080 connection is full root over the
+LAN. Treat the Organelle as a device that trusts its LAN completely — this is
+the stock posture, not something the tooling introduces.
+
+Root filesystem is `/dev/mmcblk0p2`, ext4, mounted `ro,noatime`;
+`/home/music/fw_dir/scripts/remount-rw.sh` is what changes that, and
+`mount -o remount,ro /` puts it back. `/tmp`, `/var/log` and `/var/tmp` are
+tmpfs. `vcgencmd` and `python3-psutil` are present.
+
+## Storage layout, observed
+
+Observed 2026-08-08 on the band's S2:
+
+| Path | Device | Filesystem | Notes |
+|---|---|---|---|
+| `/` | `/dev/mmcblk0p2` | ext4 `ro,noatime` | needs remount to write |
+| `/sdcard` | `/dev/mmcblk0p3` | ext4 `rw,noatime` | `music:music`, `drwxr-xr-x` |
+| `/usbdrive` | — | — | mountpoint exists, nothing mounted |
+
+**The user drive is a separate, already-writable partition.** Card writes
+therefore need no remount and no root — `music` owns `/sdcard` and can write it
+directly. Only the bootstrap touches the read-only root.
+
+The card is **ext4**, which makes `deploy.sh`'s `chmod 555` on
+`data/orhack/presets/Init` effective here — see [card.md](card.md), where that
+protection is described as conditional on a POSIX filesystem. The tool still
+protects `Init` by rule and never relies on the mode bits.
 
 ## mec OSC control plane
 
@@ -70,3 +98,104 @@ observation goes through the journal instead.
 and `s~ outL-<slot>` / `s~ outR-<slot>`, and `fullmodule.pd` routes notes and
 controls through `notesIn-<slot>` / `ctrlIn-<slot>`. A slot's audio, notes and
 controls are all addressable by name, without any MIDI or audio device.
+
+## Device bootstrap
+
+One-time, per device, and **not automated** — `rig` never performs it. It is a
+root-level change to a device the operator owns, and burying it in a push
+command means it fires on the wrong box. `rig` assumes it was done and refuses
+with a clear message when sshd is unreachable.
+
+All of it is root-filesystem state, so **a firmware update can revert it**. That
+is why the procedure lives here rather than in someone's memory.
+
+Run it through the stock web terminal (port 8080). That terminal mangles pasted
+multi-line input — heredocs in particular arrive truncated — so every command
+must be a single line.
+
+### 1. sshd
+
+```sh
+sudo /home/music/fw_dir/scripts/remount-rw.sh
+mkdir -p /home/music/.ssh && chmod 700 /home/music/.ssh
+echo '<laptop public key>' >> /home/music/.ssh/authorized_keys
+chmod 600 /home/music/.ssh/authorized_keys
+printf 'PasswordAuthentication no\nKbdInteractiveAuthentication no\nPermitRootLogin no\n' | sudo tee /etc/ssh/sshd_config.d/10-whaleshrk.conf
+sudo mkdir -p /run/sshd && sudo sshd -t && echo CONFIG_OK
+sudo systemctl enable --now ssh
+sudo mount -o remount,ro /
+```
+
+Load-bearing details, each of which cost a debugging round:
+
+- **`700` on `.ssh` and `600` on `authorized_keys`.** sshd's `StrictModes`
+  silently refuses looser permissions, and the failure presents as a rejected
+  key.
+- **Harden before enabling.** Writing the config first means sshd is never up
+  with password authentication live. Organelle images ship well-known default
+  credentials, so that window is the whole risk.
+- **A drop-in under `sshd_config.d/`, not an edit to `sshd_config`.** Debian 12
+  includes that directory; an OS update rewriting the main config leaves the
+  drop-in intact.
+- **`sudo sshd -t` fails with `Missing privilege separation directory:
+  /run/sshd` before sshd has ever run.** That is not a config error —
+  `/run/sshd` is created by the unit's `RuntimeDirectory=` at start. `mkdir` it
+  first; `/run` is tmpfs so it costs nothing and needs no remount. Do not enable
+  without a passing `sshd -t`: the only other way in is the web page.
+- **Verify from the laptop before closing the web terminal.** It is the recovery
+  path if the key did not take.
+
+Host keys already exist in `/etc/ssh/`; nothing is generated.
+
+### 2. mDNS — optional, and a deliberate deviation
+
+`avahi-daemon` ships **installed but masked** — symlinked to `/dev/null`, which
+blocks socket and D-Bus activation too, not merely boot. That is a deliberate
+vendor choice. **No documented reason was found.**
+
+The likeliest explanation, and it is a hypothesis rather than a finding, is
+realtime audio: avahi wakes on every mDNS multicast packet on the segment, and
+on this hardware that jitter can surface as ALSA xruns — the exact condition
+[../validation.md](../validation.md) makes a hard fail. Unmasking it therefore
+adds a candidate cause of the thing the hardware check measures.
+
+```sh
+sudo /home/music/fw_dir/scripts/remount-rw.sh
+sudo systemctl unmask avahi-daemon avahi-daemon.socket
+sudo systemctl enable --now avahi-daemon
+sudo mount -o remount,ro /
+```
+
+`unmask` persists on its own (it deletes a file). `enable` is what survives
+reboot; `start` alone does not. Revert with `systemctl disable --now
+avahi-daemon` followed by `mask`.
+
+**If the hardware check ever reports underruns, disabling avahi is the first
+experiment** — one command, decisive.
+
+A DHCP reservation avoids the question entirely: the address stops moving,
+nothing extra runs, and the audio thread is untouched. Preferred unless
+name-based addressing is actually needed.
+
+### 3. Addressing and exposure
+
+`~/.ssh/config` on each operator's laptop holds the host, user and key. **The
+repo stores only the alias** — no address, no credentials in git.
+
+```
+Host organelle
+    HostName <address or organelle-s2.local>
+    User music
+    IdentityFile ~/.ssh/organelle
+```
+
+mDNS is link-local multicast and **does not cross a router**. A laptop on a
+different subnet than the device — easy to end up with under double NAT — will
+never resolve `.local` however healthy avahi is.
+
+The operating rule from [../validation.md](../validation.md), "only on a network
+you control", is satisfiable at home and is not on a venue's shared wifi, where
+the unauthenticated port-8080 root shell is exposed to everyone present. A
+band-owned travel router with a DHCP reservation solves addressing and exposure
+together. Switching the device's wifi off for a set is the blunt version and
+costs nothing — the rig needs no network on stage.
