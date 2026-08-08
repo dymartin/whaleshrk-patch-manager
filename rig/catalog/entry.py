@@ -19,13 +19,16 @@ SCHEMA_VERSION = 1
 class VersionInfo:
     """Community-only: absent (None fields) for @orhack built-ins.
 
-    `revision` is deliberately not stored -- author free text, unusable as a
-    version (docs/catalog.md "Versioning").
+    `revision` is author free text and never an identity -- revisions collide
+    across uploads and authors re-upload without bumping them, so ordering or
+    equality checks use `updated_at`/`archive_sha256` instead. It is carried
+    only to name the stored archive readably (docs/catalog.md "Versioning").
     """
 
     updated_at: str | None = None
     file_id: int | None = None
     archive_sha256: str | None = None
+    revision: str | None = None
 
 
 @dataclass(frozen=True)
@@ -67,6 +70,7 @@ class CatalogEntry:
                 "updated_at": self.version.updated_at,
                 "file_id": self.version.file_id,
                 "archive_sha256": self.version.archive_sha256,
+                "revision": self.version.revision,
             },
             "sidecar_templates": list(self.sidecar_templates),
         }

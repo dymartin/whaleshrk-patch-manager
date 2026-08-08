@@ -14,7 +14,6 @@ repo root, same as `git`.
 
 from __future__ import annotations
 
-import hashlib
 from pathlib import Path
 from typing import Callable, Iterable, NoReturn, Optional
 
@@ -23,21 +22,20 @@ import typer
 
 from rig.atomicio import write_text_atomic
 from rig.catalog import (
+    ARCHIVE_SIZE_WARN_BYTES,
+    ArchiveStoreError,
     CandidateSource,
     CatalogEntry,
     KeyCollisionError,
     PatchstorageError,
-    ZipCandidateArchive,
     build_catalog,
     build_community_catalog,
-    discover_union,
-    fetch_archive_bytes,
-    fetch_detail,
     find_sources_by_slug,
     ingest_pinned_builtins,
     live_httpx_client,
     read_catalog,
     read_lock,
+    write_archive,
     write_catalog,
     write_lock,
 )
@@ -52,11 +50,12 @@ from rig.pull import (
     pull as run_pull,
 )
 from rig.push import (
+    ModuleSourceUnavailable,
     OrhackIntegrityError,
-    PatchstorageModuleSource,
     PushError,
     PushResult,
     PushTransactionError,
+    StoredArchiveModuleSource,
     push as run_push,
 )
 from rig.song import (
@@ -74,7 +73,6 @@ from rig.song import (
     write_bindings,
 )
 from rig.transport import CardDetectionError, Transport, TransportPathError
-from rig.validate import ReportIntegrityError, run_static, verify_report, write_report
 
 app = typer.Typer(no_args_is_help=True, add_completion=False)
 catalog_app = typer.Typer(no_args_is_help=True)
@@ -84,14 +82,13 @@ app.add_typer(catalog_app, name="catalog")
 # convention `catalog update` (below) already uses.
 SONGS_DIR = Path("songs")
 MEDIA_ROOT = Path("media")
+# Vendored upload archives, not generated state -- hence top-level, beside
+# songs/ and media/, rather than under .rig/ (docs/repo-layout.md).
+MODULES_DIR = Path("modules")
 CATALOG_DIR = Path(".rig/catalog")
 LOCK_PATH = Path(".rig/modules.lock")
 STATE_DIR = Path(".rig/state")
 KITS_PATH = Path(".rig/kits.yaml")
-# Reports are run output, not repo state -- committed baselines live under
-# .rig/state/ (docs/validation.md "reports are not [committed]"), so this
-# gets its own .gitignore'd subtree rather than sitting alongside them.
-REPORTS_DIR = Path(".rig/state/reports")
 
 # Test-only override points. Every real invocation leaves these None, so
 # push()/pull() fall back to their own real behaviour: auto-detecting the
@@ -103,17 +100,14 @@ _transport: Optional[Transport] = None
 _card_roots: Optional[Iterable[Path]] = None
 _git: Optional[GitRepo] = None
 _gh: Optional[GhClient] = None
-_module_source: Optional[PatchstorageModuleSource] = None
-_upgrade_fetcher: Optional[Callable[[dict[str, CatalogEntry]], dict[str, CatalogEntry]]] = None
+_module_source: Optional[StoredArchiveModuleSource] = None
+_upgrade_fetcher: Optional[
+    Callable[[dict[str, CatalogEntry]], tuple[dict[str, CatalogEntry], dict[str, CandidateSource]]]
+] = None
 
 
 def _fail(command: str, code: str, message: str) -> NoReturn:
     typer.echo(f"rig {command}: {code}: {message}", err=True)
-    raise typer.Exit(code=1)
-
-
-def _not_implemented(command: str) -> NoReturn:
-    typer.echo(f"rig {command}: not implemented", err=True)
     raise typer.Exit(code=1)
 
 
@@ -184,12 +178,45 @@ def _require_valid(
         raise typer.Exit(code=1)
 
 
-# --- Patchstorage lookup shared by `rig upgrade` and push's live ModuleSource -
+# --- Patchstorage lookup, shared by `catalog add`, `catalog update`, `upgrade` -
 
 
 def _locked_community_slugs(catalog: list[CatalogEntry], lock: dict) -> set[str]:
     locked_keys = set(lock.get("modules", {}))
     return {e.source for e in catalog if e.source != "orhack" and e.key in locked_keys}
+
+
+def _fetch_sources(command: str, slugs: set[str]) -> dict[str, CandidateSource]:
+    """Fetch the named uploads from Patchstorage. The only network path in
+    the tool besides `rig upgrade`, which routes through here too."""
+    if not slugs:
+        return {}
+    try:
+        with live_httpx_client() as client:
+            return find_sources_by_slug(client, slugs)
+    except (httpx.HTTPError, PatchstorageError) as exc:
+        _fail(command, "SOURCE_UNREACHABLE", f"could not reach Patchstorage: {exc}")
+
+
+def _store_archives(command: str, entries: list[CatalogEntry], sources: dict[str, CandidateSource]) -> None:
+    """Commit each upload's archive to `modules/`, byte-identical to what
+    Patchstorage served, and warn about any that will weigh on git history."""
+    stored: set[str] = set()
+    for entry in entries:
+        source = sources.get(entry.source)
+        if source is None or entry.source in stored:
+            continue
+        stored.add(entry.source)
+        data = source.archive.data
+        try:
+            path = write_archive(MODULES_DIR, entry.source, entry.version.revision or "unknown", data)
+        except ArchiveStoreError as exc:
+            _fail(command, exc.code, str(exc))
+        if len(data) > ARCHIVE_SIZE_WARN_BYTES:
+            typer.echo(
+                f"warning: {path.name} is {len(data) // 1024}KB -- every future version of it stays "
+                "in git history permanently",
+            )
 
 
 # --- commands ------------------------------------------------------------
@@ -213,7 +240,7 @@ def push(
 
     _require_valid("push", songs, catalog, kits, MEDIA_ROOT)
 
-    module_source = _module_source or PatchstorageModuleSource(_locked_community_slugs(catalog, lock))
+    module_source = _module_source or StoredArchiveModuleSource(MODULES_DIR, lock)
 
     try:
         result = run_push(
@@ -225,7 +252,6 @@ def push(
             media_root=MEDIA_ROOT,
             state_dir=STATE_DIR,
             module_source=module_source,
-            update_checker=module_source,
             transport=_transport,
             roots=_card_roots,
             force=force,
@@ -264,8 +290,6 @@ def _echo_push_result(result: PushResult) -> None:
         typer.echo(f"modules installed: {', '.join(result.modules_installed)}")
     if result.modules_replaced:
         typer.echo(f"modules replaced: {', '.join(result.modules_replaced)}")
-    for key, description in sorted(result.updates_available.items()):
-        typer.echo(f"update available: {key}: {description}")
     if result.current_preset_repaired:
         typer.echo(f"current preset repaired to: {result.current_preset_repaired}")
     if result.dry_run:
@@ -287,7 +311,6 @@ def _echo_push_result(result: PushResult) -> None:
 def pull(
     song: Optional[list[str]] = typer.Argument(None),
     dry_run: bool = typer.Option(False, "--dry-run"),
-    adopt: bool = typer.Option(False, "--adopt"),
 ) -> None:
     """Detect card drift and open one PR per drifted song."""
     try:
@@ -312,7 +335,6 @@ def pull(
             git=_git,
             gh=_gh,
             dry_run=dry_run,
-            adopt=adopt,
         )
     except CardDetectionError as exc:
         _fail("pull", exc.code, str(exc))
@@ -326,7 +348,7 @@ def pull(
         _fail("pull", "TRANSPORT_PATH_ERROR", str(exc))
 
     _echo_pull_result(result)
-    if result.aborted or result.adoption_failed:
+    if result.aborted:
         raise typer.Exit(code=1)
 
 
@@ -335,23 +357,42 @@ def _echo_pull_result(result: PullResult) -> None:
         typer.echo(f"clean: {', '.join(result.clean)}")
     for sid, url in sorted(result.drifted.items()):
         typer.echo(f"drifted: {sid} -> {url or '(dry run)'}")
-    for sid, url in sorted(result.adopted.items()):
-        typer.echo(f"adopted: {sid} -> {url or '(dry run)'}")
     if result.missing:
         typer.echo(f"missing from card, song file kept: {', '.join(result.missing)}")
     for sid, message in sorted(result.aborted.items()):
         typer.echo(f"could not reverse-map {sid!r}: {message}", err=True)
-    for directory, message in sorted(result.adoption_failed.items()):
-        typer.echo(f"could not adopt {directory!r}: {message}", err=True)
     if result.dry_run:
         typer.echo("(dry run -- nothing written)")
+
+
+def _check_stored_archives(catalog: list[CatalogEntry], lock: dict) -> list[str]:
+    """Re-gate every locked module's committed archive.
+
+    This is the repo's reproducibility check: it proves `.rig/catalog/` was
+    generated from the archives actually present in `modules/`, rather than
+    hand-edited, and that every archive still passes the safety and ARM32 ELF
+    checks it passed when it was added. Cheap because the catalog is a
+    shopping list -- it covers the modules this rig uses, not all of
+    Patchstorage.
+    """
+    module_source = StoredArchiveModuleSource(MODULES_DIR, lock)
+    locked_keys = set(lock.get("modules", {}))
+    problems: list[str] = []
+    for entry in catalog:
+        if entry.source == "orhack" or entry.key not in locked_keys:
+            continue
+        try:
+            module_source.fetch(entry)
+        except ModuleSourceUnavailable as exc:
+            problems.append(str(exc))
+    return problems
 
 
 @app.command()
 def lint(
     song: Optional[list[str]] = typer.Argument(None),
 ) -> None:
-    """Check song YAML without touching the card."""
+    """Check song YAML and stored module archives without touching the card."""
     try:
         song_docs = _load_all_song_docs(SONGS_DIR)
     except SongParseError as exc:
@@ -364,6 +405,10 @@ def lint(
     songs = {sid: doc.song for sid, doc in song_docs.items()}
 
     has_error = False
+
+    for problem in _check_stored_archives(catalog, lock):
+        typer.echo(f"error: MODULE_ARCHIVE: {problem}")
+        has_error = True
 
     cross = validate_songs(list(songs.values()))
     for f in cross.errors:
@@ -393,55 +438,94 @@ def lint(
         raise typer.Exit(code=1)
 
 
+def _rebuild(command: str, sources: dict[str, CandidateSource]) -> list[CatalogEntry]:
+    """Gate `sources` and rebuild the whole catalog around them.
+
+    Built-ins come from the pinned ORHACK 0.52b fixture, never a live card
+    (see rig/catalog/builtins.py); only community modules come from
+    Patchstorage.
+    """
+    try:
+        result = build_catalog(ingest_pinned_builtins(), list(sources.values()))
+    except KeyCollisionError as exc:
+        _fail(command, "KEY_COLLISION", str(exc))
+
+    for reject in result.rejects:
+        typer.echo(f"rejected {reject.candidate_id} ({reject.reason.value}): {reject.message}")
+    return result.entries
+
+
+@catalog_app.command("add")
+def catalog_add(
+    slug: list[str] = typer.Argument(..., help="Patchstorage upload slug(s)"),
+) -> None:
+    """Add community module(s) to the catalog by Patchstorage upload slug.
+
+    The catalog is a shopping list, not a mirror of Patchstorage: it holds
+    the modules this rig actually uses, and nothing else. This is one of the
+    two commands allowed to reach the network (`rig upgrade` is the other);
+    everything afterwards reads the committed `.rig/catalog/` and `modules/`.
+    """
+    wanted = set(slug)
+    existing_sources = {e.source for e in read_catalog(CATALOG_DIR) if e.source != "orhack"}
+    already = sorted(wanted & existing_sources)
+    if already:
+        _fail("catalog add", "ALREADY_ADDED", f"already in the catalog: {', '.join(already)}")
+
+    sources = _fetch_sources("catalog add", wanted | existing_sources)
+    missing = sorted(wanted - set(sources))
+    if missing:
+        _fail("catalog add", "SLUG_NOT_FOUND", f"no Patchstorage upload with slug(s): {', '.join(missing)}")
+
+    entries = _rebuild("catalog add", sources)
+    added = sorted(e.key for e in entries if e.source in wanted)
+    if not added:
+        _fail(
+            "catalog add",
+            "NO_MODULES_ACCEPTED",
+            f"{', '.join(sorted(wanted))} passed no gate check -- see the rejections above",
+        )
+
+    _store_archives("catalog add", entries, sources)
+    write_catalog(entries, CATALOG_DIR)
+    write_lock(entries, LOCK_PATH)
+    typer.echo(f"added: {', '.join(added)}")
+
+
 @catalog_app.command("update")
 def catalog_update(
     dry_run: bool = typer.Option(False, "--dry-run"),
 ) -> None:
-    """Rebuild .rig/catalog/ and .rig/modules.lock from live Patchstorage data.
+    """Re-fetch every module already in the catalog and prune what upstream dropped.
 
-    Built-ins come from the pinned ORHACK 0.52b fixture, never a live card
-    (see rig/catalog/builtins.py) -- only community modules are discovered
-    live. This is the one command allowed to reach the network; ordinary
-    builds and pushes only ever read the committed `.rig/catalog/`.
+    Only refreshes what the catalog already names -- adding a module is
+    `rig catalog add`. An upload that has disappeared from Patchstorage is
+    reported and left in place: its archive is committed, so the rig still
+    works, and dropping a module a song may use is not this command's call.
     """
-    builtin_entries = ingest_pinned_builtins()
-
-    try:
-        with httpx.Client(timeout=30.0) as client:
-            ids = discover_union(client)
-            sources = []
-            for patch_id in ids:
-                detail = fetch_detail(client, patch_id)
-                files = detail.get("files") or []
-                if not files:
-                    continue
-                archive_bytes = fetch_archive_bytes(client, files[0]["url"])
-                sources.append(
-                    CandidateSource(
-                        id=patch_id,
-                        archive=ZipCandidateArchive(archive_bytes),
-                        detail=detail,
-                        archive_sha256=hashlib.sha256(archive_bytes).hexdigest(),
-                    )
-                )
-    except (httpx.HTTPError, PatchstorageError) as exc:
-        _fail("catalog update", "SOURCE_UNREACHABLE", f"could not reach Patchstorage: {exc}")
-
-    try:
-        result = build_catalog(builtin_entries, sources)
-    except KeyCollisionError as exc:
-        _fail("catalog update", "KEY_COLLISION", str(exc))
-
-    for reject in result.rejects:
-        typer.echo(f"rejected {reject.candidate_id} ({reject.reason.value}): {reject.message}")
-
-    if dry_run:
-        typer.echo(f"{len(result.entries)} entries, {len(result.rejects)} rejected (dry run)")
+    current = read_catalog(CATALOG_DIR)
+    wanted = {e.source for e in current if e.source != "orhack"}
+    if not wanted:
+        typer.echo("catalog holds no community modules -- add one with `rig catalog add SLUG`")
         return
 
-    write_catalog(result.entries, CATALOG_DIR)
-    write_lock(result.entries, LOCK_PATH)
-    typer.echo(f"{len(result.entries)} entries written, {len(result.rejects)} rejected")
+    sources = _fetch_sources("catalog update", wanted)
+    gone = sorted(wanted - set(sources))
+    for source in gone:
+        typer.echo(f"warning: {source} is no longer on Patchstorage -- keeping the stored archive")
+
+    entries = _rebuild("catalog update", sources)
+    kept = [e for e in current if e.source in gone]
+    merged = sorted(entries + kept, key=lambda e: e.key)
+
+    if dry_run:
+        typer.echo(f"{len(merged)} entries, {len(gone)} no longer upstream (dry run)")
+        return
+
+    _store_archives("catalog update", merged, sources)
+    write_catalog(merged, CATALOG_DIR)
+    write_lock(merged, LOCK_PATH)
+    typer.echo(f"{len(merged)} entries written, {len(gone)} no longer upstream")
 
 
 def _used_param_slugs(song: Song, module_key_: str) -> set[str]:
@@ -466,16 +550,19 @@ def _used_param_slugs(song: Song, module_key_: str) -> set[str]:
     return slugs
 
 
-def _fetch_upgraded_entries(requested: dict[str, CatalogEntry]) -> dict[str, CatalogEntry]:
+def _fetch_upgraded_entries(
+    requested: dict[str, CatalogEntry],
+) -> tuple[dict[str, CatalogEntry], dict[str, CandidateSource]]:
     """Module key -> its freshly re-ingested `CatalogEntry`, live from
     Patchstorage, for every key in `requested` whose upload still exists and
-    still passes the catalog gate. A key absent from the result means it
-    could not be refreshed -- the caller treats that as a refusal."""
+    still passes the catalog gate, plus the fetched sources so their archives
+    can be stored. A key absent from the result means it could not be
+    refreshed -- the caller treats that as a refusal."""
     wanted_slugs = {entry.source for entry in requested.values()}
     with live_httpx_client() as client:
         sources = find_sources_by_slug(client, wanted_slugs)
     fresh = build_community_catalog(list(sources.values()))
-    return {entry.key: entry for entry in fresh.entries if entry.key in requested}
+    return {entry.key: entry for entry in fresh.entries if entry.key in requested}, sources
 
 
 @app.command()
@@ -503,7 +590,7 @@ def upgrade(
     requested = {m: current_by_key[m] for m in module}
     fetcher = _upgrade_fetcher or _fetch_upgraded_entries
     try:
-        fresh_by_key = fetcher(requested)
+        fresh_by_key, fresh_sources = fetcher(requested)
     except (httpx.HTTPError, PatchstorageError) as exc:
         _fail("upgrade", "SOURCE_UNREACHABLE", f"could not reach Patchstorage: {exc}")
 
@@ -547,6 +634,7 @@ def upgrade(
         return
 
     merged = [fresh_by_key.get(entry.key, entry) for entry in current_catalog]
+    _store_archives("upgrade", [fresh_by_key[m] for m in module], fresh_sources)
     write_catalog(merged, CATALOG_DIR)
     write_lock(merged, LOCK_PATH)
     for m in module:
@@ -600,118 +688,6 @@ def rename_chain(
         write_bindings(chains_state_dir, song, bindings)
 
     typer.echo(f"renamed: {song}: {old} -> {new}")
-
-
-# `validate` is a single flat command, deliberately not a typer sub-app/group,
-# even though `verify-report` reads like a subcommand. typer's TyperGroup
-# (vendored click) resolves a group's leftover positional tokens as a
-# subcommand-name candidate before the group's own callback runs at all --
-# confirmed against typer 0.27.1's TyperGroup.parse_args/invoke in
-# typer/core.py -- regardless of allow_extra_args/ignore_unknown_options. A
-# `song: list[str]` argument on a `validate` group callback therefore either
-# swallows a literal `verify-report` (breaking subcommand dispatch) or, as a
-# group argument, makes any non-empty SONG list fail with "No such command".
-# Do not turn this back into a group; dispatch on args[0] instead.
-#
-# Hardware validation (Phase 10) has no hardware feedback channel yet, so
-# `--tier hardware` stays a documented stub -- Global Constraint #1: never
-# cite a planned tier as if it had already run.
-def _validate_static(command: str, song_args: list[str]) -> None:
-    try:
-        song_docs = _load_all_song_docs(SONGS_DIR)
-    except SongParseError as exc:
-        _fail(command, "SONG_PARSE_ERROR", str(exc))
-
-    selected = _resolve_selection(command, song_args, song_docs)
-    catalog, lock, kits = _read_catalog_lock_kits(command)
-    songs = {sid: doc.song for sid, doc in song_docs.items()}
-
-    commit = None
-    try:
-        commit = GitRepo(Path(".")).rev_parse("HEAD")
-    except GitError:
-        # No repo, or a repo with no commits yet. A report is still valid
-        # without a commit -- Subject.commit is Optional precisely for this.
-        pass
-
-    module_lock_digest = hashlib.sha256(LOCK_PATH.read_bytes()).hexdigest() if LOCK_PATH.exists() else None
-
-    report = run_static(
-        songs=songs,
-        selected=selected,
-        catalog=catalog,
-        lock=lock,
-        kits=kits,
-        media_root=MEDIA_ROOT,
-        bindings_dir=STATE_DIR / "chains",
-        commit=commit,
-        module_lock_digest=module_lock_digest,
-    )
-
-    report_path = REPORTS_DIR / f"static-{report.run_id}.json"
-    write_report(report, report_path)
-
-    typer.echo(f"verdict: {report.verdict}")
-    for f in report.failures:
-        typer.echo(f"failure: {f.id}: {f.message}")
-    typer.echo(f"confidence: {report.confidence}")
-    typer.echo(report.scope_note)
-    typer.echo(f"report written: {report_path}")
-
-    if report.verdict != "pass":
-        raise typer.Exit(code=1)
-
-
-def _validate_verify_report(command: str, report_arg: str) -> None:
-    report_path = Path(report_arg)
-    try:
-        verify_report(report_path)
-    except FileNotFoundError:
-        _fail(command, "REPORT_NOT_FOUND", f"no report at {report_path}")
-    except ReportIntegrityError as exc:
-        _fail(command, "REPORT_INTEGRITY_ERROR", str(exc))
-    typer.echo(f"rig validate verify-report: ok: {report_path}")
-
-
-@app.command(
-    context_settings={"ignore_unknown_options": True},
-    epilog=(
-        "rig validate --tier static|hardware [SONG...]\n\n"
-        "rig validate verify-report REPORT"
-    ),
-)
-def validate(
-    args: Optional[list[str]] = typer.Argument(
-        None,
-        metavar="[SONG]... | verify-report REPORT",
-        help="Song names for --tier validation, or the literal "
-        "'verify-report REPORT'.",
-    ),
-    tier: Optional[str] = typer.Option(None, "--tier", help="static|hardware"),
-) -> None:
-    """Run static or hardware validation, or verify a recorded report.
-
-    Two invocation forms:
-
-        rig validate --tier static|hardware [SONG...]
-
-        rig validate verify-report REPORT
-    """
-    args = args or []
-    if args and args[0] == "verify-report":
-        if len(args) != 2:
-            typer.echo("usage: rig validate verify-report REPORT", err=True)
-            raise typer.Exit(code=2)
-        _validate_verify_report("validate verify-report", args[1])
-        return
-
-    if tier == "hardware":
-        _not_implemented("validate --tier hardware")
-    if tier != "static":
-        typer.echo("rig validate: --tier static|hardware is required", err=True)
-        raise typer.Exit(code=2)
-
-    _validate_static("validate", args)
 
 
 if __name__ == "__main__":

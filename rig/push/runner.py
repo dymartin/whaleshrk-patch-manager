@@ -34,7 +34,6 @@ from rig.push.errors import PushError
 from rig.push.media import build_media_plan
 from rig.push.modules import (
     ModuleSource,
-    UpdateChecker,
     module_install_dir,
     plan_module_reconciliation,
     verify_orhack_manifest,
@@ -87,7 +86,6 @@ class PushResult:
     placeholders_removed: list[int] = field(default_factory=list)
     modules_installed: list[str] = field(default_factory=list)  # catalog keys
     modules_replaced: list[str] = field(default_factory=list)
-    updates_available: dict[str, str] = field(default_factory=dict)
     media_groups_written: list[str] = field(default_factory=list)
     current_preset_repaired: Optional[str] = None
 
@@ -112,7 +110,6 @@ def push(
     media_root: Path,
     state_dir: Path,
     module_source: ModuleSource,
-    update_checker: Optional[UpdateChecker] = None,
     transport: Optional[Transport] = None,
     roots: Optional[Iterable[Path]] = None,
     force: bool = False,
@@ -163,14 +160,14 @@ def push(
 
     locked_keys = set(lock.get("modules", {}))
     community_entries = [e for e in catalog if e.source != "orhack" and e.key in locked_keys]
-    reconcile = plan_module_reconciliation(transport, community_entries, module_source, update_checker)
+    reconcile = plan_module_reconciliation(transport, community_entries, module_source)
     if reconcile.unavailable:
         names = ", ".join(sorted(e.key for e in reconcile.unavailable))
         raise PushError(
             "MODULE_UNAVAILABLE",
-            f"module(s) {names} are named in the lock, absent from the card, and their "
-            "source cannot be reached -- the compiled preset would reference a moduleType "
-            "that never resolves",
+            f"module(s) {names} are named in `.rig/modules.lock` but their archive in "
+            "`modules/` is missing, fails its pinned digest, or no longer holds the module -- "
+            "the compiled preset would reference a moduleType that never resolves",
         )
 
     # Step 3: compile every selected song. Chain-rename detection (step 5)
@@ -290,7 +287,6 @@ def push(
         placeholders_removed=placeholders_removed,
         modules_installed=sorted(m.entry.key for m in reconcile.to_install),
         modules_replaced=sorted(m.entry.key for m in reconcile.to_replace),
-        updates_available=dict(reconcile.updates_available),
         media_groups_written=[g.name for g in media_plan.groups],
     )
 

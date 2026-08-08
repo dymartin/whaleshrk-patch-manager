@@ -1,11 +1,8 @@
 """`rig`'s CLI surface end to end, via `CliRunner` against the real app.
 
-`catalog update` is exercised only through `--help` (Phase 1's own tests
-cover its behaviour; it reaches the network, and `tests/conftest.py` blocks
-every socket for the whole session). `validate` stays a documented stub --
-Phase 8 owns the command surface and the lint policy (`rig lint`), not the
-report schema or the tiers themselves (`docs/validation.md` "Implementation
-order": Phases 9/10).
+`catalog add`/`catalog update` are exercised only through `--help`: they are
+the only commands that reach Patchstorage, and `tests/conftest.py` blocks
+every socket for the whole session.
 
 Every other command is exercised for real: `push`/`pull` against
 `InMemoryTransport` (never a real card) and, for `pull`, a throwaway local
@@ -14,17 +11,15 @@ git repo plus `FakeGhClient` (never the real `gh` on this machine -- see
 `_git`/`_gh`/`_upgrade_fetcher` as the seams tests reach with `monkeypatch`,
 so the command bodies under test are the real ones, not a stand-in.
 
-`PatchstorageModuleSource` (push's live `ModuleSource`/`UpdateChecker`) is
-tested directly, without going through a CLI invocation or the network:
-`_resolve()` only populates `self._sources` lazily, so a test can construct
-the object and set that dict itself from an in-memory zip built with the
-stdlib `zipfile` module -- the same seam-injection idea `_upgrade_fetcher`
-already uses, one level lower.
+`StoredArchiveModuleSource` (push's on-disk `ModuleSource`) is tested
+directly against real archives written into a tmp `modules/`, since nothing
+about it needs the network.
 """
 
 from __future__ import annotations
 
 import dataclasses
+import hashlib
 import io
 import json
 import zipfile
@@ -34,16 +29,15 @@ import pytest
 from typer.testing import CliRunner
 
 import rig.cli as cli
-from rig.catalog.archive import ZipCandidateArchive
 from rig.catalog.builtins import ingest_pinned_builtins
 from rig.catalog.entry import CatalogEntry, VersionInfo
-from rig.catalog.ingest import CandidateSource
 from rig.catalog.io import write_catalog, write_lock
 from rig.catalog.params import ParamSpec
 from rig.catalog.slugs import module_key
+from rig.catalog.store import archive_path, write_archive
 from rig.cli import app
+from rig.push.archive_source import StoredArchiveModuleSource
 from rig.push.modules import ModuleSourceUnavailable
-from rig.push.patchstorage_source import PatchstorageModuleSource
 from rig.song.bindings import write_bindings
 from rig.transport.memory import InMemoryTransport
 
@@ -115,101 +109,27 @@ def _seed_catalog(entries: list[CatalogEntry]) -> None:
 # --- help / command surface --------------------------------------------------
 
 
-def test_help_lists_all_seven_commands():
+def test_help_lists_every_command():
     result = runner.invoke(app, ["--help"])
     assert result.exit_code == 0
-    for name in ["push", "pull", "lint", "catalog", "upgrade", "rename-chain", "validate"]:
+    for name in ["push", "pull", "lint", "catalog", "upgrade", "rename-chain"]:
         assert name in result.output
 
 
+def test_catalog_add_help_documents_the_command():
+    # `catalog add` and `catalog update` are the only commands that reach
+    # Patchstorage, and tests/conftest.py blocks every socket for the whole
+    # session -- so both are only confirmed to be wired up and documented.
+    result = runner.invoke(app, ["catalog", "add", "--help"])
+    assert result.exit_code == 0
+    assert "slug" in result.output.lower()
+
+
 def test_catalog_update_help_documents_the_command():
-    # `catalog update` is implemented (Phase 1) and reaches the network for
-    # its live discovery path, so it is not exercised end-to-end here --
-    # tests/conftest.py blocks every socket for the whole session. Just
-    # confirm the command is wired up and documented.
     result = runner.invoke(app, ["catalog", "update", "--help"])
     assert result.exit_code == 0
     assert "--dry-run" in result.output
 
-
-def test_validate_static_unknown_song_is_a_clean_refusal(repo):
-    result = runner.invoke(app, ["validate", "--tier", "static", "song1", "song2"])
-    assert result.exit_code != 0
-    assert "rig validate: UNKNOWN_SONG: unknown song(s): song1, song2" in result.output
-
-
-def test_validate_static_passes_for_a_clean_song_and_writes_a_report(repo):
-    _seed_catalog([_synth_entry(), *system_catalog()])
-    _write_song(repo / "songs", "Vellichor", 3)
-
-    result = runner.invoke(app, ["validate", "--tier", "static"])
-
-    assert result.exit_code == 0, result.output
-    assert "verdict: pass" in result.output
-    assert "confidence: static-only" in result.output
-    assert "not evidence the rig is stage-ready" in result.output
-    reports = list((repo / ".rig" / "state" / "reports").glob("static-*.json"))
-    assert len(reports) == 1
-
-
-def test_validate_static_fails_for_a_song_with_a_hard_error(repo):
-    _seed_catalog([_synth_entry(), *system_catalog()])
-    (repo / "songs").mkdir()
-    (repo / "songs" / "bad.yaml").write_text(
-        "song: Bad\nprogram: 3\nchains:\n  - name: pads\n    modules:\n      - nope@orhack: {}\n",
-        encoding="utf-8",
-    )
-
-    result = runner.invoke(app, ["validate", "--tier", "static"])
-
-    assert result.exit_code != 0
-    assert "verdict: fail" in result.output
-    assert "UNKNOWN_MODULE" in result.output
-
-
-def test_validate_hardware_tier_with_no_songs():
-    result = runner.invoke(app, ["validate", "--tier", "hardware"])
-    assert result.exit_code != 0
-    assert "not implemented" in result.output
-
-
-def test_validate_verify_report_round_trips(repo):
-    _seed_catalog([_synth_entry(), *system_catalog()])
-    _write_song(repo / "songs", "Vellichor", 3)
-    first = runner.invoke(app, ["validate", "--tier", "static"])
-    assert first.exit_code == 0, first.output
-    report_path = next((repo / ".rig" / "state" / "reports").glob("static-*.json"))
-
-    result = runner.invoke(app, ["validate", "verify-report", str(report_path)])
-
-    assert result.exit_code == 0, result.output
-    assert "ok" in result.output
-
-
-def test_validate_verify_report_rejects_a_hand_edited_report(repo):
-    _seed_catalog([_synth_entry(), *system_catalog()])
-    _write_song(repo / "songs", "Vellichor", 3)
-    assert runner.invoke(app, ["validate", "--tier", "static"]).exit_code == 0
-    report_path = next((repo / ".rig" / "state" / "reports").glob("static-*.json"))
-    text = report_path.read_text(encoding="utf-8").replace('"verdict": "pass"', '"verdict": "fail"')
-    report_path.write_text(text, encoding="utf-8")
-
-    result = runner.invoke(app, ["validate", "verify-report", str(report_path)])
-
-    assert result.exit_code != 0
-    assert "REPORT_INTEGRITY_ERROR" in result.output
-
-
-def test_validate_help_documents_both_invocation_forms():
-    # `validate` is a flat command, not a subcommand group (see the comment
-    # above it in rig/cli.py), so `verify-report` isn't a discoverable
-    # subcommand on its own -- the help text is the only place a caller
-    # learns it exists.
-    result = runner.invoke(app, ["validate", "--help"])
-    assert result.exit_code == 0
-    assert "rig validate --tier static|hardware [SONG...]" in result.output
-    assert "rig validate verify-report REPORT" in result.output
-    assert "verify-report" in result.output
 
 
 def test_unknown_song_selection_is_a_clean_refusal(repo):
@@ -233,6 +153,40 @@ def test_lint_ok_for_a_valid_song_exits_zero(repo):
     _seed_catalog([_synth_entry(), *system_catalog()])
     _write_song(repo / "songs", "Vellichor", 3)
     result = runner.invoke(app, ["lint"])
+    assert result.exit_code == 0, result.output
+    assert "lint: ok" in result.output
+
+
+def test_lint_refuses_a_locked_module_whose_archive_is_not_committed(repo):
+    # The repo's reproducibility check: a module pinned in the lock with no
+    # archive in modules/ would compile a preset naming a moduleType that
+    # never resolves.
+    _seed_catalog([_synth_entry(), _community_entry(), *system_catalog()])
+    result = runner.invoke(app, ["lint"])
+    assert result.exit_code != 0
+    assert "MODULE_ARCHIVE" in result.output
+    assert "warble@warble" in result.output
+
+
+def test_lint_accepts_a_locked_module_whose_archive_is_committed(repo):
+    archive_bytes = _make_zip(
+        {
+            "module.json": b'{"display": "Warble", "parameters": [{"name": "Amount", "id": "amt"}]}',
+            "module.pd": b"#N canvas;",
+        }
+    )
+    entry = dataclasses.replace(
+        _community_entry(),
+        version=VersionInfo(
+            updated_at="2020-01-01", file_id=1,
+            archive_sha256=hashlib.sha256(archive_bytes).hexdigest(), revision="1.0",
+        ),
+    )
+    _seed_catalog([_synth_entry(), entry, *system_catalog()])
+    write_archive(repo / "modules", "warble", "1.0", archive_bytes)
+
+    result = runner.invoke(app, ["lint"])
+
     assert result.exit_code == 0, result.output
     assert "lint: ok" in result.output
 
@@ -428,8 +382,8 @@ def test_pull_no_card_found_is_a_clean_refusal(repo, monkeypatch):
     assert "NO_CARD_FOUND" in result.output
 
 
-def test_pull_without_adopt_flag_never_adopts(repo, monkeypatch):
-    # Ruling #1: adoption is off by default.
+def test_pull_ignores_a_card_preset_no_song_claims(repo, monkeypatch):
+    # Ruling #1: the repo is authoritative for whether a song exists.
     _seed_catalog([_synth_entry(), *system_catalog()])
     transport = _bare_card()
     transport.write(f"{PRESETS_ROOT}/005-stranger/params.json", b"{}")
@@ -442,7 +396,6 @@ def test_pull_without_adopt_flag_never_adopts(repo, monkeypatch):
     result = runner.invoke(app, ["pull"])
 
     assert result.exit_code == 0, result.output
-    assert "adopted" not in result.output
     assert gh.create_calls == []
 
 
@@ -461,7 +414,7 @@ def test_upgrade_refuses_a_slug_id_reorder_used_by_a_song(repo, monkeypatch):
     lock_before = Path(".rig/modules.lock").read_bytes()
 
     monkeypatch.setattr(
-        cli, "_upgrade_fetcher", lambda requested: {"warble@warble": _community_entry(param_id="different_amt")}
+        cli, "_upgrade_fetcher", lambda requested: ({"warble@warble": _community_entry(param_id="different_amt")}, {})
     )
 
     result = runner.invoke(app, ["upgrade", "warble@warble"])
@@ -478,7 +431,10 @@ def test_upgrade_writes_new_catalog_and_lock_when_no_song_is_affected(repo, monk
     monkeypatch.setattr(
         cli,
         "_upgrade_fetcher",
-        lambda requested: {"warble@warble": _community_entry(param_id="different_amt", updated_at="2021-01-01")},
+        lambda requested: (
+            {"warble@warble": _community_entry(param_id="different_amt", updated_at="2021-01-01")},
+            {},
+        ),
     )
 
     result = runner.invoke(app, ["upgrade", "warble@warble"])
@@ -496,7 +452,10 @@ def test_upgrade_dry_run_leaves_catalog_and_lock_untouched(repo, monkeypatch):
     monkeypatch.setattr(
         cli,
         "_upgrade_fetcher",
-        lambda requested: {"warble@warble": _community_entry(param_id="different_amt", updated_at="2021-01-01")},
+        lambda requested: (
+            {"warble@warble": _community_entry(param_id="different_amt", updated_at="2021-01-01")},
+            {},
+        ),
     )
 
     result = runner.invoke(app, ["upgrade", "warble@warble", "--dry-run"])
@@ -574,7 +533,7 @@ def test_rename_chain_unknown_song_is_a_clean_refusal(repo):
     assert "UNKNOWN_SONG" in result.output
 
 
-# --- PatchstorageModuleSource (push's live ModuleSource/UpdateChecker) -----
+# --- StoredArchiveModuleSource (push's on-disk ModuleSource) ---------------
 
 
 def _make_zip(files: dict[str, bytes]) -> bytes:
@@ -585,29 +544,27 @@ def _make_zip(files: dict[str, bytes]) -> bytes:
     return buf.getvalue()
 
 
-def _seeded_module_source(archive_bytes: bytes, *, slug: str = "warble", display: str = "Warble"):
-    """A `PatchstorageModuleSource` with `_sources` pre-populated -- skips
-    `_resolve()`'s network call entirely, same seam `_upgrade_fetcher` uses
-    one level up. Returns `(module_source, entry)` where `entry.key` is
-    exactly what a real ingest of this archive would have produced."""
+def _stored_module_source(
+    modules_dir, archive_bytes: bytes, *, slug: str = "warble", display: str = "Warble", revision: str = "1.0"
+):
+    """A `StoredArchiveModuleSource` over a real archive written to
+    `modules_dir`, with a lock pinning its digest. Returns
+    `(module_source, entry)` where `entry.key` is exactly what a real ingest
+    of this archive would have produced."""
     entry_key = module_key(display, slug)
-    source = CandidateSource(
-        id=1,
-        archive=ZipCandidateArchive(archive_bytes),
-        detail={"slug": slug, "updated_at": "2020-01-01", "files": [{"url": "https://example.invalid/x.zip"}]},
-        archive_sha256="deadbeef",
-    )
-    module_source = PatchstorageModuleSource({slug})
-    module_source._sources = {slug: source}
+    digest = hashlib.sha256(archive_bytes).hexdigest()
+    write_archive(modules_dir, slug, revision, archive_bytes)
+    lock = {"modules": {entry_key: {"source": slug, "revision": revision, "archive_sha256": digest}}}
     entry = CatalogEntry(
         key=entry_key, source=slug, display=display,
         module_type=f"effects/mod/{entry_key}", category="effects/mod", category_override=None,
-        tags=[], params=[], version=VersionInfo(updated_at="2019-01-01", file_id=1, archive_sha256="old"),
+        tags=[], params=[],
+        version=VersionInfo(updated_at="2019-01-01", file_id=1, archive_sha256=digest, revision=revision),
     )
-    return module_source, entry
+    return StoredArchiveModuleSource(modules_dir, lock), entry
 
 
-def test_module_source_fetch_strips_junk_and_keeps_real_files():
+def test_module_source_fetch_strips_junk_and_keeps_real_files(tmp_path):
     archive_bytes = _make_zip(
         {
             "module.json": b'{"display": "Warble", "parameters": []}',
@@ -621,7 +578,7 @@ def test_module_source_fetch_strips_junk_and_keeps_real_files():
             "lib.dll": b"junk",  # Windows binary, never runs on the S2
         }
     )
-    module_source, entry = _seeded_module_source(archive_bytes)
+    module_source, entry = _stored_module_source(tmp_path / "modules", archive_bytes)
 
     files = module_source.fetch(entry)
 
@@ -632,7 +589,7 @@ def test_module_source_fetch_strips_junk_and_keeps_real_files():
         assert junk not in files, f"{junk!r} should have been stripped"
 
 
-def test_module_source_fetch_refuses_a_module_needing_abl_link():
+def test_module_source_fetch_refuses_a_module_needing_abl_link(tmp_path):
     archive_bytes = _make_zip(
         {
             "module.json": b'{"display": "Warble", "parameters": []}',
@@ -640,7 +597,7 @@ def test_module_source_fetch_refuses_a_module_needing_abl_link():
             "abl_link~.pd_linux": b"binary",
         }
     )
-    module_source, entry = _seeded_module_source(archive_bytes)
+    module_source, entry = _stored_module_source(tmp_path / "modules", archive_bytes)
 
     with pytest.raises(ModuleSourceUnavailable) as exc_info:
         module_source.fetch(entry)
@@ -649,37 +606,34 @@ def test_module_source_fetch_refuses_a_module_needing_abl_link():
     assert entry.key in str(exc_info.value)
 
 
-def test_module_source_fetch_raises_when_slug_not_found():
-    module_source = PatchstorageModuleSource({"warble"})
-    module_source._sources = {}
+def test_module_source_fetch_raises_when_the_archive_is_missing(tmp_path):
+    modules_dir = tmp_path / "modules"
+    modules_dir.mkdir()
+    lock = {"modules": {"warble@warble": {"source": "warble", "revision": "1.0", "archive_sha256": "abc"}}}
     entry = CatalogEntry(
         key="warble@warble", source="warble", display="Warble",
         module_type="effects/mod/warble@warble", category="effects/mod", category_override=None,
-        tags=[], params=[], version=VersionInfo(),
+        tags=[], params=[], version=VersionInfo(revision="1.0"),
     )
 
-    with pytest.raises(ModuleSourceUnavailable):
+    with pytest.raises(ModuleSourceUnavailable) as exc_info:
+        StoredArchiveModuleSource(modules_dir, lock).fetch(entry)
+
+    assert "is missing" in str(exc_info.value)
+    assert "rig catalog add warble" in str(exc_info.value)
+
+
+def test_module_source_fetch_refuses_an_archive_that_fails_its_pinned_digest(tmp_path):
+    modules_dir = tmp_path / "modules"
+    archive_bytes = _make_zip(
+        {"module.json": b'{"display": "Warble", "parameters": []}', "module.pd": b"#N canvas;"}
+    )
+    module_source, entry = _stored_module_source(modules_dir, archive_bytes)
+    # A truncated clone or a hand-edited archive: the bytes on disk no longer
+    # match what the lock pins, and must never reach the card.
+    archive_path(modules_dir, entry.source, "1.0").write_bytes(_make_zip({"module.json": b"{}"}))
+
+    with pytest.raises(ModuleSourceUnavailable) as exc_info:
         module_source.fetch(entry)
 
-
-def test_module_source_check_update_reports_a_changed_updated_at():
-    archive_bytes = _make_zip(
-        {"module.json": b'{"display": "Warble", "parameters": []}', "module.pd": b"#N canvas;"}
-    )
-    module_source, entry = _seeded_module_source(archive_bytes)
-
-    description = module_source.check_update(entry)
-
-    assert description is not None
-    assert entry.key in description
-
-
-def test_module_source_check_update_is_none_when_updated_at_matches():
-    archive_bytes = _make_zip(
-        {"module.json": b'{"display": "Warble", "parameters": []}', "module.pd": b"#N canvas;"}
-    )
-    module_source, entry = _seeded_module_source(archive_bytes)
-    # Match the seeded source's own detail['updated_at'] (see _seeded_module_source).
-    entry = dataclasses.replace(entry, version=VersionInfo(updated_at="2020-01-01", file_id=1, archive_sha256="old"))
-
-    assert module_source.check_update(entry) is None
+    assert "does not match the digest pinned" in str(exc_info.value)

@@ -1,15 +1,12 @@
 name: CI
 
-# Required on every pull request and push (Prompt/09-static-validation.md
-# "CI"). Public repo, so Actions minutes are unmetered -- runs
-# unconditionally, no path filtering.
+# Required on every pull request and push. Public repo, so Actions minutes
+# are unmetered -- runs unconditionally, no path filtering.
 #
 # `tests/conftest.py` blocks every socket for the whole pytest session, so
-# this job -- including the frozen-fixture catalog regeneration test
-# (tests/test_catalog_committed_matches_frozen.py) and `rig.validate.static`'s
-# own tests -- never reaches the live Patchstorage API, matching
-# docs/catalog.md "CI regenerates from the frozen fixture ... never hits the
-# live API."
+# this job never reaches the live Patchstorage API. `rig catalog add` is the
+# only command that does, and it is never run here -- the module archives it
+# writes are committed (docs/catalog.md).
 on:
   push:
   pull_request:
@@ -28,5 +25,5 @@ jobs:
       - uses: astral-sh/setup-uv@v3
       - run: uv sync
       - run: uv run pytest -q
-      - name: rig validate --tier static (smoke test against this checkout)
-        run: uv run rig validate --tier static
+      - name: rig lint (smoke test against this checkout)
+        run: uv run rig lint

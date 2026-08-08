@@ -1,19 +1,14 @@
-"""CandidateArchive implementations -- both must satisfy the same gate logic.
+"""`ZipCandidateArchive` -- the archive view the gate and push both read.
 
-ZipCandidateArchive is exercised here with a synthetic, offline-built zip
-(the live-ingest path is otherwise untestable without network).
-FrozenCandidateArchive is exercised against one real fixture candidate.
+Exercised with synthetic, offline-built zips; the same class reads what
+`rig catalog add` downloads and what `modules/` stores.
 """
 
 from __future__ import annotations
 
-from pathlib import Path
-
-from rig.catalog.archive import FrozenCandidateArchive, ZipCandidateArchive
+from rig.catalog.archive import ZipCandidateArchive
 
 from .catalog_helpers import MODULE_JSON, MODULE_PD, build_zip, elf32_header
-
-FIXTURE_CATALOG_ROOT = Path(__file__).resolve().parent.parent / "fixtures" / "catalog"
 
 
 def test_zip_candidate_archive_round_trips_entries_and_content():
@@ -41,26 +36,8 @@ def test_zip_candidate_archive_missing_file_raises():
         pass
 
 
-def test_frozen_candidate_archive_reads_real_fixture_candidate():
-    # 105149 = "orac-2-0-for-organelle", a real rack redistribution with a
-    # root main.pd -- used here only to exercise entries()/read().
-    candidate_dir = FIXTURE_CATALOG_ROOT / "candidates" / "105149"
-    archive = FrozenCandidateArchive(candidate_dir)
-    entries = archive.entries()
-    assert len(entries) > 0
-    names = {e.name for e in entries}
-    assert "orac/main.pd" in names
-    module_json_entries = [e.name for e in entries if e.name.endswith("module.json")]
-    assert module_json_entries
-    content = archive.read(module_json_entries[0])
-    assert b"display" in content
-
-
-def test_frozen_candidate_archive_read_missing_extraction_raises():
-    candidate_dir = FIXTURE_CATALOG_ROOT / "candidates" / "105149"
-    archive = FrozenCandidateArchive(candidate_dir)
-    try:
-        archive.read("orac/data/orac/presets/Init/params.json")  # real entry, not extracted
-        assert False, "expected FileNotFoundError"
-    except FileNotFoundError:
-        pass
+def test_zip_candidate_archive_keeps_the_original_bytes():
+    # `modules/` commits the upload unmodified so its sha256 still matches
+    # what Patchstorage published -- a re-zip would not.
+    data = build_zip({"mymod/module.json": MODULE_JSON})
+    assert ZipCandidateArchive(data).data == data

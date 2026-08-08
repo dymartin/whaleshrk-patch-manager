@@ -14,8 +14,8 @@ from rig.atomicio import write_text_atomic
 
 from .entry import CatalogEntry, entry_filename
 
-GENERATOR = "rig catalog update"
-LOCK_SCHEMA_VERSION = 1
+GENERATOR = "rig catalog"
+LOCK_SCHEMA_VERSION = 2
 
 
 def write_catalog(entries: list[CatalogEntry], catalog_dir: Path) -> None:
@@ -38,19 +38,25 @@ def read_catalog(catalog_dir: Path) -> list[CatalogEntry]:
 
 
 def write_lock(entries: list[CatalogEntry], lock_path: Path) -> None:
-    """Pin every community module's version and content hash.
+    """Pin every community module's version, content hash and stored archive.
 
     Built-ins are not recorded here -- their version is pinned by ORHACK's
     own build, not by this tool (docs/catalog.md "Versioning").
+
+    `source` and `revision` together name the archive in `modules/`, and
+    `archive_sha256` is what verifies it on every read
+    (`rig.catalog.store`).
     """
     modules = {}
     for entry in entries:
         if entry.source == "orhack":
             continue
         modules[entry.key] = {
+            "source": entry.source,
             "updated_at": entry.version.updated_at,
             "file_id": entry.version.file_id,
             "archive_sha256": entry.version.archive_sha256,
+            "revision": entry.version.revision,
         }
     lock = {
         "schema_version": LOCK_SCHEMA_VERSION,

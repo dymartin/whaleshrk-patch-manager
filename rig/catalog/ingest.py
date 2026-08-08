@@ -153,6 +153,7 @@ def _build_community_module(
             updated_at=source.detail.get("updated_at"),
             file_id=_file_id_for(source.detail, source.archive_sha256),
             archive_sha256=source.archive_sha256,
+            revision=source.detail.get("revision"),
         ),
         sidecar_templates=sidecar_result.resolved,
     )
