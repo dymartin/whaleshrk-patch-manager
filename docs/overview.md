@@ -21,12 +21,11 @@ reviewable history and reconstructs any past show's rig.
 - Device drift made during rehearsal becomes a reviewable PR, one per song.
 - The repo is the source of truth on push.
 
-## Planned, not built
+## Chain auto-assembly
 
-**Chain auto-assembly skill.** Prompt.md requires a Claude skill building chains
-from fuzzy tone/vibe/mood descriptions and the full catalog. Deferred until the
-CLI works. Ingest populates `tags` to avoid a later re-ingest; see
-[catalog.md](catalog.md) and `Prompt/PLAN.md`'s final phase.
+The Claude skill at `.claude/skills/assemble-chain/SKILL.md` builds friendly
+song YAML from fuzzy tone, vibe and mood descriptions. It selects only from the
+committed catalog and accepts a generated song only after `rig lint` passes.
 
 ## Non-goals
 

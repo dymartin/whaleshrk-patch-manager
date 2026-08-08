@@ -1,6 +1,8 @@
 # Repository Layout
 
 ```
+.claude/skills/assemble-chain/   fuzzy-description chain assembly skill
+
 songs/                      musician-facing
   vellichor.yaml
   low-tide.yaml
