@@ -373,6 +373,7 @@
   "version": {
     "archive_sha256": null,
     "file_id": null,
+    "revision": null,
     "updated_at": null
   }
 }
