@@ -8,6 +8,7 @@ from .card import (
     resolve_card,
 )
 from .memory import InMemoryTransport
+from .ssh import SshTransport, SshTransportError
 from .usb import UsbMassStorage
 
 __all__ = [
@@ -16,6 +17,8 @@ __all__ = [
     "normalize_path",
     "InMemoryTransport",
     "UsbMassStorage",
+    "SshTransport",
+    "SshTransportError",
     "CARD_MARKERS",
     "CardDetectionError",
     "is_card_root",

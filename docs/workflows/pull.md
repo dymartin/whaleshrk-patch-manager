@@ -2,7 +2,9 @@
 
 Pull turns drift into reviewable PRs.
 
-1. Read every preset directory on the card.
+1. Connect through keyed SSH using the `organelle` host alias and read every
+   preset directory. `--transport usb` explicitly selects a mounted card
+   instead; `--host` selects another SSH alias.
 2. Diff each `params.json` against `.rig/state/last-pushed/<song>.json`. The
    stored snapshot is the baseline, not a recompile — otherwise a changed
    catalog default reports as phantom drift and buries real edits.

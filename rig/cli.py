@@ -87,7 +87,7 @@ from rig.song import (
     validate_songs,
     write_bindings,
 )
-from rig.transport import CardDetectionError, Transport, TransportPathError
+from rig.transport import CardDetectionError, SshTransport, SshTransportError, Transport, TransportPathError
 
 app = typer.Typer(no_args_is_help=True, add_completion=False)
 catalog_app = typer.Typer(no_args_is_help=True)
@@ -244,6 +244,8 @@ def push(
     song: Optional[list[str]] = typer.Argument(None),
     dry_run: bool = typer.Option(False, "--dry-run"),
     force: bool = typer.Option(False, "--force"),
+    transport: str = typer.Option("ssh", "--transport", help="ssh (default) or usb"),
+    host: str = typer.Option("organelle", "--host", help="OpenSSH host alias"),
 ) -> None:
     """Compile song YAML and write it to the card."""
     try:
@@ -259,6 +261,10 @@ def push(
 
     module_source = _module_source or StoredArchiveModuleSource(MODULES_DIR, lock)
 
+    if transport not in {"ssh", "usb"}:
+        _fail("push", "UNKNOWN_TRANSPORT", "--transport must be 'ssh' or 'usb'")
+    live_transport = _transport or (None if transport == "usb" or _card_roots is not None else SshTransport(host))
+
     try:
         result = run_push(
             songs=songs,
@@ -269,7 +275,7 @@ def push(
             media_root=MEDIA_ROOT,
             state_dir=STATE_DIR,
             module_source=module_source,
-            transport=_transport,
+            transport=live_transport,
             roots=_card_roots,
             force=force,
             dry_run=dry_run,
@@ -286,6 +292,8 @@ def push(
         _fail("push", exc.code, str(exc))
     except TransportPathError as exc:
         _fail("push", "TRANSPORT_PATH_ERROR", str(exc))
+    except SshTransportError as exc:
+        _fail("push", "SSH_TRANSPORT_ERROR", str(exc))
 
     _echo_push_result(result)
 
@@ -328,6 +336,8 @@ def _echo_push_result(result: PushResult) -> None:
 def pull(
     song: Optional[list[str]] = typer.Argument(None),
     dry_run: bool = typer.Option(False, "--dry-run"),
+    transport: str = typer.Option("ssh", "--transport", help="ssh (default) or usb"),
+    host: str = typer.Option("organelle", "--host", help="OpenSSH host alias"),
 ) -> None:
     """Detect card drift and open one PR per drifted song."""
     try:
@@ -338,6 +348,10 @@ def pull(
     selected = _resolve_selection("pull", song, song_docs)
     catalog, lock, kits = _read_catalog_lock_kits("pull")
 
+    if transport not in {"ssh", "usb"}:
+        _fail("pull", "UNKNOWN_TRANSPORT", "--transport must be 'ssh' or 'usb'")
+    live_transport = _transport or (None if transport == "usb" or _card_roots is not None else SshTransport(host))
+
     try:
         result = run_pull(
             song_docs=song_docs,
@@ -347,7 +361,7 @@ def pull(
             state_dir=STATE_DIR,
             repo_root=Path("."),
             selected=selected,
-            transport=_transport,
+            transport=live_transport,
             roots=_card_roots,
             git=_git,
             gh=_gh,
@@ -363,6 +377,8 @@ def pull(
         _fail("pull", "GH_ERROR", str(exc))
     except TransportPathError as exc:
         _fail("pull", "TRANSPORT_PATH_ERROR", str(exc))
+    except SshTransportError as exc:
+        _fail("pull", "SSH_TRANSPORT_ERROR", str(exc))
 
     _echo_pull_result(result)
     if result.aborted:

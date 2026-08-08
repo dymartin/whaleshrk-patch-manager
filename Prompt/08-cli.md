@@ -88,7 +88,8 @@ song is `git rm`; push sees a record with no song file and removes the directory
 
 Reports the exact planned change set and touches nothing.
 
-`push` and `pull` dry-runs **require the mounted card** and apply the real
+`push` and `pull` dry-runs **require the reachable device** (SSH by default,
+or a mounted card with explicit `--transport usb`) and apply the real
 command's preconditions and refusals. `rig lint` is the offline check.
 
 ## Ordering rules to surface in help text and errors

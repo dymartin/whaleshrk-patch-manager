@@ -4,7 +4,7 @@
 
 * whaleshrk-patch-manager: CLI, treats whaleshrk band's live synth rig (Critter & Guitari Organelle S2, running ORHACK) as version-controlled config.
 * One YAML file per song = full patch chain. User experience is friendly YAML, black box under the hood.
-* Push compiles YAML into ORHACK's on-device JSON config, writes to SD card (USB mass storage only, no daemon). Repo = source of truth on push.
+* Push compiles YAML into ORHACK's on-device JSON config and writes to the SD card over keyed SSH by default; USB mass storage is an explicit fallback. Repo = source of truth on push.
 * Pull detects drift, matched by ORHACK preset name (never order/slot — presets are name-keyed). Drifted song reverse-mapped to YAML, committed to new branch, PR'd via `gh` CLI. One PR per drifted song.
 * Musicians only touch friendly YAML — no raw device IDs, CC numbers, or Pure Data internals exposed.
 

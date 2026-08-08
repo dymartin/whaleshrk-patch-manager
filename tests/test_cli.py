@@ -304,6 +304,28 @@ def test_push_writes_selected_songs_and_exits_zero(repo, monkeypatch):
     assert transport.exists(f"{PRESETS_ROOT}/003-vellichor/params.json")
 
 
+def test_push_uses_ssh_by_default(repo, monkeypatch):
+    _seed_catalog([_synth_entry(), *system_catalog()])
+    _write_song(repo / "songs", "Vellichor", 3)
+    transport = _bare_card()
+    monkeypatch.setattr(cli, "SshTransport", lambda host: transport)
+
+    result = runner.invoke(app, ["push", "--dry-run"])
+
+    assert result.exit_code == 0, result.output
+
+
+def test_push_usb_fallback_must_be_explicit(repo, monkeypatch):
+    _seed_catalog([_synth_entry(), *system_catalog()])
+    _write_song(repo / "songs", "Vellichor", 3)
+    monkeypatch.setattr(cli, "_card_roots", [])
+
+    result = runner.invoke(app, ["push", "--transport", "usb"])
+
+    assert result.exit_code != 0
+    assert "NO_CARD_FOUND" in result.output
+
+
 def test_push_refuses_when_a_song_fails_validation(repo, monkeypatch):
     _seed_catalog([_synth_entry(), *system_catalog()])
     (repo / "songs").mkdir()

@@ -31,9 +31,8 @@ committed catalog and accepts a generated song only after `rig lint` passes.
 
 - No daemon, no background device watching. The CLI runs by hand around
   rehearsals and gigs.
-- No SSH or network transport for push/pull; transport stays pluggable. The
-  hardware check does talk to the device, but only reads and never
-  moves files — see [validation.md](validation.md).
+- Push and pull use keyed SSH by default; USB mass storage remains an explicit
+  fallback. Transport stays pluggable — see [transport.md](transport.md).
 - No mirroring of Patchstorage. The catalog holds the modules this rig uses,
   added one at a time — see [catalog.md](catalog.md).
 - No custom Pure Data patches. Chains use ORHACK built-ins and community

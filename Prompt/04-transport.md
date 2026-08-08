@@ -2,7 +2,8 @@
 
 ## Goal
 
-The narrow file protocol, its USB implementation, and structural card detection.
+The narrow file protocol, its default SSH implementation, USB fallback, and
+structural USB card detection.
 
 ## Read first
 
@@ -36,7 +37,9 @@ a subtle bug eats samples.
 - **`UsbMassStorage(root)`** — the card mounted as a filesystem. Paths are
   **card-relative**: `data/orhack/rack.json`, never an absolute mount path.
 - **`InMemory`** — from Phase 0, promoted to a first-class implementation.
-- **`Ssh(host, root)`** — not implemented. Requires no changes above this layer.
+- **`SshTransport(host, root="/sdcard")`** — default push/pull transport,
+  using the system OpenSSH client and remote `sync`. USB must be selected
+  explicitly with `--transport usb`.
 
 The `/tmp/...` paths throughout ORHACK's Pure Data source are runtime symlinks
 the Organelle firmware creates at patch launch. They never exist on the card.

@@ -1,11 +1,7 @@
 # Transport Layer
 
-Pluggable; USB mass storage is today's only implementation. SSH can be added
-without rewriting sync logic.
-
-The hardware check's network session is separate and read-only. It drives a test
-run over MIDI and the device's web API; it moves no files and implements none of
-this.
+Pluggable; SSH is the default for push and pull. USB mass storage is an explicit
+fallback via `--transport usb`.
 
 ## Interface
 
@@ -32,12 +28,15 @@ above this layer.
 
 ## Implementations
 
-- **`UsbMassStorage(root)`** — the card mounted as a filesystem. Paths are
+- **`SshTransport(host="organelle", root="/sdcard")`** — the default. Uses the
+  system OpenSSH client with `BatchMode=yes`; host aliases, keys and host-key
+  verification remain in the operator's SSH config. `flush()` runs remote
+  `sync` before a transaction advances.
+- **`UsbMassStorage(root)`** — explicit fallback when the card is mounted as a filesystem. Paths are
   card-relative: `data/orhack/rack.json`, not an absolute mount path. `root`
   must already exist (the caller resolves the mount point first — see "Card
   identification"). Tracks every path written since the last `flush()` and
   fsyncs exactly those files, rather than fsyncing on every write.
-- **`Ssh(host, root)`** — not implemented; needs no changes above this layer.
 - **`InMemoryTransport`** — tests sync and mirroring without a card. Both
   implementations pass one shared conformance suite
   (`tests/test_transport_conformance.py`); backend-specific behaviour lives
@@ -70,6 +69,10 @@ is therefore stated in terms of what `os.fsync` itself promises, not in
 terms of any specific mount option.
 
 ## Card identification
+
+Structural removable-volume detection applies only to `--transport usb`. SSH
+uses the configured host alias and fixed `/sdcard` root; normal ORHACK
+verification still refuses before mutation if the remote tree is not the card.
 
 By structure, not drive letter or label: a candidate root must contain
 `data/orhack/` and `Patches/0RHACK/`. Refuse rather than guess on zero or

@@ -2,7 +2,9 @@
 
 Push makes the card match the source-of-truth repo.
 
-1. Resolve the card via the transport layer.
+1. Connect through keyed SSH using the `organelle` host alias. Use
+   `--transport usb` only when explicitly falling back to a mounted card;
+   `--host` selects another SSH alias.
 
 2. **Reconcile modules.** Verify ORHACK structure, optionally its 2,353-entry
    manifest; never install or repair ORHACK. Reconcile installed modules

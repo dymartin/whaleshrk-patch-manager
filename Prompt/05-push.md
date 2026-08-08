@@ -2,7 +2,9 @@
 
 ## Goal
 
-`rig push [SONG...] [--dry-run] [--force]` — make the card match the repo.
+`rig push [SONG...] [--dry-run] [--force] [--transport ssh|usb]` — make the
+card match the repo. SSH through the `organelle` alias is the default; USB is
+explicit fallback.
 Composes Phases 1-4.
 
 ## Read first
@@ -14,9 +16,10 @@ Composes Phases 1-4.
 
 ## Sequence
 
-### 1. Resolve the card
+### 1. Connect to the card
 
-Through the Phase 4 transport. Refuse on zero or multiple candidates.
+Through the Phase 4 transport. SSH is default. With explicit USB fallback,
+refuse on zero or multiple candidates.
 
 ### 2. Reconcile modules
 

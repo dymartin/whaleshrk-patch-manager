@@ -23,7 +23,7 @@ from rig.catalog.entry import CatalogEntry
 from rig.errors import CodedError
 from rig.push.fsutil import list_files_recursive
 from rig.push.hashing import hash_file_map
-from rig.transport.base import Transport
+from rig.transport.base import Transport, normalize_path
 
 MANIFEST_PATH = "Patches/0RHACK/manifest.txt"
 USER_MODULES_ROOT = "media/orhack/user-modules"
@@ -51,8 +51,10 @@ def verify_orhack_manifest(transport: Transport) -> None:
     the same check `install_package.sh` performs, run offline against an
     already-installed card. Never repairs a mismatch; only reports it."""
     verify_orhack_structure(transport)
-    manifest = transport.read(MANIFEST_PATH).decode("utf-8")
+    manifest_bytes = transport.read(MANIFEST_PATH)
+    manifest = manifest_bytes.decode("utf-8")
     problems: list[str] = []
+    entries: list[tuple[str, str]] = []
     for line in manifest.splitlines():
         line = line.rstrip("\n")
         if not line.strip():
@@ -62,6 +64,20 @@ def verify_orhack_manifest(transport: Transport) -> None:
             raise OrhackIntegrityError(
                 "ORHACK_MANIFEST_MALFORMED", f"manifest.txt line is not sha1sum-formatted: {line!r}"
             )
+        entries.append((digest, rel))
+        normalize_path(f"Patches/{rel}")
+
+    remote_check = getattr(transport, "check_sha1_manifest", None)
+    if remote_check is not None:
+        problem = remote_check(manifest_bytes)
+        if problem:
+            raise OrhackIntegrityError(
+                "ORHACK_INTEGRITY_FAILED",
+                "ORHACK installation does not match its manifest -- push never repairs this: " + problem,
+            )
+        return
+
+    for digest, rel in entries:
         # manifest.txt paths are relative to Patches/ ("0RHACK/mother.pd");
         # the manifest itself lives inside that tree, at Patches/0RHACK/manifest.txt.
         card_path = f"Patches/{rel}"

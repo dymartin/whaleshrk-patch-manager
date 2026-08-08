@@ -1,5 +1,8 @@
 # Phase 7 — Pull
 
+Default transport is keyed SSH through the `organelle` alias. USB requires
+`--transport usb` and retains structural card detection.
+
 ## Goal
 
 `rig pull [SONG...] [--dry-run]` — turn device drift into one branch and PR per
@@ -77,9 +80,9 @@ replaces a working sampler chain with silence.
 
 ## `--dry-run`
 
-Requires the mounted card and applies the real command's preconditions and
-refusals. Creates no branch, commit or PR. Read-only `gh` queries to detect an
-existing open PR are fine.
+Requires the reachable SSH device, or an explicitly selected mounted USB card,
+and applies the real command's preconditions and refusals. Creates no branch,
+commit or PR. Read-only `gh` queries to detect an existing open PR are fine.
 
 ## Verification
 

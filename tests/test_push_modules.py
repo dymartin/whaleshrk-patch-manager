@@ -86,6 +86,19 @@ def test_verify_orhack_manifest_detects_a_missing_file():
     assert "missing" in str(exc.value)
 
 
+def test_verify_orhack_manifest_uses_transport_bulk_check():
+    transport = _loaded_card()
+    transport.check_sha1_manifest = lambda manifest: None
+    verify_orhack_manifest(transport)
+
+
+def test_verify_orhack_manifest_reports_bulk_check_failure():
+    transport = _loaded_card()
+    transport.check_sha1_manifest = lambda manifest: "0RHACK/mother.pd: FAILED"
+    with pytest.raises(OrhackIntegrityError, match="mother.pd"):
+        verify_orhack_manifest(transport)
+
+
 def test_installed_content_hash_is_none_when_nothing_installed():
     transport = InMemoryTransport()
     entry = _community_entry()

@@ -48,11 +48,11 @@ song's PR — the entanglement one-PR-per-song forbids.
 
 Reports the planned change set and writes nothing.
 
-`push` and `pull` dry-runs **require the mounted card** and apply the real
-command's preconditions and refusals. The destructive set — deletions, renames,
-module replacement — is a comparison of card against repo, so a cardless
-dry-run could only report the harmless part while appearing complete. `rig lint`
-is the offline check.
+`push` and `pull` dry-runs **require the reachable SSH device**, or an explicitly
+selected mounted USB card, and apply the real command's preconditions and
+refusals. The destructive set — deletions, renames, module replacement — is a
+comparison of device against repo, so a device-free dry-run could only report
+the harmless part while appearing complete. `rig lint` is the offline check.
 
 Push reaches no network at all, dry-run or not — it installs from `modules/`.
 `pull --dry-run` creates no branch, commit or PR; read-only `gh` queries to

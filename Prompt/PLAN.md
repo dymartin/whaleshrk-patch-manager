@@ -108,9 +108,10 @@ Separately assert directory-name ordering: sorting the emitted names with plain
 
 ## Phase 4 — Transport
 
-Protocol, `UsbMassStorage`, card detection by structure (`data/orhack/` and
-`Patches/0RHACK/` both present). Protocol includes `rename` and durable `flush`.
-Refuse on zero or multiple candidates.
+Protocol, default `SshTransport`, explicit-fallback `UsbMassStorage`, and USB
+card detection by structure (`data/orhack/` and `Patches/0RHACK/` both present).
+Protocol includes `rename` and durable `flush`. Refuse on zero or multiple USB
+candidates.
 
 *Verified by:* fake and USB implementations pass one shared conformance suite.
 
@@ -193,8 +194,9 @@ behind it; unused slugs remap freely. This needs the catalog's recorded slug→i
 pairs from Phase 1, so it cannot be stubbed.
 
 `--dry-run` on every mutating command reports the exact planned change set and
-touches nothing. `push` and `pull` dry-runs require the mounted card and apply
-the real command's preconditions and refusals; `rig lint` is the offline check.
+touches nothing. `push` and `pull` dry-runs require the reachable SSH device (or
+an explicitly selected mounted USB card) and apply the real command's
+preconditions and refusals; `rig lint` is the offline check.
 
 Song rename and deletion need no command — they fall out of the Phase 5 preset
 classification.
