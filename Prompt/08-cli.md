@@ -33,14 +33,14 @@ is the only source of that, and it does not exist until Phase 10 runs.
 rig push [SONG...] [--dry-run] [--force]
 rig pull [SONG...] [--dry-run]
 rig lint [SONG...]
+rig catalog add SLUG...
 rig catalog update [--dry-run]
 rig upgrade MODULE... [--dry-run]
 rig rename-chain SONG OLD NEW
-rig validate --tier static|hardware [SONG...]
-rig validate verify-report REPORT
 ```
 
-Empty song selection means all songs.
+Empty song selection means all songs. `catalog add` and `upgrade` are the only
+commands that reach the network.
 
 ### `rig rename-chain SONG OLD NEW`
 

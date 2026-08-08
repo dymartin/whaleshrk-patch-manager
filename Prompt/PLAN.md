@@ -6,51 +6,54 @@ and the verification each step owes, not the architecture.
 Per-phase build briefs, ready to hand to an implementer, live in
 [Prompt/](Prompt/README.md).
 
-Phases 0-8 build the CLI and need no hardware. Phases 9-10 build the two
-validation tiers in [docs/validation.md](docs/validation.md); only Phase 10
-touches an S2. Phase 11 is the deferred Claude skill.
+Phases 0-8 build the CLI and need no hardware. Phase 9 is lint and CI; Phase
+10 is the hardware check and is the only phase that touches an S2. Phase 11 is
+the deferred Claude skill.
 
 ## Phase 0 — Skeleton
 
 Python package `rig`, managed by `uv`. Dependencies: `ruamel.yaml`, `typer`,
 `httpx`; stdlib for `zipfile`, `struct`, `pathlib`, `subprocess`.
 
-Two fixtures every later phase tests against:
+Fixtures every later phase tests against:
 
 - an in-memory transport implementing [docs/transport.md](docs/transport.md),
   plus a fixture card built from the real ORHACK 0.52b archive;
-- a **frozen catalog fixture** — all 145 Patchstorage candidates, list responses
-  and archive content hashes, committed as an offline artifact. Live upstream
-  edits otherwise invalidate Phase 1's counts. Hermetic ingest tests run on
-  frozen data; live discovery is a separate, occasional check.
+- **synthetic module archives**, built in-process with `zipfile` — one clean,
+  and one per gate branch (bad ELF arch, unsafe archive path, malformed
+  `module.json`, rack redistribution, unmodelled sidecar). A corpus of real
+  uploads is deliberately *not* committed; see decision #71.
 
-*Verified by:* fixture card loads, fake transport round-trips files, frozen
-catalog replays offline.
+Every socket is blocked for the whole pytest session, so no test can reach
+Patchstorage.
+
+*Verified by:* fixture card loads, fake transport round-trips files, each gate
+branch fires on its own archive.
 
 ## Phase 1 — Catalog
 
-Ingest ORHACK built-ins and Patchstorage per [docs/catalog.md](docs/catalog.md).
+Ingest ORHACK built-ins and, per `rig catalog add SLUG`, individual
+Patchstorage uploads. See [docs/catalog.md](docs/catalog.md).
 
-- Discovery: union of platform `3371` and tag `1483`, deduped. Assert result
-  counts — unknown query params are silently ignored by the API.
+- Slug lookup: Patchstorage has no lookup-by-slug filter, so resolving one
+  walks the platform `3371` / tag `1483` list, stopping once every wanted slug
+  is found. A lookup mechanism only — just the named uploads are ingested.
 - Validation gate: `module.json` + `module.pd` present, JSON parses, ELF ABI
   check on every bundled external; reject unsafe archives, runtime path
-  collisions, unmodelled preset sidecars.
+  collisions, unmodelled preset sidecars. The check order in
+  [docs/catalog.md](docs/catalog.md) is load-bearing.
 - Key derivation, parameter derivation, category mapping with the fixed
   precedence and per-entry `category_override`.
 - Populate `tags` from Patchstorage tags and categories. Unused by the CLI;
   required so Phase 11 needs no re-ingest.
-- Emit `.rig/catalog/` entries and `.rig/modules.lock`.
+- Emit `.rig/catalog/` entries, `.rig/modules.lock`, and the upload archive
+  itself into `modules/<slug>@v<revision>.zip`, byte-identical (decision #72).
+  Refuse a same-revision archive whose bytes differ; warn past 5MB.
 
-*Verified by:* replaying the **frozen** fixture reproduces 122 pass /
-14 not-a-module / 5 wrong-arch / 3 rack-redistribution / 1 bad-JSON with zero
-qualified key collisions. Never against the live API — those counts change as
-people upload.
-
-Ingest must reproduce the entry counts in [docs/catalog.md](docs/catalog.md) —
-200 entries, zero qualified key collisions. Per decision #60 an upload yields
-one entry per module; only rack redistributions are excluded, detected by a
-`main.pd` at the package root.
+*Verified by:* one synthetic archive per gate branch fires exactly that branch;
+a clean archive ingests; two uploads shipping the same display name produce
+distinct qualified keys; no community entry shadows a built-in runtime path.
+Never against the live API.
 
 ## Phase 2 — Schema
 
@@ -116,10 +119,11 @@ Refuse on zero or multiple candidates.
 Composes phases 1-4, per [docs/workflows/push.md](docs/workflows/push.md).
 
 - Preflight: reconcile installed modules against the lock **by content hash**,
-  installing missing and replacing mismatched; report available updates without
-  installing. Refuse a *selective* push when the lock changed since the last
-  push. Unreachable source while *checking* skips silently; a locked module
-  absent from the card with an unreachable source aborts the push.
+  installing missing and replacing mismatched. Module content comes from the
+  committed `modules/` archives, digest-verified — push reaches no network and
+  checks for no updates (decision #72). Refuse a *selective* push when the lock
+  changed since the last push. A locked module whose archive is missing, fails
+  its digest, or no longer holds that module aborts the push.
 - Verify ORHACK structure/manifest without installing it.
 - Classify card presets against `.rig/state/last-pushed/*.meta.json`: recorded
   with a live song file → write, renaming the directory if the recorded name
@@ -163,11 +167,8 @@ confirm only the mutated values changed and all comments survived.
 - Per drifted song: branch `pull/<song-slug>` (deterministic, no timestamp),
   apply reverse-mapped edits, commit, force-push, reuse the existing open PR if
   one exists — otherwise open one via `gh`.
-- Adopt unknown presets as new songs, one PR each, per
-  [docs/workflows/pull.md](docs/workflows/pull.md). Adoption *mints* a song
-  file, so build it as a separate emitter rather than a special case of the
-  reverse mapper. It writes both `.rig/state/last-pushed/` files, or the next
-  push refuses the preset it just adopted.
+- Ignore presets no recorded song claims — pull never mints a song file
+  (decision #74).
 - Ignore media.
 
 *Verified by:* fixture card with seeded drift produces the expected branch and
@@ -181,7 +182,7 @@ a clear message when it is absent.
 
 Implement the error/warning policy in [docs/schema.md](docs/schema.md) and wire
 the full command set from [docs/workflows/](docs/workflows/README.md): `push`,
-`pull`, `lint`, `catalog update`, `upgrade`, `rename-chain`, `validate`.
+`pull`, `lint`, `catalog add`, `catalog update`, `upgrade`, `rename-chain`.
 
 `rig rename-chain` rewrites the song file and its name-keyed
 `.rig/state/chains/` binding in one commit.
@@ -202,31 +203,31 @@ classification.
 leaves both card and repo byte-identical. Plus a slug→id reorder fixture that
 `rig upgrade` must refuse, and a hand-renamed chain that push must refuse.
 
-## Phase 9 — Static validation and CI (Tier 1)
+## Phase 9 — Lint and CI
 
-First tier of [docs/validation.md](docs/validation.md).
+See [docs/validation.md](docs/validation.md). No report artifact, no tiers,
+no digest verification — decision #73.
 
-- Land the canonical versioned **report schema** — verdict, tier, subject, run
-  id, checks, metrics, failures, times. Phase 10 consumes it, so it lands first.
-- `rig validate --tier static` runs the Phase 1 catalog gate plus the Phase 2
-  schema and lint rules over every locked module and every song, and emits a
-  report. No symbol or Pd-object resolution — decision #68.
-- `rig validate verify-report REPORT`.
+- `rig lint [SONG...]` runs the Phase 2 schema and lint rules over every song,
+  plus the Phase 1 catalog gate over every archive in `modules/` that the lock
+  pins. Prints findings, exits non-zero on error. No symbol or Pd-object
+  resolution — decision #68.
 - Required GitHub Actions job on every pull request and push.
 
 *Verified by:* broken-ELF, wrong-arch, unsafe-archive and unmodelled-sidecar
-fixtures each fail with the intended check id; a good fixture passes; a
-hand-edited report fails verification.
+archive fixtures each fail; a locked module with no committed archive, and one
+failing its pinned digest, each fail; a good repo passes.
 
-## Phase 10 — Hardware check (Tier 2)
+## Phase 10 — Hardware check
 
-`rig validate --tier hardware`, run by hand from the laptop against the S2 on
-the same network. No CI, no runner, no attestation. Full spec in
+Its own command, run by hand from the laptop against the S2 on the same
+network. No CI, no runner, no attestation, and **no report artifact** — it
+prints its measurements (decision #73). Full spec in
 [docs/validation.md](docs/validation.md).
 
 1. **Device session.** Connect to the OS 5.1 web app on port 8080: the
    `/log_stream` websocket for events and the `/terminal` websocket for `/proc`
-   sampling. Refuse with `unavailable` when the device is unreachable. Record
+   sampling. Say so and stop when the device is unreachable. Record
    `pd -version` and `locale -a` on the first successful connection and update
    the two confirm-on-contact entries in
    [docs/open-questions.md](docs/open-questions.md).
@@ -236,17 +237,15 @@ the same network. No CI, no runner, no attestation. Full spec in
 3. **CPU and errors.** Sample the Pd process over a fixed idle window, then
    again under a fixed note pattern on each chain's channel. Count ALSA
    underruns and Pd load-error lines from the same stream.
-4. **Verdict and baseline.** Fail on any load error or underrun. Compare against
-   `.rig/state/hardware/<song>.json` and warn past 20%. Write the report; write
-   the baseline when none exists for this subject.
+4. **Verdict.** Fail on any load error or underrun. Print load time and CPU
+   per song alongside the stimulus profile version they were taken under.
 5. **Prove it is read-only.** The command sends only Program Change and notes —
    never CC 102, never a save. Assert this by hashing the card before and after
    a run.
 
 *Verified by:* a stubbed device session replays recorded log streams — a clean
-run, a run with a load-error line, a run with an underrun, and a regressed run —
-each producing the intended verdict; an unreachable device produces
-`unavailable` and no baseline.
+run, a run with a load-error line, and a run with an underrun — each producing
+the intended verdict; an unreachable device says so and records nothing.
 
 ## Phase 11 — Chain auto-assembly skill
 

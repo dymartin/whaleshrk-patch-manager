@@ -13,9 +13,9 @@ and formatting. The inverse of Phase 3 for everything drift covers.
 
 ## Scope
 
-Edit **only what moved**. This is a patch applier, not a song emitter — minting
-a new song file from a preset is Phase 7's separate adoption emitter, not a
-special case here.
+Edit **only what moved**. This is a patch applier, not a song emitter. Nothing
+mints a song file from a preset — the repo is authoritative for whether a song
+exists (`../docs/decisions.md` #74).
 
 Drift covers: module placement, all module parameters, CC mappings, mod-bus
 routing, and router settings including per-chain input gains and MIDI channels.

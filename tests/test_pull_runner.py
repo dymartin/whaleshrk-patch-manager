@@ -12,10 +12,8 @@ import json
 import pytest
 
 from rig.compile.compiler import compile_song
-from rig.pull.adopt import adopt_preset
 from rig.pull.errors import PullError
 from rig.pull.runner import pull
-from rig.push.runner import push
 from rig.push import state as state_io
 from rig.song.bindings import write_bindings
 from rig.song.kits import KitsConfig
@@ -234,10 +232,12 @@ def test_dry_run_creates_no_branch_or_pr(tmp_path):
     assert gh.ensure_calls == []
 
 
-# --- adoption -------------------------------------------------------------
+# --- presets no song claims -------------------------------------------------
 
 
-def test_adoption_is_off_by_default(tmp_path):
+def test_card_preset_with_no_song_file_is_left_alone(tmp_path):
+    """The repo is authoritative for whether a song exists; a preset the repo
+    does not declare is never turned into one."""
     transport, state_dir, media_root, kits, catalog, git, repo_dir, gh = _env(tmp_path)
     orphan = _song("Ambient Bed", 9)
     compiled = compile_song(orphan, catalog=catalog, kits=kits, media_root=media_root)
@@ -248,88 +248,6 @@ def test_adoption_is_off_by_default(tmp_path):
         repo_root=repo_dir, transport=transport, git=git, gh=gh,
     )
 
-    assert result.adopted == {}
-    assert not git.branch_exists("pull/ambient-bed")
-
-
-def test_unknown_preset_adopts_writing_state_files_and_binding(tmp_path):
-    transport, state_dir, media_root, kits, catalog, git, repo_dir, gh = _env(tmp_path)
-    orphan = _song("Ambient Bed", 9)
-    compiled = compile_song(orphan, catalog=catalog, kits=kits, media_root=media_root)
-    transport.write(f"{PRESETS_ROOT}/009-Ambient Bed/params.json", compiled.files["params.json"])
-
-    result = _pull(
-        song_docs={}, catalog=catalog, kits=kits, media_root=media_root, state_dir=state_dir,
-        repo_root=repo_dir, transport=transport, git=git, gh=gh, adopt=True,
-    )
-
-    assert "ambient-bed" in result.adopted
-    branch = "pull/ambient-bed"
-    assert git.branch_exists(branch)
-    yaml_text = git.read_blob(branch, "songs/ambient-bed.yaml").decode("utf-8")
-    assert "program: 9" in yaml_text
-    baseline = json.loads(git.read_blob(branch, ".rig/state/last-pushed/ambient-bed.json"))
-    assert baseline == json.loads(compiled.files["params.json"])
-    meta = json.loads(git.read_blob(branch, ".rig/state/last-pushed/ambient-bed.meta.json"))
-    assert meta == {"directory": "009-Ambient Bed", "program": 9}
-    bindings = json.loads(git.read_blob(branch, ".rig/state/chains/ambient-bed.json"))
-    assert bindings == {"synth": "A"}
-
-
-def test_adopted_song_pushed_immediately_is_recognised_as_managed(tmp_path):
-    transport, state_dir, media_root, kits, catalog, git, repo_dir, gh = _env(tmp_path)
-    transport.write("Patches/0RHACK/manifest.txt", b"")
-    transport.write("data/orhack/rack.json", json.dumps({"currentPreset": "Init"}).encode("utf-8"))
-    transport.write(f"{PRESETS_ROOT}/Init/params.json", b"{}")
-    orphan = _song("Ambient Bed", 9)
-    compiled = compile_song(orphan, catalog=catalog, kits=kits, media_root=media_root)
-    directory = "009-Ambient Bed"
-    transport.write(f"{PRESETS_ROOT}/{directory}/params.json", compiled.files["params.json"])
-    observed = json.loads(compiled.files["params.json"])
-
-    adopted = adopt_preset(directory, observed, catalog=catalog, kits=kits, media_root=media_root)
-
-    # Simulate the PR having merged: the state files land for real.
-    state_io.write_last_pushed(
-        state_dir, adopted.song_id, compiled.files["params.json"],
-        state_io.LastPushedMeta(directory=directory, program=adopted.program),
-    )
-    write_bindings(state_dir / "chains", adopted.song_id, adopted.bindings)
-
-    class _NoModuleSource:
-        def fetch(self, entry):
-            raise AssertionError("no community modules expected")
-
-    result = push(
-        songs={adopted.song_id: adopted.doc.song}, selected=None, catalog=catalog, lock={"modules": {}},
-        kits=kits, media_root=media_root, state_dir=state_dir, module_source=_NoModuleSource(),
-        transport=transport, verify_manifest=False,
-    )
-
-    assert result.written == [adopted.song_id]  # not refused as unrecorded
-
-
-def test_adopted_song_pulled_immediately_again_reports_no_drift(tmp_path):
-    transport, state_dir, media_root, kits, catalog, git, repo_dir, gh = _env(tmp_path)
-    orphan = _song("Ambient Bed", 9)
-    compiled = compile_song(orphan, catalog=catalog, kits=kits, media_root=media_root)
-    directory = "009-Ambient Bed"
-    transport.write(f"{PRESETS_ROOT}/{directory}/params.json", compiled.files["params.json"])
-    observed = json.loads(compiled.files["params.json"])
-
-    adopted = adopt_preset(directory, observed, catalog=catalog, kits=kits, media_root=media_root)
-    state_io.write_last_pushed(
-        state_dir, adopted.song_id, compiled.files["params.json"],
-        state_io.LastPushedMeta(directory=directory, program=adopted.program),
-    )
-    write_bindings(state_dir / "chains", adopted.song_id, adopted.bindings)
-
-    song_docs = {adopted.song_id: parse_song(adopted.text)}
-    result = _pull(
-        song_docs=song_docs, catalog=catalog, kits=kits, media_root=media_root, state_dir=state_dir,
-        repo_root=repo_dir, transport=transport, git=git, gh=gh,
-    )
-
-    assert result.clean == [adopted.song_id]
     assert result.drifted == {}
-    assert result.aborted == {}
+    assert not git.branch_exists("pull/ambient-bed")
+    assert gh.ensure_calls == []

@@ -1,110 +1,62 @@
 # Validation
 
-Two tiers: static CI, and a hand-run hardware check. No simulated-OS tier — see
+Two things check the rig: `rig lint`, which runs in CI, and a hand-run
+hardware check that does not exist yet. No simulated-OS tier — see
 [decisions.md](decisions.md) #61.
-
-Validation belongs to an exact subject:
-
-```
-commit + report schema + module-lock digest + S2 device id
-+ OS 5.1 + Pd version + ORHACK 0.52b + MIDI port name
-+ stimulus profile version
-```
-
-The stimulus profile is part of the subject because the numbers mean nothing
-without it: lengthening the idle window or changing the note pattern changes
-every measurement. Bumping the profile invalidates existing baselines by design,
-rather than silently comparing against numbers taken a different way.
-
-Hardware numbers are comparable only within one subject. V1 supports Organelle
-S2 and OS 5.1 only.
-
-The Pd member is **Pd 0.53.1**, Debian bookworm's `puredata`
-(`0.53.1+ds-2+deb12u1`) at `/usr/bin/pd`. Derived from the OS build recipe and
-confirmed against upstream source, not yet observed: record `pd -version` at
-first device contact and replace this line. Audio subject is 44100 Hz,
-64-sample blocks, `-audiobuf 6` headless — see
-[platform/runtime.md](platform/runtime.md).
-
-## Confidence levels
-
-- `static-only`: archive and source checks pass.
-- `hardware-observed`: the named checks passed on the S2 named in the report.
 
 Neither claims DSP correctness or audio quality. Nothing does — see
 [Deliberately not covered](#deliberately-not-covered).
 
-## CLI and report
+## `rig lint`
 
 ```
-rig validate --tier static|hardware [SONG...]
-rig validate verify-report REPORT
+rig lint [SONG...]
 ```
 
-Each run emits canonical, versioned JSON: verdict (`pass`, `fail`,
-`unavailable`), tier, the subject above, run id, per-song checks, metrics,
-failures, start/end times, a `confidence` label (below) and a `scope_note` --
-a fixed disclaimer carried in the report data itself, not just CLI output, so
-a saved or forwarded report cannot be misread as proof of anything the tier
-did not check. Individual checks may be `unavailable`.
+Prints findings, exits non-zero on any error. No report artifact, no run id,
+no digest — the person running it is the person reading it, in the same
+terminal (see [decisions.md](decisions.md) #69). CI fails a step on exit code
+alone, which is the whole contract.
 
-`rig validate --tier static` writes its report to `.rig/state/reports/`
-(gitignored, not committed -- see [repo-layout.md](repo-layout.md)) and
-prints the path. `verify-report` recomputes a sha256 digest embedded in the
-file and rejects it if the content no longer matches -- not a signature (no
-third party needs convincing, per #62's reasoning), just enough to catch a
-hand edit.
+Two things it checks:
 
-Hardware runs also write a baseline per song to
-`.rig/state/hardware/<song>.json` — median load time and CPU, keyed by subject.
-One file per song, like every other piece of repo state. Baselines are
-committed; reports are not.
+- **Songs.** The schema and lint rules in [schema.md](schema.md), per song,
+  plus the cross-song rules (duplicate `program`, and so on). A song filter is
+  diagnostic only; cross-song rules always run over every song.
+- **Stored module archives.** Every module `.rig/modules.lock` pins is
+  re-gated out of `modules/`: digest verified, archive re-run through the
+  catalog gate from [catalog.md](catalog.md) — safe archive, ARM32 hard-float
+  little-endian ELF, modelled sidecars — and the module the entry names
+  located inside it.
 
-## Tier 1: static CI
-
-Required on every pull request and push. Public repo, so Actions minutes are
-unmetered and this runs unconditionally.
-
-Static validation **is** the catalog gate from [catalog.md](catalog.md), run
-over every locked module and every song: safe archive, valid metadata, ARM32
-hard-float little-endian ELF, `DT_NEEDED` warnings, unique runtime path,
-modelled sidecars — plus the schema and lint rules in [schema.md](schema.md).
+That second check is the repo's reproducibility proof: it demonstrates
+`.rig/catalog/` was generated from the archives actually committed, rather
+than hand-edited, and that each archive still passes what it passed when it
+was added. It is affordable on every run precisely because the catalog is a
+shopping list rather than a mirror of Patchstorage.
 
 No symbol or Pd-object resolution. It was specified once and dropped; see
 [decisions.md](decisions.md) #68.
 
-A local song filter is diagnostic only. Static success never claims CPU cost or
-that a module loads.
+`rig lint` never claims a module loads or what it costs in CPU. Nothing
+off-device can.
 
-**Re-running the gate needs an archive, and the repo keeps none.**
-`.rig/catalog/` and `.rig/modules.lock` are themselves built by gating the
-frozen fixture (`rig.catalog.frozen`), so `rig validate --tier static`
-re-gates the same way — every module `.rig/modules.lock` currently pins,
-replayed against the frozen fixture, rather than a live Patchstorage
-re-fetch (only `rig catalog update` does that). A locked module whose
-candidate is not in the fixture — ingested by a later `rig catalog update`
-run after the fixture was frozen — cannot be re-gated offline; its check
-reports `unavailable`, never a silent pass. CI's own "regenerate from the
-frozen fixture and fail on diff" is a separate check, over the whole
-committed catalog rather than only what one repo's songs use.
+## The hardware check — planned, not built
 
-A locked module is matched back to its frozen candidate by Patchstorage
-upload slug — the same identifier `rig.catalog.entry.CatalogEntry.source`
-already stores for a community module and the catalog's own key relies on
-for uniqueness (`docs/catalog.md` "Keys"), so it is the uniqueness anchor
-this matching relies on too, not a new assumption.
+Phase 10 of `../Prompt/PLAN.md`. Nothing below has run; do not cite it as
+evidence.
 
-## Tier 2: hardware check
-
-Run by hand — `rig validate --tier hardware` — from the laptop, with the S2 on
-the same network and a MIDI port connected. Not CI, not scheduled, no runner.
-Intended use is soundcheck or after a push that changed a song.
+Run by hand from the laptop, with the S2 on the same network and a MIDI port
+connected. Not CI, not scheduled, no runner. Intended use is soundcheck or
+after a push that changed a song. It reports four things — load time, CPU, Pd
+load errors, ALSA underruns — and prints them; there is no report schema to
+fill.
 
 **Read-only on the device.** `Rack::loadPreset` and `loadFilePreset` write
 nothing; `rack.json` is written only by an explicit `savesettings` and
-`params.json` only by `savePreset`. The check therefore needs no backup, restore
-or quarantine — and it must never send CC 102 or any save command, the only
-inputs that would break that property.
+`params.json` only by `savePreset`. The check therefore needs no backup,
+restore or quarantine — and it must never send CC 102 or any save command, the
+only inputs that would break that property.
 
 ### Channels
 
@@ -128,6 +80,29 @@ song at the program number its YAML declares.
 you control, and never expose the S2 to an untrusted one. The check adds no
 exposure, but it depends on this one.
 
+### The subject
+
+Hardware numbers are comparable only within one subject:
+
+```
+commit + module-lock digest + S2 device id + OS 5.1 + Pd version
++ ORHACK 0.52b + MIDI port name + stimulus profile version
+```
+
+The stimulus profile is part of the subject because the numbers mean nothing
+without it: lengthening the idle window or changing the note pattern changes
+every measurement. Bumping the profile invalidates existing baselines by
+design, rather than silently comparing against numbers taken a different way.
+
+V1 supports Organelle S2 and OS 5.1 only.
+
+The Pd member is **Pd 0.53.1**, Debian bookworm's `puredata`
+(`0.53.1+ds-2+deb12u1`) at `/usr/bin/pd`. Derived from the OS build recipe and
+confirmed against upstream source, not yet observed: record `pd -version` at
+first device contact and replace this line. Audio subject is 44100 Hz,
+64-sample blocks, `-audiobuf 6` headless — see
+[platform/runtime.md](platform/runtime.md).
+
 ### Per song
 
 Three repetitions, median reported:
@@ -142,7 +117,7 @@ Three repetitions, median reported:
 
 ### Stimulus profile v1
 
-Committed alongside the baselines, versioned, and named in every report.
+Versioned, and named alongside every set of measurements.
 
 | Setting | Value |
 |---|---|
@@ -166,38 +141,27 @@ Hard fail:
   `loadmodule: unable to find`, `unable to initialise module`;
 - any ALSA underrun during the run.
 
-Warn: load time or CPU more than 20% above this song's committed baseline.
-
 No absolute CPU or timing gate exists, and none is invented before real numbers
-do. The first run on a new subject records a baseline and warns about nothing.
-
-Device unreachable is `unavailable`, not a failure.
+do. Device unreachable is reported as such, not as a failure.
 
 ## Deliberately not covered
 
-Nothing in either tier proves any of this. Rehearsal and the band's ears do:
+Nothing here proves any of this. Rehearsal and the band's ears do:
 
 - DSP correctness, audio quality, level, or whether a chain is silent;
 - temperature, throttling, or long-run thermal behaviour;
 - MIDI latency and jitter;
 - that a module's externals and Pd objects resolve on the device — the ELF check
   proves the binary is the right shape, not that its dependencies exist;
-- that a module loads at all, before it reaches the device. Tier 1 sees the
-  archive, Tier 2 sees the device, and there is nothing in between.
+- that a module loads at all, before it reaches the device. `rig lint` sees the
+  archive, the hardware check sees the device, and there is nothing in between.
 
 ## Acceptance
 
-- Static job gates every pull request; broken-ELF, wrong-arch, unsafe-archive
-  and unmodelled-sidecar fixtures each fail with the intended check id.
-- Hardware check on an unreachable device reports `unavailable` and writes no
-  baseline.
-- A hardware run leaves the card byte-identical — asserted by hashing before and
-  after.
-- A load-error fixture and an xrun fixture each fail; a regressed baseline warns
-  without failing.
-- `verify-report` rejects a hand-edited report.
-
-## Implementation order
-
-Phases 9 and 10 of `../Prompt/PLAN.md`. The report schema lands before the tier that
-emits it. Core patch-manager work proceeds in parallel.
+- `rig lint` gates every pull request; broken-ELF, wrong-arch, unsafe-archive
+  and unmodelled-sidecar archive fixtures each fail.
+- A locked module with no committed archive, or one failing its pinned digest,
+  fails `rig lint` and refuses at push.
+- Hardware check on an unreachable device says so and records nothing.
+- A hardware run leaves the card byte-identical.
+- A load-error fixture and an xrun fixture each fail.

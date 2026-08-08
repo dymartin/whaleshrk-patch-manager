@@ -134,8 +134,9 @@ and restricting it would strand chains while B or D sat empty.
 **A recorded binding wins, and leaves the pool before either pass runs.** The
 device stores no chain names, so push records the name→letter binding; pull uses
 it to attribute drift, and the compiler assigns letters only where no binding
-exists. That is what lets an adopted song keep the letters the device actually
-had — see [workflows/pull.md](workflows/pull.md).
+exists. That is what keeps a letter stable when a song gains a chain, so a knob
+moved on the device is still attributed to the chain that owns it — see
+[workflows/pull.md](workflows/pull.md).
 
 Renaming a chain must rewrite its binding in the same commit, since the binding
 is name-keyed. A bound chain outgrowing its letter is a hard compile error.

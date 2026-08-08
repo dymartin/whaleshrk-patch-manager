@@ -1,62 +1,42 @@
-# Phase 9 — Static validation and CI (Tier 1)
+# Phase 9 — Lint and CI
 
 ## Goal
 
-The canonical report schema, `rig validate --tier static`, `verify-report`, and
-a required GitHub Actions job.
+`rig lint [SONG...]` and a required GitHub Actions job.
 
 ## Read first
 
 `../docs/validation.md` (owns this phase), `../docs/catalog.md` (the gate),
-`../docs/schema.md` (lint rules), `../docs/decisions.md` #61, #68.
+`../docs/schema.md` (lint rules), `../docs/decisions.md` #61, #68, #71, #73.
 
-## Land the report schema first
+## No report artifact
 
-Phase 10 consumes it, so it lands before the tier that emits it. Canonical,
-versioned JSON, with:
+Decision #73. No `Report` schema, no `run_id`, no `confidence`/`scope_note`,
+no sha256 `verify-report`, no `--tier` flag. Findings go to stdout/stderr and
+the exit code carries the verdict — that is the whole contract CI needs, and
+CI's own step never consumed anything more.
 
-```
-verdict            pass | fail | unavailable
-tier               static | hardware
-subject            (below)
-run id
-per-song checks    each may itself be `unavailable`
-metrics
-failures
-start / end times
-```
+Phase 10 prints its measurements rather than filling a shape, so nothing here
+lands "first" on its behalf.
 
-**Subject** is the exact identity a result belongs to:
+## `rig lint [SONG...]`
 
-```
-commit + report schema + module-lock digest + S2 device id
-+ OS 5.1 + Pd version + ORHACK 0.52b + MIDI port name
-+ stimulus profile version
-```
+Two checks, both offline:
 
-The stimulus profile is part of the subject because the numbers mean nothing
-without it — lengthening the idle window or changing the note pattern changes
-every measurement. Bumping the profile invalidates existing baselines by design.
+- **Songs** — the Phase 2 schema rules and the Phase 8 lint rules per song,
+  plus the cross-song rules. A song filter is **diagnostic only**; cross-song
+  rules always run over every song.
+- **Stored archives** — for every module `.rig/modules.lock` pins, read
+  `modules/<slug>@v<revision>.zip`, verify it against `archive_sha256`, re-run
+  the Phase 1 catalog gate over it, and locate the module the catalog entry
+  names inside it.
 
-Static-tier runs fill the members they can and mark the device-only members
-absent.
+The second check is the repo's reproducibility proof: it demonstrates
+`.rig/catalog/` was generated from the archives actually committed rather than
+hand-edited. It is affordable on every run because the catalog is a shopping
+list, not a mirror of Patchstorage (#71).
 
-Pin `Pd 0.53.1`, Debian bookworm's `puredata` (`0.53.1+ds-2+deb12u1`) at
-`/usr/bin/pd`. Derived from the OS build recipe and confirmed against upstream
-source, **not yet observed** — Phase 10 replaces it with the observed
-`pd -version`. Audio subject is 44100 Hz, 64-sample blocks, `-audiobuf 6`
-headless.
-
-## `rig validate --tier static [SONG...]`
-
-Runs, over every locked module and every song:
-
-- the **Phase 1 catalog gate** — safe archive, valid metadata, ARM32 hard-float
-  little-endian ELF, `DT_NEEDED` warnings, unique runtime path, modelled
-  sidecars;
-- the **Phase 2 schema rules and Phase 8 lint rules**.
-
-Then emits a report.
+Exit non-zero on any error. Warnings do not fail.
 
 **No symbol or Pd-object resolution** (#68). It was specified once and dropped:
 the check needed a pinned Pd/rootfs symbol manifest that was a by-product of the
@@ -66,34 +46,29 @@ failure the hardware check now catches anyway as a `couldn't create` line in the
 device log. Cost, stated: an unresolvable external is found at rehearsal rather
 than on a pull request.
 
-A local song filter is **diagnostic only**. Static success never claims CPU cost
-or that a module loads.
-
-Confidence level produced: `static-only`.
-
-## `rig validate verify-report REPORT`
-
-Verifies a report has not been edited since it was written.
+Lint never claims CPU cost or that a module loads.
 
 ## CI
 
 Required GitHub Actions job on every pull request and push. Public repo, so
 Actions minutes are unmetered and this runs unconditionally.
 
-CI also regenerates the catalog from the **frozen fixture** and fails on diff.
-Never hits the live API.
+`uv run pytest -q`, then `uv run rig lint`. Every socket is blocked for the
+whole pytest session, and `rig lint` opens none, so CI never reaches the live
+API.
 
 ## Verification
 
 | Fixture | Expected |
 |---|---|
-| Broken ELF | fails with the intended check id |
-| Wrong architecture | fails with the intended check id |
-| Unsafe archive | fails with the intended check id |
-| Unmodelled sidecar | fails with the intended check id |
-| Good fixture | passes |
-| Hand-edited report | `verify-report` rejects it |
+| Broken ELF archive | fails |
+| Wrong-architecture archive | fails |
+| Unsafe archive | fails |
+| Unmodelled-sidecar archive | fails |
+| Locked module with no committed archive | fails |
+| Committed archive failing its pinned digest | fails |
+| Good repo | passes, exit 0 |
 
 ## Done when
 
-All six rows pass and the Actions job is required on the default branch.
+All seven rows pass and the Actions job is required on the default branch.

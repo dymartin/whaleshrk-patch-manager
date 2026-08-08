@@ -1,12 +1,48 @@
 # Module Catalog
 
-Metadata only: module identity and source. No patch binaries or Pure Data
-source.
+**The catalog is a shopping list, not a mirror of Patchstorage.** It holds the
+modules this rig actually uses. Adding one is a deliberate act: `rig catalog
+add <slug>`.
 
-Lives in `.rig/catalog/`, generated. `.rig/modules.lock` pins versions. Both are
-committed. `rig catalog update` is the only rebuild path; ordinary builds and
-pushes never discover live data. CI regenerates from the frozen fixture and
-fails on diff. Each build records generator/schema version.
+Three committed pieces, each with one job:
+
+| Path | Holds |
+|---|---|
+| `.rig/catalog/<key>.json` | Metadata: identity, parameters, category, tags |
+| `.rig/modules.lock` | Version pin: upload slug, `updated_at`, file id, `archive_sha256`, `revision` |
+| `modules/<slug>@v<revision>.zip` | The upload itself, byte-identical |
+
+`rig catalog add` and `rig upgrade` are the only commands that reach the
+network. Push, lint, tests and CI read the committed files and never open a
+socket.
+
+## The archive store
+
+The upload's bytes travel with the repo. Two things depend on it:
+
+- **Reproducibility.** [overview.md](overview.md) promises "same repo, same
+  push, same rig — on any day." Pinning an upload id proves nothing once the
+  author deletes or replaces that upload; retaining the bytes does. This
+  reverses Prompt.md's "no vendoring" non-goal, which was written when
+  vendoring meant mirroring all of Patchstorage.
+- **Offline push.** A gig has no usable wifi. Push reads `modules/`, extracts
+  to a temp dir, strips junk, and copies to the card.
+
+Stored **unmodified**, so `archive_sha256` still verifies against what
+Patchstorage published — stripping happens on the way to the card, not before
+the archive is committed. Verified on every read, not just at `add` time: a
+truncated clone or hand-edited archive must be caught before it reaches the
+card.
+
+`revision` names the file because it is the only human-readable version an
+upload has. It is never an identity — see "Versioning". `rig catalog add`
+**refuses** an archive whose revision matches one already stored but whose
+bytes differ: that is an author replacing an upload without bumping it, the
+silent-change case no diff would otherwise surface.
+
+Two guardrails at `add` time: an archive past 5MB warns (every future version
+of it stays in git history permanently; the median ORAC module is ~40KB), and
+a slug already in the catalog refuses rather than silently re-adding.
 
 ## Sources
 
@@ -18,8 +54,10 @@ Two provenance types:
 Prompt.md's third type, "stock Organelle default patches," is invalid: those are
 standalone `main.pd` patches, not chain-slot ORAC modules.
 
-Discovery is the union of Patchstorage platform `3371` and tag `1483`, deduped —
-145 candidates as measured.
+Patchstorage's API has no lookup-by-slug filter, so resolving one slug still
+walks the platform `3371` / tag `1483` discovery list (stopping once every
+wanted slug is found). That walk is a lookup mechanism, not an ingest scope:
+only the named uploads are fetched, gated and stored.
 
 An upload contributes **one catalog entry per module it contains**, however
 many. What is excluded is not a size but a kind: archives redistributing the
@@ -44,23 +82,27 @@ Two slugification rules, both found by measurement:
   `effects/delay/spiraldelay/module` collides with its own parent. This also
   matches what `loadModuleDir` registers.
 
-With those, keys are unique across the measured catalog. Without the `@source`
+With those, keys are unique across every module surveyed. Without the `@source`
 qualifier, 34 keys covering 69 entries collide — mostly ORHACK built-ins against
 standalone re-uploads of the same module (`plateverb`, `clouds` vs `clds-pd`,
 `samplement`). With it, zero.
 
-### Measured catalog size
+### The one-time ecosystem survey
 
-Re-derived against the gate below, both slug rules applied:
+The gate below was designed against the **whole** ORAC ecosystem, surveyed once:
+the union of Patchstorage platform `3371` and tag `1483`, deduped, 145
+candidates. Those numbers are evidence for the gate's shape, not a target the
+catalog reproduces — the catalog now holds whatever this rig uses, plus 65
+selectable ORHACK built-ins.
 
 | | |
 |---|---|
-| Patchstorage candidates | 145 |
-| pass the gate | 122 |
+| Patchstorage candidates surveyed | 145 |
+| passed the gate | 122 |
 | of those, single-module uploads | 120, contributing 120 |
 | of those, module packs | 2, contributing 15 |
 | ORHACK built-ins, selectable | 65 |
-| **catalog entries** | **200** |
+| **entries, had everything been added** | **200** |
 
 Rejected: 14 not modules, 5 wrong-architecture, 3 rack redistributions, 1
 malformed JSON.
@@ -69,13 +111,13 @@ The earlier "32 of 190" figure predates the gate: it counted wrong-architecture
 uploads, counted `-empty-` as a module, and applied neither slug rule.
 
 The two packs are `sequencers-bpm` (Arp Seq, Click, Clock, PolyBeats, Punchy,
-Sampler24, Seq) and `orac-cvtools` (eight CV in/out modules). Verified at the
-measured install categories — `sequencers` and `utility/audio` — none of the 15
-collides with a built-in runtime path. That guarantee extends to all 135
-community entries, not just these 15 — see "Install layout and category"
-below for why: 6 of the other 120 single-module uploads *do* reuse a
-built-in's own directory name, and only installing by qualified catalog key
-rather than raw archive directory name keeps them all catalogued.
+Sampler24, Seq) and `orac-cvtools` (eight CV in/out modules). At the measured
+install categories — `sequencers` and `utility/audio` — none of the 15 collides
+with a built-in runtime path. That held for all 135 community entries, not just
+these 15 — see "Install layout and category" below for why: 6 of the other 120
+single-module uploads *do* reuse a built-in's own directory name, and only
+installing by qualified catalog key rather than raw archive directory name
+keeps them all catalogued.
 
 ## Parameter names
 
@@ -99,8 +141,9 @@ surface as a reviewable change, not silent drift.
 
 ## Validation gate
 
-Ingest rejects rather than catalogues. The counts above are what this gate
-produced against the 145 real candidates.
+Ingest rejects rather than catalogues, and runs on every `rig catalog add`.
+The counts above are what this gate produced against the 145 surveyed
+candidates.
 
 **Hard reject:**
 
@@ -133,14 +176,14 @@ produced against the 145 real candidates.
 ### Reject ordering
 
 The conditions above are mutually exclusive buckets — every one of the 145
-candidates lands in exactly one of them or passes — but the fixture's asserted
+surveyed candidates lands in exactly one of them or passes — but the measured
 counts (14 not-a-module / 5 wrong-arch / 3 rack-redistribution / 1 bad-JSON /
-122 pass) only reproduce under one specific check order. Three real
-candidates only resolve to their measured bucket because of it, so the order
-is load-bearing, not incidental, and a later refactor that reorders these
-checks silently breaks the counts with no test failure pointing at why.
-Derived by replaying the frozen fixture and checking which order the
-measured buckets require:
+122 pass) only reproduce under one specific check order. Several real
+candidates only resolve to their bucket because of it, so the order is
+load-bearing, not incidental. No test enforces it now that the survey corpus
+is gone, which is exactly why it is recorded here: a refactor that reorders
+these checks changes which archives the gate accepts, silently. Derived by
+checking which order the measured buckets require:
 
 1. **Archive safety** (traversal, absolute paths, symlinks, case collisions,
    size/count limits). Nothing in the archive's path structure — including
@@ -184,7 +227,7 @@ measured buckets require:
 root" / "deeper inside a module directory" wording is a simplification. The
 actual test is containment: a `main.pd` rejects only if its directory is
 neither equal to, nor a descendant of, any module directory in the archive.
-Three real shapes exist in the fixture, and only containment separates them
+Three real shapes appeared in the survey, and only containment separates them
 correctly:
 
 - `orac/main.pd` next to `orac/modules/fx/delay/` (module directories) — the
@@ -207,10 +250,10 @@ in the wrong-arch bucket rather than five times. Sidecar and duplicate-path
 are module-level: the brief's sidecar text says "rejects the module"
 (singular), and a duplicate path is inherently about one specific module's
 target, not its whole upload — so a pack can lose one member to either check
-while its siblings still catalogue. No real candidate exercises this split
+while its siblings still catalogue. No surveyed candidate exercised this split
 (zero sidecar/duplicate-path rejects in the measured data), so it is
-documented as the more precise reading of the spec text rather than
-something the fixture proves.
+documented as the more precise reading of the spec text rather than something
+real data proves.
 
 ### Detecting preset sidecars
 
@@ -240,10 +283,10 @@ sequencer members (Arp Seq, Seq, PolyBeats, Punchy) each write suffixes like
 `$3-punchy-seqvel.txt` or `$3-sequence-state.txt` that match none of the five
 built-in templates literally, yet the pack contributes all 7 of its measured
 catalog entries. A whitelist reading of "one of the five modelled patterns"
-would reject them and the 200-entry count would not reproduce. Verified
+would reject them and the 200-entry survey count would not reproduce. Verified
 against every real `read`/`write`-to-`presets` message in the 122 candidates
-that pass the rest of the gate: all resolve under the shape rule, zero are
-unmodelled — see `tests/test_catalog_ingest.py`.
+that passed the rest of the gate: all resolve under the shape rule, zero are
+unmodelled.
 
 A module with no such message is stateless and passes. This is a *textual*
 scan, deliberately conservative: dynamic path construction it cannot resolve
@@ -283,21 +326,31 @@ A bundled `abl_link~.pd_linux` is a special case: Organelle_OS renames it to
 so shipping one means a card write per launch and a module whose external
 silently never loads. Strip it, and treat a module needing it as unsupported.
 
-Passing is necessary, not sufficient. It gives `static-only` confidence. Only a
-hardware check raises that, and only for load cost and load errors; see
-[validation.md](validation.md).
+Passing is necessary, not sufficient: it says an archive is structurally safe
+to install, never that the module sounds right or fits in the S2's CPU
+budget. `rig lint` re-runs this gate over every committed archive, which is
+what proves `.rig/catalog/` was generated from the archives actually present
+rather than hand-edited. See [validation.md](validation.md).
 
 ## Versioning
 
-`revision` is author-authored free text and unusable. Track `updated_at` plus
-the detail endpoint's file `id`, verified with a content hash of the archive.
+`revision` is author-authored free text and **never an identity**: across the
+145 surveyed uploads it took only 33 distinct values, with `1.0` alone
+accounting for 55 of them, and authors re-upload without bumping it. Identity
+is `updated_at` plus the detail endpoint's file `id`, verified with
+`archive_sha256`. `revision` is carried only to name the stored archive
+readably, with the collision refusal described in "The archive store" catching
+the case where it lies.
 
-Change detection is cheap: two list calls cover every candidate's `updated_at`;
-only changed entries need a detail fetch.
+Push installs exactly what `.rig/modules.lock` names, from `modules/`, and
+never auto-upgrades — nor does it check for updates, since it no longer
+reaches the network at all. `rig catalog update` re-fetches what the catalog
+already names; `rig upgrade MODULE...` bumps named modules. Both produce a
+reviewable repo diff, superseding Prompt.md's auto-install.
 
-Push installs exactly what `.rig/modules.lock` names and never auto-upgrades. It
-reports available updates. Upgrading is an explicit command producing a
-reviewable repo diff — this supersedes Prompt.md, which specified auto-install.
+An upload that has disappeared from Patchstorage is reported by `catalog
+update` and **left in place**: its archive is committed, so the rig still
+works, and dropping a module a song may use is not that command's call.
 
 ## Install layout and category
 
@@ -313,7 +366,7 @@ which is exactly what makes "a community path shadowing a built-in" a real,
 checkable collision. Archives carry no category, so the catalog assigns it.
 
 **`<name>` is the catalog key, not the archive's own directory name.** Real
-data forced this: 6 of the 135 measured community entries re-implement a
+data forced this: 6 of the 135 surveyed community entries re-implement a
 built-in under the same folder name in the same category — standalone
 re-uploads of `polystep`, `notegen`, `samplement`, `slatra`, `superposition`
 and `warble`, each shipping a directory literally named after the built-in it

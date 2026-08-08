@@ -138,9 +138,8 @@ def test_reconcile_reports_up_to_date_when_hashes_match():
     assert plan.to_replace == []
 
 
-def test_unreachable_source_and_missing_module_is_a_hard_error_condition():
-    # decisions.md #29: absent + unreachable cannot be skipped, the preset
-    # would reference a moduleType that never resolves.
+def test_unreadable_archive_and_missing_module_is_a_hard_error_condition():
+    # The preset would reference a moduleType that never resolves.
     transport = InMemoryTransport()
     entry = _community_entry()
     plan = plan_module_reconciliation(transport, [entry], _FakeSource(unavailable=True))
@@ -148,12 +147,14 @@ def test_unreachable_source_and_missing_module_is_a_hard_error_condition():
     assert plan.to_install == []
 
 
-def test_unreachable_source_but_module_already_installed_is_a_silent_skip():
-    # decisions.md #29: cannot *check* -- never blocks push.
+def test_unreadable_archive_still_refuses_when_the_module_is_already_installed():
+    # Unlike a network fetch, this is never transient: the repo pins a module
+    # whose archive it does not carry, so what sits on the card cannot be
+    # verified against anything.
     transport = InMemoryTransport()
     entry = _community_entry()
     root = module_install_dir(entry)
     transport.write(f"{root}/module.json", b"{}")
     plan = plan_module_reconciliation(transport, [entry], _FakeSource(unavailable=True))
-    assert plan.unavailable == []
-    assert plan.up_to_date == [entry]
+    assert plan.unavailable == [entry]
+    assert plan.up_to_date == []

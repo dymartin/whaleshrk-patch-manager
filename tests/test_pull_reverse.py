@@ -17,7 +17,7 @@ from pathlib import Path
 import pytest
 
 from rig.compile.compiler import compile_song
-from rig.pull.reverse import FieldChange, ReverseMapError, decode_program_prefix, reverse_map_song
+from rig.pull.reverse import FieldChange, ReverseMapError, reverse_map_song
 from rig.song.kits import KitsConfig
 from rig.song.parser import dump_song, load_song, parse_song
 
@@ -500,16 +500,3 @@ def test_vellichor_fixture_round_trips_through_compile_and_reverse_map(tmp_path)
     )
     assert changes == []
     assert dump_song(doc2) == VELLICHOR_FIXTURE.read_text(encoding="utf-8")
-
-
-# --- decode_program_prefix ----------------------------------------------------
-
-
-def test_decode_program_prefix_parses_the_leading_three_digits():
-    assert decode_program_prefix("012-vellichor") == 12
-    assert decode_program_prefix("000-blank") == 0
-
-
-def test_decode_program_prefix_rejects_non_numeric_names():
-    assert decode_program_prefix("Init") is None
-    assert decode_program_prefix("jam") is None

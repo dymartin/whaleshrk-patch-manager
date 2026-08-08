@@ -14,14 +14,13 @@ from .modules import (
     ModuleSource,
     ModuleSourceUnavailable,
     OrhackIntegrityError,
-    UpdateChecker,
     installed_content_hash,
     module_install_dir,
     plan_module_reconciliation,
     verify_orhack_manifest,
     verify_orhack_structure,
 )
-from .patchstorage_source import PatchstorageModuleSource
+from .archive_source import StoredArchiveModuleSource
 from .plan import (
     Classification,
     ChainRenameSuspect,
@@ -45,13 +44,12 @@ __all__ = [
     "ModuleSource",
     "ModuleSourceUnavailable",
     "OrhackIntegrityError",
-    "UpdateChecker",
     "installed_content_hash",
     "module_install_dir",
     "plan_module_reconciliation",
     "verify_orhack_manifest",
     "verify_orhack_structure",
-    "PatchstorageModuleSource",
+    "StoredArchiveModuleSource",
     "Classification",
     "ChainRenameSuspect",
     "chain_rename_message",

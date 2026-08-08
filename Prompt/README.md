@@ -39,7 +39,7 @@ Twelve tasks, **strictly sequential**. Each brief is already extracted — skip
 | 7 | [07-pull.md](07-pull.md) | Sonnet 5 | 5, 6 | no |
 | 8 | [08-cli.md](08-cli.md) | Sonnet 5 | 1-7 | no |
 | 9 | [09-static-validation.md](09-static-validation.md) | Sonnet 5 | 1, 2, 8 | no |
-| 10 | [10-hardware-check.md](10-hardware-check.md) | Sonnet 5 | 9 | **yes** |
+| 10 | [10-hardware-check.md](10-hardware-check.md) | Sonnet 5 | 1-8 | **yes** |
 | 11 | [11-chain-skill.md](11-chain-skill.md) | Sonnet 5 | 1-8 | no |
 
 **Never dispatch two implementers in parallel.** Task 4 is the only one that
@@ -155,11 +155,14 @@ rig/
   compile/            compiler, letter assignment, samples, sidecars, params.json
   transport/          Transport protocol, UsbMassStorage, InMemory, card detect
   push/               reconcile, classify, mirror, journalled transaction
-  pull/               reverse mapper, adoption emitter, branch/PR driver
-  validate/           report schema, static tier, hardware session
+  pull/               reverse mapper, branch/PR driver
+modules/              committed upload archives
 tests/
-fixtures/             frozen catalog, fixture card, recorded log streams
+fixtures/             fixture card, recorded log streams
 ```
+
+There is no `validate/` package: validation is `rig lint`, which composes the
+catalog gate and the song rules rather than owning a report schema (#73).
 
 ## Knowledge base map
 
@@ -170,15 +173,15 @@ doc wins — and the brief gets fixed.
 |---|---|
 | `../docs/overview.md` | Goals, non-goals, the guarantee and its edges |
 | `../docs/schema.md` | Song YAML, capacities, letter assignment, lint policy |
-| `../docs/catalog.md` | Ingest, keys, validation gate, category mapping, versioning |
+| `../docs/catalog.md` | Ingest, keys, validation gate, category mapping, versioning, the `modules/` archive store |
 | `../docs/media.md` | Samples, kit aliases, the positional hazard |
 | `../docs/transport.md` | Transport interface, card identification |
 | `../docs/repo-layout.md` | Directory structure, what is generated |
-| `../docs/validation.md` | Both validation tiers, subject, stimulus profile |
-| `../docs/decisions.md` | 68 numbered decisions with rationale — cite by number |
+| `../docs/validation.md` | `rig lint`, the planned hardware check, subject, stimulus profile |
+| `../docs/decisions.md` | 74 numbered decisions with rationale — cite by number |
 | `../docs/open-questions.md` | The only remaining unknowns |
 | `../docs/workflows/push.md` | Push sequence |
-| `../docs/workflows/pull.md` | Drift, PRs, adoption |
+| `../docs/workflows/pull.md` | Drift, PRs, what drift covers |
 | `../docs/workflows/maintenance.md` | `rename-chain`, `upgrade` |
 | `../docs/platform/state.md` | Preset format, sidecar `.txt`, dangling `currentPreset` |
 | `../docs/platform/routing.md` | Slot topology, chain inputs, full `s1` surface, transport |

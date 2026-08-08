@@ -28,12 +28,7 @@ name -- so it cannot observe a program change even in principle. Separately,
 pull matches a preset to a song by the *recorded* directory name, never by
 comparing prefixes, so a changed prefix surfaces earlier as a recorded
 preset absent from the card (pull.md step 3's "warns and is skipped" path)
-rather than reaching this function as drift at all. Prompt/06's field table
-lists a directory-prefix-to-program row, but that decode belongs to
-Adoption (a preset with no song file yet, which does have to mint a
-`program:` from the prefix) -- which is why `decode_program_prefix` is
-exported standalone here rather than wired into `reverse_map_song`; Task 7's
-adoption path should import it from here.
+rather than reaching this function as drift at all.
 
 **A slot's module identity is checked as a precondition, never edited --
 by scope choice, not because the model has nowhere to put it.**
@@ -122,22 +117,6 @@ class _RawDiff:
     path: tuple
     old: object
     new: object
-
-
-def decode_program_prefix(directory_name: str) -> Optional[int]:
-    """Leading 3-digit numeric prefix of a preset directory name -> program.
-
-    `None` for anything not shaped like the compiler's own
-    `format_program_prefix` output (docs/schema.md "Program"), e.g. `Init`
-    or a foreign directory -- the caller decides what to do with an
-    unrecognised name. Standalone from `reverse_map_song`; see the module
-    docstring for why program is not part of that function's own drift
-    handling.
-    """
-    prefix = directory_name[:3]
-    if len(prefix) == 3 and prefix.isdigit():
-        return int(prefix)
-    return None
 
 
 def clean_number(value):

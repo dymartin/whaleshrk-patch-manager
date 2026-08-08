@@ -83,25 +83,18 @@ def verify_orhack_manifest(transport: Transport) -> None:
 
 
 class ModuleSourceUnavailable(RuntimeError):
-    """The module's source (Patchstorage) could not be reached. Caller
-    decides whether that is a silent skip or a hard error -- see
-    `plan_module_reconciliation`."""
+    """The module's stored archive could not be read or does not contain the
+    module the catalog entry names -- missing from `modules/`, failing its
+    pinned digest, or no longer passing the gate. Always a hard refusal: the
+    repo is meant to carry every module it pins, so this means the repo is
+    incomplete, not that a remote service is having a bad day."""
 
 
 class ModuleSource(Protocol):
     def fetch(self, entry: CatalogEntry) -> dict[str, bytes]:
         """The module's exact installable file set, path relative to its
         own install directory -> bytes, as pinned by `.rig/modules.lock`.
-        Raises `ModuleSourceUnavailable` if unreachable."""
-        ...
-
-
-class UpdateChecker(Protocol):
-    def check_update(self, entry: CatalogEntry) -> Optional[str]:
-        """A human-readable description of a newer version than the one
-        pinned, or None if the pinned version is current. Raises
-        `ModuleSourceUnavailable` if unreachable -- callers must treat that
-        as a silent skip, never a push blocker (decision #29)."""
+        Raises `ModuleSourceUnavailable` if it cannot be produced."""
         ...
 
 
@@ -131,18 +124,16 @@ class ModuleInstall:
 
 @dataclass(frozen=True)
 class ModuleReconcilePlan:
-    to_install: list[ModuleInstall]  # missing on the card, fetched successfully
+    to_install: list[ModuleInstall]  # missing on the card, read from modules/
     to_replace: list[ModuleInstall]  # present but content hash mismatch
-    up_to_date: list[CatalogEntry]  # present and matching, or unreachable-but-already-installed
-    unavailable: list[CatalogEntry]  # absent on the card AND unreachable -- caller must refuse
-    updates_available: dict[str, str]  # entry key -> description, report-only
+    up_to_date: list[CatalogEntry]  # present and matching
+    unavailable: list[CatalogEntry]  # stored archive unreadable -- caller must refuse
 
 
 def plan_module_reconciliation(
     transport: Transport,
     community_entries: list[CatalogEntry],
     module_source: ModuleSource,
-    update_checker: Optional[UpdateChecker] = None,
 ) -> ModuleReconcilePlan:
     """Reconcile every community module named in the (already-loaded) lock's
     catalog entries against what is installed on the card.
@@ -155,22 +146,17 @@ def plan_module_reconciliation(
     to_replace: list[ModuleInstall] = []
     up_to_date: list[CatalogEntry] = []
     unavailable: list[CatalogEntry] = []
-    updates_available: dict[str, str] = {}
 
     for entry in community_entries:
         installed_hash = installed_content_hash(transport, entry)
         try:
             files = module_source.fetch(entry)
         except ModuleSourceUnavailable:
-            if installed_hash is None:
-                # Absent on the card and its source cannot be reached: the
-                # preset would name a moduleType that never resolves --
-                # cannot be skipped (docs/workflows/push.md, decisions #29).
-                unavailable.append(entry)
-            else:
-                # Already installed; merely cannot verify or refresh it
-                # right now. Never blocks push (decision #29).
-                up_to_date.append(entry)
+            # Unlike a network fetch, a stored archive that cannot be read is
+            # never a transient condition to skip past: the repo pins a module
+            # it does not carry, and what is installed on the card cannot be
+            # verified against anything.
+            unavailable.append(entry)
             continue
 
         target_hash = hash_file_map(files)
@@ -181,18 +167,9 @@ def plan_module_reconciliation(
         else:
             up_to_date.append(entry)
 
-        if update_checker is not None:
-            try:
-                description = update_checker.check_update(entry)
-            except ModuleSourceUnavailable:
-                description = None
-            if description is not None:
-                updates_available[entry.key] = description
-
     return ModuleReconcilePlan(
         to_install=to_install,
         to_replace=to_replace,
         up_to_date=up_to_date,
         unavailable=unavailable,
-        updates_available=updates_available,
     )

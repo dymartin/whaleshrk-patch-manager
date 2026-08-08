@@ -1,74 +1,85 @@
-"""Full catalog build against the frozen fixture -- docs/catalog.md
-"Measured catalog size": 200 entries (65 built-ins + 120 single-module
-uploads + 15 from two module packs), zero qualified key collisions, no
-built-in runtime path collision.
+"""`build_catalog` composition: built-ins plus whatever community uploads the
+repo has actually added.
+
+The catalog is a shopping list, not a mirror of Patchstorage (docs/catalog.md),
+so there is no fixed entry count to assert. What must hold for any shopping
+list is tested here: built-ins always present, community entries keyed without
+collision, and no community module shadowing a built-in's runtime path.
 """
 
 from __future__ import annotations
 
-from collections import Counter
-
+from rig.catalog.archive import ZipCandidateArchive
 from rig.catalog.builtins import ingest_pinned_builtins
-from rig.catalog.frozen import load_frozen_sources
 from rig.catalog.gate import RejectReason
-from rig.catalog.ingest import build_catalog
+from rig.catalog.ingest import CandidateSource, build_catalog
+
+from .catalog_helpers import build_zip
+
+BUILTIN_COUNT = 65
 
 
-def _build():
-    return build_catalog(ingest_pinned_builtins(), load_frozen_sources())
+def _module(display: str) -> dict[str, bytes]:
+    return {
+        "module.json": f'{{"display": "{display}", "parameters": []}}'.encode("utf-8"),
+        "module.pd": b"#N canvas 0 0 100 100 10;\n",
+    }
 
 
-def test_total_catalog_entries_is_200():
-    result = _build()
-    assert len(result.entries) == 200
+def _source(slug: str, files: dict[str, bytes], patch_id: int = 1) -> CandidateSource:
+    return CandidateSource(
+        id=patch_id,
+        archive=ZipCandidateArchive(build_zip(files)),
+        detail={
+            "slug": slug,
+            "updated_at": "2020-01-01",
+            "revision": "1.0",
+            "categories": [{"slug": "effect"}],
+        },
+        archive_sha256=f"sha-{slug}",
+    )
 
 
-def test_built_in_and_community_split():
-    result = _build()
-    builtin = [e for e in result.entries if e.source == "orhack"]
+def test_built_ins_are_always_present_with_no_community_modules():
+    result = build_catalog(ingest_pinned_builtins(), [])
+    assert len(result.entries) == BUILTIN_COUNT
+    assert {e.source for e in result.entries} == {"orhack"}
+
+
+def test_an_added_upload_contributes_its_modules():
+    result = build_catalog(ingest_pinned_builtins(), [_source("warble", _module("Warble"))])
     community = [e for e in result.entries if e.source != "orhack"]
-    assert len(builtin) == 65
-    assert len(community) == 135
+    assert [e.key for e in community] == ["warble@warble"]
+    assert result.rejects == []
 
 
-def test_two_packs_contribute_120_single_plus_15():
-    result = _build()
-    community = [e for e in result.entries if e.source != "orhack"]
-    by_source = Counter(e.source for e in community)
-    assert by_source["sequencers-bpm"] == 7
-    assert by_source["orac-cvtools"] == 8
-    single_module_sources = [src for src, n in by_source.items() if n == 1]
-    assert len(single_module_sources) == 120
+def test_a_multi_module_upload_contributes_one_entry_per_module():
+    files = {f"{name}/{k}": v for name in ("one", "two") for k, v in _module(name.title()).items()}
+    result = build_catalog(ingest_pinned_builtins(), [_source("pack", files)])
+    community = sorted(e.key for e in result.entries if e.source != "orhack")
+    assert community == ["one@pack", "two@pack"]
 
 
-def test_zero_qualified_key_collisions():
-    result = _build()
+def test_keys_stay_unique_when_two_uploads_ship_the_same_display_name():
+    # The key is slug(display)@upload-slug precisely so this is not a
+    # collision (docs/catalog.md "Keys").
+    result = build_catalog(
+        ingest_pinned_builtins(),
+        [_source("first", _module("Warble"), 1), _source("second", _module("Warble"), 2)],
+    )
     keys = [e.key for e in result.entries]
     assert len(keys) == len(set(keys))
+    assert {"warble@first", "warble@second"} <= set(keys)
 
 
 def test_no_community_module_shadows_a_built_in_runtime_path():
-    result = _build()
+    result = build_catalog(ingest_pinned_builtins(), [_source("warble", _module("Warble"))])
     builtin_paths = {e.module_type for e in result.entries if e.source == "orhack"}
     community_paths = {e.module_type for e in result.entries if e.source != "orhack"}
     assert builtin_paths & community_paths == set()
 
 
-def test_module_level_checks_reject_nothing_beyond_the_candidate_level_gate():
-    # The gate's five candidate-level buckets (14+5+3+1 rejected, 122 pass)
-    # are covered by test_catalog_frozen_gate.py. This confirms the two
-    # module-level checks -- unmodelled sidecars and duplicate moduleType
-    # paths -- contribute zero *additional* rejects on real data, which is
-    # what makes 122 passing candidates equal exactly 200 catalog entries.
-    result = _build()
-    reject_reasons = Counter(r.reason for r in result.rejects)
-    assert reject_reasons[RejectReason.UNMODELLED_SIDECAR] == 0
-    assert reject_reasons[RejectReason.DUPLICATE_MODULE_PATH] == 0
-    candidate_level_total = (
-        reject_reasons[RejectReason.NOT_A_MODULE]
-        + reject_reasons[RejectReason.WRONG_ARCH]
-        + reject_reasons[RejectReason.RACK_REDISTRIBUTION]
-        + reject_reasons[RejectReason.BAD_JSON]
-    )
-    assert candidate_level_total == 23
-    assert len(result.rejects) == 23
+def test_an_upload_that_is_not_a_module_is_rejected_not_ingested():
+    result = build_catalog(ingest_pinned_builtins(), [_source("notamodule", {"readme.txt": b"hello"})])
+    assert [e.source for e in result.entries] == ["orhack"] * BUILTIN_COUNT
+    assert [r.reason for r in result.rejects] == [RejectReason.NOT_A_MODULE]

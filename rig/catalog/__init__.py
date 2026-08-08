@@ -28,6 +28,14 @@ from .patchstorage import (
     fetch_detail,
 )
 from .slugs import module_key
+from .store import (
+    ARCHIVE_SIZE_WARN_BYTES,
+    ArchiveStoreError,
+    archive_filename,
+    archive_path,
+    read_archive,
+    write_archive,
+)
 
 __all__ = [
     "CandidateArchive",
@@ -57,4 +65,10 @@ __all__ = [
     "fetch_archive_bytes",
     "fetch_detail",
     "module_key",
+    "ARCHIVE_SIZE_WARN_BYTES",
+    "ArchiveStoreError",
+    "archive_filename",
+    "archive_path",
+    "read_archive",
+    "write_archive",
 ]
