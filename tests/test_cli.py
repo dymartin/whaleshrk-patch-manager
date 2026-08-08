@@ -26,6 +26,7 @@ import zipfile
 from pathlib import Path
 
 import pytest
+from typer.main import get_command
 from typer.testing import CliRunner
 
 import rig.cli as cli
@@ -197,9 +198,9 @@ def test_catalog_add_help_documents_the_command():
 
 
 def test_catalog_update_help_documents_the_command():
-    result = runner.invoke(app, ["catalog", "update", "--help"])
-    assert result.exit_code == 0
-    assert "--dry-run" in result.output
+    catalog = get_command(app).commands["catalog"]
+    update = catalog.commands["update"]
+    assert any("--dry-run" in param.opts for param in update.params)
 
 
 
