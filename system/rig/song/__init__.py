@@ -1,10 +1,7 @@
-"""The song model: musicians' YAML surface, its parser, and its validation.
-
-See docs/schema.md for the field set and every rule this package enforces.
-"""
+"""The musician-facing song model, parser, and validation."""
 
 from .bindings import read_bindings, remove_bindings, write_bindings
-from .errors import Finding, SongParseError, SongValidationError
+from .errors import Finding, SongParseError
 from .kits import KitsConfig, KitsError, parse_kits
 from .model import (
     Chain,
@@ -19,31 +16,3 @@ from .model import (
 )
 from .parser import SongDocument, dump_song, load_song, parse_song
 from .validate import ValidationResult, validate_song, validate_songs
-
-__all__ = [
-    "read_bindings",
-    "remove_bindings",
-    "write_bindings",
-    "Finding",
-    "SongParseError",
-    "SongValidationError",
-    "KitsConfig",
-    "KitsError",
-    "parse_kits",
-    "Chain",
-    "ChainInput",
-    "ChainMidi",
-    "ChainMix",
-    "MidiMapping",
-    "ModuleSlot",
-    "ModuleUse",
-    "Send",
-    "Song",
-    "SongDocument",
-    "dump_song",
-    "load_song",
-    "parse_song",
-    "ValidationResult",
-    "validate_song",
-    "validate_songs",
-]
