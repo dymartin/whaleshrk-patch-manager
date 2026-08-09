@@ -27,3 +27,4 @@ packages = ["system/rig"]
 [tool.pytest.ini_options]
 testpaths = ["system/tests"]
 pythonpath = ["system"]
+addopts = "--verbose --tb=short -ra"
