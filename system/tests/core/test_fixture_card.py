@@ -1,6 +1,6 @@
 """Fixture card loads through the in-memory transport (Phase 0 verification #1).
 
-Also pins the shipped Init/jam sidecar counts Phase 3 depends on -- see
+Also pins the shipped Init sidecar counts Phase 3 depends on -- see
 docs/platform/state.md and Prompt/00-skeleton.md's ambiguity resolutions.
 """
 
@@ -69,13 +69,6 @@ def test_init_preset_has_params_json_and_full_sidecar_inventory():
     assert counts["b1"] == 224
     assert counts["c1"] == 224
     assert counts["d1"] == 154
-
-
-def test_jam_preset_present_and_not_trimmed():
-    t = _transport()
-    assert t.exists("data/orhack/presets/jam/params.json")
-    # jam ships ~800 sidecar files; assert it wasn't trimmed down.
-    assert len(t.list("data/orhack/presets/jam")) > 500
 
 
 def test_rack_json_present():

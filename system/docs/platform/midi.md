@@ -32,7 +32,7 @@ Two consequences the compiler depends on:
   highest program in use, keeping the vector contiguous.
 - **`Init` sorts last.** Digits precede letters, so the protected `Init`
   directory always lands after the managed presets and never displaces a song's
-  index. ORHACK's other shipped preset, `jam`, lands after `Init`.
+  index.
 
 ### The scan order is locale-independent for this scheme
 

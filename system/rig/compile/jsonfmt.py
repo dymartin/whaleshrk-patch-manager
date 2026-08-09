@@ -1,7 +1,7 @@
 """Serialises `params.json` in ORAC's own on-device format.
 
 Verified byte-for-byte against the pinned ORHACK 0.52b card's shipped
-presets (`fixtures/card/Patches/0RHACK/data/presets/{Init,jam}/params.json`
+preset (`fixtures/card/Patches/0RHACK/data/presets/Init/params.json`
 -- see docs/platform/README.md): a tab per nesting level, a single tab (not
 `": "`) between key and value, `",\\n"` between siblings with no trailing
 comma, and even an empty dict expands onto its own line rather than

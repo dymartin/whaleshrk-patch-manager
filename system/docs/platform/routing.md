@@ -17,10 +17,9 @@ together, so `s1` is effectively pinned to `routers/hybrid`.
 
 Chain capacity: **A=3, B=4, C=3, D=4**.
 
-`s1` and `s2` are **system slots, not free slots**. Both shipped presets (`Init`
-and `jam`) hold `s1 = routers/hybrid` and `s2 = clocks/transport`, and neither
-is ever `-empty-` — unlike `f1`-`f3`, `p1`-`p2` and the chain slots, which vary
-between the two. The compiler must always emit both.
+`s1` and `s2` are **system slots, not free slots**. The shipped `Init` preset
+holds `s1 = routers/hybrid` and `s2 = clocks/transport`; the compiler must
+always emit both.
 
 Signal flow is strictly series within a chain (`chainin N → a1 → a2 → a3`). No
 parallel branches. Parallelism comes three ways:
@@ -140,8 +139,7 @@ it on.
 
 `r-chin-midich-4`'s declared default is `3`, duplicating chain C — an upstream
 slip. The compiler writes every chain's channel explicitly, so it never inherits
-this. ORHACK's `jam` preset saves `4` there, a preset-level fix over the broken
-default.
+this. The compiler writes `4` there instead of inheriting the broken default.
 
 ## Transport / clock (`s2`)
 

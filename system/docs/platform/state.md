@@ -91,8 +91,6 @@ files are global.
 
 Occupancy and sidecar presence are independent. `Init` has **every** chain slot
 `-empty-`, yet ships 224 sidecars each for `a1`, `b1`, `c1` and 154 for `d1`.
-`jam` contains roughly 800 files, including a `c1-slot-tracker.txt` for a slot
-that is `-empty-`.
 
 ## Dangling `currentPreset`
 

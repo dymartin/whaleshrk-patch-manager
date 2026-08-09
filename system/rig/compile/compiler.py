@@ -31,7 +31,7 @@ from .router import compile_router, compile_transport
 from .samples import resolve_sample
 
 # Verified against fixtures/card/Patches/0RHACK/modules/-empty-/module.json
-# and every -empty- slot in the shipped Init and jam presets: the wrapper's
+# and every -empty- slot in the shipped Init preset: the wrapper's
 # only parameter, always at its declared default.
 EMPTY_PARAMS: dict[str, float] = {"thru_gain": 100}
 

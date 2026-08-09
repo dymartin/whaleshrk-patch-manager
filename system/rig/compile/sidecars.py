@@ -43,10 +43,7 @@ Both reads fire on every load, and `fixtures/card/Patches/0RHACK/data/
 presets/Init/` -- decision #48's canonical source, and the one place that
 also verifiably has *all four* of `loop`/`metric`/`step-seq-note`/`step-seq-
 vel` present -- carries zero files matching either `*-slot-tracker.txt` or
-`*-seq*x.txt` for any of its 24 slots. `jam` does carry two `slot-tracker.txt`
-files, but both sit on `-empty-` slots -- documented stale leftovers from a
-module no longer there (docs/platform/state.md), not a default anyone
-shipped, and not sourced from decision #48's canonical preset. With no
+`*-seq*x.txt` for any of its 24 slots. With no
 verified template for either family (Prompt.md Global Constraint #1: never
 assume device behaviour), and no way to emit only the *other* families
 without silently narrowing what decision #1 requires, `sequencers/overdrum`

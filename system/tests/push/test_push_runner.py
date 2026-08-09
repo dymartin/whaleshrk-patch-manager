@@ -392,11 +392,12 @@ def test_current_preset_left_alone_when_it_still_resolves(tmp_path):
 
 def test_full_manifest_verification_and_orphan_cleanup_against_the_real_fixture_card(tmp_path):
     # The frozen, SHA-256-verified ORHACK 0.52b tree (docs/platform/README.md)
-    # -- exercises verify_orhack_manifest's real 2,353-entry walk inside the
-    # orchestrator, not just the standalone function, and the fixture's own
-    # shipped "jam" preset as a genuine unrecorded-on-device preset.
+    # -- exercises verify_orhack_manifest's real tree inside the orchestrator,
+    # not just the standalone function. Add one synthetic orphan preset so
+    # this test does not retain an unused shipped preset as fixture data.
     transport = InMemoryTransport()
     load_fixture_card(transport)
+    transport.write(f"{PRESETS_ROOT}/scratch/params.json", b"{}")
     media_root = tmp_path / "media"
     state_dir = tmp_path / ".rig" / "state"
 
@@ -406,12 +407,12 @@ def test_full_manifest_verification_and_orphan_cleanup_against_the_real_fixture_
             state_dir=state_dir, verify_manifest=True,
         )
     assert exc.value.code == "UNRECORDED_PRESET"
-    assert "jam" in str(exc.value)
+    assert "scratch" in str(exc.value)
 
     result = _push(
         songs={}, selected=None, transport=transport, media_root=media_root,
         state_dir=state_dir, verify_manifest=True, force=True,
     )
-    assert result.force_deleted == ["jam"]
+    assert result.force_deleted == ["scratch"]
     assert transport.exists(f"{PRESETS_ROOT}/Init/params.json")
-    assert not transport.exists(f"{PRESETS_ROOT}/jam")
+    assert not transport.exists(f"{PRESETS_ROOT}/scratch")

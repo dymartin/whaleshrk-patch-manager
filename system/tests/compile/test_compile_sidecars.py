@@ -71,7 +71,7 @@ def test_unverified_stateful_builtins_raise_rather_than_guess(module_type):
     # (seq3.pd's save-the-txts subpatch -- the read-bang inlet at line 595
     # drives the seq<n>x read at line 597/602; `r loadbang-\$1` at line 639
     # drives the slot-tracker read at line 604), and neither file family has
-    # a verified default anywhere in Init or jam. Emitting only the verified
+    # a verified default anywhere in Init. Emitting only the verified
     # families would be a silently incomplete set -- see the module
     # docstring and decision #69.
     with pytest.raises(UnverifiedStatefulModuleError):
