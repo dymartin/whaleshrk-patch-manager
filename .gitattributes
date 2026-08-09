@@ -4,4 +4,4 @@
 # (Prompt/03-compiler.md). Git must never normalize line endings or otherwise
 # transform these files on checkout -- that would silently break every hash
 # and byte comparison against them.
-/fixtures/** -text
+/system/fixtures/** -text -diff
