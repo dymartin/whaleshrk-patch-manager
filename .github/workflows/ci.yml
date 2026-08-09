@@ -24,6 +24,19 @@ jobs:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v3
       - run: uv sync
-      - run: uv run pytest -q
+      - name: Test catalog
+        run: uv run pytest system/tests/catalog
+      - name: Test compile
+        run: uv run pytest system/tests/compile
+      - name: Test core
+        run: uv run pytest system/tests/core
+      - name: Test pull
+        run: uv run pytest system/tests/pull
+      - name: Test push
+        run: uv run pytest system/tests/push
+      - name: Test song
+        run: uv run pytest system/tests/song
+      - name: Test transport
+        run: uv run pytest system/tests/transport
       - name: rig lint (smoke test against this checkout)
         run: uv run rig lint
