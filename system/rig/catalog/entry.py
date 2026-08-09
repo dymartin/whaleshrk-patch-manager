@@ -100,8 +100,3 @@ class CatalogEntry:
             version=VersionInfo(**data.get("version", {})),
             sidecar_templates=list(data.get("sidecar_templates", [])),
         )
-
-
-def entry_filename(key: str) -> str:
-    """Filesystem-safe filename for a catalog entry -- '@' and '/' cannot appear in one."""
-    return key.replace("@", "__").replace("/", "-") + ".json"

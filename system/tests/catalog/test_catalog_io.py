@@ -1,4 +1,4 @@
-"""`.rig/catalog/` and `.rig/modules.lock` I/O -- docs/repo-layout.md."""
+"""Catalog and module-lock JSON I/O."""
 
 from __future__ import annotations
 
@@ -31,20 +31,20 @@ _COMMUNITY = CatalogEntry(
 
 
 def test_write_and_read_catalog_round_trips(tmp_path):
-    catalog_dir = tmp_path / "catalog"
-    write_catalog([_BUILTIN, _COMMUNITY], catalog_dir)
-    entries = read_catalog(catalog_dir)
+    catalog_path = tmp_path / "catalog.json"
+    write_catalog([_BUILTIN, _COMMUNITY], catalog_path)
+    entries = read_catalog(catalog_path)
     assert {e.key for e in entries} == {"echo@orhack", "polystep@polystep"}
     by_key = {e.key: e for e in entries}
     assert by_key["echo@orhack"].params[0].id == "mix_p"
     assert by_key["polystep@polystep"].version.file_id == 42
 
 
-def test_write_catalog_removes_stale_entries(tmp_path):
-    catalog_dir = tmp_path / "catalog"
-    write_catalog([_BUILTIN, _COMMUNITY], catalog_dir)
-    write_catalog([_BUILTIN], catalog_dir)
-    entries = read_catalog(catalog_dir)
+def test_write_catalog_replaces_previous_entries(tmp_path):
+    catalog_path = tmp_path / "catalog.json"
+    write_catalog([_BUILTIN, _COMMUNITY], catalog_path)
+    write_catalog([_BUILTIN], catalog_path)
+    entries = read_catalog(catalog_path)
     assert {e.key for e in entries} == {"echo@orhack"}
 
 

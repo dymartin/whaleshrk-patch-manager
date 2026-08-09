@@ -174,7 +174,7 @@ def _bare_card() -> InMemoryTransport:
 
 
 def _seed_catalog(entries: list[CatalogEntry]) -> None:
-    write_catalog(entries, Path("system/data/catalog"))
+    write_catalog(entries, Path("system/data/catalog.json"))
     write_lock(entries, Path("system/data/modules.lock"))
 
 
@@ -504,7 +504,7 @@ def test_upgrade_refuses_a_slug_id_reorder_used_by_a_song(repo, monkeypatch):
         "chains:\n  - name: lead\n    modules:\n      - warble@warble:\n          amount: 40\n",
         encoding="utf-8",
     )
-    catalog_before = {p: p.read_bytes() for p in Path("system/data/catalog").glob("*.json")}
+    catalog_before = Path("system/data/catalog.json").read_bytes()
     lock_before = Path("system/data/modules.lock").read_bytes()
 
     monkeypatch.setattr(
@@ -516,7 +516,7 @@ def test_upgrade_refuses_a_slug_id_reorder_used_by_a_song(repo, monkeypatch):
     assert result.exit_code != 0
     assert "amount" in result.output
     assert "vellichor" in result.output
-    assert {p: p.read_bytes() for p in Path("system/data/catalog").glob("*.json")} == catalog_before
+    assert Path("system/data/catalog.json").read_bytes() == catalog_before
     assert Path("system/data/modules.lock").read_bytes() == lock_before
 
 
@@ -541,7 +541,7 @@ def test_upgrade_writes_new_catalog_and_lock_when_no_song_is_affected(repo, monk
 
 def test_upgrade_dry_run_leaves_catalog_and_lock_untouched(repo, monkeypatch):
     _seed_catalog([_community_entry(param_id="amt", updated_at="2020-01-01")])
-    catalog_before = {p: p.read_bytes() for p in Path("system/data/catalog").glob("*.json")}
+    catalog_before = Path("system/data/catalog.json").read_bytes()
     lock_before = Path("system/data/modules.lock").read_bytes()
     monkeypatch.setattr(
         cli,
@@ -556,7 +556,7 @@ def test_upgrade_dry_run_leaves_catalog_and_lock_untouched(repo, monkeypatch):
 
     assert result.exit_code == 0, result.output
     assert "would upgrade: warble@warble" in result.output
-    assert {p: p.read_bytes() for p in Path("system/data/catalog").glob("*.json")} == catalog_before
+    assert Path("system/data/catalog.json").read_bytes() == catalog_before
     assert Path("system/data/modules.lock").read_bytes() == lock_before
 
 

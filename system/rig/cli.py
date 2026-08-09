@@ -100,7 +100,7 @@ SYSTEM_DIR = Path("system")
 MEDIA_ROOT = SYSTEM_DIR / "media"
 MODULES_DIR = SYSTEM_DIR / "modules"
 DATA_DIR = SYSTEM_DIR / "data"
-CATALOG_DIR = DATA_DIR / "catalog"
+CATALOG_PATH = DATA_DIR / "catalog.json"
 LOCK_PATH = DATA_DIR / "modules.lock"
 STATE_DIR = DATA_DIR / "state"
 KITS_PATH = DATA_DIR / "kits.yaml"
@@ -153,7 +153,7 @@ def _resolve_selection(
 
 
 def _read_catalog_lock_kits(command: str) -> tuple[list[CatalogEntry], dict, KitsConfig]:
-    catalog = read_catalog(CATALOG_DIR)
+    catalog = read_catalog(CATALOG_PATH)
     lock = read_lock(LOCK_PATH)
     try:
         kits = parse_kits(KITS_PATH, MEDIA_ROOT)
@@ -457,8 +457,7 @@ def lint(
         for f in result.warnings:
             typer.echo(f"warning: {sid}: {f.code}: {f.message}")
 
-    # Kits are shared, repo-wide state (docs/media.md "Samples are global
-    # state"), so their folder contents are checked once, not per song.
+    # Kits are shared, so their folder contents are checked once, not per song.
     for alias in sorted(kits.aliases):
         _wav_names, findings = scan_wav_folder(kits.kit_dir(MEDIA_ROOT, alias), context=f"kit {alias!r}")
         for f in findings:
@@ -574,7 +573,7 @@ def catalog_add(
     everything afterwards reads the committed `.rig/catalog/` and `modules/`.
     """
     wanted = set(slug)
-    existing_sources = {e.source for e in read_catalog(CATALOG_DIR) if e.source != "orhack"}
+    existing_sources = {e.source for e in read_catalog(CATALOG_PATH) if e.source != "orhack"}
     already = sorted(wanted & existing_sources)
     if already:
         _fail("catalog add", "ALREADY_ADDED", f"already in the catalog: {', '.join(already)}")
@@ -594,7 +593,7 @@ def catalog_add(
         )
 
     _store_archives("catalog add", entries, sources)
-    write_catalog(entries, CATALOG_DIR)
+    write_catalog(entries, CATALOG_PATH)
     write_lock(entries, LOCK_PATH)
     typer.echo(f"added: {', '.join(added)}")
 
@@ -610,7 +609,7 @@ def catalog_update(
     reported and left in place: its archive is committed, so the rig still
     works, and dropping a module a song may use is not this command's call.
     """
-    current = read_catalog(CATALOG_DIR)
+    current = read_catalog(CATALOG_PATH)
     wanted = {e.source for e in current if e.source != "orhack"}
     if not wanted:
         typer.echo("catalog holds no community modules -- add one with `rig catalog add SLUG`")
@@ -630,7 +629,7 @@ def catalog_update(
         return
 
     _store_archives("catalog update", merged, sources)
-    write_catalog(merged, CATALOG_DIR)
+    write_catalog(merged, CATALOG_PATH)
     write_lock(merged, LOCK_PATH)
     typer.echo(f"{len(merged)} entries written, {len(gone)} no longer upstream")
 
@@ -678,12 +677,12 @@ def upgrade(
     dry_run: bool = typer.Option(False, "--dry-run"),
 ) -> None:
     """Bump pinned module versions in .rig/modules.lock."""
-    current_catalog = read_catalog(CATALOG_DIR)
+    current_catalog = read_catalog(CATALOG_PATH)
     current_by_key = {e.key: e for e in current_catalog}
 
     unknown = [m for m in module if m not in current_by_key]
     if unknown:
-        _fail("upgrade", "UNKNOWN_MODULE", f"not in system/data/catalog/: {', '.join(unknown)}")
+        _fail("upgrade", "UNKNOWN_MODULE", f"not in system/data/catalog.json: {', '.join(unknown)}")
 
     builtins_named = [m for m in module if current_by_key[m].source == "orhack"]
     if builtins_named:
@@ -742,7 +741,7 @@ def upgrade(
 
     merged = [fresh_by_key.get(entry.key, entry) for entry in current_catalog]
     _store_archives("upgrade", [fresh_by_key[m] for m in module], fresh_sources)
-    write_catalog(merged, CATALOG_DIR)
+    write_catalog(merged, CATALOG_PATH)
     write_lock(merged, LOCK_PATH)
     for m in module:
         typer.echo(f"upgraded: {m}")
