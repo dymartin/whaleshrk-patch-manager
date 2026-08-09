@@ -33,6 +33,9 @@ effect on a POSIX filesystem.** `mount.sh` mounts the user drive as `vfat`,
 So `Init` is read-only *only on an ext-formatted card*. The tool must never rely
 on the filesystem to protect `Init`; it protects it by rule.
 
+The fixture stores `Init` once at `Patches/0RHACK/data/presets/Init`; its test
+loader performs the same deploy copy into `data/orhack/presets/Init` in memory.
+
 `install_package.sh` verifies an unzipped package by regenerating sha1sums and
 diffing against the package's own `manifest.txt`. ORHACK ships one covering
 2,353 files, so a card's ORHACK installation can be integrity-checked offline,

@@ -31,3 +31,10 @@ def load_fixture_card(transport: Transport, root: Path = FIXTURE_CARD_ROOT) -> N
             transport.mkdir(str(Path(rel).parent.as_posix()))
             continue
         transport.write(rel, path.read_bytes())
+
+    # deploy.sh copies the package's canonical Init preset onto the card.
+    init = root / "Patches" / "0RHACK" / "data" / "presets" / "Init"
+    for path in sorted(init.rglob("*")):
+        if path.is_file():
+            rel = path.relative_to(init).as_posix()
+            transport.write(f"data/orhack/presets/Init/{rel}", path.read_bytes())
