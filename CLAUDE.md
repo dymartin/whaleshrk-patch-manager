@@ -44,8 +44,8 @@
 * Plans: enough detail for deterministic work, no speculation.
 * Flag unverifiable assumptions.
 * Debugging: separate verified facts from hypotheses.
-* No hardware feedback channel exists yet — verify platform/module behavior off-hardware, by manually reading actual ORHACK/ORAC/module source. Never assume behavior.
-* The hardware check (Prompt/PLAN.md Phase 10) will become a real feedback channel, for load time, CPU, Pd load errors and ALSA underruns only. Until it lands, source reading is the only evidence. Never cite a planned tier as if it had already run.
+* `rig hardware-check` is the hardware feedback channel for load time, idle and active Pd CPU, Pd load errors, and ALSA underruns. It runs on demand against the Organelle over SSH with MIDI stimulus; it is not part of CI.
+* Hardware checks create per-device baselines and warn when load time or CPU exceeds a matching baseline by more than 20%. No committed baseline means no hardware run can be inferred; use source inspection for behavior outside the measured signals.
 
 ## Review
 
