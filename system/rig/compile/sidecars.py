@@ -44,11 +44,10 @@ presets/Init/` -- decision #48's canonical source, and the one place that
 also verifiably has *all four* of `loop`/`metric`/`step-seq-note`/`step-seq-
 vel` present -- carries zero files matching either `*-slot-tracker.txt` or
 `*-seq*x.txt` for any of its 24 slots. With no
-verified template for either family (Prompt.md Global Constraint #1: never
-assume device behaviour), and no way to emit only the *other* families
+verified template for either family, and no way to emit only the *other* families
 without silently narrowing what decision #1 requires, `sequencers/overdrum`
 and `sequencers/overflow` raise like `clips` and `polystep` do. Recorded in
-`docs/open-questions.md` -- resolvable by a hardware capture (Task 10) of
+`docs/open-questions.md` -- resolvable by a hardware capture of
 each module freshly placed and read back.
 """
 

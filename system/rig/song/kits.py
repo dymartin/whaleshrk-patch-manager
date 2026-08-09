@@ -1,5 +1,4 @@
-"""`.rig/kits.yaml`: kit alias -> `kit-N`, the friendly name a song's `sample:`
-field references (`docs/media.md`, `docs/decisions.md` #7).
+"""Kit alias to the `kit-N` slot referenced by a song's `sample:` field.
 
 Format is this task's design choice -- no doc pins one. A flat mapping,
 alias to the kit slot number `deploy.sh` gave it:
@@ -7,8 +6,7 @@ alias to the kit slot number `deploy.sh` gave it:
     warehouse: 1
     tape: 2
 
-Global state shared by every song (`docs/media.md` "Samples are global
-state"), so it is parsed and validated once, not per song.
+Global state shared by every song, so it is parsed and validated once.
 """
 
 from __future__ import annotations

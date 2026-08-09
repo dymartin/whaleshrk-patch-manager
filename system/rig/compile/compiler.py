@@ -2,13 +2,8 @@
 
 Pure function, no card I/O: the caller gets back an in-memory preset
 (directory name plus relative path -> bytes) and decides what to do with it
--- push (Task 5) is what writes, mirrors and deletes on the card. This is
-what makes Global Constraint #6 ("a song file plus `.rig/modules.lock` plus
-`.rig/state/chains/` fully determines the compiled output") testable without
-a card at all.
-
-See docs/schema.md, docs/platform/{routing,state,midi,samples}.md,
-docs/media.md and Prompt/03-compiler.md for the rules this implements.
+-- push writes, mirrors and deletes on the card. Keeping compilation pure makes
+its output testable without a card.
 """
 
 from __future__ import annotations

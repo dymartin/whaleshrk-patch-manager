@@ -1,7 +1,5 @@
 """Step 6 of push: media mirroring plan for the four playback paths.
 
-See docs/media.md, docs/workflows/push.md step 6, docs/decisions.md #4.
-
 Builds the *desired* final content of each mirrored directory by reading the
 repo's `media/` tree. Push's staged-swap transaction (`rig.push.transact`)
 replaces the live card directory wholesale with whatever is staged here, so
@@ -76,9 +74,8 @@ def build_media_plan(media_root: Path, kits: KitsConfig) -> MediaPlan:
 
     `media/samples/` is one group that also carries `loops/` and `synths/`
     nested under it -- all three live under the identical card parent
-    (`media/orhack/samples/...`), so one staged swap covers all three
-    (docs/media.md's four listed paths collapse to two swap roots: this
-    group, plus one per kit). Only kit aliases present in `kits.yaml` are
+    (`media/orhack/samples/...`), so one staged swap covers all three.
+    Only kit aliases present in `kits.yaml` are
     considered, so a `kit-N` on the card with no alias mapped to it is never
     touched.
     """

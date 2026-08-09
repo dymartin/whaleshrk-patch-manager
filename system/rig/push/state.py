@@ -1,16 +1,14 @@
 """`.rig/state/last-pushed/` -- the drift baseline and push's own memory of
 what it last wrote.
 
-Read and write only through this module, the same convention
-`rig.song.bindings` and `rig.catalog.io` already use for their own corners of
-`.rig/` (docs/repo-layout.md).
+Read and write only through this module.
 
 Keyed by **song id**, not by the song's `name:` field or its compiled
 directory slug. A song's `name:` can change (that is exactly the rename case
 push's classify step has to detect), so the lookup key has to survive a
 rename -- the song's repo identity is its YAML filename stem
 (`songs/vellichor.yaml` -> `"vellichor"`), assigned by the caller that reads
-`songs/` (Task 8's CLI), not by anything in this package.
+`songs/`, not by anything in this package.
 """
 
 from __future__ import annotations

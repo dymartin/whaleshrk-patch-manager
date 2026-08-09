@@ -1,8 +1,7 @@
 ﻿"""`push()` -- the orchestrator that composes every other module in this
-package into the sequence `docs/workflows/push.md` describes.
+package into one ordered operation.
 
-See that doc and `Prompt/05-push.md` for the numbered steps this function's
-body follows in order. Every refusal raises `rig.push.errors.PushError` (or,
+Every refusal raises `rig.push.errors.PushError` (or,
 for card detection, the existing `rig.transport.CardDetectionError`; for a
 failed swap, `rig.push.transact.PushTransactionError`; for ORHACK itself
 missing or not matching its manifest, `rig.push.modules.OrhackIntegrityError`,

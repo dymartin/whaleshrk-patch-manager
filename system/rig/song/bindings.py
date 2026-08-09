@@ -1,16 +1,4 @@
-"""Chain name -> letter binding store: `.rig/state/chains/<song-slug>.json`.
-
-Format is this task's design choice -- no doc pins one (Prompt/02-schema.md
-ambiguity resolution #2). One JSON object per song, mapping chain name to its
-letter ("A"-"D"), keys sorted, two-space indent, trailing newline -- the same
-convention `rig.catalog.io` already uses for `.rig/catalog/*.json`.
-
-A recorded binding is authoritative (`docs/decisions.md` #8, #37, #58): push
-writes it, pull uses it to attribute drift, `rename-chain` rewrites it, and
-letter assignment (`rig.song.letters`) only fills in what
-it does not cover. One module so all four reuse the same format rather than
-reimplementing it.
-"""
+"""Chain name to letter bindings, stored as one JSON object per song."""
 
 from __future__ import annotations
 

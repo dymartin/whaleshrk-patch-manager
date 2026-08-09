@@ -1,23 +1,20 @@
-"""Sample reference resolution: `<kit-alias>/<file.wav>` -> `samp_source`
-plus `samp_select` (docs/platform/samples.md, docs/media.md).
+"""Resolve `<kit-alias>/<file.wav>` into `samp_source` and `samp_select`.
 
 The device stores no filename -- only a folder selector and a normalised
 position resolved by a sorted directory listing -- so this is the one place
 compile must faithfully reproduce both the position formula and the real
 folder contents; getting either wrong plays a different file with no error
-and no drift signal (docs/media.md "Positional-reference hazard").
+and no drift signal.
 
-Only the kit-alias form is compiled: docs/schema.md's `sample:` rule
-documents `<kit-alias>/<filename>` as the only reference shape a song file
-can express. `samp_source` values 25-27 (`samples/`, `loops/`, `synths/`)
-are real device states -- needed by Task 6's reverse-mapper -- but the song
-schema has no field that reaches them, so compile never produces them.
+Only the kit-alias form is compiled. `samp_source` values 25-27 (`samples/`,
+`loops/`, `synths/`) are real device states used by reverse mapping, but the
+song model cannot produce them.
 
 Folder-content validation (lowercase/portable names, case-insensitive
 collisions, ignored non-.wav files) lives here rather than in
 `rig.song.validate` because this is the phase that enumerates a folder's
-contents anyway, to compute `samp_select` (Prompt/03-compiler.md
-"Samples"). `rig.song.validate` already checked `.rig/kits.yaml` itself
+contents anyway, to compute `samp_select`. `rig.song.validate` already checked
+the kits configuration itself
 (alias cap, duplicate `kit-N`, symlinks) and the reference's shape
 (`<alias>/<filename.wav>`); this module re-derives only what that check has
 no folder listing for yet.
@@ -41,8 +38,7 @@ class ResolvedSample:
 class SampleCompileError(ValueError):
     """A `sample:` reference or the media folder it points at is invalid.
 
-    Carries every `Finding` found, not just the first, matching
-    `rig.song.errors.SongValidationError`'s contract.
+    Carries every `Finding` found, not just the first.
     """
 
     def __init__(self, findings: list[Finding]):

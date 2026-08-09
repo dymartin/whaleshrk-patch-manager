@@ -1,6 +1,6 @@
 """Recursive file listing over a `Transport`.
 
-`Transport.list` returns only immediate children (docs/transport.md);
+`Transport.list` returns only immediate children;
 module reconciliation and transaction verification both need every file
 under a directory, so both walk through this one function rather than
 reimplementing the recursion.

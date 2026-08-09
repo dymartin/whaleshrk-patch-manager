@@ -1,9 +1,4 @@
-"""Every hard error, plus the full lint-warning policy from `docs/schema.md`
-("Lint policy") and `Prompt/08-cli.md`.
-
-Findings accumulate rather than raising on the first problem, so `rig lint`
-can report everything wrong with a song in one pass. A caller that wants
-fail-fast can raise `SongValidationError(result.errors)` itself.
+"""Accumulate song errors and warnings for one-pass reporting.
 
 Of the policy's error list, "unsafe, reserved, overlong or case-colliding
 paths", "duplicate runtime module paths" and "unsafe archives" are not
@@ -51,7 +46,7 @@ MIX_RANGES = {
     "width": (-100.0, 100.0),
 }
 
-# input-gain's documented default/unity is 100 (docs/schema.md "mix:");
+# input-gain's default/unity is 100;
 # output-gain's own hard cap is already 100, so it can never read as
 # above-unity -- only input-gain can.
 UNITY_INPUT_GAIN = 100.0

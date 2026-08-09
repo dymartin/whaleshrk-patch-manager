@@ -2,8 +2,7 @@
 
 Pure function, no I/O -- callers pass in the recorded bindings
 (`rig.song.bindings`) and get an assignment back. Capacity is asymmetric
-(A=3, B=4, C=3, D=4), so assignment is capacity-aware, not declaration order
-(`docs/schema.md` "Chains", `docs/decisions.md` #22, #30).
+(A=3, B=4, C=3, D=4), so assignment is capacity-aware, not declaration order.
 
 Two passes, both in declaration order, after recorded bindings leave the
 pool:

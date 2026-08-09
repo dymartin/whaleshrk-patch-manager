@@ -1,16 +1,15 @@
 """Reverse mapping: an observed on-device preset back into song-file edits.
 
-The inverse of `rig.compile.compiler.compile_song` for everything drift
-covers (docs/workflows/pull.md "What drift covers"). Pure function over two
+The inverse of `rig.compile.compiler.compile_song` for supported drift. Pure
+function over two
 already-parsed `params.json` dicts -- no card or filesystem I/O for reading
 snapshots, mirroring `rig.compile.compiler`'s own "pure function, no card
-I/O" shape. Pull (Task 7) is the caller: it reads every preset, decides
+I/O" shape. Pull reads every preset, decides
 which songs drifted by diffing the device's current `params.json` against
 `.rig/state/last-pushed/<song>.json`, then hands both dicts to
 `reverse_map_song` for translation into an edit applied to the song file.
 
-**Diff against the stored baseline, never a recompile** (Prompt/06's
-"Baseline" section, decision #17): recompiling the song fresh and diffing
+**Diff against the stored baseline, never a recompile:** recompiling fresh and diffing
 against that would make a changed catalog default look like device drift,
 burying real edits. `baseline` must be the last-pushed snapshot; the two
 inputs are otherwise structurally identical `params.json`-shaped dicts
@@ -40,8 +39,7 @@ module -- an emission, not an edit to what moved -- and that was ruled out
 of scope: the rig's owner does not edit module placement on the device.
 `reverse_map_song` instead requires every slot's observed `moduleType` to
 already match what the song declares before trusting any of that slot's
-other drift, aborting with `ReverseMapError("MODULE_IDENTITY_DRIFT", ...)`
-otherwise (see docs/decisions.md #70).
+other drift, aborting with `ReverseMapError("MODULE_IDENTITY_DRIFT", ...)`.
 
 **What has no song-schema field at all cannot be edited, so it aborts.**
 Two whole categories of documented "captured" drift have no YAML field to
@@ -141,9 +139,8 @@ def invert_cc(cc_map: dict) -> dict[str, int]:
 
 
 def check_chain_channel_writable(channel: int, context: str) -> None:
-    """A chain's note channel is a hard validation error outside 0-15
-    (`rig.song.validate.CHAIN_CHANNEL_RANGE`, `docs/schema.md` "Channel 16 is
-    forbidden"). The device can hold a value validation would reject -- the
+    """A chain's note channel is a hard validation error outside 0-15. The
+    device can hold a value validation would reject -- the
     whole premise of drift is that it can diverge from anything the compiler
     would ever have produced -- so writing it straight into `midi: {channel:}`
     would hand the musician a song file that fails validation later, in a
@@ -302,7 +299,7 @@ def decode_sample(
     samp_source, samp_select, kits: Optional[KitsConfig], media_root: Optional[Path], context: str
 ) -> Optional[str]:
     """`samp_source`/`samp_select` -> `<alias>/<file>`, or `None` for
-    "nothing selected" (docs/platform/samples.md, docs/media.md). Inverts
+    "nothing selected". Inverts
     the position formula against the repo folder's *current* listing --
     safe because push keeps the device and repo folders in lockstep
     (Prompt/06 "Samples").
@@ -322,8 +319,8 @@ def decode_sample(
             )
         folder = kits.kit_dir(media_root, alias)
     elif samp_source in (25, 26, 27):
-        # docs/schema.md's `sample:` field only expresses the
-        # <kit-alias>/<filename> form (rig.compile.samples's own docstring:
+        # The song model only expresses the <kit-alias>/<filename> form
+        # (rig.compile.samples's own docstring:
         # "the song schema has no field that reaches them") -- the shared
         # samples/loops/synths folders have no alias, so there is no YAML
         # this can decode to. Named and loud rather than a silent drop.

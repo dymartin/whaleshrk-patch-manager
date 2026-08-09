@@ -2,17 +2,15 @@
 
 A batch of "root ops" -- one per preset directory or media mirror group --
 each independently staged, then swapped in two passes: every live directory
-renamed to a backup, then every staged directory renamed into place. Global
-atomicity is impossible (docs/decisions.md #44: presets and positional media
-are separate fixed roots), so a journal plus idempotent per-root recovery is
+renamed to a backup, then every staged directory renamed into place. Presets
+and positional media are separate roots, so a journal plus idempotent recovery is
 the strongest available guarantee.
 
 `_ensure_swapped` is the only place that mutates a root, and it is written
 to be safe to call twice: given the state an interruption left a root in, it
 either finishes the swap or discovers there is nothing left to do. That is
 what lets `recover_pending_transaction` reuse the exact same code path as a
-fresh push (docs/workflows/push.md: "read the journal and either complete
-or restore, deterministically") instead of a separate, harder-to-trust
+fresh push instead of a separate, harder-to-trust
 recovery implementation.
 
 Journal, staging and backups all live under `data/orhack/.rig-push/`, a

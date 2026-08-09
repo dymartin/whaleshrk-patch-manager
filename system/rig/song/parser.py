@@ -1,14 +1,12 @@
 """Ruamel round-trip parsing of `songs/<slug>.yaml` into the song model.
 
-Round-trip mode, not `typ="safe"` -- Phase 6 rewrites song files in place
-preserving comments and formatting, and a plain-load parser cannot be
-retrofitted (Prompt/02-schema.md ambiguity resolution #3). `SongDocument`
+Round-trip mode, not `typ="safe"`, preserves comments and formatting during
+in-place rewrites. `SongDocument`
 keeps the loaded ruamel node reachable for that reason, even though nothing
 in this phase mutates it.
 
 This module checks *shape* only: required fields present, values the right
-type, no unknown fields (musicians see friendly YAML and a typo should fail
-loudly, not vanish -- Prompt.md's Global Constraint #3). Catalog lookups,
+type, no unknown fields, so a typo fails loudly rather than vanishing. Catalog lookups,
 capacity limits and range checks belong to `rig.song.validate`.
 """
 
@@ -37,8 +35,8 @@ from .model import (
 
 _yaml = YAML(typ="rt")
 _yaml.preserve_quotes = True
-# `- item` two spaces in from its parent key, matching docs/schema.md's example
-# and every song fixture. Verified against ruamel.yaml 0.19.1's own defaults
+# `- item` two spaces in from its parent key, matching every song fixture
+# and ruamel.yaml 0.19.1's own defaults
 # (sequence=2, offset=0, dash flush with the parent key) round-tripping this
 # song's exact indentation style incorrectly without this.
 _yaml.indent(mapping=2, sequence=4, offset=2)

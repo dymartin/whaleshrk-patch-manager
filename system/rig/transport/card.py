@@ -1,7 +1,7 @@
 """Structural identification of the ORHACK card among mounted volumes.
 
-See docs/transport.md "Card identification": a candidate root is a card only
-if it holds both `data/orhack/` and `Patches/0RHACK/`. Never picked by drive
+A candidate root is a card only if it holds both `data/orhack/` and
+`Patches/0RHACK/`. Never picked by drive
 letter or volume label -- either can be renamed by a musician and neither is
 evidence of contents. Push does mirror-with-deletions, so a wrong pick is
 unrecoverable; refusing on zero or multiple candidates is the only safe

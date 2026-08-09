@@ -1,8 +1,7 @@
 """Transport protocol shared by every backend that moves files to or from the card.
 
 Card-relative paths only: "data/orhack/rack.json", never an absolute mount
-path. Sync, mirroring, diff and compile logic lives above this layer -- see
-docs/transport.md.
+path. Sync, mirroring, diff and compile logic lives above this layer.
 """
 
 from __future__ import annotations
@@ -18,8 +17,7 @@ def normalize_path(path: str) -> str:
     """Validate and normalize a card-relative path.
 
     Rejects absolute paths and any ".." segment -- both are ways a caller could
-    escape the transport root, and refusing beats guessing (see
-    docs/transport.md "Card identification").
+    escape the transport root, and refusing beats guessing.
     """
     if not path:
         raise TransportPathError("path must not be empty")

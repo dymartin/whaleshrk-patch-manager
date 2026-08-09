@@ -1,15 +1,11 @@
 """Step 2 of push: verify ORHACK, reconcile community modules against the lock.
 
-See docs/workflows/push.md "Reconcile modules", docs/platform/card.md
-("install_package.sh" offline verification), docs/catalog.md "Install layout
-and category" / "Versioning", docs/decisions.md #29, #45, #57.
-
-Never installs or repairs ORHACK itself (#45) -- `verify_orhack_manifest`
+Never installs or repairs ORHACK itself; `verify_orhack_manifest`
 only reads. Community-module install/replace needs the module's actual file
 content, which this package cannot fabricate or cache; it is fetched through
 an injected `ModuleSource` so tests exercise the reconciliation *logic*
 against a fake, exactly like `rig.catalog.patchstorage` is never reached by
-a test (see that module's docstring). Task 8's CLI is responsible for
+a test (see that module's docstring). The CLI is responsible for
 wiring a real, network-backed `ModuleSource`.
 """
 
@@ -154,9 +150,8 @@ def plan_module_reconciliation(
     """Reconcile every community module named in the (already-loaded) lock's
     catalog entries against what is installed on the card.
 
-    Repo-wide by construction -- callers pass every locked community entry,
-    never a song-scoped subset, because "one card holds one copy"
-    (docs/decisions.md #57).
+    Repo-wide by construction: callers pass every locked community entry,
+    never a song-scoped subset, because one card holds one copy.
     """
     to_install: list[ModuleInstall] = []
     to_replace: list[ModuleInstall] = []

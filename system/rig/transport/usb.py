@@ -1,8 +1,8 @@
 """Filesystem-backed Transport for a card mounted as a USB mass storage volume.
 
 `root` is the mount point; every path passed to the interface is
-card-relative ("data/orhack/rack.json"), never an absolute filesystem path --
-see docs/transport.md. Behaviour matches `InMemoryTransport` (error types,
+card-relative ("data/orhack/rack.json"), never an absolute filesystem path.
+Behaviour matches `InMemoryTransport` (error types,
 path validation, "missing directory lists empty") so the same conformance
 suite can run against both.
 

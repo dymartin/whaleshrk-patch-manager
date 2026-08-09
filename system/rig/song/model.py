@@ -1,12 +1,11 @@
 """The song model: musicians' friendly YAML surface, as typed data.
 
-Field set matches the canonical example in `docs/schema.md` exactly (see
-`Prompt/02-schema.md` "Song shape"). Nothing here is a device identifier --
+Nothing here is a device identifier:
 no slot ids, `moduleType` paths, parameter ids, `kit-N`, encoded CC keys or
-chain letters (Prompt.md's Global Constraint #5).
+chain letters.
 
 Values are frozen dataclasses: a song is a value read from a file, not
-something callers mutate in place. Round-trip fidelity for Phase 6's
+something callers mutate in place. Round-trip fidelity for
 in-place rewriting comes from `SongDocument.raw`, not from mutating these.
 """
 

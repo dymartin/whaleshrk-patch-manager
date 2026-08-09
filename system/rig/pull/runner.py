@@ -1,7 +1,6 @@
 """`pull()` -- the orchestrator that turns device drift into reviewable PRs.
 
-See `docs/workflows/pull.md` and `Prompt/07-pull.md` for the sequence this
-follows. Every whole-run refusal raises `rig.pull.errors.PullError`; a
+Every whole-run refusal raises `rig.pull.errors.PullError`; a
 single song's reverse-map failure never aborts the run (Ruling #3: "must not
 block the other songs' PRs") -- it is recorded in the result and the loop
 moves on.

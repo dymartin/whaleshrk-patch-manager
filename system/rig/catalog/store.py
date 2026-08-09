@@ -3,8 +3,7 @@
 One file per community module upload, byte-identical to what Patchstorage
 served. This is what makes the repo's reproducibility promise true: pinning
 an upload id in `.rig/modules.lock` proves nothing once the author deletes or
-replaces that upload, so the bytes themselves travel with the repo
-(docs/catalog.md "The archive store", docs/repo-layout.md).
+replaces that upload, so the bytes themselves travel with the repo.
 
 Top-level rather than under `.rig/`: these are vendored inputs the repo owns,
 not state the CLI generates.

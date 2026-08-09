@@ -2,9 +2,8 @@
 
 Every refusal push can make -- card detection, module reconciliation, an
 unrecorded preset, an un-commanded chain rename, a failed transaction -- uses
-this, never a bare `ValueError` or a silent downgrade to a warning (Prompt.md
-Global Constraint #3, and Task 5's Ruling #3: "no refusal may be downgraded
-to a warning"). `code` lets a caller (the CLI, a test) branch on which rule
+this, never a bare `ValueError` or a silent downgrade to a warning. `code`
+lets a caller (the CLI, a test) branch on which rule
 fired without parsing the message.
 """
 
