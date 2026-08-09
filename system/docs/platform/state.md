@@ -53,8 +53,7 @@ swapped to match. `moduleType` is a path resolved against `userModuleDir` first,
 then the built-in `modules/` directory.
 
 Loading writes nothing. `rack.json` is written only by an explicit
-`savesettings`, `params.json` only by `savePreset` — which is what makes a
-read-only hardware check possible; see [../validation.md](../validation.md).
+`savesettings`, and `params.json` only by `savePreset`.
 
 ## State outside `params.json`
 
@@ -76,15 +75,15 @@ path in the module tree:
 
 **Every pattern is keyed by slot position, never by module identity.** Swap
 `overdrum` for `polystep` in the same slot and the new module reads whatever the
-old one left in those arrays. A compiler that only *adds* files for newly-placed
-modules reproduces exactly that staleness bug.
+old one left in those arrays. Adding files without clearing old state reproduces
+that staleness bug.
 
 **Failure mode when absent:** Pd's `array read` on a missing file logs an error
 and leaves the array untouched — holding whatever the *previously loaded preset*
 put there. A preset directory containing only `params.json` therefore does not
-define device state. See [../decisions.md](../decisions.md) #1.
+define device state.
 
-Compiler defaults come from the pinned ORHACK 0.52b `Init` preset: its 224
+The pinned ORHACK 0.52b `Init` preset contains 224
 canonical `a1` sidecars contain no embedded slot name, so filenames can be
 retargeted to any occupied supported stateful slot. The 16 `p<N>.txt` morpher
 files are global.
@@ -128,12 +127,8 @@ Two live consequences:
   fails, leaving the target index at its `0` initialiser.
 - **Saving materialises the default rack under the missing name.** The device
   `mkdir`s the directory and writes the live rack into it, including `a1` and
-  `a2` at their two nonexistent module types — a preset no song ever described,
-  which will not load correctly afterwards. Pull sees it as drift.
+  `a2` at their two nonexistent module types, producing a preset that will not
+  load correctly afterwards.
 
-Push repairs the pointer only when its own writes break it; see
-[../decisions.md](../decisions.md) #53.
-
-Upstream ORAC has the same two bad paths. Two rules survive from that: module
-paths must come from the live `modules/` tree, never from `main.pd`; and a
-dangling `currentPreset` leaves the bad slots live.
+Upstream ORAC has the same two bad paths. A dangling `currentPreset` leaves the
+bad slots live.

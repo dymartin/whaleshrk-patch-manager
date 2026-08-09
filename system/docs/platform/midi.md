@@ -24,7 +24,7 @@ Change is used directly as a zero-based vector index; out of range is logged and
 ignored. There is no MIDI load-by-name command. Channel 16 is reserved for this
 control path.
 
-Two consequences the compiler depends on:
+Two consequences follow:
 
 - **Numeric prefixes must be fixed-width.** `"10-x"` sorts before `"2-x"`, so an
   unpadded prefix desynchronises the index from the program value for everything
@@ -75,9 +75,7 @@ contain a `params.json` to enter the vector at all, which excludes junk like
 
 `Rack::savePreset` appends an unknown preset id with `push_back`. A preset saved
 on the device therefore sits at the **end** of the Program Change vector until
-the next patch restart, when the scan re-sorts it into place. Any index the tool
-reasons about is the sorted one, so device-created presets make live Program
-Change disagree with the repo until a restart.
+the next patch restart, when the scan re-sorts it into place.
 
 ## CC 100 / 101 / 102 change and overwrite presets
 
@@ -98,20 +96,11 @@ There is no master disable. `r-midi-pgmgate` gates MIDI *program change*, not
 these CCs. The only levers are `r-midi-ch` and the three CC numbers themselves,
 and no numeric range includes an "off" value.
 
-Consequences to design around:
+If `r-midi-ch` is `0` (omni), every channel can trigger these controls. A DAW
+that sends CC 102 on the selected channel overwrites the current preset without
+an additional confirmation.
 
-- Never assign a chain to the same channel as `r-midi-ch`, and never let
-  `r-midi-ch` be `0` (omni), which would make every channel a save trigger.
-- Never map CC 100, 101 or 102 in a module `midi:` block on that channel.
-- A DAW that happens to send CC 102 there destroys a pushed preset silently, and
-  the drift shows up only on the next pull.
-
-Project policy: keep `r-midi-ch = 16` and `r-midi-pgmgate = 1` for song-loading
-Program Change. Forbid chain channels and module CC mappings on channel 16, and
-never emit CC 100/101/102 there.
-
-Flip side worth remembering: CC 100/101 is a legitimate way to advance a setlist
-from the DAW. Out of scope, but it is the mechanism if that is ever wanted.
+CC 100/101 can legitimately advance a setlist from a DAW.
 
 ## The physical keyboard has one global destination
 
@@ -119,7 +108,5 @@ Keys arrive over OSC from the firmware — `r oscIn` → `routeOSC /key` →
 `key <n> <v>` → KontrolRack — and are routed by the router's "Active" page:
 `r-main-dest` (0-14) selects a single global active destination, gated by
 `r-midi-notegate` (default 0, off). One destination for the whole rack, not a
-per-chain gate like audio and MIDI note in. A song's top-level `keyboard` field
-selects the initial chain; the compiler enables the note and control gates and
-targets that chain's first slot. Channel 16 / CC 20 is the fixed global active-
-destination selector for changing it while playing.
+per-chain gate like audio and MIDI note in. Channel 16 / CC 20 selects the
+global active destination while playing.

@@ -52,6 +52,5 @@ use Raspberry Pi OS Bookworm `armhf` and one CM3/CM4 image. The catalog remains
 ARM32. Every new OS image must re-run target-profile discovery before its
 hardware profile is accepted.
 
-Pd API compatibility, CPU cost and DSP behaviour are not established by static
-acceptance. [../validation.md](../validation.md) states what is and is not
-checked.
+ELF compatibility alone does not establish Pd API compatibility, CPU cost, or
+DSP behaviour.

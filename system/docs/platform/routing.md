@@ -18,8 +18,7 @@ together, so `s1` is effectively pinned to `routers/hybrid`.
 Chain capacity: **A=3, B=4, C=3, D=4**.
 
 `s1` and `s2` are **system slots, not free slots**. The shipped `Init` preset
-holds `s1 = routers/hybrid` and `s2 = clocks/transport`; the compiler must
-always emit both.
+holds `s1 = routers/hybrid` and `s2 = clocks/transport`.
 
 Signal flow is strictly series within a chain (`chainin N → a1 → a2 → a3`). No
 parallel branches. Parallelism comes three ways:
@@ -70,8 +69,7 @@ toggling the gate injects a stray value into the ctrl outlet, and means
 > `r-chin-midigate-N` gates **notes only**. Control changes reach the chain
 > regardless of it.
 
-The compiler always enables the gate. Disabling it later still permits CC
-automation.
+Disabling the gate still permits CC automation.
 
 **CC 1 and CC 74 are hardwired.** `ctlin` feeds `route 74 1`, and the four
 control sources pack to fixed indices: bend → `0`, CC 1 → `1`, CC 74 → `2`,
@@ -108,9 +106,7 @@ point genuinely single-channel material at it.
 
 ## Full `s1` parameter surface
 
-`routers/hybrid` declares far more than the per-chain block. The compiler owns
-`s1` entirely, so it owns all of this, and every value it does not write takes
-the `module.json` default.
+`routers/hybrid` declares far more than the per-chain block:
 
 | Group | Parameters | Defaults |
 |---|---|---|
@@ -124,22 +120,17 @@ the `module.json` default.
 | Preset control | `r-midi-pgmgate`, `r-midi-ppreset-cc`, `r-midi-npreset-cc`, `r-midi-save-preset-cc` | 1, 100, 101, **102** |
 | Active gates | `r-midi-notegate`, `r-midi-ctrlgate` | 0, 0 |
 
-The compiler pins `r-midi-module-cc` to 20. When a song declares `keyboard`, it
-sets `r-main-dest` to that chain's first slot and enables both active gates.
-
 The four pans per chain are `r-chin-l-pan-N`, `r-chin-r-pan-N`,
 `r-chout-l-pan-N`, `r-chout-r-pan-N` — type `pan`, range 0-1, labelled "A In L
 Pan", "A Out L Pan" and so on. Both sides default to the same hard-apart pair:
-L pan `0`, R pan `1`. The **output** pair is what `mix.balance` and `mix.width`
-compile into; see [../schema.md](../schema.md).
+L pan `0`, R pan `1`.
 
 `r-notethru-<slot>` (default off) is a per-slot note pass-through — notes reach
 the next slot in the chain. A chain whose second module also reads notes needs
 it on.
 
 `r-chin-midich-4`'s declared default is `3`, duplicating chain C — an upstream
-slip. The compiler writes every chain's channel explicitly, so it never inherits
-this. The compiler writes `4` there instead of inheriting the broken default.
+slip.
 
 ## Transport / clock (`s2`)
 

@@ -30,11 +30,7 @@ has to resolve to exactly one of these folders — see
 `deploy.sh` ends with `chmod 555 data/orhack/presets/Init`. **That only takes
 effect on a POSIX filesystem.** `mount.sh` mounts the user drive as `vfat`,
 `exfat`, `ntfs` or `ext*`, and on the first three the mode bits are meaningless.
-So `Init` is read-only *only on an ext-formatted card*. The tool must never rely
-on the filesystem to protect `Init`; it protects it by rule.
-
-The fixture stores `Init` once at `Patches/0RHACK/data/presets/Init`; its test
-loader performs the same deploy copy into `data/orhack/presets/Init` in memory.
+So `Init` is read-only *only on an ext-formatted card*.
 
 `install_package.sh` verifies an unzipped package by regenerating sha1sums and
 diffing against the package's own `manifest.txt`. ORHACK ships one covering
@@ -43,8 +39,7 @@ with no network and no device.
 
 **Writes are buffered.** `mount.sh` mounts with `-o async,noatime`. Pulling the
 card without ejecting loses whatever is still in the page cache — on either the
-device or the host. Any push has to end with an explicit flush, and the operator
-guidance is "eject, don't yank".
+device or the host. Eject; do not yank the card.
 
 The shipped `orac.json` reads
 

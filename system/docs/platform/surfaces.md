@@ -1,7 +1,6 @@
 # Control and observation surfaces
 
 What the device already exposes, plus the one procedure that changes it.
-[../validation.md](../validation.md) is what uses the observation surfaces.
 Everything up to "Device bootstrap" is stock and installs nothing; that last
 section is a deliberate deviation from the shipped image.
 
@@ -76,9 +75,7 @@ therefore need no remount and no root — `music` owns `/sdcard` and can write i
 directly. Only the bootstrap touches the read-only root.
 
 The card is **ext4**, which makes `deploy.sh`'s `chmod 555` on
-`data/orhack/presets/Init` effective here — see [card.md](card.md), where that
-protection is described as conditional on a POSIX filesystem. The tool still
-protects `Init` by rule and never relies on the mode bits.
+`data/orhack/presets/Init` effective here — see [card.md](card.md).
 
 ## mec OSC control plane
 
@@ -101,10 +98,7 @@ controls are all addressable by name, without any MIDI or audio device.
 
 ## Device bootstrap
 
-One-time, per device, and **not automated** — `rig` never performs it. It is a
-root-level change to a device the operator owns, and burying it in a push
-command means it fires on the wrong box. `rig` assumes it was done and refuses
-with a clear message when sshd is unreachable.
+This is a one-time, manual, root-level change to a device the operator owns.
 
 All of it is root-filesystem state, so **a firmware update can revert it**. That
 is why the procedure lives here rather than in someone's memory.
@@ -155,9 +149,8 @@ vendor choice. **No documented reason was found.**
 
 The likeliest explanation, and it is a hypothesis rather than a finding, is
 realtime audio: avahi wakes on every mDNS multicast packet on the segment, and
-on this hardware that jitter can surface as ALSA xruns — the exact condition
-[../validation.md](../validation.md) makes a hard fail. Unmasking it therefore
-adds a candidate cause of the thing the hardware check measures.
+on this hardware that jitter can surface as ALSA xruns. Unmasking it therefore
+adds a candidate source of realtime-audio jitter.
 
 ```sh
 sudo /home/music/fw_dir/scripts/remount-rw.sh
@@ -193,8 +186,7 @@ mDNS is link-local multicast and **does not cross a router**. A laptop on a
 different subnet than the device — easy to end up with under double NAT — will
 never resolve `.local` however healthy avahi is.
 
-The operating rule from [../validation.md](../validation.md), "only on a network
-you control", is satisfiable at home and is not on a venue's shared wifi, where
+Use it only on a network you control, not a venue's shared wifi, where
 the unauthenticated port-8080 root shell is exposed to everyone present. A
 band-owned travel router with a DHCP reservation solves addressing and exposure
 together. Switching the device's wifi off for a set is the blunt version and
