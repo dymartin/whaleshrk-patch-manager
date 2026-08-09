@@ -12,7 +12,7 @@ push, commit, or add modules.
 
 ## Read
 
-Read `docs/schema.md`, every `.rig/catalog/*.json`, `.rig/kits.yaml` when it
+Read `system/docs/schema.md`, every `system/data/catalog/*.json`, `system/data/kits.yaml` when it
 exists, and the target song when it exists. Read other songs only to choose an
 unused `program` or to reuse an established local pattern.
 

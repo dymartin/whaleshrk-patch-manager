@@ -1,0 +1,79 @@
+{
+    "display" : "Transport",
+    "parameters" :  [ 
+        ["int","bpm","BPM",60,200,120],
+        ["float","swing8","Swing 8",0,100,0],
+        ["float","swing16","Swing 16",0,100,0],
+        ["bool","midiout","Midi >>",0],      
+	["bool","midiin","Midi <<",1],
+        ["float","chaos","Chaos",0,100,0],    
+	["float","metronome","Metro",0,100,0],
+	["int","set_signature","Signature",3,7,4],
+
+    ["int","p1_a","Chain A",1,10,1],
+    ["int","p1_b","Chain B",1,10,1],
+    ["int","p1_c","Chain C",1,10,1],
+    ["int","p1_d","Chain D",1,10,1],
+
+    ["int","p2_a","Chain A",1,10,2],
+    ["int","p2_b","Chain B",1,10,2],
+    ["int","p2_c","Chain C",1,10,2],
+    ["int","p2_d","Chain D",1,10,2],
+
+    ["int","p3_a","Chain A",1,10,3],
+    ["int","p3_b","Chain B",1,10,3],
+    ["int","p3_c","Chain C",1,10,3],
+    ["int","p3_d","Chain D",1,10,3],
+
+    ["int","p4_a","Chain A",1,10,4],
+    ["int","p4_b","Chain B",1,10,4],
+    ["int","p4_c","Chain C",1,10,4],
+    ["int","p4_d","Chain D",1,10,4],
+
+    ["int","p5_a","Chain A",1,10,5],
+    ["int","p5_b","Chain B",1,10,5],
+    ["int","p5_c","Chain C",1,10,5],
+    ["int","p5_d","Chain D",1,10,5],
+
+    ["int","p6_a","Chain A",1,10,6],
+    ["int","p6_b","Chain B",1,10,6],
+    ["int","p6_c","Chain C",1,10,6],
+    ["int","p6_d","Chain D",1,10,6],
+
+    ["int","p7_a","Chain A",1,10,7],
+    ["int","p7_b","Chain B",1,10,7],
+    ["int","p7_c","Chain C",1,10,7],
+    ["int","p7_d","Chain D",1,10,7],
+
+    ["int","p8_a","Chain A",1,10,8],
+    ["int","p8_b","Chain B",1,10,8],
+    ["int","p8_c","Chain C",1,10,8],
+    ["int","p8_d","Chain D",1,10,8],
+
+    ["int","p9_a","Chain A",1,10,9],
+    ["int","p9_b","Chain B",1,10,9],
+    ["int","p9_c","Chain C",1,10,9],
+    ["int","p9_d","Chain D",1,10,9],
+
+    ["int","p10_a","Chain A",1,10,10],
+    ["int","p10_b","Chain B",1,10,10],
+    ["int","p10_c","Chain C",1,10,10],
+    ["int","p10_d","Chain D",1,10,10]
+	],
+
+    "pages" : [ 
+    ["pg_oclock","Transport",["metronome","swing8","swing16","set_signature"]],
+	["pg_otempo","Clock",["bpm","chaos","midiin","midiout"]],
+    ["pg_p1","Pattern 1",["p1_a","p1_b","p1_c","p1_d"]],
+    ["pg_p2","Pattern 2",["p2_a","p2_b","p2_c","p2_d"]],
+    ["pg_p3","Pattern 3",["p3_a","p3_b","p3_c","p3_d"]],
+    ["pg_p4","Pattern 4",["p4_a","p4_b","p4_c","p4_d"]],
+    ["pg_p5","Pattern 5",["p5_a","p5_b","p5_c","p5_d"]],
+    ["pg_p6","Pattern 6",["p6_a","p6_b","p6_c","p6_d"]],
+    ["pg_p7","Pattern 7",["p7_a","p7_b","p7_c","p7_d"]],
+    ["pg_p8","Pattern 8",["p8_a","p8_b","p8_c","p8_d"]],
+    ["pg_p9","Pattern 9",["p9_a","p9_b","p9_c","p9_d"]],
+    ["pg_p10","Pattern 10",["p10_a","p10_b","p10_c","p10_d"]]
+    ]
+}
+

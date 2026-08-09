@@ -18,9 +18,9 @@
 
 ## Documentation
 
-* docs/ = living knowledge base. Segment + index for fast lookup.
-* Read docs/README.md before every session. Use indexed documentation based on task.
-* Prompt/ = per-phase build briefs, one per Prompt/PLAN.md phase. Keep in step with docs/; docs win on conflict.
+* system/docs/ = living knowledge base. Segment + index for fast lookup.
+* Read system/docs/README.md before every session. Use indexed documentation based on task.
+* Prompt/ = per-phase build briefs, one per Prompt/PLAN.md phase. Keep in step with system/docs/; docs win on conflict.
 * Update docs on: architecture change, behavior change, new persistent knowledge, ops procedure change, useful debug findings.
 * Skip transient debug steps/one-off investigations unless reusable.
 * No doc bloat. Cut irrelevant/wrong info.
