@@ -1,0 +1,46 @@
+song: Fever
+program: 1
+
+sends:
+  reverb:
+    module: plateverb@orhack
+    amount: 20
+
+chains:
+  - name: guitar
+    input: {guitar: true}
+    modules:
+      - warp@orhack:
+          drive-a: 45
+          drive-b: 45
+      - spiraldelay@orhack:
+          feedback: 0
+          dry-wet: 100
+          length: 25
+          fw-rv: 1
+          heads: 1
+          head-1-gain: 100
+          tempo-sync: 1
+
+  - name: reverse-synth
+    input: {guitar: false}
+    modules:
+      - braids-plus@orhack
+      - spiraldelay@orhack:
+          feedback: 0
+          dry-wet: 20
+          length: 25
+          fw-rv: 1
+          heads: 1
+          head-1-gain: 100
+          tempo-sync: 1
+          send: {reverb: 20}
+
+  - name: owow
+    input: {guitar: false}
+    modules:
+      - braids-plus@orhack:
+          resonance: 3
+          mod-speed: 2
+          trem-depth: 0.5
+          filtmod-depth: 0.75
