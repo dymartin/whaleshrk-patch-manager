@@ -8,3 +8,5 @@ __pycache__/
 system/data/state/reports/
 .desloppify/
 scorecard.png
+.claude
+CLAUDE.md
