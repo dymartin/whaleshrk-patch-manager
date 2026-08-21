@@ -614,8 +614,24 @@ def catalog_mirror() -> None:
             with live_httpx_client() as client:
                 typer.echo("Discovering ORAC uploads...")
                 patch_ids = discover_union(client)
-                with typer.progressbar(patch_ids, label="Downloading") as progress:
-                    sources = discover_sources(client, progress)
+                current = {"text": ""}
+                with typer.progressbar(
+                    patch_ids,
+                    label="Downloading",
+                    item_show_func=lambda _item: current["text"],
+                ) as progress:
+                    def report(slug: str, status: str) -> None:
+                        current["text"] = {
+                            "downloading": f"... {slug}",
+                            "downloaded": f"OK {slug}",
+                            "skipped": f"SKIP {slug}",
+                            "failed": f"FAIL {slug}",
+                        }[status]
+                        progress.render_progress()
+
+                    sources = discover_sources(client, progress, report)
+                    current["text"] = ""
+                    progress.render_progress()
     except (httpx.HTTPError, PatchstorageError) as exc:
         _fail("catalog mirror", "SOURCE_UNREACHABLE", f"could not reach Patchstorage: {exc}")
 

@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import hashlib
 from collections.abc import Iterable
+from typing import Callable
 
 import httpx
 
@@ -24,17 +25,30 @@ def live_httpx_client() -> httpx.Client:
 
 
 def discover_sources(
-    client: httpx.Client, patch_ids: Iterable[int] | None = None
+    client: httpx.Client,
+    patch_ids: Iterable[int] | None = None,
+    report: Callable[[str, str], None] | None = None,
 ) -> dict[str, CandidateSource]:
     """Download every ORAC platform/tag upload, keyed by its stable slug."""
     found: dict[str, CandidateSource] = {}
     for patch_id in discover_union(client) if patch_ids is None else patch_ids:
         detail = fetch_detail(client, patch_id)
+        slug = detail["slug"]
         files = detail.get("files") or []
         if not files:
+            if report:
+                report(slug, "skipped")
             continue
-        archive_bytes = fetch_archive_bytes(client, files[0]["url"])
-        slug = detail["slug"]
+        if report:
+            report(slug, "downloading")
+        try:
+            archive_bytes = fetch_archive_bytes(client, files[0]["url"])
+        except httpx.HTTPError:
+            if report:
+                report(slug, "failed")
+            raise
+        if report:
+            report(slug, "downloaded")
         found[slug] = CandidateSource(
             id=patch_id,
             archive=ZipCandidateArchive(archive_bytes),

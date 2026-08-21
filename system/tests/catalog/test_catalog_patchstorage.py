@@ -12,7 +12,7 @@ from __future__ import annotations
 import httpx
 import pytest
 
-from rig.catalog.discovery import live_httpx_client
+from rig.catalog.discovery import discover_sources, live_httpx_client
 from rig.catalog.patchstorage import (
     PatchstorageError,
     discover_union,
@@ -20,6 +20,7 @@ from rig.catalog.patchstorage import (
     fetch_detail,
     list_patches,
 )
+from tests.catalog_helpers import build_zip
 
 
 def _client(handler) -> httpx.Client:
@@ -29,6 +30,23 @@ def _client(handler) -> httpx.Client:
 def test_live_client_identifies_itself_to_patchstorage():
     with live_httpx_client() as client:
         assert client.headers["User-Agent"] == "whaleshrk-rig/0.1"
+
+
+def test_discover_sources_reports_transient_download_status():
+    def handler(request: httpx.Request) -> httpx.Response:
+        if request.url.path.endswith("/patches/1"):
+            return httpx.Response(
+                200,
+                json={"id": 1, "slug": "warble", "files": [{"url": "https://files/warble.zip"}]},
+            )
+        return httpx.Response(200, content=build_zip({"module.pd": b"#N canvas;"}))
+
+    events = []
+    with _client(handler) as client:
+        sources = discover_sources(client, [1], lambda slug, status: events.append((slug, status)))
+
+    assert list(sources) == ["warble"]
+    assert events == [("warble", "downloading"), ("warble", "downloaded")]
 
 
 def test_list_patches_single_page():
