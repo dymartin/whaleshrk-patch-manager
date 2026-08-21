@@ -262,6 +262,33 @@ def test_catalog_mirror_does_not_store_rejected_archive(repo, monkeypatch):
     assert not (repo / "system/modules/standalone@v1.0.zip").exists()
 
 
+def test_catalog_mirror_skips_unchanged_verified_archive(repo):
+    archive = b"stored archive"
+    digest = hashlib.sha256(archive).hexdigest()
+    entry = dataclasses.replace(
+        _community_entry(updated_at="2020-01-01"),
+        version=VersionInfo(
+            updated_at="2020-01-01", file_id=1, archive_sha256=digest, revision="1.0"
+        ),
+    )
+    write_archive(Path("system/modules"), "warble", "1.0", archive)
+    lock = {
+        "modules": {
+            entry.key: {
+                "source": "warble", "updated_at": "2020-01-01", "file_id": 1,
+                "archive_sha256": digest, "revision": "1.0",
+            }
+        }
+    }
+
+    assert cli._mirror_source_satisfied(
+        {"slug": "warble", "updated_at": "2020-01-01"}, {"warble": [entry]}, lock
+    )
+    assert not cli._mirror_source_satisfied(
+        {"slug": "warble", "updated_at": "2020-01-02"}, {"warble": [entry]}, lock
+    )
+
+
 
 def test_unknown_song_selection_is_a_clean_refusal(repo):
     result = runner.invoke(app, ["lint", "nosuch"])

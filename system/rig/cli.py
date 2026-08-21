@@ -30,12 +30,13 @@ from rig.catalog import (
     PatchstorageError,
     build_catalog,
     build_community_catalog,
-    discover_union,
+    discover_union_items,
     discover_sources,
     find_sources_by_slug,
     ingest_pinned_builtins,
     live_httpx_client,
     read_catalog,
+    read_archive,
     read_lock,
     write_archive,
     write_catalog,
@@ -237,6 +238,33 @@ def _store_archives(command: str, entries: list[CatalogEntry], sources: dict[str
                 f"warning: {path.name} is {len(data) // 1024}KB -- every future version of it stays "
                 "in git history permanently",
             )
+
+
+def _mirror_source_satisfied(
+    item: dict, entries_by_source: dict[str, list[CatalogEntry]], lock: dict
+) -> bool:
+    """Live listing unchanged and every pinned archive still verifies locally."""
+    entries = entries_by_source.get(item.get("slug"), [])
+    if not entries or any(e.version.updated_at != item.get("updated_at") for e in entries):
+        return False
+    checked: set[tuple[str, str, str]] = set()
+    for entry in entries:
+        pin = lock.get("modules", {}).get(entry.key)
+        if not pin:
+            return False
+        archive = (
+            entry.source,
+            pin.get("revision") or "unknown",
+            pin.get("archive_sha256") or "",
+        )
+        if archive in checked:
+            continue
+        try:
+            read_archive(MODULES_DIR, *archive)
+        except ArchiveStoreError:
+            return False
+        checked.add(archive)
+    return True
 
 
 # --- commands ------------------------------------------------------------
@@ -606,45 +634,60 @@ def catalog_add(
 @catalog_app.command("mirror")
 def catalog_mirror() -> None:
     """Vendor every Patchstorage ORAC upload without deleting vanished uploads."""
-    current = read_catalog(CATALOG_PATH)
+    current_catalog = read_catalog(CATALOG_PATH)
+    lock = read_lock(LOCK_PATH)
+    skipped = 0
+    discovered = 0
     try:
         if _mirror_fetcher is not None:
             sources = _mirror_fetcher()
         else:
             with live_httpx_client() as client:
                 typer.echo("Discovering ORAC uploads...")
-                patch_ids = discover_union(client)
-                current = {"text": ""}
+                items = discover_union_items(client)
+                discovered = len(items)
+                entries_by_source: dict[str, list[CatalogEntry]] = {}
+                for entry in current_catalog:
+                    if entry.source != "orhack":
+                        entries_by_source.setdefault(entry.source, []).append(entry)
+                pending = [
+                    item for item in items if not _mirror_source_satisfied(item, entries_by_source, lock)
+                ]
+                skipped = discovered - len(pending)
+                display = {"text": ""}
                 with typer.progressbar(
-                    patch_ids,
+                    [item["id"] for item in pending],
                     label="Downloading",
-                    item_show_func=lambda _item: current["text"],
+                    item_show_func=lambda _item: display["text"],
                 ) as progress:
-                    def report(slug: str, status: str) -> None:
-                        current["text"] = {
+                    def report(slug: str, state: str) -> None:
+                        display["text"] = {
                             "downloading": f"... {slug}",
                             "downloaded": f"OK {slug}",
                             "skipped": f"SKIP {slug}",
                             "failed": f"FAIL {slug}",
-                        }[status]
+                        }[state]
                         progress.render_progress()
 
                     sources = discover_sources(client, progress, report)
-                    current["text"] = ""
+                    display["text"] = ""
                     progress.render_progress()
     except (httpx.HTTPError, PatchstorageError) as exc:
         _fail("catalog mirror", "SOURCE_UNREACHABLE", f"could not reach Patchstorage: {exc}")
 
     entries = _rebuild("catalog mirror", sources)
     accepted_sources = {e.source for e in entries if e.source != "orhack"}
-    retained = [e for e in current if e.source != "orhack" and e.source not in accepted_sources]
+    retained = [
+        e for e in current_catalog if e.source != "orhack" and e.source not in accepted_sources
+    ]
     merged = sorted(entries + retained, key=lambda e: e.key)
 
     _store_archives("catalog mirror", entries, sources)
     write_catalog(merged, CATALOG_PATH)
     write_lock(merged, LOCK_PATH)
     typer.echo(
-        f"mirrored {len(sources)} upload(s); {len(accepted_sources)} accepted; "
+        f"mirrored {discovered or len(sources)} upload(s); {len(sources)} downloaded; "
+        f"{skipped} unchanged; {len(accepted_sources)} accepted; "
         f"{len(retained)} retained from unavailable/rejected uploads"
     )
 

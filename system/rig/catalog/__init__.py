@@ -17,6 +17,7 @@ from .io import read_catalog, read_lock, write_catalog, write_lock
 from .patchstorage import (
     PatchstorageError,
     discover_union,
+    discover_union_items,
     fetch_archive_bytes,
     fetch_detail,
 )
@@ -26,6 +27,7 @@ from .store import (
     ArchiveStoreError,
     archive_filename,
     archive_path,
+    read_archive,
     read_archive,
     write_archive,
 )

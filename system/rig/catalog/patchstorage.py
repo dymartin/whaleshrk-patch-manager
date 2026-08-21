@@ -80,12 +80,17 @@ def list_patches(client: httpx.Client, *, platform: int | None = None, tag: int 
     return items
 
 
-def discover_union(client: httpx.Client) -> list[int]:
-    """Deduped union of platform `orac` and tag `orac` candidate ids."""
+def discover_union_items(client: httpx.Client) -> list[dict]:
+    """Deduped union of platform `orac` and tag `orac` listing records."""
     platform_items = list_patches(client, platform=PLATFORM_ORAC)
     tag_items = list_patches(client, tag=TAG_ORAC)
-    ids = {item["id"] for item in platform_items} | {item["id"] for item in tag_items}
-    return sorted(ids)
+    by_id = {item["id"]: item for item in platform_items + tag_items}
+    return [by_id[patch_id] for patch_id in sorted(by_id)]
+
+
+def discover_union(client: httpx.Client) -> list[int]:
+    """Deduped union of platform `orac` and tag `orac` candidate ids."""
+    return [item["id"] for item in discover_union_items(client)]
 
 
 def fetch_detail(client: httpx.Client, patch_id: int) -> dict[str, Any]:
