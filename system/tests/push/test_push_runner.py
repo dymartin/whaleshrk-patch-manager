@@ -58,6 +58,10 @@ def _song(name: str, program: int, chain_name: str = "lead") -> Song:
     )
 
 
+def _community_song(key: str = "warble@warble") -> Song:
+    return Song(name="Community", program=3, chains=[Chain(name="lead", modules=[ModuleSlot(key=key)])])
+
+
 class _NoModuleSource:
     def fetch(self, entry):
         raise ModuleSourceUnavailable("not needed by this test")
@@ -245,7 +249,7 @@ def test_module_unavailable_and_uninstalled_is_a_hard_error(tmp_path):
 
     with pytest.raises(PushError) as exc:
         _push(
-            songs={}, selected=None, transport=transport, media_root=media_root, state_dir=state_dir,
+            songs={"community": _community_song()}, selected=None, transport=transport, media_root=media_root, state_dir=state_dir,
             catalog=_catalog(_synth_entry(), community), lock=lock,
         )
     assert exc.value.code == "MODULE_UNAVAILABLE"
@@ -263,7 +267,7 @@ def test_missing_community_module_is_actually_installed_on_the_card(tmp_path):
             return {"module.json": b"{}", "module.pd": b"patch"}
 
     result = _push(
-        songs={}, selected=None, transport=transport, media_root=media_root, state_dir=state_dir,
+        songs={"community": _community_song()}, selected=None, transport=transport, media_root=media_root, state_dir=state_dir,
         catalog=_catalog(_synth_entry(), community), lock=lock, module_source=_WorkingModuleSource(),
     )
 
@@ -287,12 +291,45 @@ def test_mismatched_community_module_is_actually_replaced_on_the_card(tmp_path):
             return {"module.json": b"{NEW}"}
 
     result = _push(
-        songs={}, selected=None, transport=transport, media_root=media_root, state_dir=state_dir,
+        songs={"community": _community_song()}, selected=None, transport=transport, media_root=media_root, state_dir=state_dir,
         catalog=_catalog(_synth_entry(), community), lock=lock, module_source=_WorkingModuleSource(),
     )
 
     assert result.modules_replaced == ["warble@warble"]
     assert transport.read(f"{install_dir}/module.json") == b"{NEW}"
+
+
+def test_unused_locked_module_is_not_fetched_or_installed(tmp_path):
+    transport = _bare_card()
+    community = make_entry("warble@warble", "warble", "Warble", "effects/mod/warble@warble", [])
+    result = _push(
+        songs={"vellichor": _song("Vellichor", 3)}, selected=None, transport=transport,
+        media_root=tmp_path / "media", state_dir=tmp_path / "state",
+        catalog=_catalog(_synth_entry(), community), lock={"modules": {"warble@warble": {}}},
+    )
+    assert result.modules_installed == []
+    assert not transport.exists("media/orhack/user-modules/effects/mod/warble@warble")
+
+
+def test_song_generated_ledger_removes_only_previously_managed_unused_module(tmp_path):
+    transport = _bare_card()
+    managed = "media/orhack/user-modules/effects/mod/warble@warble"
+    foreign = "media/orhack/user-modules/effects/mod/hand-installed"
+    transport.write(f"{managed}/module.pd", b"old")
+    transport.write(f"{foreign}/module.pd", b"mine")
+    transport.write(
+        "media/orhack/user-modules/.rig/managed.json",
+        json.dumps({"modules": {"warble@warble": "effects/mod/warble@warble"}}).encode(),
+    )
+
+    result = _push(
+        songs={"vellichor": _song("Vellichor", 3)}, selected=None, transport=transport,
+        media_root=tmp_path / "media", state_dir=tmp_path / "state",
+    )
+
+    assert result.modules_removed == ["warble@warble"]
+    assert not transport.exists(managed)
+    assert transport.read(f"{foreign}/module.pd") == b"mine"
 
 
 def test_uncommanded_chain_rename_refuses(tmp_path):

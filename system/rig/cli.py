@@ -317,6 +317,8 @@ def _echo_push_result(result: PushResult) -> None:
         typer.echo(f"modules installed: {', '.join(result.modules_installed)}")
     if result.modules_replaced:
         typer.echo(f"modules replaced: {', '.join(result.modules_replaced)}")
+    if result.modules_removed:
+        typer.echo(f"modules removed: {', '.join(result.modules_removed)}")
     if result.current_preset_repaired:
         typer.echo(f"current preset repaired to: {result.current_preset_repaired}")
     if result.dry_run:

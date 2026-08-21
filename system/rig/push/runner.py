@@ -72,6 +72,8 @@ from rig.transport.base import Transport
 from rig.transport.card import INIT_PRESET_NAME, PRESETS_ROOT, resolve_card
 
 RACK_JSON_PATH = "data/orhack/rack.json"
+MANAGED_MODULES_ROOT = "media/orhack/user-modules/.rig"
+MANAGED_MODULES_PATH = f"{MANAGED_MODULES_ROOT}/managed.json"
 
 
 @dataclass(frozen=True)
@@ -85,6 +87,7 @@ class PushResult:
     placeholders_removed: list[int] = field(default_factory=list)
     modules_installed: list[str] = field(default_factory=list)  # catalog keys
     modules_replaced: list[str] = field(default_factory=list)
+    modules_removed: list[str] = field(default_factory=list)
     media_groups_written: list[str] = field(default_factory=list)
     current_preset_repaired: Optional[str] = None
 
@@ -97,6 +100,35 @@ def _program_of(directory: str) -> Optional[int]:
     if len(directory) < 3 or not directory[:3].isdigit():
         return None
     return int(directory[:3])
+
+
+def _used_module_keys(songs: dict[str, Song]) -> set[str]:
+    """Module catalog keys referenced anywhere in song YAML-derived models."""
+    keys: set[str] = set()
+    for song in songs.values():
+        keys.update(module.key for chain in song.chains for module in chain.modules)
+        keys.update(send.module for send in song.sends)
+        keys.update(module.key for module in song.master)
+        keys.update(module.key for module in song.mod_sources)
+    return keys
+
+
+def _read_managed_modules(transport: Transport) -> dict[str, str]:
+    if not transport.exists(MANAGED_MODULES_PATH):
+        return {}
+    try:
+        data = json.loads(transport.read(MANAGED_MODULES_PATH).decode("utf-8"))
+        modules = data["modules"]
+        if not isinstance(modules, dict) or not all(
+            isinstance(key, str) and isinstance(path, str) for key, path in modules.items()
+        ):
+            raise ValueError
+        return modules
+    except (KeyError, ValueError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise PushError(
+            "MANAGED_MODULE_LEDGER_INVALID",
+            f"{MANAGED_MODULES_PATH} is invalid; refusing to remove any modules",
+        ) from exc
 
 
 def push(
@@ -145,8 +177,9 @@ def push(
     selected_ids = set(songs) if selected is None else set(selected)
     is_selective = selected is not None
 
-    # Step 2b: reconcile community modules against the lock, repo-wide --
-    # never scoped to `selected_ids` (decision #57).
+    # Step 2b: derive the desired module ledger from every song in the repo,
+    # never only the selected songs. The card ledger records ownership so
+    # cleanup cannot touch modules installed by the user or another tool.
     current_lock_hash = hash_lock(lock)
     recorded_lock_hash = read_recorded_lock_hash(state_dir)
     if is_selective and recorded_lock_hash is not None and recorded_lock_hash != current_lock_hash:
@@ -158,7 +191,13 @@ def push(
         )
 
     locked_keys = set(lock.get("modules", {}))
-    community_entries = [e for e in catalog if e.source != "orhack" and e.key in locked_keys]
+    used_keys = _used_module_keys(songs)
+    community_entries = [
+        e for e in catalog if e.source != "orhack" and e.key in locked_keys and e.key in used_keys
+    ]
+    desired_managed = {e.key: e.module_type for e in community_entries}
+    previous_managed = _read_managed_modules(transport)
+    removed_modules = sorted(set(previous_managed) - set(desired_managed))
     reconcile = plan_module_reconciliation(transport, community_entries, module_source)
     if reconcile.unavailable:
         names = ", ".join(sorted(e.key for e in reconcile.unavailable))
@@ -238,6 +277,10 @@ def push(
         _add_write(module_install_dir(install.entry), install.files)
     for install in reconcile.to_replace:
         _add_write(module_install_dir(install.entry), install.files)
+    for key in removed_modules:
+        _add_delete(f"media/orhack/user-modules/{previous_managed[key]}")
+    ledger = json.dumps({"modules": desired_managed}, indent=2, sort_keys=True).encode("utf-8") + b"\n"
+    _add_write(MANAGED_MODULES_ROOT, {"managed.json": ledger})
 
     written: list[str] = []
     renamed: dict[str, tuple[str, str]] = {}
@@ -286,6 +329,7 @@ def push(
         placeholders_removed=placeholders_removed,
         modules_installed=sorted(m.entry.key for m in reconcile.to_install),
         modules_replaced=sorted(m.entry.key for m in reconcile.to_replace),
+        modules_removed=removed_modules,
         media_groups_written=[g.name for g in media_plan.groups],
     )
 
