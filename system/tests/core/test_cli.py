@@ -31,7 +31,9 @@ from typer.testing import CliRunner
 
 import rig.cli as cli
 from rig.catalog.builtins import ingest_pinned_builtins
+from rig.catalog.archive import ZipCandidateArchive
 from rig.catalog.entry import CatalogEntry, VersionInfo
+from rig.catalog.ingest import CandidateSource
 from rig.catalog.io import write_catalog, write_lock
 from rig.catalog.params import ParamSpec
 from rig.catalog.slugs import module_key
@@ -44,6 +46,7 @@ from rig.song.bindings import write_bindings
 from rig.transport.memory import InMemoryTransport
 
 from tests.compile_helpers import system_catalog
+from tests.catalog_helpers import build_zip
 from tests.pull_helpers import FakeGhClient, make_git_repo
 
 runner = CliRunner()
@@ -201,6 +204,62 @@ def test_catalog_update_help_documents_the_command():
     catalog = get_command(app).commands["catalog"]
     update = catalog.commands["update"]
     assert any("--dry-run" in param.opts for param in update.params)
+
+
+def test_catalog_mirror_is_idempotent_and_retains_vanished_uploads(repo, monkeypatch):
+    archive = build_zip({
+        "module.json": b'{"display":"Warble","parameters":[]}',
+        "module.pd": b"#N canvas;",
+    })
+    source = CandidateSource(
+        id=1,
+        archive=ZipCandidateArchive(archive),
+        detail={
+            "slug": "warble", "revision": "1.0", "updated_at": "2020-01-01",
+            "files": [{"id": 2}], "categories": [{"slug": "effect"}], "tags": [],
+        },
+        archive_sha256=hashlib.sha256(archive).hexdigest(),
+    )
+    monkeypatch.setattr(cli, "_mirror_fetcher", lambda: {"warble": source})
+
+    first = runner.invoke(app, ["catalog", "mirror"])
+    assert first.exit_code == 0, first.output
+    snapshot = (
+        Path("system/data/catalog.json").read_bytes(),
+        Path("system/data/modules.lock").read_bytes(),
+    )
+    second = runner.invoke(app, ["catalog", "mirror"])
+    assert second.exit_code == 0, second.output
+    assert snapshot == (
+        Path("system/data/catalog.json").read_bytes(),
+        Path("system/data/modules.lock").read_bytes(),
+    )
+
+    monkeypatch.setattr(cli, "_mirror_fetcher", lambda: {})
+    vanished = runner.invoke(app, ["catalog", "mirror"])
+    assert vanished.exit_code == 0, vanished.output
+    assert any(e.source == "warble" for e in cli.read_catalog(cli.CATALOG_PATH))
+    assert (repo / "system/modules/warble@v1.0.zip").read_bytes() == archive
+
+
+def test_catalog_mirror_does_not_store_rejected_archive(repo, monkeypatch):
+    archive = build_zip({"main.pd": b"#N canvas;"})
+    source = CandidateSource(
+        id=1,
+        archive=ZipCandidateArchive(archive),
+        detail={
+            "slug": "standalone", "revision": "1.0", "updated_at": "2020-01-01",
+            "files": [{"id": 2}], "categories": [{"slug": "effect"}], "tags": [],
+        },
+        archive_sha256=hashlib.sha256(archive).hexdigest(),
+    )
+    monkeypatch.setattr(cli, "_mirror_fetcher", lambda: {"standalone": source})
+
+    result = runner.invoke(app, ["catalog", "mirror"])
+
+    assert result.exit_code == 0, result.output
+    assert "rejected 1 (not-a-module)" in result.output
+    assert not (repo / "system/modules/standalone@v1.0.zip").exists()
 
 
 

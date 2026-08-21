@@ -22,6 +22,25 @@ def live_httpx_client() -> httpx.Client:
     return httpx.Client(timeout=30.0)
 
 
+def discover_sources(client: httpx.Client) -> dict[str, CandidateSource]:
+    """Download every ORAC platform/tag upload, keyed by its stable slug."""
+    found: dict[str, CandidateSource] = {}
+    for patch_id in discover_union(client):
+        detail = fetch_detail(client, patch_id)
+        files = detail.get("files") or []
+        if not files:
+            continue
+        archive_bytes = fetch_archive_bytes(client, files[0]["url"])
+        slug = detail["slug"]
+        found[slug] = CandidateSource(
+            id=patch_id,
+            archive=ZipCandidateArchive(archive_bytes),
+            detail=detail,
+            archive_sha256=hashlib.sha256(archive_bytes).hexdigest(),
+        )
+    return found
+
+
 def find_sources_by_slug(client: httpx.Client, wanted_slugs: set[str]) -> dict[str, CandidateSource]:
     """Every live Patchstorage candidate whose upload slug is in
     `wanted_slugs`, fully fetched (detail + archive bytes).

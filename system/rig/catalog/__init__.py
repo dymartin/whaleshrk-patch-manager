@@ -2,7 +2,7 @@
 
 from .archive import CandidateArchive, ZipCandidateArchive
 from .builtins import ingest_pinned_builtins
-from .discovery import find_sources_by_slug, live_httpx_client
+from .discovery import discover_sources, find_sources_by_slug, live_httpx_client
 from .entry import CatalogEntry, ParamSpec, VersionInfo
 from .gate import GateAccept, GateReject, RejectReason, gate_candidate
 from .ingest import (

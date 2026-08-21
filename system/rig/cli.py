@@ -30,6 +30,7 @@ from rig.catalog import (
     PatchstorageError,
     build_catalog,
     build_community_catalog,
+    discover_sources,
     find_sources_by_slug,
     ingest_pinned_builtins,
     live_httpx_client,
@@ -119,6 +120,7 @@ _module_source: Optional[StoredArchiveModuleSource] = None
 _upgrade_fetcher: Optional[
     Callable[[dict[str, CatalogEntry]], tuple[dict[str, CatalogEntry], dict[str, CandidateSource]]]
 ] = None
+_mirror_fetcher: Optional[Callable[[], dict[str, CandidateSource]]] = None
 _hardware_device: Optional[Device] = None
 _midi_output: Optional[MidiOutput] = None
 
@@ -596,6 +598,33 @@ def catalog_add(
     write_catalog(entries, CATALOG_PATH)
     write_lock(entries, LOCK_PATH)
     typer.echo(f"added: {', '.join(added)}")
+
+
+@catalog_app.command("mirror")
+def catalog_mirror() -> None:
+    """Vendor every Patchstorage ORAC upload without deleting vanished uploads."""
+    current = read_catalog(CATALOG_PATH)
+    try:
+        if _mirror_fetcher is not None:
+            sources = _mirror_fetcher()
+        else:
+            with live_httpx_client() as client:
+                sources = discover_sources(client)
+    except (httpx.HTTPError, PatchstorageError) as exc:
+        _fail("catalog mirror", "SOURCE_UNREACHABLE", f"could not reach Patchstorage: {exc}")
+
+    entries = _rebuild("catalog mirror", sources)
+    accepted_sources = {e.source for e in entries if e.source != "orhack"}
+    retained = [e for e in current if e.source != "orhack" and e.source not in accepted_sources]
+    merged = sorted(entries + retained, key=lambda e: e.key)
+
+    _store_archives("catalog mirror", entries, sources)
+    write_catalog(merged, CATALOG_PATH)
+    write_lock(merged, LOCK_PATH)
+    typer.echo(
+        f"mirrored {len(sources)} upload(s); {len(accepted_sources)} accepted; "
+        f"{len(retained)} retained from unavailable/rejected uploads"
+    )
 
 
 @catalog_app.command("update")
