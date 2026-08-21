@@ -1,5 +1,951 @@
 {
   "generator": "rig catalog",
-  "modules": {},
+  "modules": {
+    "303-pd@303-pd": {
+      "archive_sha256": "e53facbc5bc1e4121eb17d2a2429eba7729aba133e00c967823bf9999f4f5852",
+      "file_id": 159401,
+      "revision": "1.0",
+      "source": "303-pd",
+      "updated_at": "2023-05-19T18:36:16+00:00"
+    },
+    "4track@4track-2": {
+      "archive_sha256": "b969feaff9690199d49213243a07035341c96115f9b2ca6780da894d2b10f5db",
+      "file_id": 170589,
+      "revision": "1.2",
+      "source": "4track-2",
+      "updated_at": "2023-09-05T00:34:05+00:00"
+    },
+    "4wave@4wave-2": {
+      "archive_sha256": "ed2a0c956d6109ea0b2793648500db9285273490157be7e3bd29640997a2f67f",
+      "file_id": 138257,
+      "revision": "1.01",
+      "source": "4wave-2",
+      "updated_at": "2021-03-31T21:24:20+00:00"
+    },
+    "4wavefm@4wavefm-2": {
+      "archive_sha256": "502cafe104b4d374580c7f6e45604425389de96b853dba27f7e52e5e14741f75",
+      "file_id": 138258,
+      "revision": "1.0",
+      "source": "4wavefm-2",
+      "updated_at": "2021-03-31T21:24:54+00:00"
+    },
+    "@empty": {
+      "archive_sha256": "75d68220d3e9285a27771dbb3c1a4e83f6caa7ca583e3117809519f98a0382ed",
+      "file_id": 117621,
+      "revision": "2.8",
+      "source": "empty",
+      "updated_at": "2020-01-14T15:44:21+00:00"
+    },
+    "additive-synth@additive-synth-for-orac": {
+      "archive_sha256": "a368603b1778272cb9c70805d7cb81e3862a12968f5dd23b6f9cc0c0e9ccfa48",
+      "file_id": 99508,
+      "revision": "1.0",
+      "source": "additive-synth-for-orac",
+      "updated_at": "2018-08-03T17:10:36+00:00"
+    },
+    "adsr-envelope@adsr-envelope": {
+      "archive_sha256": "2b211ce3a809da4e4f2046ec65b7640eb3bcb60c8cee71dbfbb7a1133930a392",
+      "file_id": 147166,
+      "revision": "1.0",
+      "source": "adsr-envelope",
+      "updated_at": "2022-01-13T11:09:14+00:00"
+    },
+    "apollo@apollo": {
+      "archive_sha256": "3506a1be3d2874670c29ae9d46791a24c83f9f4af67b3f30f555275a1706827e",
+      "file_id": 146089,
+      "revision": "1.0",
+      "source": "apollo",
+      "updated_at": "2021-11-06T20:48:33+00:00"
+    },
+    "arp-seq@sequencers-bpm": {
+      "archive_sha256": "ea6fcbb267db01cff9374289bca47090de19fc3ea82f988f8b5af16b0af5b6e4",
+      "file_id": 115032,
+      "revision": "0.0.1",
+      "source": "sequencers-bpm",
+      "updated_at": "2019-11-12T11:56:17+00:00"
+    },
+    "audio2midi@audio2midi": {
+      "archive_sha256": "4ec00bbcc61a6d51d3573cb0a80db165de6a56a358eaab70713b2166465a422b",
+      "file_id": 114185,
+      "revision": "0.1",
+      "source": "audio2midi",
+      "updated_at": "2019-10-25T01:22:59+00:00"
+    },
+    "basic-mono@adsr-graphics-demo": {
+      "archive_sha256": "fb6952155286b742f137293a545f1ce71fd861a423de275d70cfab63c804d1cc",
+      "file_id": 114147,
+      "revision": "0.0.1",
+      "source": "adsr-graphics-demo",
+      "updated_at": "2019-10-24T02:09:08+00:00"
+    },
+    "berryloops@berryloops": {
+      "archive_sha256": "3985bf58d8d699721ecb49c3e72e7136dc6bdf4d8509d7bc995973debdef2f8d",
+      "file_id": 145127,
+      "revision": "v0.9",
+      "source": "berryloops",
+      "updated_at": "2021-10-28T21:03:32+00:00"
+    },
+    "branks-plus@branks": {
+      "archive_sha256": "ac09ffbb739e7d8c2d6ef7da4b2d71801a35018cd0948ae3dcc0985a2d1059b1",
+      "file_id": 169841,
+      "revision": "1.0",
+      "source": "branks",
+      "updated_at": "2023-08-09T06:35:04+00:00"
+    },
+    "brds-pd@brds-pd": {
+      "archive_sha256": "6814aaeb5faa947864efb93efdc68eda6d768277018b320ec63285c8505d9194",
+      "file_id": 154842,
+      "revision": "1.0",
+      "source": "brds-pd",
+      "updated_at": "2022-07-17T04:57:43+00:00"
+    },
+    "brownie@brownie-2": {
+      "archive_sha256": "839c34076be7b466343bd32722b45ae1bf9e3d7455b46e25c637c21d7f5d867c",
+      "file_id": 162468,
+      "revision": "1.0",
+      "source": "brownie-2",
+      "updated_at": "2023-01-29T03:33:21+00:00"
+    },
+    "buzz-synth@buzz": {
+      "archive_sha256": "fd8e7d0e1cb2b26b18814bd1aea0ec9d18b535635c8788a6b7e78d54fe5fccfc",
+      "file_id": 114188,
+      "revision": "0.1",
+      "source": "buzz",
+      "updated_at": "2019-10-25T01:30:14+00:00"
+    },
+    "capture@capture-module": {
+      "archive_sha256": "08efe34fe421ae9ce5aef3d2b70459501d2cec56c587c8a721f00208306acc41",
+      "file_id": 117565,
+      "revision": "1.5",
+      "source": "capture-module",
+      "updated_at": "2020-01-13T03:37:48+00:00"
+    },
+    "cassette@cassette": {
+      "archive_sha256": "21486958464678ee42da304a85d6fd64a9c9f4cfce4d3339d9e587b6045037d4",
+      "file_id": 117561,
+      "revision": "1.8",
+      "source": "cassette",
+      "updated_at": "2020-01-13T03:31:35+00:00"
+    },
+    "click@sequencers-bpm": {
+      "archive_sha256": "ea6fcbb267db01cff9374289bca47090de19fc3ea82f988f8b5af16b0af5b6e4",
+      "file_id": 115032,
+      "revision": "0.0.1",
+      "source": "sequencers-bpm",
+      "updated_at": "2019-11-12T11:56:17+00:00"
+    },
+    "clock@sequencers-bpm": {
+      "archive_sha256": "ea6fcbb267db01cff9374289bca47090de19fc3ea82f988f8b5af16b0af5b6e4",
+      "file_id": 115032,
+      "revision": "0.0.1",
+      "source": "sequencers-bpm",
+      "updated_at": "2019-11-12T11:56:17+00:00"
+    },
+    "clouds@clds-pd": {
+      "archive_sha256": "2f9cab38a60e41f77da0e91c3ac68393a7b6b157196da9e63605123a3f47b858",
+      "file_id": 154960,
+      "revision": "1.0",
+      "source": "clds-pd",
+      "updated_at": "2022-07-20T07:27:58+00:00"
+    },
+    "constant-gardener@f-constant-g": {
+      "archive_sha256": "b0d1c4f7c0f3497ead95f920aec39f5522f1d8d2b93552c11fe0e730ec14dfdb",
+      "file_id": 101590,
+      "revision": "0.0.1",
+      "source": "f-constant-g",
+      "updated_at": "2018-11-08T14:30:18+00:00"
+    },
+    "converb@converb": {
+      "archive_sha256": "457818a19003e294f1633dad2d77ef99e581f0ab2abc31c0f4d6d566ef59300f",
+      "file_id": 161382,
+      "revision": "1.0",
+      "source": "converb",
+      "updated_at": "2022-12-27T19:26:21+00:00"
+    },
+    "cr78-patterns@cr78-pattern": {
+      "archive_sha256": "6c68edf89a5e22acd06fac359a2c315a79a66c52833c7849f24457834f377395",
+      "file_id": 158422,
+      "revision": "1.0",
+      "source": "cr78-pattern",
+      "updated_at": "2022-10-20T10:59:32+00:00"
+    },
+    "cv-clock@orac-cvtools": {
+      "archive_sha256": "3d3071b0ba5172bfd9fec498ac648a3a44b176dca92b8965467028c0e9c7df9d",
+      "file_id": 110651,
+      "revision": "0.1",
+      "source": "orac-cvtools",
+      "updated_at": "2019-07-26T15:31:22+00:00"
+    },
+    "cvin-audio@orac-cvtools": {
+      "archive_sha256": "3d3071b0ba5172bfd9fec498ac648a3a44b176dca92b8965467028c0e9c7df9d",
+      "file_id": 110651,
+      "revision": "0.1",
+      "source": "orac-cvtools",
+      "updated_at": "2019-07-26T15:31:22+00:00"
+    },
+    "cvin-mod@orac-cvtools": {
+      "archive_sha256": "3d3071b0ba5172bfd9fec498ac648a3a44b176dca92b8965467028c0e9c7df9d",
+      "file_id": 110651,
+      "revision": "0.1",
+      "source": "orac-cvtools",
+      "updated_at": "2019-07-26T15:31:22+00:00"
+    },
+    "cvin-note@orac-cvtools": {
+      "archive_sha256": "3d3071b0ba5172bfd9fec498ac648a3a44b176dca92b8965467028c0e9c7df9d",
+      "file_id": 110651,
+      "revision": "0.1",
+      "source": "orac-cvtools",
+      "updated_at": "2019-07-26T15:31:22+00:00"
+    },
+    "cvout-audio@orac-cvtools": {
+      "archive_sha256": "3d3071b0ba5172bfd9fec498ac648a3a44b176dca92b8965467028c0e9c7df9d",
+      "file_id": 110651,
+      "revision": "0.1",
+      "source": "orac-cvtools",
+      "updated_at": "2019-07-26T15:31:22+00:00"
+    },
+    "cvout-macro@orac-cvtools": {
+      "archive_sha256": "3d3071b0ba5172bfd9fec498ac648a3a44b176dca92b8965467028c0e9c7df9d",
+      "file_id": 110651,
+      "revision": "0.1",
+      "source": "orac-cvtools",
+      "updated_at": "2019-07-26T15:31:22+00:00"
+    },
+    "cvout-mpe@orac-cvtools": {
+      "archive_sha256": "3d3071b0ba5172bfd9fec498ac648a3a44b176dca92b8965467028c0e9c7df9d",
+      "file_id": 110651,
+      "revision": "0.1",
+      "source": "orac-cvtools",
+      "updated_at": "2019-07-26T15:31:22+00:00"
+    },
+    "cvout-note@orac-cvtools": {
+      "archive_sha256": "3d3071b0ba5172bfd9fec498ac648a3a44b176dca92b8965467028c0e9c7df9d",
+      "file_id": 110651,
+      "revision": "0.1",
+      "source": "orac-cvtools",
+      "updated_at": "2019-07-26T15:31:22+00:00"
+    },
+    "cycles@cycles": {
+      "archive_sha256": "ec762fb5e95d588a3a57e4acc18744c9e2c8319746597c5e6cf95bb918d71795",
+      "file_id": 117562,
+      "revision": "1.5",
+      "source": "cycles",
+      "updated_at": "2020-01-13T03:33:16+00:00"
+    },
+    "czz@s-czz-orac-fixed-for-orac-1-0": {
+      "archive_sha256": "2e56ca63a152f8d984de3ef0692e6d0ca5a82dfed5c3d906056dbeb116661809",
+      "file_id": 96882,
+      "revision": "1.1",
+      "source": "s-czz-orac-fixed-for-orac-1-0",
+      "updated_at": "2020-02-15T11:58:46+00:00"
+    },
+    "datverb@datverb": {
+      "archive_sha256": "d61fba284a6d3044209432a206e873b08a3752323fb662b5d70fa3c7243bc1c6",
+      "file_id": 167639,
+      "revision": "1.0",
+      "source": "datverb",
+      "updated_at": "2023-05-19T17:49:54+00:00"
+    },
+    "delaverb@delaverb": {
+      "archive_sha256": "4157c72a9b326a26dd3c7037cfafe43332e5075074bdff9fd4e602c72dbc0cc2",
+      "file_id": 154229,
+      "revision": "1.0",
+      "source": "delaverb",
+      "updated_at": "2022-06-30T04:44:40+00:00"
+    },
+    "delay-3s@delayfxsend": {
+      "archive_sha256": "6384256733e7207ffda3f222edd044e963b2c9f06d1f39c6e7891fb499aac73d",
+      "file_id": 112312,
+      "revision": "0.0.1",
+      "source": "delayfxsend",
+      "updated_at": "2019-09-02T16:28:06+00:00"
+    },
+    "delay-3s@f-delay_toggle-for-orac": {
+      "archive_sha256": "bb0028825a8b570ab3d407e02ae6593c43322e8ac3d5114d1ca353ab0becfab6",
+      "file_id": 100593,
+      "revision": "0.0.1",
+      "source": "f-delay_toggle-for-orac",
+      "updated_at": "2018-09-25T11:18:53+00:00"
+    },
+    "delay-plus-distort-trigger@orac-delaydistort-trigger": {
+      "archive_sha256": "3ff548428e143bfc062286b972d6475b84966f28fa5f157102d657db28e20876",
+      "file_id": 99723,
+      "revision": "0.0.1",
+      "source": "orac-delaydistort-trigger",
+      "updated_at": "2018-08-09T16:08:25+00:00"
+    },
+    "diffdelay@diffdelay": {
+      "archive_sha256": "666df717ac924d4bc87c9ea071aa3137a1580068bec32aa62ba24ce7ec7586c5",
+      "file_id": 155097,
+      "revision": "1.0",
+      "source": "diffdelay",
+      "updated_at": "2022-07-23T17:50:07+00:00"
+    },
+    "dj-set@dj-set": {
+      "archive_sha256": "8af4e4f50c004f968fd1501e8765eed099971092ef59adf3659bc62525b168e9",
+      "file_id": 117282,
+      "revision": "1.2",
+      "source": "dj-set",
+      "updated_at": "2020-01-05T00:45:48+00:00"
+    },
+    "drift@drift": {
+      "archive_sha256": "d6ea832ade8a9cda3027582d248b0dbb11d648b6b652badb616ffcd6ebba9e7b",
+      "file_id": 115396,
+      "revision": "0.1",
+      "source": "drift",
+      "updated_at": "2019-11-19T02:04:44+00:00"
+    },
+    "e-drum1-1@edrum-1-1": {
+      "archive_sha256": "116efce3669b1a71fbc7273cee326c98e1810f216b9f45cb41f99388ccc0b55e",
+      "file_id": 109902,
+      "revision": "0.0.1",
+      "source": "edrum-1-1",
+      "updated_at": "2019-07-10T18:10:48+00:00"
+    },
+    "easter-egg@orac-2-0-easter-egg-patch": {
+      "archive_sha256": "bceebbc732f475b482c02b83d8ac7d9baca2e7e53599c03bbbfdf93dbf2d71ba",
+      "file_id": 107270,
+      "revision": "1.0",
+      "source": "orac-2-0-easter-egg-patch",
+      "updated_at": "2019-06-11T11:10:04+00:00"
+    },
+    "echofreq@echofreq": {
+      "archive_sha256": "60c130173807100c1d267f3f8ae13ec1d866f0196777ea706094a6b23cf1bbb8",
+      "file_id": 146076,
+      "revision": "1.0",
+      "source": "echofreq",
+      "updated_at": "2021-11-06T20:39:03+00:00"
+    },
+    "eq-ii@eq-ii": {
+      "archive_sha256": "192cab5ca9b163a4aa30a9bf80ad6332fbf99dfd3db41e84456e2c707d226d21",
+      "file_id": 117359,
+      "revision": "1.5",
+      "source": "eq-ii",
+      "updated_at": "2020-01-06T12:20:44+00:00"
+    },
+    "eq-iv@eq-iv": {
+      "archive_sha256": "805a3c368da43bbeca1d15c9a67c2a9acb0ec4c81576efe6fc6d5930d3df8c3a",
+      "file_id": 117360,
+      "revision": "1.5",
+      "source": "eq-iv",
+      "updated_at": "2020-01-06T12:21:49+00:00"
+    },
+    "euclid-tr-32@euclid-tr-32": {
+      "archive_sha256": "4c63cfa2b18557cad0a0457e145be8acd498456093f1518f36afc7930f5061df",
+      "file_id": 174315,
+      "revision": "1.0",
+      "source": "euclid-tr-32",
+      "updated_at": "2024-01-22T10:07:22+00:00"
+    },
+    "euclid-tr@euclid-tr": {
+      "archive_sha256": "d3244c94e94d0223e09a5782efb63d9e271d5da250bc455cd78d1a3ff3bdcb7b",
+      "file_id": 133867,
+      "revision": "1.0",
+      "source": "euclid-tr",
+      "updated_at": "2021-01-14T21:53:41+00:00"
+    },
+    "faust-s-dx7@fausts-dx7-2": {
+      "archive_sha256": "be466260f0683bc1766d805cd7c830c315d025acc55dbea5f60dab6bfd59a2c2",
+      "file_id": 169897,
+      "revision": "0.1",
+      "source": "fausts-dx7-2",
+      "updated_at": "2023-08-10T19:40:08+00:00"
+    },
+    "filtration@filtration": {
+      "archive_sha256": "5785009f6d24e6572e3a24d8c8233d5ecf3119a8a5cc1a613f9b0cb76ed77338",
+      "file_id": 117522,
+      "revision": "1.4",
+      "source": "filtration",
+      "updated_at": "2020-01-11T16:55:16+00:00"
+    },
+    "fm-fatale@fm-fatale-2": {
+      "archive_sha256": "9412c96f470388144b71b659f715c6a490b8468d59833e8bfa9ed2c22b18fbd2",
+      "file_id": 189814,
+      "revision": "1",
+      "source": "fm-fatale-2",
+      "updated_at": "2025-11-23T17:09:37+00:00"
+    },
+    "freqshifter@freqshifter": {
+      "archive_sha256": "d6693ad7e6fd30202c3e3c95b508139cb6f24c81e37b2bc29ee5804b9116e4bf",
+      "file_id": 118875,
+      "revision": "1.1",
+      "source": "freqshifter",
+      "updated_at": "2020-02-17T03:54:48+00:00"
+    },
+    "fusion@fusion": {
+      "archive_sha256": "98ab8e66154abcd0957d1fc566bcf2918dfa4a66c0cd7f7d7f4e231b4c230e53",
+      "file_id": 117453,
+      "revision": "1.5",
+      "source": "fusion",
+      "updated_at": "2020-01-09T23:22:54+00:00"
+    },
+    "fusion@fusion-pd": {
+      "archive_sha256": "2825c38d105dae99984e51df9f07631eca4d94382df2c807d6804f2c222db772",
+      "file_id": 154858,
+      "revision": "0.0.1",
+      "source": "fusion-pd",
+      "updated_at": "2022-07-18T21:30:24+00:00"
+    },
+    "grampler@grampler-2": {
+      "archive_sha256": "1569172c6b2feadc90376c75834d987f0d1c8808657229814f187beae90379ad",
+      "file_id": 158418,
+      "revision": "1.0",
+      "source": "grampler-2",
+      "updated_at": "2022-10-20T09:39:59+00:00"
+    },
+    "grids-divby2@grids-divby2": {
+      "archive_sha256": "afd2d87f544d7af67ac8ea73ba625a994d58ed1431c33c9ac0c6a3aa978395fb",
+      "file_id": 133876,
+      "revision": "1.0",
+      "source": "grids-divby2",
+      "updated_at": "2020-12-31T17:40:42+00:00"
+    },
+    "grids-divby4@grids-divby4": {
+      "archive_sha256": "8c5d261092402db9dead78964e99de34f929640029b10b5e302fe722205f2110",
+      "file_id": 133878,
+      "revision": "1.0",
+      "source": "grids-divby4",
+      "updated_at": "2020-12-31T17:43:59+00:00"
+    },
+    "grids@grids": {
+      "archive_sha256": "7edb908d4fefce8d6b8b93a3edc97cc97e9ee26976bf2106707ee8195f2cbffe",
+      "file_id": 117575,
+      "revision": "2.5",
+      "source": "grids",
+      "updated_at": "2020-01-13T06:21:36+00:00"
+    },
+    "h-rando@hrando-for-orac": {
+      "archive_sha256": "ed7ec55cbac860d9edcb5a0972ec02f8add547b369c137a707a3919b6a582e9b",
+      "file_id": 122998,
+      "revision": "0.2",
+      "source": "hrando-for-orac",
+      "updated_at": "2023-06-21T20:16:21+00:00"
+    },
+    "iron-sampler@iron-sampler": {
+      "archive_sha256": "710b369b4d76605b2ca99d06abd7284ac39cf3340cb240226715db8073c7b71d",
+      "file_id": 173135,
+      "revision": "b1d86437beceb753f063ecf1a889bafc80881015",
+      "source": "iron-sampler",
+      "updated_at": "2026-05-25T08:57:49+00:00"
+    },
+    "juno-104@juno104-pd": {
+      "archive_sha256": "250b9bd83697072519c55fe7180654b2025b55914379b0602e979e0aa0e3f80b",
+      "file_id": 160189,
+      "revision": "1.0",
+      "source": "juno104-pd",
+      "updated_at": "2022-12-11T03:03:45+00:00"
+    },
+    "koto@koto-2": {
+      "archive_sha256": "503fac5a10b8f24e99f130af5eb7bfd2f1dd7feb751be70ffb578379e90d3de6",
+      "file_id": 130148,
+      "revision": "2.0",
+      "source": "koto-2",
+      "updated_at": "2020-10-02T12:53:56+00:00"
+    },
+    "lfo-metro@lfo-metro": {
+      "archive_sha256": "d51da3c135a4154e83b55bba3bef4c4d388d85e42ca2769588c0fbfc7f3469b7",
+      "file_id": 146683,
+      "revision": "0.01",
+      "source": "lfo-metro",
+      "updated_at": "2021-11-19T10:22:37+00:00"
+    },
+    "looplay@looplay": {
+      "archive_sha256": "0553f966721a7572a9166cdcf72a50d680e22018b9397da7a0e071f79e2caee5",
+      "file_id": 155101,
+      "revision": "1.0",
+      "source": "looplay",
+      "updated_at": "2022-07-23T17:57:30+00:00"
+    },
+    "loopy@loopy": {
+      "archive_sha256": "194c13ad95eddbc0be0aeab8401ea5dc018d42fb7a6e0ac73568bb56668b7d86",
+      "file_id": 162256,
+      "revision": "1.7",
+      "source": "loopy",
+      "updated_at": "2023-01-23T06:19:04+00:00"
+    },
+    "macrosynth@macrosynth": {
+      "archive_sha256": "d9637f1544813b6a4cdb9cd1161c11cf87e0d983a9fb95a3a656fd2989d2c8a4",
+      "file_id": 114182,
+      "revision": "0.1",
+      "source": "macrosynth",
+      "updated_at": "2019-10-25T00:16:44+00:00"
+    },
+    "macrosynth@macrosynth-pd": {
+      "archive_sha256": "b8a91e0b40bac1a103e534ea7aea9041d383160cf0239419b504cf81bac305ec",
+      "file_id": 155146,
+      "revision": "1.3",
+      "source": "macrosynth-pd",
+      "updated_at": "2022-07-25T15:06:28+00:00"
+    },
+    "meet-cassie@meet-cassie-2": {
+      "archive_sha256": "9f6dbe3448e4a98f429be5166377016e72cfeafccf287dc0dd6dbc11aedf24e2",
+      "file_id": 189811,
+      "revision": "1",
+      "source": "meet-cassie-2",
+      "updated_at": "2025-11-23T17:06:24+00:00"
+    },
+    "mellotron@oractron": {
+      "archive_sha256": "7cb67b1e8344fc0b4d5496a7bac331015bf85899c87cae889d580e4ee338a457",
+      "file_id": 138176,
+      "revision": "1.0",
+      "source": "oractron",
+      "updated_at": "2021-03-30T02:11:10+00:00"
+    },
+    "memor-y-hack-5@memoryhack-5": {
+      "archive_sha256": "0dfa356ed2015cfb905ce76f0d99b8293aeb4db9a14ea81e0ba4789e1b9410ba",
+      "file_id": 170855,
+      "revision": "1.0",
+      "source": "memoryhack-5",
+      "updated_at": "2023-09-12T13:54:58+00:00"
+    },
+    "mfb-synth-like@mfb-synth-like": {
+      "archive_sha256": "c5f3886f67b200ee33b743c8080d478537b25c1cdea40396063dbd7aa5af591d",
+      "file_id": 125971,
+      "revision": "1.0.1",
+      "source": "mfb-synth-like",
+      "updated_at": "2020-06-22T08:05:42+00:00"
+    },
+    "midiout@polychain": {
+      "archive_sha256": "01118621b667c5ad38a0d7f090bcccadd9ebc15d328ce1f751bdc7ebb2b27583",
+      "file_id": 174435,
+      "revision": "0.1",
+      "source": "polychain",
+      "updated_at": "2024-01-28T06:39:04+00:00"
+    },
+    "monocle@monocle": {
+      "archive_sha256": "b016adebc3a98ff28d992c927c49968798c39531284992d4a5cf70edc7d89930",
+      "file_id": 146074,
+      "revision": "1.0",
+      "source": "monocle",
+      "updated_at": "2021-11-06T20:34:17+00:00"
+    },
+    "mscale@mscale-simple-midi-note-transposer": {
+      "archive_sha256": "245b261f4672ede7382f346e049349f7e8aa0fd7dd3f1c9015759f5eae562e4f",
+      "file_id": 114514,
+      "revision": "0.0.1",
+      "source": "mscale-simple-midi-note-transposer",
+      "updated_at": "2019-11-02T08:28:35+00:00"
+    },
+    "muchord@muchord-2": {
+      "archive_sha256": "ef5a750db0e76ec8e62d5a8c23afb8fde434b1d0e1bc5c55ed8256add3315af9",
+      "file_id": 115401,
+      "revision": "v0.1",
+      "source": "muchord-2",
+      "updated_at": "2019-11-19T02:09:58+00:00"
+    },
+    "multicycle@multicycle": {
+      "archive_sha256": "747c90e71a0d46827c2ac4546afbb221850933ff85269fc784bf0ca295c05e24",
+      "file_id": 155095,
+      "revision": "1.0",
+      "source": "multicycle",
+      "updated_at": "2022-07-23T17:44:44+00:00"
+    },
+    "nori-sampler@glass-fm-2": {
+      "archive_sha256": "b95c7b9d7b9c3f1370a0309cdde00bb08a266c0b5751452ca2ba319e7f864cad",
+      "file_id": 160084,
+      "revision": "0.2",
+      "source": "glass-fm-2",
+      "updated_at": "2022-12-08T18:19:11+00:00"
+    },
+    "nori-sampler@s-norisampler-orac": {
+      "archive_sha256": "e50321dc5b6e03d5b19199d7061a58d19bcbb50ca507769f90c725c574f5aefc",
+      "file_id": 96850,
+      "revision": "1.0",
+      "source": "s-norisampler-orac",
+      "updated_at": "2018-05-18T15:50:03+00:00"
+    },
+    "notegen@notegen": {
+      "archive_sha256": "afd25f6c50f10f3f738f0749bc0e54691e4a0d9c49d084cd24a60391176eda7c",
+      "file_id": 146092,
+      "revision": "1.0",
+      "source": "notegen",
+      "updated_at": "2021-11-06T22:04:28+00:00"
+    },
+    "ocarina@s24delay": {
+      "archive_sha256": "05ca3e0ffb2149b5f1dc66fc392a968a4d194137cef5171b7195ce1460ff67c6",
+      "file_id": 167387,
+      "revision": "0.1",
+      "source": "s24delay",
+      "updated_at": "2023-05-12T18:53:02+00:00"
+    },
+    "octaloops@octaloops": {
+      "archive_sha256": "81095d619d28014ce88e55c6abffc46fd68cdf64ca6bad3305997503ad83a263",
+      "file_id": 168534,
+      "revision": "1.1",
+      "source": "octaloops",
+      "updated_at": "2023-06-20T19:08:41+00:00"
+    },
+    "oracloops-plus@oracloops": {
+      "archive_sha256": "e290cab959b8f234667b2f44b820615f80aa8e4a2ec2970efd1abd7c6b71eb68",
+      "file_id": 159058,
+      "revision": "1.2",
+      "source": "oracloops",
+      "updated_at": "2022-11-10T00:03:18+00:00"
+    },
+    "oscilloscope@oscilloscope": {
+      "archive_sha256": "5de06b290d99fa0a6b97c1f537bcf51c3d63d78fabab0e73a7c42bb37b46cc28",
+      "file_id": 117319,
+      "revision": "1.5",
+      "source": "oscilloscope",
+      "updated_at": "2020-01-05T19:52:45+00:00"
+    },
+    "ottorhythm@ottorhythm": {
+      "archive_sha256": "218ff95ab3ef20a12c70cd9ab048c1e9232dbfff0c09f7471866874ea23e3f73",
+      "file_id": 146099,
+      "revision": "1.0",
+      "source": "ottorhythm",
+      "updated_at": "2021-11-06T21:01:18+00:00"
+    },
+    "parallel-iii@parallel-iii": {
+      "archive_sha256": "aaa195dfd165b5a94fa7584743eaafe2cf681f1539c2817ac94e5fb2ff500289",
+      "file_id": 117567,
+      "revision": "4.1",
+      "source": "parallel-iii",
+      "updated_at": "2020-01-13T03:43:33+00:00"
+    },
+    "parallel-iii@parallel3-2": {
+      "archive_sha256": "a87389eb1b46ed04c45bddffadb928b33ec600a4e5d00c432eaf044a77a74583",
+      "file_id": 154236,
+      "revision": "1.0",
+      "source": "parallel3-2",
+      "updated_at": "2022-06-30T05:35:59+00:00"
+    },
+    "parallel@nkmutepar6": {
+      "archive_sha256": "5dba029fbf3d2238ca432e1c0aba347fc326fbf4673bc45e647546350ad78778",
+      "file_id": 127368,
+      "revision": "1.0",
+      "source": "nkmutepar6",
+      "updated_at": "2020-07-28T17:32:12+00:00"
+    },
+    "pebbles@pebbles-crossmod-filter-pinger": {
+      "archive_sha256": "fa80ccd0d2e0bf343b172b6ae3189bc518363ae370984d9fc62433011436e1cb",
+      "file_id": 173140,
+      "revision": "39127ad77b3fe7ad65c62b0161009b4db4c36a5c",
+      "source": "pebbles-crossmod-filter-pinger",
+      "updated_at": "2026-05-25T08:57:36+00:00"
+    },
+    "percussions@percussions": {
+      "archive_sha256": "7473de48d049fd4733a391de8820ce0fc6bf92e9ae47616a869a1b07d88f9bac",
+      "file_id": 118074,
+      "revision": "2",
+      "source": "percussions",
+      "updated_at": "2020-01-25T16:59:46+00:00"
+    },
+    "pinkmode@pink-mode-2": {
+      "archive_sha256": "59ac8462fd76e713965bab53d911aa8e70a9d9ece63418a74fc2fe619a41a774",
+      "file_id": 118194,
+      "revision": "1.4",
+      "source": "pink-mode-2",
+      "updated_at": "2020-01-28T20:36:10+00:00"
+    },
+    "plateverb@plateverb": {
+      "archive_sha256": "540f34ca689cfc839cd771c0192a19a3aa3fc7404ce75d8be879bc8318edd3eb",
+      "file_id": 146083,
+      "revision": "1.0",
+      "source": "plateverb",
+      "updated_at": "2021-11-06T20:43:39+00:00"
+    },
+    "plts-8@plts_8": {
+      "archive_sha256": "e7d393b0e92d65dd8f50cd27ad1f27c9eb718b2c58abca266a83332edd8f17a5",
+      "file_id": 175801,
+      "revision": "0.1",
+      "source": "plts_8",
+      "updated_at": "2024-03-11T21:48:38+00:00"
+    },
+    "polybeats@sequencers-bpm": {
+      "archive_sha256": "ea6fcbb267db01cff9374289bca47090de19fc3ea82f988f8b5af16b0af5b6e4",
+      "file_id": 115032,
+      "revision": "0.0.1",
+      "source": "sequencers-bpm",
+      "updated_at": "2019-11-12T11:56:17+00:00"
+    },
+    "polyfolder@polyfolder-2": {
+      "archive_sha256": "615152ecb97b8676573324b50ebea40fe6fdad0bdaee8236d87b34b4f5c03e8b",
+      "file_id": 146086,
+      "revision": "1.0",
+      "source": "polyfolder-2",
+      "updated_at": "2021-11-06T22:03:39+00:00"
+    },
+    "polystep@polystep": {
+      "archive_sha256": "ccde0eaab60949aee56d0cbe7de3bc4fb6003c54809ba6c34213764fd660748a",
+      "file_id": 115433,
+      "revision": "v0.3",
+      "source": "polystep",
+      "updated_at": "2019-11-20T02:38:57+00:00"
+    },
+    "punchy@sequencers-bpm": {
+      "archive_sha256": "ea6fcbb267db01cff9374289bca47090de19fc3ea82f988f8b5af16b0af5b6e4",
+      "file_id": 115032,
+      "revision": "0.0.1",
+      "source": "sequencers-bpm",
+      "updated_at": "2019-11-12T11:56:17+00:00"
+    },
+    "quantplay@quantplay": {
+      "archive_sha256": "50a8bf2d600c7797c15cac04360ebb09fe9dac9b8d66d6f8775b0823ea60de1e",
+      "file_id": 169573,
+      "revision": "1.0",
+      "source": "quantplay",
+      "updated_at": "2023-08-04T16:28:18+00:00"
+    },
+    "randomsync@randomsync": {
+      "archive_sha256": "e8edfe0e3b349873a0a7d0ac6673cc83fba6d4bff5086c12f26e9d09a72dae3b",
+      "file_id": 115399,
+      "revision": "0.1",
+      "source": "randomsync",
+      "updated_at": "2019-11-19T02:06:21+00:00"
+    },
+    "range-shift@midi-range_shift": {
+      "archive_sha256": "be18f830356829c2393b7d087e3352cebe0b82b6b5ff56b5d69ec235c8965ead",
+      "file_id": 154138,
+      "revision": "1.0",
+      "source": "midi-range_shift",
+      "updated_at": "2022-06-27T06:47:36+00:00"
+    },
+    "ratchet@ratchet": {
+      "archive_sha256": "1fa92cc560538d0f54ca16145afa669a60035e4eaff12cc2cbb690d1a0e85f25",
+      "file_id": 115379,
+      "revision": "0.1",
+      "source": "ratchet",
+      "updated_at": "2019-11-19T01:08:22+00:00"
+    },
+    "realsampler24@realsampler24": {
+      "archive_sha256": "e51bcbf6f0d6c9d6e1f2cb6b8cddc947782b58d13e02981cbe0eb5837c5f89fc",
+      "file_id": 130043,
+      "revision": "1.0",
+      "source": "realsampler24",
+      "updated_at": "2020-09-30T10:50:40+00:00"
+    },
+    "recjam-plus@recjam": {
+      "archive_sha256": "4c531ab33ac6aa6ecf43a90e09c5877ccf0ae8c557d1b772e02b9ca99a6fb600",
+      "file_id": 171168,
+      "revision": "1.0",
+      "source": "recjam",
+      "updated_at": "2023-10-05T16:13:05+00:00"
+    },
+    "recycler@recycler": {
+      "archive_sha256": "c2f2528c18adefff938bf95ff47aa68e7b93e1bf2232c5245bbe936fe30d21e2",
+      "file_id": 125235,
+      "revision": "1.0",
+      "source": "recycler",
+      "updated_at": "2020-06-05T18:03:29+00:00"
+    },
+    "reverberation@reverberation": {
+      "archive_sha256": "9779579ef316b6676a1e980449ee8bfba6684a8b02db22ed777ba7e6309eed18",
+      "file_id": 117361,
+      "revision": "1.4",
+      "source": "reverberation",
+      "updated_at": "2020-01-06T13:13:06+00:00"
+    },
+    "samplekids@samplekids": {
+      "archive_sha256": "6c70a01b07efdc058325c687b0a37d6b9e2f909f44c3c4f81826e02165ed7ddb",
+      "file_id": 161665,
+      "revision": "1.0",
+      "source": "samplekids",
+      "updated_at": "2023-08-03T20:31:59+00:00"
+    },
+    "samplement@samplement": {
+      "archive_sha256": "a58aa0726f4c67f1b0b93f5f60459710b0f9c93fe944eb515a759202eb7de144",
+      "file_id": 117824,
+      "revision": "2.1",
+      "source": "samplement",
+      "updated_at": "2020-01-16T23:16:30+00:00"
+    },
+    "sampler24@s-drumsampler24": {
+      "archive_sha256": "1e8425c9203172a737035cc4664d1d8119277a0385e5a1bccb41dfbf69aebcfd",
+      "file_id": 100597,
+      "revision": "0.0.1",
+      "source": "s-drumsampler24",
+      "updated_at": "2018-09-25T11:24:47+00:00"
+    },
+    "sampler24@sampler24-1shot": {
+      "archive_sha256": "074a7bfa252d80abb204106a59c5294a5ed00daba851069b7f3dd13d463ec99a",
+      "file_id": 115384,
+      "revision": "v0.1",
+      "source": "sampler24-1shot",
+      "updated_at": "2019-11-19T01:23:59+00:00"
+    },
+    "sampler24@sequencers-bpm": {
+      "archive_sha256": "ea6fcbb267db01cff9374289bca47090de19fc3ea82f988f8b5af16b0af5b6e4",
+      "file_id": 115032,
+      "revision": "0.0.1",
+      "source": "sequencers-bpm",
+      "updated_at": "2019-11-12T11:56:17+00:00"
+    },
+    "septavox@septavox-orac": {
+      "archive_sha256": "45471a8a710e18bf181ec6f71ca5dec9cadec36acdbf40dff3748ffad9b83423",
+      "file_id": 195553,
+      "revision": "0.1",
+      "source": "septavox-orac",
+      "updated_at": "2026-07-24T20:18:04+00:00"
+    },
+    "seq3@seq3-for-orac-2-0": {
+      "archive_sha256": "10634b32dd5b8a39f2df3d5498bab157678dc17d94d423bd800e6745bc843f92",
+      "file_id": 140863,
+      "revision": "2.5",
+      "source": "seq3-for-orac-2-0",
+      "updated_at": "2021-05-24T20:20:46+00:00"
+    },
+    "seq@sequencers-bpm": {
+      "archive_sha256": "ea6fcbb267db01cff9374289bca47090de19fc3ea82f988f8b5af16b0af5b6e4",
+      "file_id": 115032,
+      "revision": "0.0.1",
+      "source": "sequencers-bpm",
+      "updated_at": "2019-11-12T11:56:17+00:00"
+    },
+    "sequences@sequences": {
+      "archive_sha256": "1394ee05e774143e82b819ffb9fb65af7fa1bd81bcdded7aa962f2d543976421",
+      "file_id": 117589,
+      "revision": "4.2",
+      "source": "sequences",
+      "updated_at": "2020-01-13T22:12:28+00:00"
+    },
+    "sfplayer@sfplayer": {
+      "archive_sha256": "364157aef3c5938c26b4c26ce0d4fe5b2525bce8c6c23c78749a93efba225982",
+      "file_id": 155110,
+      "revision": "1.0",
+      "source": "sfplayer",
+      "updated_at": "2022-07-23T20:02:31+00:00"
+    },
+    "sfplayer@sfplayer-2": {
+      "archive_sha256": "d1fcf03ce99b7aa96f58bcc41fb5b3f419ff3e10c0df36b0b31e75fa8d360ae4",
+      "file_id": 169586,
+      "revision": "1.0",
+      "source": "sfplayer-2",
+      "updated_at": "2023-08-03T20:50:32+00:00"
+    },
+    "shmear@shmear-delay-for-orac": {
+      "archive_sha256": "d7c451972935406f5704f0fc11d10cd3fc70403f3ba52326d2840bb0488fc428",
+      "file_id": 123021,
+      "revision": "0.1",
+      "source": "shmear-delay-for-orac",
+      "updated_at": "2020-04-27T02:10:06+00:00"
+    },
+    "simpledistortion@simpledist": {
+      "archive_sha256": "e2332be7cf47e886508ebc62186354d5bec8144a6fdc7f5cc909a50aa4220511",
+      "file_id": 125523,
+      "revision": "0.5",
+      "source": "simpledist",
+      "updated_at": "2020-06-12T12:13:57+00:00"
+    },
+    "slatra@slatra-2": {
+      "archive_sha256": "325409c5832a15c21a91a340bbfb4627fe25485cb39e263bcc64656a52e542b7",
+      "file_id": 107572,
+      "revision": "0.0.1",
+      "source": "slatra-2",
+      "updated_at": "2019-06-11T20:02:38+00:00"
+    },
+    "slicer@slicer-for-orac": {
+      "archive_sha256": "92a53fc5540159394b3acc2a1fc08c96edb97713d39a2bdb26833899cf506d4d",
+      "file_id": 116767,
+      "revision": "1.1",
+      "source": "slicer-for-orac",
+      "updated_at": "2019-12-22T15:02:51+00:00"
+    },
+    "sslfo@super-slow-lfo": {
+      "archive_sha256": "697f843d58bfb89719cf8dcc09998c052838d7f349a1f8ff5de4c870d955b090",
+      "file_id": 154143,
+      "revision": "1.0",
+      "source": "super-slow-lfo",
+      "updated_at": "2022-06-27T07:12:41+00:00"
+    },
+    "stereodelay@stereo-delay": {
+      "archive_sha256": "3bdb8c32f6dd6a7d95688849f90e7b0c2ecb92f915e75404c1a60e275e775431",
+      "file_id": 146080,
+      "revision": "1.0",
+      "source": "stereo-delay",
+      "updated_at": "2021-11-06T20:41:44+00:00"
+    },
+    "string-machine@s_stringmachine-for-orac": {
+      "archive_sha256": "393b0b749d957bdd588f4b4d9255fe8636b68603ba777036f929b72a667db942",
+      "file_id": 97023,
+      "revision": "0.0.1",
+      "source": "s_stringmachine-for-orac",
+      "updated_at": "2018-05-26T05:04:38+00:00"
+    },
+    "subharmonicosc@subharmonicosc": {
+      "archive_sha256": "0d694e3bfd2018c67936e0c4736b41b554d480e494bb4ae816c0c84b62b5b2a1",
+      "file_id": 126241,
+      "revision": "1.1",
+      "source": "subharmonicosc",
+      "updated_at": "2020-06-28T21:23:06+00:00"
+    },
+    "supercompress@supercompress": {
+      "archive_sha256": "c8df1856ba5bfce0fed855381c5d0e411f43679d2ebeb7318865261e36efbad7",
+      "file_id": 117427,
+      "revision": "2.2",
+      "source": "supercompress",
+      "updated_at": "2020-01-09T10:13:44+00:00"
+    },
+    "superposition@superposition": {
+      "archive_sha256": "92826b967d5223a1d50767e77c01572c88e8b5c7d548198be77592fc5f13526c",
+      "file_id": 116701,
+      "revision": "1.0",
+      "source": "superposition",
+      "updated_at": "2019-12-21T00:47:37+00:00"
+    },
+    "suplex-reverb@suplex-reverb": {
+      "archive_sha256": "74fe689e3878df2098092f18c5ea0a8259ba9bf1b025b60620159647ad060137",
+      "file_id": 169539,
+      "revision": "0.2",
+      "source": "suplex-reverb",
+      "updated_at": "2023-08-04T17:18:11+00:00"
+    },
+    "tb-clone@tb-clone": {
+      "archive_sha256": "2d8fa667d4abcc9a3b625281c000a842fbb0d993e7d40c246cc9a8203fa22b93",
+      "file_id": 125679,
+      "revision": "1.0",
+      "source": "tb-clone",
+      "updated_at": "2020-06-15T15:26:40+00:00"
+    },
+    "transcycle@transcycle": {
+      "archive_sha256": "2656bb5e57c5d7fd243d59056e376b956f5d34e0b9d08be4153ba07dc12abedf",
+      "file_id": 169554,
+      "revision": "0.1",
+      "source": "transcycle",
+      "updated_at": "2023-08-04T16:30:59+00:00"
+    },
+    "transport@transport": {
+      "archive_sha256": "0383d1aead2df3f57f15073462ffb3fd2a3e8d181e4dd6d16c124b9e38009215",
+      "file_id": 117573,
+      "revision": "1.4",
+      "source": "transport",
+      "updated_at": "2020-01-13T05:52:53+00:00"
+    },
+    "tremolo-sync@tremolosync": {
+      "archive_sha256": "aa00efd196e8696a9bb07eaa1f7600f76eb20fcd8f152699da1e63101dd82647",
+      "file_id": 108582,
+      "revision": "0.0.1",
+      "source": "tremolosync",
+      "updated_at": "2019-06-16T01:49:59+00:00"
+    },
+    "vj-fm@vj-fm": {
+      "archive_sha256": "e429c8ad89a4e4f0bae79929066f0550d79af2f7f70c3e81165f2c5a9d430cbd",
+      "file_id": 165346,
+      "revision": "0.6",
+      "source": "vj-fm",
+      "updated_at": "2023-03-12T18:01:26+00:00"
+    },
+    "vocoder@cg-vocoder": {
+      "archive_sha256": "12b7dccb2f2b783e5f015b00fdb2f727ddb73d077b52e4634fa8512c3ef8a419",
+      "file_id": 189716,
+      "revision": "0.1",
+      "source": "cg-vocoder",
+      "updated_at": "2025-11-17T18:07:32+00:00"
+    },
+    "warble@warble": {
+      "archive_sha256": "838d628fb1145dae3e0c044d396c299db51248775be84a3e20d22e7b37ea0e3b",
+      "file_id": 146095,
+      "revision": "1.0",
+      "source": "warble",
+      "updated_at": "2021-11-06T20:52:41+00:00"
+    },
+    "wav-shaper@wav-shaper": {
+      "archive_sha256": "7227685e4ccb635d98cc1c7d9e64eb58a1e867ba2217e615e9b3b3940c15f7d3",
+      "file_id": 118890,
+      "revision": "1.0",
+      "source": "wav-shaper",
+      "updated_at": "2020-02-17T14:29:54+00:00"
+    }
+  },
   "schema_version": 2
 }
