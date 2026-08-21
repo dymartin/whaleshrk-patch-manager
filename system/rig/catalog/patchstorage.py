@@ -67,9 +67,9 @@ def list_patches(client: httpx.Client, *, platform: int | None = None, tag: int 
         items.extend(page_items)
         # A page that never empties out (a misbehaving API, or a filter that
         # silently returns more than X-WP-Total claims) must not spin
-        # forever -- stop as soon as we have strictly more than X-WP-Total
-        # said to expect, and let the count assertion below report it.
-        if len(items) > total:
+        # forever -- stop as soon as we reach X-WP-Total; if a page overshoots,
+        # let the count assertion below report it.
+        if len(items) >= total:
             break
         page += 1
 

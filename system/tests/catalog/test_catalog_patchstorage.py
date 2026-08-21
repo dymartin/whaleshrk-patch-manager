@@ -12,6 +12,7 @@ from __future__ import annotations
 import httpx
 import pytest
 
+from rig.catalog.discovery import live_httpx_client
 from rig.catalog.patchstorage import (
     PatchstorageError,
     discover_union,
@@ -23,6 +24,11 @@ from rig.catalog.patchstorage import (
 
 def _client(handler) -> httpx.Client:
     return httpx.Client(transport=httpx.MockTransport(handler))
+
+
+def test_live_client_identifies_itself_to_patchstorage():
+    with live_httpx_client() as client:
+        assert client.headers["User-Agent"] == "whaleshrk-rig/0.1"
 
 
 def test_list_patches_single_page():
@@ -78,7 +84,7 @@ def test_list_patches_stops_and_raises_if_pages_never_empty_out():
     # not hang the client -- it stops once it has strictly more items than
     # X-WP-Total claimed, and reports the mismatch instead of looping.
     def handler(request: httpx.Request) -> httpx.Response:
-        return httpx.Response(200, headers={"X-WP-Total": "1"}, json=[{"id": 1}])
+        return httpx.Response(200, headers={"X-WP-Total": "1"}, json=[{"id": 1}, {"id": 2}])
 
     with _client(handler) as client, pytest.raises(PatchstorageError):
         list_patches(client, platform=3371)

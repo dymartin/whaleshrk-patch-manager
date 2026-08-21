@@ -19,7 +19,7 @@ from .patchstorage import discover_union, fetch_archive_bytes, fetch_detail
 
 
 def live_httpx_client() -> httpx.Client:
-    return httpx.Client(timeout=30.0)
+    return httpx.Client(headers={"User-Agent": "whaleshrk-rig/0.1"}, timeout=30.0)
 
 
 def discover_sources(client: httpx.Client) -> dict[str, CandidateSource]:
