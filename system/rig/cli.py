@@ -663,7 +663,7 @@ def catalog_mirror() -> None:
                     def report(slug: str, state: str) -> None:
                         display["text"] = {
                             "downloading": f"... {slug}",
-                            "downloaded": f"OK {slug}",
+                            "downloaded": f"GOT {slug}",
                             "skipped": f"SKIP {slug}",
                             "failed": f"FAIL {slug}",
                         }[state]
@@ -677,6 +677,18 @@ def catalog_mirror() -> None:
 
     entries = _rebuild("catalog mirror", sources)
     accepted_sources = {e.source for e in entries if e.source != "orhack"}
+    verdict = {"text": ""}
+    with typer.progressbar(
+        list(sources),
+        label="Verification",
+        show_eta=False,
+        item_show_func=lambda _item: verdict["text"],
+    ) as progress:
+        for slug in progress:
+            verdict["text"] = f"{'OK' if slug in accepted_sources else 'REJECT'} {slug}"
+            progress.render_progress()
+        verdict["text"] = ""
+        progress.render_progress()
     retained = [
         e for e in current_catalog if e.source != "orhack" and e.source not in accepted_sources
     ]
