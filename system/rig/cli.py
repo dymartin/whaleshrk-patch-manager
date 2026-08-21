@@ -30,6 +30,7 @@ from rig.catalog import (
     PatchstorageError,
     build_catalog,
     build_community_catalog,
+    discover_union,
     discover_sources,
     find_sources_by_slug,
     ingest_pinned_builtins,
@@ -611,7 +612,10 @@ def catalog_mirror() -> None:
             sources = _mirror_fetcher()
         else:
             with live_httpx_client() as client:
-                sources = discover_sources(client)
+                typer.echo("Discovering ORAC uploads...")
+                patch_ids = discover_union(client)
+                with typer.progressbar(patch_ids, label="Downloading") as progress:
+                    sources = discover_sources(client, progress)
     except (httpx.HTTPError, PatchstorageError) as exc:
         _fail("catalog mirror", "SOURCE_UNREACHABLE", f"could not reach Patchstorage: {exc}")
 

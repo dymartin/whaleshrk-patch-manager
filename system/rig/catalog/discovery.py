@@ -10,6 +10,7 @@ See `find_sources_by_slug` for why that costs a full walk.
 from __future__ import annotations
 
 import hashlib
+from collections.abc import Iterable
 
 import httpx
 
@@ -22,10 +23,12 @@ def live_httpx_client() -> httpx.Client:
     return httpx.Client(headers={"User-Agent": "whaleshrk-rig/0.1"}, timeout=30.0)
 
 
-def discover_sources(client: httpx.Client) -> dict[str, CandidateSource]:
+def discover_sources(
+    client: httpx.Client, patch_ids: Iterable[int] | None = None
+) -> dict[str, CandidateSource]:
     """Download every ORAC platform/tag upload, keyed by its stable slug."""
     found: dict[str, CandidateSource] = {}
-    for patch_id in discover_union(client):
+    for patch_id in discover_union(client) if patch_ids is None else patch_ids:
         detail = fetch_detail(client, patch_id)
         files = detail.get("files") or []
         if not files:
