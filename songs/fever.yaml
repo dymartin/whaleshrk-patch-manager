@@ -10,6 +10,12 @@ chains:
   - name: reverse-guitar
     input: { guitar: true }
     modules:
+      - spectral-gate@orhack:
+          gate: 0
+          audio-gain: 0
+          audio-thru-gain: 0
+          midi:
+            audio-gain: 22
       - warp@orhack:
           drive-a: 45
           drive-b: 45
