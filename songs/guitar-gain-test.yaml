@@ -1,0 +1,11 @@
+song: Guitar Gain Test
+program: 3
+
+chains:
+  - name: gain-test
+    input: { guitar: true }
+    modules:
+      - cvin-audio@orhack:
+          l-gain: 100
+          r-gain: 100
+      - oscilloscope@orhack
