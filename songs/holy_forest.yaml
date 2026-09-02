@@ -31,6 +31,12 @@ chains:
   - name: pad
     input: { guitar: true }
     modules:
+      - spectral-gate@orhack:
+          gate: 0
+          audio-gain: 0
+          audio-thru-gain: 0
+          midi:
+            audio-gain: 22
       - clouds@orhack:
           mix: 80
           density: 75
