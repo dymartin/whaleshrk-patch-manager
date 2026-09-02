@@ -7,8 +7,8 @@ sends:
     amount: 20
 
 chains:
-  - name: guitar
-    input: {guitar: true}
+  - name: reverse-guitar
+    input: { guitar: true }
     modules:
       - warp@orhack:
           drive-a: 45
@@ -23,7 +23,7 @@ chains:
           tempo-sync: 1
 
   - name: reverse-synth
-    input: {guitar: false}
+    input: { guitar: false }
     modules:
       - braids-plus@orhack
       - spiraldelay@orhack:
@@ -34,10 +34,10 @@ chains:
           heads: 1
           head-1-gain: 100
           tempo-sync: 1
-          send: {reverb: 20}
+          send: { reverb: 20 }
 
   - name: owow
-    input: {guitar: false}
+    input: { guitar: false }
     modules:
       - braids-plus@orhack:
           resonance: 3
