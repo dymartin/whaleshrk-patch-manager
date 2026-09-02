@@ -1,0 +1,41 @@
+song: Holy Forest
+program: 2
+
+chains:
+  - name: lead
+    input: { guitar: false }
+    modules:
+      - braids-plus@orhack:
+          resonance: 4
+          cutoff: 60
+          timbre: 85
+          colour: 85
+          noise: 25
+          volume: 90
+      - tanh@orhack:
+          dry-wet: 100
+          amount: 70
+      - bit-crush@orhack:
+          dry-wet: 60
+          depth: 60
+
+  - name: pluck
+    input: { guitar: false }
+    modules:
+      - 4wave@4wave-2:
+          sine: 0
+          triangle: 100
+          clip-sine: 0
+          clip-sine-x2: 0
+
+  - name: pad
+    input: { guitar: true }
+    modules:
+      - clouds@orhack:
+          mix: 80
+          density: 75
+          size: 65
+          spread: 80
+          texture: 60
+          feedback: 30
+          reverb: 70
