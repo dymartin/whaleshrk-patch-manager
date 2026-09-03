@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import shlex
 import subprocess
+import sys
+import time
 from pathlib import PurePosixPath
 
 from .base import TransportPathError, normalize_path
@@ -15,6 +17,30 @@ from .base import TransportPathError, normalize_path
 # or sample set over a slow link; every op here runs inside push's staged
 # transaction, so a timeout here is always safe to retry.
 COMMAND_TIMEOUT_SECONDS = 300
+
+# ControlMaster/ControlPersist would cut a push's dozens of Transport calls
+# down to one mDNS resolution instead of one per call, but Win32-OpenSSH's
+# ControlMaster is broken on this machine ("getsockname failed: Not a
+# socket" on every attempt, 2026-09-03) -- a known platform limitation, not
+# something fixable here.
+#
+# So `organelle-s2.local` keeps getting re-resolved once per call, and mDNS
+# is best-effort multicast: any single resolution can drop a query. Retrying
+# a resolution failure is always safe -- it means ssh never opened a
+# connection, so nothing ran remotely yet -- unlike retrying after any other
+# failure, where a remote side effect may already have happened.
+#
+# A plain sleep-and-retry wasn't enough (observed 2026-09-03): Windows'
+# resolver caches the *negative* answer too, so an immediate retry just
+# replays the same miss. `ipconfig /flushdns` before each retry clears that
+# cache so the retry is a fresh multicast query, not a cache hit.
+RESOLUTION_RETRY_ATTEMPTS = 4
+RESOLUTION_RETRY_DELAY_SECONDS = 1.0
+
+
+def _flush_windows_dns_cache() -> None:
+    if sys.platform == "win32":
+        subprocess.run(["ipconfig", "/flushdns"], capture_output=True, check=False)
 
 
 class SshTransportError(RuntimeError):
@@ -32,29 +58,40 @@ class SshTransport:
         return str(self.root.joinpath(*normalize_path(path).split("/")))
 
     def _run(self, command: str, data: bytes | None = None, *, check: bool = True) -> subprocess.CompletedProcess[bytes]:
-        try:
-            result = subprocess.run(
-                [
-                    "ssh", "-T",
-                    "-o", "BatchMode=yes",
-                    "-o", "ConnectTimeout=10",
-                    "-o", "ServerAliveInterval=5",
-                    "-o", "ServerAliveCountMax=3",
-                    self.host, command,
-                ],
-                input=data,
-                capture_output=True,
-                check=False,
-                timeout=COMMAND_TIMEOUT_SECONDS,
-            )
-        except subprocess.TimeoutExpired as exc:
-            raise SshTransportError(
-                f"command timed out after {COMMAND_TIMEOUT_SECONDS}s with no response from the device "
-                f"(command: {command!r}) -- the SSH connection was alive but the remote side never "
-                "returned; the device likely needs a power cycle"
-            ) from exc
-        except (FileNotFoundError, OSError) as exc:
-            raise SshTransportError(f"could not run ssh: {exc}") from exc
+        argv = [
+            "ssh", "-T",
+            "-o", "BatchMode=yes",
+            "-o", "ConnectTimeout=10",
+            "-o", "ServerAliveInterval=5",
+            "-o", "ServerAliveCountMax=3",
+            self.host, command,
+        ]
+        for attempt in range(RESOLUTION_RETRY_ATTEMPTS):
+            try:
+                result = subprocess.run(
+                    argv,
+                    input=data,
+                    capture_output=True,
+                    check=False,
+                    timeout=COMMAND_TIMEOUT_SECONDS,
+                )
+            except subprocess.TimeoutExpired as exc:
+                raise SshTransportError(
+                    f"command timed out after {COMMAND_TIMEOUT_SECONDS}s with no response from the device "
+                    f"(command: {command!r}) -- the SSH connection was alive but the remote side never "
+                    "returned; the device likely needs a power cycle"
+                ) from exc
+            except (FileNotFoundError, OSError) as exc:
+                raise SshTransportError(f"could not run ssh: {exc}") from exc
+            if (
+                result.returncode == 255
+                and b"Could not resolve hostname" in result.stderr
+                and attempt + 1 < RESOLUTION_RETRY_ATTEMPTS
+            ):
+                _flush_windows_dns_cache()
+                time.sleep(RESOLUTION_RETRY_DELAY_SECONDS)
+                continue
+            break
         if check and result.returncode:
             detail = result.stderr.decode("utf-8", errors="replace").strip() or f"exit {result.returncode}"
             raise SshTransportError(detail)
