@@ -15,6 +15,7 @@ rig = "rig.cli:app"
 [dependency-groups]
 dev = [
     "pytest",
+    "pytest-cov",
 ]
 
 [build-system]
@@ -28,3 +29,9 @@ packages = ["system/rig"]
 testpaths = ["system/tests"]
 pythonpath = ["system"]
 addopts = "--verbose --tb=short -ra"
+
+[tool.coverage.run]
+source = ["rig"]
+
+[tool.coverage.report]
+show_missing = true

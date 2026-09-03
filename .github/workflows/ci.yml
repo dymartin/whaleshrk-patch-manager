@@ -25,18 +25,20 @@ jobs:
       - uses: astral-sh/setup-uv@v3
       - run: uv sync
       - name: Test catalog
-        run: uv run pytest system/tests/catalog
+        run: uv run pytest --cov --cov-append system/tests/catalog
       - name: Test compile
-        run: uv run pytest system/tests/compile
+        run: uv run pytest --cov --cov-append system/tests/compile
       - name: Test core
-        run: uv run pytest system/tests/core
+        run: uv run pytest --cov --cov-append system/tests/core
       - name: Test pull
-        run: uv run pytest system/tests/pull
+        run: uv run pytest --cov --cov-append system/tests/pull
       - name: Test push
-        run: uv run pytest system/tests/push
+        run: uv run pytest --cov --cov-append system/tests/push
       - name: Test song
-        run: uv run pytest system/tests/song
+        run: uv run pytest --cov --cov-append system/tests/song
       - name: Test transport
-        run: uv run pytest system/tests/transport
+        run: uv run pytest --cov --cov-append system/tests/transport
+      - name: Coverage report
+        run: uv run coverage report
       - name: rig lint (smoke test against this checkout)
         run: uv run rig lint
