@@ -244,15 +244,25 @@ def push(
     classification = classify_card_presets(card_dirs, last_pushed_directories, set(songs))
     directory_to_song_id = _song_id_by_directory(last_pushed_directories)
 
-    if classification.unrecorded and not force:
-        names = ", ".join(classification.unrecorded)
+    # A directory this push is about to (re)write for a still-existing song
+    # is not foreign, even if local state lost track of it (e.g. a prior
+    # push's verify failed before `write_last_pushed` ran) -- treating it as
+    # "unrecorded" would schedule both a write and a delete op against the
+    # same live path, corrupting the transaction. `new_directory_by_song` is
+    # deterministic per song, so a card directory matching one is this run's
+    # own target, not device-made content.
+    reclaimed_directories = set(new_directory_by_song.values())
+    truly_unrecorded = [d for d in classification.unrecorded if d not in reclaimed_directories]
+
+    if truly_unrecorded and not force:
+        names = ", ".join(truly_unrecorded)
         raise PushError(
             "UNRECORDED_PRESET",
-            f"preset director{'y' if len(classification.unrecorded) == 1 else 'ies'} "
+            f"preset director{'y' if len(truly_unrecorded) == 1 else 'ies'} "
             f"{names} exist on the card but are not recorded as pushed by this tool -- "
             "made on the device. Refusing; pass --force to delete them.",
         )
-    force_deleted = list(classification.unrecorded) if force else []
+    force_deleted = list(truly_unrecorded) if force else []
 
     ops: list[RootOp] = []
     files_by_op: dict[int, dict[str, bytes]] = {}
