@@ -8,6 +8,14 @@ from pathlib import PurePosixPath
 
 from .base import TransportPathError, normalize_path
 
+# ServerAliveInterval/CountMax only catch a dead *connection* -- sshd still
+# answering keepalives while the remote command itself blocks (e.g. a stuck
+# SD card write) leaves a session that looks alive forever. This bounds the
+# command itself. Generous because a write can carry a whole module archive
+# or sample set over a slow link; every op here runs inside push's staged
+# transaction, so a timeout here is always safe to retry.
+COMMAND_TIMEOUT_SECONDS = 300
+
 
 class SshTransportError(RuntimeError):
     pass
@@ -26,11 +34,25 @@ class SshTransport:
     def _run(self, command: str, data: bytes | None = None, *, check: bool = True) -> subprocess.CompletedProcess[bytes]:
         try:
             result = subprocess.run(
-                ["ssh", "-T", "-o", "BatchMode=yes", self.host, command],
+                [
+                    "ssh", "-T",
+                    "-o", "BatchMode=yes",
+                    "-o", "ConnectTimeout=10",
+                    "-o", "ServerAliveInterval=5",
+                    "-o", "ServerAliveCountMax=3",
+                    self.host, command,
+                ],
                 input=data,
                 capture_output=True,
                 check=False,
+                timeout=COMMAND_TIMEOUT_SECONDS,
             )
+        except subprocess.TimeoutExpired as exc:
+            raise SshTransportError(
+                f"command timed out after {COMMAND_TIMEOUT_SECONDS}s with no response from the device "
+                f"(command: {command!r}) -- the SSH connection was alive but the remote side never "
+                "returned; the device likely needs a power cycle"
+            ) from exc
         except (FileNotFoundError, OSError) as exc:
             raise SshTransportError(f"could not run ssh: {exc}") from exc
         if check and result.returncode:

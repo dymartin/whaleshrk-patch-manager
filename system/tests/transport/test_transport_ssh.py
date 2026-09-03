@@ -19,8 +19,9 @@ def test_ssh_transport_uses_card_relative_paths_and_binary_stdin(monkeypatch):
     transport.write("data/orhack/test file", b"\x00payload")
     transport.flush()
 
-    assert calls[0][0][:6] == ["ssh", "-T", "-o", "BatchMode=yes", "synth", calls[0][0][5]]
-    assert "'/sdcard/data/orhack/test file'" in calls[0][0][5]
+    assert calls[0][0][:2] == ["ssh", "-T"]
+    assert calls[0][0][-2] == "synth"
+    assert "'/sdcard/data/orhack/test file'" in calls[0][0][-1]
     assert calls[0][1]["input"] == b"\x00payload"
     assert calls[1][0][-1] == "sync"
 

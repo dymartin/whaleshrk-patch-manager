@@ -23,7 +23,7 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass
-from typing import Any, Literal, Optional
+from typing import Any, Callable, Literal, Optional
 
 from rig.errors import CodedError
 
@@ -230,12 +230,18 @@ class TransactionResult:
     completed: list[str]  # live paths successfully swapped and verified
 
 
-def run_transaction(transport: Transport, ops: list[RootOp]) -> TransactionResult:
+def run_transaction(
+    transport: Transport, ops: list[RootOp], on_step: Optional[Callable[[str], None]] = None
+) -> TransactionResult:
     """Execute every root op: journal, swap, flush, verify, cleanup.
 
     Also the recovery path -- `recover_pending_transaction` calls this with
     the ops read back from an existing journal, and `_ensure_swapped` being
     idempotent is what makes that safe to resume from any point.
+
+    `on_step`, when given, is called with a short label before each root's
+    swap -- the only per-operation progress signal push has, since a single
+    root can be one or more SSH round trips with nothing else in between.
     """
     if not ops:
         delete_journal(transport)
@@ -245,6 +251,8 @@ def run_transaction(transport: Transport, ops: list[RootOp]) -> TransactionResul
     transport.flush()
 
     for op in ops:
+        if on_step is not None:
+            on_step(op.live)
         _ensure_swapped(transport, op)
     transport.flush()
 
@@ -267,7 +275,9 @@ def run_transaction(transport: Transport, ops: list[RootOp]) -> TransactionResul
     return TransactionResult(completed=[op.live for op in ops])
 
 
-def recover_pending_transaction(transport: Transport) -> Optional[TransactionResult]:
+def recover_pending_transaction(
+    transport: Transport, on_step: Optional[Callable[[str], None]] = None
+) -> Optional[TransactionResult]:
     """Call before any new push begins. If a previous run's journal is
     still on the card, finish or restore it deterministically first
     (docs/workflows/push.md "Transact") -- returns None if there was
@@ -275,4 +285,4 @@ def recover_pending_transaction(transport: Transport) -> Optional[TransactionRes
     ops = read_journal(transport)
     if ops is None:
         return None
-    return run_transaction(transport, ops)
+    return run_transaction(transport, ops, on_step)

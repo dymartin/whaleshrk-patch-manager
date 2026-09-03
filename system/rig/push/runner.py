@@ -20,7 +20,7 @@ from __future__ import annotations
 import json
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Iterable, Optional
+from typing import Callable, Iterable, Optional
 
 from rig.catalog.entry import CatalogEntry
 from rig.compile import (
@@ -146,6 +146,7 @@ def push(
     force: bool = False,
     dry_run: bool = False,
     verify_manifest: bool = True,
+    on_step: Optional[Callable[[str], None]] = None,
 ) -> PushResult:
     # Step 1: resolve the card.
     if transport is None:
@@ -165,7 +166,7 @@ def push(
         )
 
     # Recover any interrupted transaction before doing anything else.
-    recover_pending_transaction(transport)  # raises PushTransactionError if a swap cannot be verified
+    recover_pending_transaction(transport, on_step)  # raises PushTransactionError if a swap cannot be verified
 
     # Step 2a: verify ORHACK itself. Never installed or repaired (decision
     # #45). Structure is cheap and always checked; the full 2,353-entry
@@ -340,8 +341,10 @@ def push(
     # Step 7: transact.
     for op in ops:
         if op.id in files_by_op:
+            if on_step is not None:
+                on_step(f"staging {op.live}")
             stage_files(transport, op.staged, files_by_op[op.id])
-    run_transaction(transport, ops)  # raises PushTransactionError on verify failure, restores backups
+    run_transaction(transport, ops, on_step)  # raises PushTransactionError on verify failure, restores backups
 
     # Step 8: repair a dangling currentPreset, only if this push caused it.
     current_preset_repaired = _repair_current_preset(transport)

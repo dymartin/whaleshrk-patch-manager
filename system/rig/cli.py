@@ -310,6 +310,7 @@ def push(
             roots=_card_roots,
             force=force,
             dry_run=dry_run,
+            on_step=lambda label: typer.echo(f"  {label}"),
         )
     except CardDetectionError as exc:
         _fail("push", exc.code, str(exc))
