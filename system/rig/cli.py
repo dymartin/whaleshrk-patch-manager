@@ -90,11 +90,26 @@ from rig.song import (
     validate_songs,
     write_bindings,
 )
-from rig.transport import CardDetectionError, SshTransport, SshTransportError, Transport, TransportPathError
+from rig.palette import (
+    clear_palette,
+    compatible_community_entries,
+    install_palette,
+    plan_palette,
+)
+from rig.transport import (
+    CardDetectionError,
+    SshTransport,
+    SshTransportError,
+    Transport,
+    TransportPathError,
+    resolve_card,
+)
 
 app = typer.Typer(no_args_is_help=True, add_completion=False)
 catalog_app = typer.Typer(no_args_is_help=True)
 app.add_typer(catalog_app, name="catalog")
+palette_app = typer.Typer(no_args_is_help=True)
+app.add_typer(palette_app, name="palette")
 
 # Repo layout -- resolved against the current working directory, same
 # convention `catalog update` (below) already uses.
@@ -901,6 +916,83 @@ def rename_chain(
         write_bindings(chains_state_dir, song, bindings)
 
     typer.echo(f"renamed: {song}: {old} -> {new}")
+
+
+def _palette_transport(command: str, transport: str, host: str) -> Transport:
+    """SSH by default, the USB card as the explicit fallback -- the same choice
+    `push` offers. The test seam (`_transport`) wins when set."""
+    if transport not in {"ssh", "usb"}:
+        _fail(command, "UNKNOWN_TRANSPORT", "--transport must be 'ssh' or 'usb'")
+    if _transport is not None:
+        return _transport
+    if transport == "usb":
+        return resolve_card(_card_roots)
+    return SshTransport(host)
+
+
+@palette_app.command("install")
+def palette_install(
+    transport: str = typer.Option("ssh", "--transport", help="ssh (default) or usb"),
+    host: str = typer.Option("organelle", "--host", help="OpenSSH host alias"),
+) -> None:
+    """Install every compatible community module to the card for auditioning.
+
+    Fills the ORHACK module browser so a blank preset can be built from the full
+    palette on the device. These modules are unmanaged: `rig push` leaves them
+    in place and never authors a preset from them -- a chain you keep is still
+    written in YAML and pushed.
+    """
+    catalog = read_catalog(CATALOG_PATH)
+    lock = read_lock(LOCK_PATH)
+    entries = compatible_community_entries(catalog, lock)
+    if not entries:
+        typer.echo("palette install: no compatible community modules in the catalog")
+        return
+
+    plan = plan_palette(entries, _module_source or StoredArchiveModuleSource(MODULES_DIR, lock))
+    if plan.unavailable:
+        names = ", ".join(f"{key} ({reason})" for key, reason in sorted(plan.unavailable))
+        _fail(
+            "palette install",
+            "MODULE_UNAVAILABLE",
+            f"the repo cannot produce {len(plan.unavailable)} pinned module(s); nothing installed: {names}",
+        )
+
+    try:
+        live = _palette_transport("palette install", transport, host)
+        installed = install_palette(live, plan.installs, on_step=lambda key: typer.echo(f"  {key}"))
+    except CardDetectionError as exc:
+        _fail("palette install", exc.code, str(exc))
+    except OrhackIntegrityError as exc:
+        _fail("palette install", exc.code, str(exc))
+    except SshTransportError as exc:
+        _fail("palette install", "SSH_TRANSPORT_ERROR", str(exc))
+
+    typer.echo(f"palette install: {len(installed)} module(s) installed to media/orhack/user-modules")
+
+
+@palette_app.command("clear")
+def palette_clear(
+    transport: str = typer.Option("ssh", "--transport", help="ssh (default) or usb"),
+    host: str = typer.Option("organelle", "--host", help="OpenSSH host alias"),
+) -> None:
+    """Remove palette-installed modules from the card.
+
+    Leaves modules a song owns (installed by `rig push`) untouched.
+    """
+    catalog = read_catalog(CATALOG_PATH)
+    lock = read_lock(LOCK_PATH)
+    entries = compatible_community_entries(catalog, lock)
+
+    try:
+        live = _palette_transport("palette clear", transport, host)
+        removed = clear_palette(live, entries, on_step=lambda key: typer.echo(f"  {key}"))
+    except CardDetectionError as exc:
+        _fail("palette clear", exc.code, str(exc))
+    except SshTransportError as exc:
+        _fail("palette clear", "SSH_TRANSPORT_ERROR", str(exc))
+
+    typer.echo(f"palette clear: {len(removed)} module(s) removed")
 
 
 if __name__ == "__main__":
