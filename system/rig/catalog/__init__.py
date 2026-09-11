@@ -13,7 +13,7 @@ from .ingest import (
     build_catalog,
     build_community_catalog,
 )
-from .io import read_catalog, read_lock, write_catalog, write_lock
+from .io import read_catalog, write_catalog
 from .patchstorage import (
     PatchstorageError,
     discover_union,

@@ -2,7 +2,7 @@
 
 One file per community module upload, byte-identical to what Patchstorage
 served. This is what makes the repo's reproducibility promise true: pinning
-an upload id in `.rig/modules.lock` proves nothing once the author deletes or
+an upload id in `system/data/catalog.json` proves nothing once the author deletes or
 replaces that upload, so the bytes themselves travel with the repo.
 
 Top-level rather than under `.rig/`: these are vendored inputs the repo owns,
@@ -11,7 +11,7 @@ not state the CLI generates.
 The filename carries the author-declared `revision` because it is the only
 human-readable version an upload has. It is *not* an identity -- revisions
 collide across uploads and authors re-upload without bumping them -- so
-identity stays `archive_sha256` in the lock, and `write_archive` refuses a
+identity stays `archive_sha256` on the catalog entry, and `write_archive` refuses a
 same-revision archive whose bytes differ rather than silently overwriting.
 """
 
@@ -87,7 +87,7 @@ def read_archive(modules_dir: Path, source: str, revision: str, expected_sha256:
     if expected_sha256 and actual != expected_sha256:
         raise ArchiveStoreError(
             "ARCHIVE_DIGEST_MISMATCH",
-            f"{path} does not match the digest pinned in system/data/modules.lock "
+            f"{path} does not match the digest pinned in system/data/catalog.json "
             f"(expected {expected_sha256[:12]}..., got {actual[:12]}...)",
         )
     return data

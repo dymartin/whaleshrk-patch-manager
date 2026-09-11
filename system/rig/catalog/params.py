@@ -32,7 +32,7 @@ class ParamParseError(ValueError):
 @dataclass(frozen=True)
 class ParamSpec:
     name: str  # friendly slug, e.g. "amount-3"
-    id: str  # real parameter id, e.g. "m_amt_p3" -- what rig upgrade pins against
+    id: str  # real parameter id, e.g. "m_amt_p3" -- what a compiled preset addresses
     label: str
     type: str
     min: float

@@ -1,4 +1,4 @@
-"""Step 2 of push: verify ORHACK, reconcile community modules against the lock.
+"""Step 2 of push: verify ORHACK, reconcile community modules against the catalog.
 
 Never installs or repairs ORHACK itself; `verify_orhack_manifest`
 only reads. Community-module install/replace needs the module's actual file
@@ -105,7 +105,7 @@ class ModuleSourceUnavailable(RuntimeError):
 class ModuleSource(Protocol):
     def fetch(self, entry: CatalogEntry) -> dict[str, bytes]:
         """The module's exact installable file set, path relative to its
-        own install directory -> bytes, as pinned by `.rig/modules.lock`.
+        own install directory -> bytes, as pinned on the catalog entry.
         Raises `ModuleSourceUnavailable` if it cannot be produced."""
         ...
 
@@ -147,8 +147,8 @@ def plan_module_reconciliation(
     community_entries: list[CatalogEntry],
     module_source: ModuleSource,
 ) -> ModuleReconcilePlan:
-    """Reconcile every community module named in the (already-loaded) lock's
-    catalog entries against what is installed on the card.
+    """Reconcile every used community module named in the catalog against
+    what is installed on the card.
 
     Repo-wide by construction: callers pass every locked community entry,
     never a song-scoped subset, because one card holds one copy.

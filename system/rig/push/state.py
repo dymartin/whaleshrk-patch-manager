@@ -20,6 +20,7 @@ from pathlib import Path
 from typing import Optional
 
 from rig.atomicio import write_bytes_atomic, write_text_atomic
+from rig.catalog.entry import CatalogEntry
 
 
 @dataclass(frozen=True)
@@ -87,26 +88,29 @@ def remove_last_pushed(state_dir: Path, song_id: str) -> None:
     meta_path(state_dir, song_id).unlink(missing_ok=True)
 
 
-def lock_hash_path(state_dir: Path) -> Path:
-    return _last_pushed_dir(state_dir) / ".modules-lock-hash"
+def catalog_hash_path(state_dir: Path) -> Path:
+    return _last_pushed_dir(state_dir) / ".catalog-hash"
 
 
-def hash_lock(lock: dict) -> str:
-    """A stable content hash of `.rig/modules.lock`, used only to detect
-    whether the lock changed since the last push (docs/workflows/push.md
-    step 2, decision #57) -- not a security hash, just a cheap equality
-    check over canonical JSON."""
-    canonical = json.dumps(lock, sort_keys=True, separators=(",", ":"))
+def hash_locked_modules(catalog: list[CatalogEntry]) -> str:
+    """A stable content hash of every pinned community module in the
+    catalog, used only to detect whether a pin changed since the last push
+    (docs/workflows/push.md step 2, decision #57) -- not a security hash,
+    just a cheap equality check over each entry's key + archive digest."""
+    pairs = sorted(
+        (e.key, e.version.archive_sha256 or "") for e in catalog if e.source != "orhack"
+    )
+    canonical = json.dumps(pairs, separators=(",", ":"))
     return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
 
-def read_recorded_lock_hash(state_dir: Path) -> Optional[str]:
-    path = lock_hash_path(state_dir)
+def read_recorded_catalog_hash(state_dir: Path) -> Optional[str]:
+    path = catalog_hash_path(state_dir)
     if not path.exists():
         return None
     return path.read_text(encoding="utf-8").strip()
 
 
-def write_recorded_lock_hash(state_dir: Path, lock_hash: str) -> None:
+def write_recorded_catalog_hash(state_dir: Path, catalog_hash: str) -> None:
     _last_pushed_dir(state_dir).mkdir(parents=True, exist_ok=True)
-    write_text_atomic(lock_hash_path(state_dir), lock_hash + "\n")
+    write_text_atomic(catalog_hash_path(state_dir), catalog_hash + "\n")

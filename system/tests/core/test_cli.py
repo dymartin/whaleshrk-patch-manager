@@ -8,8 +8,8 @@ Every other command is exercised for real: `push`/`pull` against
 `InMemoryTransport` (never a real card) and, for `pull`, a throwaway local
 git repo plus `FakeGhClient` (never the real `gh` on this machine -- see
 `tests/pull_helpers.py`). `rig.cli` exposes `_transport`/`_card_roots`/
-`_git`/`_gh`/`_upgrade_fetcher` as the seams tests reach with `monkeypatch`,
-so the command bodies under test are the real ones, not a stand-in.
+`_git`/`_gh` as the seams tests reach with `monkeypatch`, so the command
+bodies under test are the real ones, not a stand-in.
 
 `StoredArchiveModuleSource` (push's on-disk `ModuleSource`) is tested
 directly against real archives written into a tmp `modules/`, since nothing
@@ -34,15 +34,13 @@ from rig.catalog.builtins import ingest_pinned_builtins
 from rig.catalog.archive import ZipCandidateArchive
 from rig.catalog.entry import CatalogEntry, VersionInfo
 from rig.catalog.ingest import CandidateSource
-from rig.catalog.io import write_catalog, write_lock
+from rig.catalog.io import write_catalog
 from rig.catalog.params import ParamSpec
 from rig.catalog.slugs import module_key
 from rig.catalog.store import archive_path, write_archive
 from rig.cli import app
-from rig.hardware import CpuStats, DeviceUnavailable, SongMeasurement, Subject
 from rig.push.archive_source import StoredArchiveModuleSource
 from rig.push.modules import ModuleSourceUnavailable
-from rig.song.bindings import write_bindings
 from rig.transport.memory import InMemoryTransport
 
 from tests.compile_helpers import system_catalog
@@ -85,76 +83,6 @@ def _community_entry(param_id: str = "amt", updated_at: str = "2020-01-01") -> C
     )
 
 
-class _HardwareDevice:
-    def __init__(self, hashes=("same", "same")):
-        self.hashes = iter(hashes)
-
-    def card_hash(self):
-        return next(self.hashes)
-
-
-class _MidiOutput:
-    name = "fake"
-
-    def close(self):
-        pass
-
-
-def _hardware_repo(repo):
-    _seed_catalog([_synth_entry(), *system_catalog()])
-    _write_song(repo / "songs", "Vellichor", 3)
-
-
-def _measurement():
-    return SongMeasurement("vellichor", 100, CpuStats(10, 12), CpuStats(20, 24), (), 0)
-
-
-def _subject():
-    return Subject("commit", "lock", "device", "Organelle OS 5.1", "Pd", "ORHACK 0.52b", "fake")
-
-
-def test_hardware_check_writes_a_new_baseline_after_card_identity(repo, monkeypatch):
-    _hardware_repo(repo)
-    monkeypatch.setattr(cli, "_hardware_device", _HardwareDevice())
-    monkeypatch.setattr(cli, "_midi_output", _MidiOutput())
-    monkeypatch.setattr(cli, "make_subject", lambda *args: _subject())
-    monkeypatch.setattr(cli, "measure_song", lambda *args, **kwargs: _measurement())
-
-    result = runner.invoke(app, ["hardware-check", "--midi-port", "fake"])
-
-    assert result.exit_code == 0, result.output
-    assert "vellichor: pass" in result.output
-    assert "baseline written: vellichor" in result.output
-    assert (repo / "system/data/state/hardware/vellichor.json").is_file()
-
-
-def test_hardware_check_changed_card_fails_without_writing_baseline(repo, monkeypatch):
-    _hardware_repo(repo)
-    monkeypatch.setattr(cli, "_hardware_device", _HardwareDevice(("before", "after")))
-    monkeypatch.setattr(cli, "_midi_output", _MidiOutput())
-    monkeypatch.setattr(cli, "make_subject", lambda *args: _subject())
-    monkeypatch.setattr(cli, "measure_song", lambda *args, **kwargs: _measurement())
-
-    result = runner.invoke(app, ["hardware-check", "--midi-port", "fake"])
-
-    assert result.exit_code != 0
-    assert "CARD_CHANGED" in result.output
-    assert not (repo / "system/data/state/hardware/vellichor.json").exists()
-
-
-def test_hardware_check_unreachable_is_unavailable_and_writes_nothing(repo, monkeypatch):
-    _hardware_repo(repo)
-    monkeypatch.setattr(cli, "_hardware_device", _HardwareDevice())
-    monkeypatch.setattr(cli, "_midi_output", _MidiOutput())
-    monkeypatch.setattr(cli, "make_subject", lambda *args: (_ for _ in ()).throw(DeviceUnavailable("offline")))
-
-    result = runner.invoke(app, ["hardware-check", "--midi-port", "fake"])
-
-    assert result.exit_code == 0, result.output
-    assert "unavailable: offline" in result.output
-    assert not (repo / "system/data/state/hardware/vellichor.json").exists()
-
-
 def _write_song(songs_dir: Path, name: str, program: int, *, chain_name: str = "lead", level: float = 50) -> str:
     songs_dir.mkdir(parents=True, exist_ok=True)
     song_id = name.lower()
@@ -178,7 +106,6 @@ def _bare_card() -> InMemoryTransport:
 
 def _seed_catalog(entries: list[CatalogEntry]) -> None:
     write_catalog(entries, Path("system/data/catalog.json"))
-    write_lock(entries, Path("system/data/modules.lock"))
 
 
 # --- help / command surface --------------------------------------------------
@@ -187,7 +114,7 @@ def _seed_catalog(entries: list[CatalogEntry]) -> None:
 def test_help_lists_every_command():
     result = runner.invoke(app, ["--help"])
     assert result.exit_code == 0
-    for name in ["push", "pull", "lint", "catalog", "upgrade", "rename-chain"]:
+    for name in ["push", "pull", "lint", "catalog", "reabank", "palette"]:
         assert name in result.output
 
 
@@ -224,16 +151,10 @@ def test_catalog_mirror_is_idempotent_and_retains_vanished_uploads(repo, monkeyp
 
     first = runner.invoke(app, ["catalog", "mirror"])
     assert first.exit_code == 0, first.output
-    snapshot = (
-        Path("system/data/catalog.json").read_bytes(),
-        Path("system/data/modules.lock").read_bytes(),
-    )
+    snapshot = Path("system/data/catalog.json").read_bytes()
     second = runner.invoke(app, ["catalog", "mirror"])
     assert second.exit_code == 0, second.output
-    assert snapshot == (
-        Path("system/data/catalog.json").read_bytes(),
-        Path("system/data/modules.lock").read_bytes(),
-    )
+    assert snapshot == Path("system/data/catalog.json").read_bytes()
 
     monkeypatch.setattr(cli, "_mirror_fetcher", lambda: {})
     vanished = runner.invoke(app, ["catalog", "mirror"])
@@ -272,21 +193,9 @@ def test_catalog_mirror_skips_unchanged_verified_archive(repo):
         ),
     )
     write_archive(Path("system/modules"), "warble", "1.0", archive)
-    lock = {
-        "modules": {
-            entry.key: {
-                "source": "warble", "updated_at": "2020-01-01", "file_id": 1,
-                "archive_sha256": digest, "revision": "1.0",
-            }
-        }
-    }
 
-    assert cli._mirror_source_satisfied(
-        {"slug": "warble", "updated_at": "2020-01-01"}, {"warble": [entry]}, lock
-    )
-    assert not cli._mirror_source_satisfied(
-        {"slug": "warble", "updated_at": "2020-01-02"}, {"warble": [entry]}, lock
-    )
+    assert cli._mirror_source_satisfied({"slug": "warble", "updated_at": "2020-01-01"}, {"warble": [entry]})
+    assert not cli._mirror_source_satisfied({"slug": "warble", "updated_at": "2020-01-02"}, {"warble": [entry]})
 
 
 
@@ -461,7 +370,7 @@ def test_push_no_card_found_is_a_clean_refusal(repo, monkeypatch):
     assert "NO_CARD_FOUND" in result.output
 
 
-def test_push_refuses_hand_renamed_chain_and_names_rename_chain(repo, monkeypatch):
+def test_push_refuses_hand_renamed_chain_and_names_the_bindings_file(repo, monkeypatch):
     songs_dir = repo / "songs"
     _seed_catalog([_synth_entry(), *system_catalog()])
     _write_song(songs_dir, "Vellichor", 3, chain_name="lead")
@@ -470,9 +379,8 @@ def test_push_refuses_hand_renamed_chain_and_names_rename_chain(repo, monkeypatc
     first = runner.invoke(app, ["push"])
     assert first.exit_code == 0, first.output
 
-    # Hand-edit the chain name in place, bypassing `rig rename-chain` --
-    # push must detect the orphaned binding and refuse (Prompt/05-push.md
-    # step 5, decision #58).
+    # Hand-edit the chain name in place -- push must detect the orphaned
+    # binding and refuse (Prompt/05-push.md step 5, decision #58).
     text = (songs_dir / "vellichor.yaml").read_text(encoding="utf-8")
     (songs_dir / "vellichor.yaml").write_text(text.replace("name: lead", "name: lead2"), encoding="utf-8")
 
@@ -480,7 +388,7 @@ def test_push_refuses_hand_renamed_chain_and_names_rename_chain(repo, monkeypatc
 
     assert result.exit_code != 0
     assert "UNCOMMANDED_CHAIN_RENAME" in result.output
-    assert "rig rename-chain vellichor lead lead2" in result.output
+    assert "system/data/state/chains/vellichor.json" in result.output
 
 
 # --- pull -----------------------------------------------------------------
@@ -568,140 +476,6 @@ def test_pull_ignores_a_card_preset_no_song_claims(repo, monkeypatch):
     assert gh.create_calls == []
 
 
-# --- upgrade ----------------------------------------------------------------
-
-
-def test_upgrade_refuses_a_slug_id_reorder_used_by_a_song(repo, monkeypatch):
-    _seed_catalog([_community_entry(param_id="amt")])
-    (repo / "songs").mkdir()
-    (repo / "songs" / "vellichor.yaml").write_text(
-        "song: Vellichor\nprogram: 3\n\n"
-        "chains:\n  - name: lead\n    modules:\n      - warble@warble:\n          amount: 40\n",
-        encoding="utf-8",
-    )
-    catalog_before = Path("system/data/catalog.json").read_bytes()
-    lock_before = Path("system/data/modules.lock").read_bytes()
-
-    monkeypatch.setattr(
-        cli, "_upgrade_fetcher", lambda requested: ({"warble@warble": _community_entry(param_id="different_amt")}, {})
-    )
-
-    result = runner.invoke(app, ["upgrade", "warble@warble"])
-
-    assert result.exit_code != 0
-    assert "amount" in result.output
-    assert "vellichor" in result.output
-    assert Path("system/data/catalog.json").read_bytes() == catalog_before
-    assert Path("system/data/modules.lock").read_bytes() == lock_before
-
-
-def test_upgrade_writes_new_catalog_and_lock_when_no_song_is_affected(repo, monkeypatch):
-    _seed_catalog([_community_entry(param_id="amt", updated_at="2020-01-01")])
-    monkeypatch.setattr(
-        cli,
-        "_upgrade_fetcher",
-        lambda requested: (
-            {"warble@warble": _community_entry(param_id="different_amt", updated_at="2021-01-01")},
-            {},
-        ),
-    )
-
-    result = runner.invoke(app, ["upgrade", "warble@warble"])
-
-    assert result.exit_code == 0, result.output
-    assert "upgraded: warble@warble" in result.output
-    lock = json.loads(Path("system/data/modules.lock").read_text(encoding="utf-8"))
-    assert lock["modules"]["warble@warble"]["updated_at"] == "2021-01-01"
-
-
-def test_upgrade_dry_run_leaves_catalog_and_lock_untouched(repo, monkeypatch):
-    _seed_catalog([_community_entry(param_id="amt", updated_at="2020-01-01")])
-    catalog_before = Path("system/data/catalog.json").read_bytes()
-    lock_before = Path("system/data/modules.lock").read_bytes()
-    monkeypatch.setattr(
-        cli,
-        "_upgrade_fetcher",
-        lambda requested: (
-            {"warble@warble": _community_entry(param_id="different_amt", updated_at="2021-01-01")},
-            {},
-        ),
-    )
-
-    result = runner.invoke(app, ["upgrade", "warble@warble", "--dry-run"])
-
-    assert result.exit_code == 0, result.output
-    assert "would upgrade: warble@warble" in result.output
-    assert Path("system/data/catalog.json").read_bytes() == catalog_before
-    assert Path("system/data/modules.lock").read_bytes() == lock_before
-
-
-def test_upgrade_unknown_module_is_a_clean_refusal(repo):
-    _seed_catalog([_community_entry()])
-    result = runner.invoke(app, ["upgrade", "nope@nowhere"])
-    assert result.exit_code != 0
-    assert "UNKNOWN_MODULE" in result.output
-
-
-def test_upgrade_refuses_a_builtin_module(repo):
-    _seed_catalog([_synth_entry(), *system_catalog()])
-    result = runner.invoke(app, ["upgrade", "synth@orhack"])
-    assert result.exit_code != 0
-    assert "BUILTIN_NOT_UPGRADABLE" in result.output
-
-
-# --- rename-chain -----------------------------------------------------------
-
-
-def test_rename_chain_rewrites_song_and_binding(repo):
-    songs_dir = repo / "songs"
-    songs_dir.mkdir()
-    (songs_dir / "vellichor.yaml").write_text(
-        "song: Vellichor\nprogram: 3\n\n"
-        "chains:\n  - name: lead\n    modules:\n      - synth@orhack:\n          level: 50\n",
-        encoding="utf-8",
-    )
-    write_bindings(Path("system/data/state/chains"), "vellichor", {"lead": "A"})
-
-    result = runner.invoke(app, ["rename-chain", "vellichor", "lead", "pads"])
-
-    assert result.exit_code == 0, result.output
-    text = (songs_dir / "vellichor.yaml").read_text(encoding="utf-8")
-    assert "name: pads" in text
-    assert "name: lead" not in text
-    bindings = json.loads((Path("system/data/state/chains") / "vellichor.json").read_text(encoding="utf-8"))
-    assert bindings == {"pads": "A"}
-
-
-def test_rename_chain_refuses_unknown_old_name(repo):
-    songs_dir = repo / "songs"
-    songs_dir.mkdir()
-    (songs_dir / "vellichor.yaml").write_text(
-        "song: Vellichor\nprogram: 3\n\nchains:\n  - name: lead\n    modules: []\n", encoding="utf-8"
-    )
-    result = runner.invoke(app, ["rename-chain", "vellichor", "nope", "pads"])
-    assert result.exit_code != 0
-    assert "CHAIN_NOT_FOUND" in result.output
-
-
-def test_rename_chain_refuses_a_colliding_new_name(repo):
-    songs_dir = repo / "songs"
-    songs_dir.mkdir()
-    (songs_dir / "vellichor.yaml").write_text(
-        "song: Vellichor\nprogram: 3\n\n"
-        "chains:\n  - name: lead\n    modules: []\n  - name: pads\n    modules: []\n",
-        encoding="utf-8",
-    )
-    result = runner.invoke(app, ["rename-chain", "vellichor", "lead", "pads"])
-    assert result.exit_code != 0
-    assert "CHAIN_NAME_COLLISION" in result.output
-
-
-def test_rename_chain_unknown_song_is_a_clean_refusal(repo):
-    result = runner.invoke(app, ["rename-chain", "nosuch", "lead", "pads"])
-    assert result.exit_code != 0
-    assert "UNKNOWN_SONG" in result.output
-
-
 # --- StoredArchiveModuleSource (push's on-disk ModuleSource) ---------------
 
 
@@ -717,20 +491,19 @@ def _stored_module_source(
     modules_dir, archive_bytes: bytes, *, slug: str = "warble", display: str = "Warble", revision: str = "1.0"
 ):
     """A `StoredArchiveModuleSource` over a real archive written to
-    `modules_dir`, with a lock pinning its digest. Returns
+    `modules_dir`, with a catalog entry pinning its digest. Returns
     `(module_source, entry)` where `entry.key` is exactly what a real ingest
     of this archive would have produced."""
     entry_key = module_key(display, slug)
     digest = hashlib.sha256(archive_bytes).hexdigest()
     write_archive(modules_dir, slug, revision, archive_bytes)
-    lock = {"modules": {entry_key: {"source": slug, "revision": revision, "archive_sha256": digest}}}
     entry = CatalogEntry(
         key=entry_key, source=slug, display=display,
         module_type=f"effects/mod/{entry_key}", category="effects/mod", category_override=None,
         tags=[], params=[],
         version=VersionInfo(updated_at="2019-01-01", file_id=1, archive_sha256=digest, revision=revision),
     )
-    return StoredArchiveModuleSource(modules_dir, lock), entry
+    return StoredArchiveModuleSource(modules_dir), entry
 
 
 def test_module_source_fetch_strips_junk_and_keeps_real_files(tmp_path):
@@ -778,15 +551,15 @@ def test_module_source_fetch_refuses_a_module_needing_abl_link(tmp_path):
 def test_module_source_fetch_raises_when_the_archive_is_missing(tmp_path):
     modules_dir = tmp_path / "modules"
     modules_dir.mkdir()
-    lock = {"modules": {"warble@warble": {"source": "warble", "revision": "1.0", "archive_sha256": "abc"}}}
     entry = CatalogEntry(
         key="warble@warble", source="warble", display="Warble",
         module_type="effects/mod/warble@warble", category="effects/mod", category_override=None,
-        tags=[], params=[], version=VersionInfo(revision="1.0"),
+        tags=[], params=[],
+        version=VersionInfo(revision="1.0", archive_sha256="abc"),
     )
 
     with pytest.raises(ModuleSourceUnavailable) as exc_info:
-        StoredArchiveModuleSource(modules_dir, lock).fetch(entry)
+        StoredArchiveModuleSource(modules_dir).fetch(entry)
 
     assert "is missing" in str(exc_info.value)
     assert "rig catalog add warble" in str(exc_info.value)

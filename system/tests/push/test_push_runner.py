@@ -69,7 +69,6 @@ class _NoModuleSource:
 
 def _push(**kwargs):
     kwargs.setdefault("catalog", _catalog(_synth_entry()))
-    kwargs.setdefault("lock", {"modules": {}})
     kwargs.setdefault("kits", KitsConfig({}))
     kwargs.setdefault("module_source", _NoModuleSource())
     kwargs.setdefault("verify_manifest", False)
@@ -209,35 +208,36 @@ def test_gap_placeholders_fill_between_programs_and_shrink_as_gaps_close(tmp_pat
     assert transport.exists(f"{PRESETS_ROOT}/002/params.json")
 
 
-def test_selective_push_refuses_when_lock_changed_since_last_push(tmp_path):
+def test_selective_push_refuses_when_catalog_pins_changed_since_last_push(tmp_path):
     transport = _bare_card()
     media_root = tmp_path / "media"
     state_dir = tmp_path / ".rig" / "state"
     song = _song("Vellichor", program=3)
-    lock_v1 = {"modules": {}}
-    lock_v2 = {"modules": {"warble@warble": {"updated_at": "x", "file_id": 1, "archive_sha256": "y"}}}
+    catalog_v1 = _catalog(_synth_entry())
+    warble = make_entry("warble@warble", "warble", "Warble", "effects/mod/warble@warble", [])
+    catalog_v2 = _catalog(_synth_entry(), warble)
 
-    _push(songs={"vellichor": song}, selected=None, transport=transport, media_root=media_root, state_dir=state_dir, lock=lock_v1)
+    _push(songs={"vellichor": song}, selected=None, transport=transport, media_root=media_root, state_dir=state_dir, catalog=catalog_v1)
 
     with pytest.raises(PushError) as exc:
         _push(
             songs={"vellichor": song}, selected={"vellichor"}, transport=transport,
-            media_root=media_root, state_dir=state_dir, lock=lock_v2,
+            media_root=media_root, state_dir=state_dir, catalog=catalog_v2,
         )
     assert exc.value.code == "LOCK_CHANGED_SELECTIVE_PUSH"
 
 
-def test_full_push_is_not_refused_by_a_lock_change(tmp_path):
+def test_full_push_is_not_refused_by_a_catalog_pin_change(tmp_path):
     transport = _bare_card()
     media_root = tmp_path / "media"
     state_dir = tmp_path / ".rig" / "state"
     song = _song("Vellichor", program=3)
-    lock_v1 = {"modules": {}}
-    lock_v2 = {"modules": {}}  # different object, same content -- also fine
+    catalog_v1 = _catalog(_synth_entry())
+    catalog_v2 = _catalog(_synth_entry())  # different object, same content -- also fine
 
-    _push(songs={"vellichor": song}, selected=None, transport=transport, media_root=media_root, state_dir=state_dir, lock=lock_v1)
+    _push(songs={"vellichor": song}, selected=None, transport=transport, media_root=media_root, state_dir=state_dir, catalog=catalog_v1)
     # A full (non-selective) push is never refused for this reason.
-    _push(songs={"vellichor": song}, selected=None, transport=transport, media_root=media_root, state_dir=state_dir, lock=lock_v2)
+    _push(songs={"vellichor": song}, selected=None, transport=transport, media_root=media_root, state_dir=state_dir, catalog=catalog_v2)
 
 
 def test_module_unavailable_and_uninstalled_is_a_hard_error(tmp_path):
@@ -245,12 +245,11 @@ def test_module_unavailable_and_uninstalled_is_a_hard_error(tmp_path):
     media_root = tmp_path / "media"
     state_dir = tmp_path / ".rig" / "state"
     community = make_entry("warble@warble", "warble", "Warble", "effects/mod/warble@warble", [])
-    lock = {"modules": {"warble@warble": {"updated_at": "x", "file_id": 1, "archive_sha256": "y"}}}
 
     with pytest.raises(PushError) as exc:
         _push(
             songs={"community": _community_song()}, selected=None, transport=transport, media_root=media_root, state_dir=state_dir,
-            catalog=_catalog(_synth_entry(), community), lock=lock,
+            catalog=_catalog(_synth_entry(), community),
         )
     assert exc.value.code == "MODULE_UNAVAILABLE"
 
@@ -260,7 +259,6 @@ def test_missing_community_module_is_actually_installed_on_the_card(tmp_path):
     media_root = tmp_path / "media"
     state_dir = tmp_path / ".rig" / "state"
     community = make_entry("warble@warble", "warble", "Warble", "effects/mod/warble@warble", [])
-    lock = {"modules": {"warble@warble": {"updated_at": "x", "file_id": 1, "archive_sha256": "y"}}}
 
     class _WorkingModuleSource:
         def fetch(self, entry):
@@ -268,7 +266,7 @@ def test_missing_community_module_is_actually_installed_on_the_card(tmp_path):
 
     result = _push(
         songs={"community": _community_song()}, selected=None, transport=transport, media_root=media_root, state_dir=state_dir,
-        catalog=_catalog(_synth_entry(), community), lock=lock, module_source=_WorkingModuleSource(),
+        catalog=_catalog(_synth_entry(), community), module_source=_WorkingModuleSource(),
     )
 
     assert result.modules_installed == ["warble@warble"]
@@ -284,7 +282,6 @@ def test_mismatched_community_module_is_actually_replaced_on_the_card(tmp_path):
     media_root = tmp_path / "media"
     state_dir = tmp_path / ".rig" / "state"
     community = make_entry("warble@warble", "warble", "Warble", "effects/mod/warble@warble", [])
-    lock = {"modules": {"warble@warble": {"updated_at": "x", "file_id": 1, "archive_sha256": "y"}}}
 
     class _WorkingModuleSource:
         def fetch(self, entry):
@@ -292,7 +289,7 @@ def test_mismatched_community_module_is_actually_replaced_on_the_card(tmp_path):
 
     result = _push(
         songs={"community": _community_song()}, selected=None, transport=transport, media_root=media_root, state_dir=state_dir,
-        catalog=_catalog(_synth_entry(), community), lock=lock, module_source=_WorkingModuleSource(),
+        catalog=_catalog(_synth_entry(), community), module_source=_WorkingModuleSource(),
     )
 
     assert result.modules_replaced == ["warble@warble"]
@@ -305,7 +302,7 @@ def test_unused_locked_module_is_not_fetched_or_installed(tmp_path):
     result = _push(
         songs={"vellichor": _song("Vellichor", 3)}, selected=None, transport=transport,
         media_root=tmp_path / "media", state_dir=tmp_path / "state",
-        catalog=_catalog(_synth_entry(), community), lock={"modules": {"warble@warble": {}}},
+        catalog=_catalog(_synth_entry(), community),
     )
     assert result.modules_installed == []
     assert not transport.exists("media/orhack/user-modules/effects/mod/warble@warble")
@@ -343,7 +340,7 @@ def test_uncommanded_chain_rename_refuses(tmp_path):
     with pytest.raises(PushError) as exc:
         _push(songs={"vellichor": hand_renamed}, selected=None, transport=transport, media_root=media_root, state_dir=state_dir)
     assert exc.value.code == "UNCOMMANDED_CHAIN_RENAME"
-    assert "rig rename-chain vellichor lead lead2" in str(exc.value)
+    assert "system/data/state/chains/vellichor.json" in str(exc.value)
 
 
 def test_dry_run_leaves_card_and_state_untouched(tmp_path):

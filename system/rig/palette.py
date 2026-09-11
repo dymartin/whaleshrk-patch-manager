@@ -45,9 +45,9 @@ class PalettePlan:
     unavailable: list[tuple[str, str]]  # (key, reason) -- repo cannot produce the module
 
 
-def compatible_community_entries(catalog: list[CatalogEntry], lock: dict) -> list[CatalogEntry]:
-    """Every locked community module worth auditioning: all of them except the
-    few whose runtime path would shadow an ORHACK built-in.
+def compatible_community_entries(catalog: list[CatalogEntry]) -> list[CatalogEntry]:
+    """Every community module worth auditioning: all of them except the few
+    whose runtime path would shadow an ORHACK built-in.
 
     Community modules install under a separate root and keep the catalog's
     `@source` suffix in their `moduleType`, so they never collide with built-ins
@@ -58,12 +58,10 @@ def compatible_community_entries(catalog: list[CatalogEntry], lock: dict) -> lis
     Those are dropped; nothing else is.
     """
     builtins = {e.module_type for e in catalog if e.source == "orhack"}
-    locked = set(lock.get("modules", {}))
     kept = [
         e
         for e in catalog
         if e.source != "orhack"
-        and e.key in locked
         and e.module_type.rsplit("@", 1)[0] not in builtins
     ]
     return sorted(kept, key=lambda e: e.key)

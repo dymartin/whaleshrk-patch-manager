@@ -112,13 +112,15 @@ def chain_rename_message(song_id: str, suspect: ChainRenameSuspect) -> str:
         old, new = suspect.old_names[0], suspect.new_names[0]
         return (
             f"song {song_id!r}: chain {old!r} lost its binding and {new!r} has none -- looks "
-            f"like a hand-edited rename. Run `rig rename-chain {song_id} {old} {new}` if that's "
-            "right, or restore the old name."
+            f"like a hand-edited rename. If that's right, edit "
+            f"system/data/state/chains/{song_id}.json to rename the {old!r} binding to {new!r}; "
+            "otherwise restore the old chain name in the song YAML."
         )
     candidates = ", ".join(f"{old!r} -> {new!r}" for old in suspect.old_names for new in suspect.new_names)
     return (
         f"song {song_id!r}: {len(suspect.old_names)} orphaned chain binding(s) "
         f"({', '.join(repr(n) for n in suspect.old_names)}) and {len(suspect.new_names)} unbound "
         f"chain(s) ({', '.join(repr(n) for n in suspect.new_names)}) -- ambiguous, refusing to "
-        f"guess. Candidates: {candidates}. Run `rig rename-chain {song_id} OLD NEW` to resolve."
+        f"guess. Candidates: {candidates}. Edit system/data/state/chains/{song_id}.json by hand "
+        "to resolve, then rerun."
     )

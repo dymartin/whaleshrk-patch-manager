@@ -37,27 +37,10 @@ from rig.catalog import (
     live_httpx_client,
     read_catalog,
     read_archive,
-    read_lock,
     write_archive,
     write_catalog,
-    write_lock,
 )
 from rig.compile import CompileError, SampleCompileError, scan_wav_folder
-from rig.hardware import (
-    Device,
-    DeviceUnavailable,
-    HardwareCheckError,
-    MidiOutput,
-    MidiUnavailable,
-    SongMeasurement,
-    SshDevice,
-    WinMidiOutput,
-    make_subject,
-    measure_song,
-    read_baseline,
-    regression_warnings,
-    write_baseline,
-)
 from rig.pull import (
     GhClient,
     GhError,
@@ -118,7 +101,6 @@ MEDIA_ROOT = SYSTEM_DIR / "media"
 MODULES_DIR = SYSTEM_DIR / "modules"
 DATA_DIR = SYSTEM_DIR / "data"
 CATALOG_PATH = DATA_DIR / "catalog.json"
-LOCK_PATH = DATA_DIR / "modules.lock"
 STATE_DIR = DATA_DIR / "state"
 KITS_PATH = DATA_DIR / "kits.yaml"
 
@@ -133,12 +115,7 @@ _card_roots: Optional[Iterable[Path]] = None
 _git: Optional[GitRepo] = None
 _gh: Optional[GhClient] = None
 _module_source: Optional[StoredArchiveModuleSource] = None
-_upgrade_fetcher: Optional[
-    Callable[[dict[str, CatalogEntry]], tuple[dict[str, CatalogEntry], dict[str, CandidateSource]]]
-] = None
 _mirror_fetcher: Optional[Callable[[], dict[str, CandidateSource]]] = None
-_hardware_device: Optional[Device] = None
-_midi_output: Optional[MidiOutput] = None
 
 
 def _fail(command: str, code: str, message: str) -> NoReturn:
@@ -170,14 +147,13 @@ def _resolve_selection(
     return set(song_args)
 
 
-def _read_catalog_lock_kits(command: str) -> tuple[list[CatalogEntry], dict, KitsConfig]:
+def _read_catalog_kits(command: str) -> tuple[list[CatalogEntry], KitsConfig]:
     catalog = read_catalog(CATALOG_PATH)
-    lock = read_lock(LOCK_PATH)
     try:
         kits = parse_kits(KITS_PATH, MEDIA_ROOT)
     except KitsError as exc:
         _fail(command, "KITS_INVALID", str(exc))
-    return catalog, lock, kits
+    return catalog, kits
 
 
 def _lint_findings(
@@ -192,8 +168,7 @@ def _lint_findings(
 
     Cross-song checks always run against every song in `songs`; per-song
     checks are scoped to `selected_ids` (default: every song) -- `rig lint`
-    can narrow the latter to a subset while `push`/`hardware-check` never
-    narrow either."""
+    can narrow the latter to a subset while `push` never narrows."""
     errors: list[str] = []
     warnings: list[str] = []
 
@@ -223,12 +198,11 @@ def _require_valid(
         raise typer.Exit(code=1)
 
 
-# --- Patchstorage lookup, shared by `catalog add`, `catalog update`, `upgrade` -
+# --- Patchstorage lookup, shared by `catalog add` and `catalog update` -----
 
 
 def _fetch_sources(command: str, slugs: set[str]) -> dict[str, CandidateSource]:
-    """Fetch the named uploads from Patchstorage. The only network path in
-    the tool besides `rig upgrade`, which routes through here too."""
+    """Fetch the named uploads from Patchstorage."""
     if not slugs:
         return {}
     try:
@@ -259,22 +233,17 @@ def _store_archives(command: str, entries: list[CatalogEntry], sources: dict[str
             )
 
 
-def _mirror_source_satisfied(
-    item: dict, entries_by_source: dict[str, list[CatalogEntry]], lock: dict
-) -> bool:
+def _mirror_source_satisfied(item: dict, entries_by_source: dict[str, list[CatalogEntry]]) -> bool:
     """Live listing unchanged and every pinned archive still verifies locally."""
     entries = entries_by_source.get(item.get("slug"), [])
     if not entries or any(e.version.updated_at != item.get("updated_at") for e in entries):
         return False
     checked: set[tuple[str, str, str]] = set()
     for entry in entries:
-        pin = lock.get("modules", {}).get(entry.key)
-        if not pin:
-            return False
         archive = (
             entry.source,
-            pin.get("revision") or "unknown",
-            pin.get("archive_sha256") or "",
+            entry.version.revision or "unknown",
+            entry.version.archive_sha256 or "",
         )
         if archive in checked:
             continue
@@ -302,19 +271,18 @@ def push(
         _fail("push", "SONG_PARSE_ERROR", str(exc))
 
     selected = _resolve_selection("push", song, song_docs)
-    catalog, lock, kits = _read_catalog_lock_kits("push")
+    catalog, kits = _read_catalog_kits("push")
     songs = {sid: doc.song for sid, doc in song_docs.items()}
 
     _require_valid("push", songs, catalog, kits, MEDIA_ROOT)
 
-    module_source = _module_source or StoredArchiveModuleSource(MODULES_DIR, lock)
+    module_source = _module_source or StoredArchiveModuleSource(MODULES_DIR)
 
     try:
         result = run_push(
             songs=songs,
             selected=selected,
             catalog=catalog,
-            lock=lock,
             kits=kits,
             media_root=MEDIA_ROOT,
             state_dir=STATE_DIR,
@@ -389,7 +357,7 @@ def pull(
         _fail("pull", "SONG_PARSE_ERROR", str(exc))
 
     selected = _resolve_selection("pull", song, song_docs)
-    catalog, lock, kits = _read_catalog_lock_kits("pull")
+    catalog, kits = _read_catalog_kits("pull")
 
     try:
         result = run_pull(
@@ -435,21 +403,20 @@ def _echo_pull_result(result: PullResult) -> None:
         typer.echo("(dry run -- nothing written)")
 
 
-def _check_stored_archives(catalog: list[CatalogEntry], lock: dict) -> list[str]:
-    """Re-gate every locked module's committed archive.
+def _check_stored_archives(catalog: list[CatalogEntry]) -> list[str]:
+    """Re-gate every community module's committed archive.
 
-    This is the repo's reproducibility check: it proves `.rig/catalog/` was
-    generated from the archives actually present in `modules/`, rather than
+    This is the repo's reproducibility check: it proves `system/data/catalog.json`
+    was generated from the archives actually present in `modules/`, rather than
     hand-edited, and that every archive still passes the safety and ARM32 ELF
     checks it passed when it was added. Cheap because the catalog is a
     shopping list -- it covers the modules this rig uses, not all of
     Patchstorage.
     """
-    module_source = StoredArchiveModuleSource(MODULES_DIR, lock)
-    locked_keys = set(lock.get("modules", {}))
+    module_source = StoredArchiveModuleSource(MODULES_DIR)
     problems: list[str] = []
     for entry in catalog:
-        if entry.source == "orhack" or entry.key not in locked_keys:
+        if entry.source == "orhack":
             continue
         try:
             module_source.fetch(entry)
@@ -471,12 +438,12 @@ def lint(
     selection = _resolve_selection("lint", song, song_docs)
     selected_ids = sorted(song_docs) if selection is None else sorted(selection)
 
-    catalog, lock, kits = _read_catalog_lock_kits("lint")
+    catalog, kits = _read_catalog_kits("lint")
     songs = {sid: doc.song for sid, doc in song_docs.items()}
 
     has_error = False
 
-    for problem in _check_stored_archives(catalog, lock):
+    for problem in _check_stored_archives(catalog):
         typer.echo(f"error: MODULE_ARCHIVE: {problem}")
         has_error = True
 
@@ -514,80 +481,6 @@ def reabank(
     typer.echo(f"wrote: {output}")
 
 
-def _echo_hardware_measurement(measurement: SongMeasurement) -> None:
-    verdict = "pass" if measurement.passed else "fail"
-    typer.echo(
-        f"{measurement.song_id}: {verdict}; stimulus v1; "
-        f"load median {measurement.load_ms:.1f} ms; "
-        f"idle CPU mean/p95 {measurement.idle_cpu.mean:.1f}/{measurement.idle_cpu.p95:.1f}%; "
-        f"active CPU mean/p95 {measurement.active_cpu.mean:.1f}/{measurement.active_cpu.p95:.1f}%"
-    )
-    for line in measurement.errors:
-        typer.echo(f"error: {measurement.song_id}: PD_LOAD_ERROR: {line}")
-    if measurement.underruns:
-        typer.echo(f"error: {measurement.song_id}: ALSA_UNDERRUN: {measurement.underruns}")
-    for warning in measurement.warnings:
-        typer.echo(f"warning: {measurement.song_id}: {warning}")
-
-
-@app.command("hardware-check")
-def hardware_check(
-    song: Optional[list[str]] = typer.Argument(None),
-    host: str = typer.Option("organelle", "--host", help="OpenSSH host alias"),
-    midi_port: str = typer.Option(..., "--midi-port", help="Exact Windows MIDI output name"),
-) -> None:
-    """Measure load time and Pd CPU on an Organelle S2."""
-    try:
-        song_docs = _load_all_song_docs(SONGS_DIR)
-    except SongParseError as exc:
-        _fail("hardware-check", "SONG_PARSE_ERROR", str(exc))
-    selected = _resolve_selection("hardware-check", song, song_docs)
-    selected_ids = sorted(song_docs) if selected is None else sorted(selected)
-    catalog, lock, kits = _read_catalog_lock_kits("hardware-check")
-    songs = {sid: doc.song for sid, doc in song_docs.items()}
-    _require_valid("hardware-check", songs, catalog, kits, MEDIA_ROOT)
-
-    device = _hardware_device or SshDevice(host)
-    midi: MidiOutput | None = _midi_output
-    own_midi = midi is None
-    try:
-        subject = make_subject(device, midi_port, lock)
-        before = device.card_hash()
-        if midi is None:
-            midi = WinMidiOutput(midi_port)
-        failed = False
-        pending_baselines: list[SongMeasurement] = []
-        for song_id in selected_ids:
-            measured = measure_song(song_id, songs[song_id], device, midi)
-            baseline = read_baseline(STATE_DIR, song_id)
-            warnings = regression_warnings(measured, baseline, subject)
-            measured = SongMeasurement(
-                measured.song_id, measured.load_ms, measured.idle_cpu,
-                measured.active_cpu, measured.errors, measured.underruns, warnings,
-            )
-            _echo_hardware_measurement(measured)
-            failed |= not measured.passed
-            if measured.passed and (baseline is None or baseline.subject.key != subject.key):
-                pending_baselines.append(measured)
-        after = device.card_hash()
-        if before != after:
-            typer.echo("error: CARD_CHANGED: /sdcard changed during hardware check", err=True)
-            failed = True
-        else:
-            for measured in pending_baselines:
-                write_baseline(STATE_DIR, measured, subject)
-                typer.echo(f"baseline written: {measured.song_id}")
-        if failed:
-            raise typer.Exit(code=1)
-    except DeviceUnavailable as exc:
-        typer.echo(f"hardware-check: unavailable: {exc}")
-    except (HardwareCheckError, MidiUnavailable) as exc:
-        _fail("hardware-check", "CHECK_FAILED", str(exc))
-    finally:
-        if own_midi and midi is not None:
-            midi.close()
-
-
 def _rebuild(command: str, sources: dict[str, CandidateSource]) -> list[CatalogEntry]:
     """Gate `sources` and rebuild the whole catalog around them.
 
@@ -612,9 +505,10 @@ def catalog_add(
     """Add community module(s) to the catalog by Patchstorage upload slug.
 
     The catalog is a shopping list, not a mirror of Patchstorage: it holds
-    the modules this rig actually uses, and nothing else. This is one of the
-    two commands allowed to reach the network (`rig upgrade` is the other);
-    everything afterwards reads the committed `.rig/catalog/` and `modules/`.
+    the modules this rig actually uses, and nothing else. `rig catalog add`,
+    `rig catalog mirror` and `rig catalog update` are the only commands that
+    reach the network; everything else reads the committed
+    `system/data/catalog.json` and `modules/`.
     """
     wanted = set(slug)
     existing_sources = {e.source for e in read_catalog(CATALOG_PATH) if e.source != "orhack"}
@@ -638,7 +532,6 @@ def catalog_add(
 
     _store_archives("catalog add", entries, sources)
     write_catalog(entries, CATALOG_PATH)
-    write_lock(entries, LOCK_PATH)
     typer.echo(f"added: {', '.join(added)}")
 
 
@@ -646,7 +539,6 @@ def catalog_add(
 def catalog_mirror() -> None:
     """Vendor every Patchstorage ORAC upload without deleting vanished uploads."""
     current_catalog = read_catalog(CATALOG_PATH)
-    lock = read_lock(LOCK_PATH)
     skipped = 0
     discovered = 0
     try:
@@ -662,7 +554,7 @@ def catalog_mirror() -> None:
                     if entry.source != "orhack":
                         entries_by_source.setdefault(entry.source, []).append(entry)
                 pending = [
-                    item for item in items if not _mirror_source_satisfied(item, entries_by_source, lock)
+                    item for item in items if not _mirror_source_satisfied(item, entries_by_source)
                 ]
                 skipped = discovered - len(pending)
                 display = {"text": ""}
@@ -707,7 +599,6 @@ def catalog_mirror() -> None:
 
     _store_archives("catalog mirror", entries, sources)
     write_catalog(merged, CATALOG_PATH)
-    write_lock(merged, LOCK_PATH)
     typer.echo(
         f"mirrored {discovered or len(sources)} upload(s); {len(sources)} downloaded; "
         f"{skipped} unchanged; {len(accepted_sources)} accepted; "
@@ -747,170 +638,7 @@ def catalog_update(
 
     _store_archives("catalog update", merged, sources)
     write_catalog(merged, CATALOG_PATH)
-    write_lock(merged, LOCK_PATH)
     typer.echo(f"{len(merged)} entries written, {len(gone)} no longer upstream")
-
-
-def _used_param_slugs(song: Song, module_key_: str) -> set[str]:
-    """Every friendly parameter slug this song uses against `module_key_`,
-    across every context a module key can appear -- decision #56's "a
-    parameter slug used by any song"."""
-    slugs: set[str] = set()
-    for chain in song.chains:
-        for m in chain.modules:
-            if m.key == module_key_:
-                slugs.update(m.params)
-                slugs.update(m.midi)
-    for send in song.sends:
-        if send.module == module_key_:
-            slugs.update(send.params)
-    for use in song.master:
-        if use.key == module_key_:
-            slugs.update(use.params)
-    for use in song.mod_sources:
-        if use.key == module_key_:
-            slugs.update(use.params)
-    return slugs
-
-
-def _fetch_upgraded_entries(
-    requested: dict[str, CatalogEntry],
-) -> tuple[dict[str, CatalogEntry], dict[str, CandidateSource]]:
-    """Module key -> its freshly re-ingested `CatalogEntry`, live from
-    Patchstorage, for every key in `requested` whose upload still exists and
-    still passes the catalog gate, plus the fetched sources so their archives
-    can be stored. A key absent from the result means it could not be
-    refreshed -- the caller treats that as a refusal."""
-    wanted_slugs = {entry.source for entry in requested.values()}
-    with live_httpx_client() as client:
-        sources = find_sources_by_slug(client, wanted_slugs)
-    fresh = build_community_catalog(list(sources.values()))
-    return {entry.key: entry for entry in fresh.entries if entry.key in requested}, sources
-
-
-@app.command()
-def upgrade(
-    module: list[str] = typer.Argument(...),
-    dry_run: bool = typer.Option(False, "--dry-run"),
-) -> None:
-    """Bump pinned module versions in .rig/modules.lock."""
-    current_catalog = read_catalog(CATALOG_PATH)
-    current_by_key = {e.key: e for e in current_catalog}
-
-    unknown = [m for m in module if m not in current_by_key]
-    if unknown:
-        _fail("upgrade", "UNKNOWN_MODULE", f"not in system/data/catalog.json: {', '.join(unknown)}")
-
-    builtins_named = [m for m in module if current_by_key[m].source == "orhack"]
-    if builtins_named:
-        _fail(
-            "upgrade",
-            "BUILTIN_NOT_UPGRADABLE",
-            f"built-in module(s) {', '.join(builtins_named)} are pinned to the ORHACK build, "
-            "not a live source -- nothing to upgrade to",
-        )
-
-    requested = {m: current_by_key[m] for m in module}
-    fetcher = _upgrade_fetcher or _fetch_upgraded_entries
-    try:
-        fresh_by_key, fresh_sources = fetcher(requested)
-    except (httpx.HTTPError, PatchstorageError) as exc:
-        _fail("upgrade", "SOURCE_UNREACHABLE", f"could not reach Patchstorage: {exc}")
-
-    still_missing = [m for m in module if m not in fresh_by_key]
-    if still_missing:
-        _fail(
-            "upgrade",
-            "MODULE_UNAVAILABLE",
-            f"module(s) {', '.join(still_missing)} could not be found live, or no longer pass "
-            "the catalog gate -- nothing changed",
-        )
-
-    try:
-        song_docs = _load_all_song_docs(SONGS_DIR)
-    except SongParseError as exc:
-        _fail("upgrade", "SONG_PARSE_ERROR", str(exc))
-    songs = {sid: doc.song for sid, doc in song_docs.items()}
-
-    refusal_lines: list[str] = []
-    for m in module:
-        old_ids = {p.name: p.id for p in requested[m].params}
-        new_ids = {p.name: p.id for p in fresh_by_key[m].params}
-        for sid in sorted(songs):
-            for slug_name in sorted(_used_param_slugs(songs[sid], m)):
-                if slug_name in old_ids and slug_name in new_ids and old_ids[slug_name] != new_ids[slug_name]:
-                    refusal_lines.append(
-                        f"{m}: parameter {slug_name!r} used by song {sid!r} now resolves to a "
-                        "different parameter than before -- same slug, different id, no "
-                        "song-file diff, different sound"
-                    )
-
-    if refusal_lines:
-        for line in refusal_lines:
-            typer.echo(f"rig upgrade: {line}", err=True)
-        typer.echo("rig upgrade: refusing -- edit the affected song(s) by hand, then rerun", err=True)
-        raise typer.Exit(code=1)
-
-    if dry_run:
-        for m in module:
-            typer.echo(f"would upgrade: {m}")
-        return
-
-    merged = [fresh_by_key.get(entry.key, entry) for entry in current_catalog]
-    _store_archives("upgrade", [fresh_by_key[m] for m in module], fresh_sources)
-    write_catalog(merged, CATALOG_PATH)
-    write_lock(merged, LOCK_PATH)
-    for m in module:
-        typer.echo(f"upgraded: {m}")
-
-
-@app.command("rename-chain")
-def rename_chain(
-    song: str = typer.Argument(...),
-    old: str = typer.Argument(...),
-    new: str = typer.Argument(...),
-) -> None:
-    """Rename a chain within a song, preserving its letter binding.
-
-    Edits the working tree only -- `git commit` is left to the musician
-    (Ruling #5: this tool never commits without being asked).
-    """
-    path = SONGS_DIR / f"{song}.yaml"
-    if not path.is_file():
-        _fail("rename-chain", "UNKNOWN_SONG", f"no song file at {path}")
-
-    try:
-        doc = load_song(path)
-    except SongParseError as exc:
-        _fail("rename-chain", "SONG_PARSE_ERROR", str(exc))
-
-    names = {c.name for c in doc.song.chains}
-    if old not in names:
-        _fail("rename-chain", "CHAIN_NOT_FOUND", f"song {song!r} has no chain named {old!r}")
-    if new in names:
-        _fail("rename-chain", "CHAIN_NAME_COLLISION", f"song {song!r} already has a chain named {new!r}")
-
-    renamed = False
-    for chain_raw in doc.raw.get("chains") or []:
-        if chain_raw.get("name") == old:
-            chain_raw["name"] = new
-            renamed = True
-            break
-    if not renamed:
-        # Unreachable in practice -- doc.song.chains was built from this same
-        # raw list -- but never silently no-op a rename (Global Constraint #3).
-        _fail("rename-chain", "CHAIN_NOT_FOUND", f"song {song!r} has no chain named {old!r} in its YAML")
-
-    write_text_atomic(path, dump_song(doc))
-
-    chains_state_dir = STATE_DIR / "chains"
-    bindings = read_bindings(chains_state_dir, song)
-    if old in bindings:
-        letter = bindings.pop(old)
-        bindings[new] = letter
-        write_bindings(chains_state_dir, song, bindings)
-
-    typer.echo(f"renamed: {song}: {old} -> {new}")
 
 
 def _palette_transport(command: str) -> Transport:
@@ -930,13 +658,12 @@ def palette_install() -> None:
     written in YAML and pushed.
     """
     catalog = read_catalog(CATALOG_PATH)
-    lock = read_lock(LOCK_PATH)
-    entries = compatible_community_entries(catalog, lock)
+    entries = compatible_community_entries(catalog)
     if not entries:
         typer.echo("palette install: no compatible community modules in the catalog")
         return
 
-    plan = plan_palette(entries, _module_source or StoredArchiveModuleSource(MODULES_DIR, lock))
+    plan = plan_palette(entries, _module_source or StoredArchiveModuleSource(MODULES_DIR))
     if plan.unavailable:
         names = ", ".join(f"{key} ({reason})" for key, reason in sorted(plan.unavailable))
         _fail(
@@ -963,8 +690,7 @@ def palette_clear() -> None:
     Leaves modules a song owns (installed by `rig push`) untouched.
     """
     catalog = read_catalog(CATALOG_PATH)
-    lock = read_lock(LOCK_PATH)
-    entries = compatible_community_entries(catalog, lock)
+    entries = compatible_community_entries(catalog)
 
     try:
         live = _palette_transport("palette clear")

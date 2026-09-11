@@ -48,12 +48,12 @@ from rig.push.plan import (
 )
 from rig.push.state import (
     LastPushedMeta,
-    hash_lock,
+    hash_locked_modules,
     read_all_meta,
-    read_recorded_lock_hash,
+    read_recorded_catalog_hash,
     remove_last_pushed,
     write_last_pushed,
-    write_recorded_lock_hash,
+    write_recorded_catalog_hash,
 )
 from rig.push.transact import (
     RootOp,
@@ -136,7 +136,6 @@ def push(
     songs: dict[str, Song],
     selected: Optional[set[str]],
     catalog: list[CatalogEntry],
-    lock: dict,
     kits: KitsConfig,
     media_root: Path,
     state_dir: Path,
@@ -181,21 +180,18 @@ def push(
     # Step 2b: derive the desired module ledger from every song in the repo,
     # never only the selected songs. The card ledger records ownership so
     # cleanup cannot touch modules installed by the user or another tool.
-    current_lock_hash = hash_lock(lock)
-    recorded_lock_hash = read_recorded_lock_hash(state_dir)
-    if is_selective and recorded_lock_hash is not None and recorded_lock_hash != current_lock_hash:
+    current_catalog_hash = hash_locked_modules(catalog)
+    recorded_catalog_hash = read_recorded_catalog_hash(state_dir)
+    if is_selective and recorded_catalog_hash is not None and recorded_catalog_hash != current_catalog_hash:
         raise PushError(
             "LOCK_CHANGED_SELECTIVE_PUSH",
-            "`system/data/modules.lock` changed since the last push -- module reconciliation is "
+            "`system/data/catalog.json` changed since the last push -- module reconciliation is "
             "repo-wide and cannot be scoped to a song selection. Rerun `rig push` with no "
             "song arguments.",
         )
 
-    locked_keys = set(lock.get("modules", {}))
     used_keys = _used_module_keys(songs)
-    community_entries = [
-        e for e in catalog if e.source != "orhack" and e.key in locked_keys and e.key in used_keys
-    ]
+    community_entries = [e for e in catalog if e.source != "orhack" and e.key in used_keys]
     desired_managed = {e.key: e.module_type for e in community_entries}
     previous_managed = _read_managed_modules(transport)
     removed_modules = sorted(set(previous_managed) - set(desired_managed))
@@ -204,7 +200,7 @@ def push(
         names = ", ".join(sorted(e.key for e in reconcile.unavailable))
         raise PushError(
             "MODULE_UNAVAILABLE",
-            f"module(s) {names} are named in `system/data/modules.lock` but their archive in "
+            f"module(s) {names} are named in `system/data/catalog.json` but their archive in "
             "`system/modules/` is missing, fails its pinned digest, or no longer holds the module -- "
             "the compiled preset would reference a moduleType that never resolves",
         )
@@ -377,7 +373,7 @@ def push(
             remove_last_pushed(state_dir, song_id)
             remove_bindings(chains_state_dir, song_id)
 
-    write_recorded_lock_hash(state_dir, current_lock_hash)
+    write_recorded_catalog_hash(state_dir, current_catalog_hash)
 
     return PushResult(dry_run=False, current_preset_repaired=current_preset_repaired, **result_common)
 

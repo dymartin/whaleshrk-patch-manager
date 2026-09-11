@@ -1,7 +1,7 @@
 """Crash-safe writes to the repo working tree.
 
 `.rig/` holds the state push and pull reason from: the last-pushed baseline
-pull diffs against, the recorded lock hash, chain letter bindings. A plain
+pull diffs against, the recorded catalog hash, chain letter bindings. A plain
 `write_text` truncates the old file before the new content lands, so an
 interrupted run can leave a half-written baseline that the next pull reads as
 truth. Writing to a temp file in the same directory and then renaming makes

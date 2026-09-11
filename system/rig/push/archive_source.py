@@ -4,8 +4,8 @@ Push runs at a venue, before a gig, where there may be no usable wifi -- and
 the repo's reproducibility promise ("same repo, same push, same rig") cannot
 hold if the module bytes come from a third party who can delete or replace an
 upload. So the archives travel with the repo (`rig.catalog.store`) and this
-reads them, verifying each against the digest pinned in `.rig/modules.lock`
-before anything reaches the card.
+reads them, verifying each against the digest pinned on its own catalog
+entry (`system/data/catalog.json`) before anything reaches the card.
 
 `rig catalog add` is the only command that reaches Patchstorage.
 """
@@ -67,28 +67,25 @@ def extract_module_files(archive: CandidateArchive, module_dir: str) -> dict[str
 
 
 class StoredArchiveModuleSource:
-    """Reads each locked module out of `modules/`, keyed by the upload slug
-    and revision the lock records. One archive can hold several modules, so
-    parsed archives are cached for the lifetime of one push."""
+    """Reads each community module out of `modules/`, keyed by the upload
+    slug and revision pinned on its own catalog entry. One archive can hold
+    several modules, so parsed archives are cached for the lifetime of one
+    push."""
 
-    def __init__(self, modules_dir: Path, lock: dict):
+    def __init__(self, modules_dir: Path):
         self._modules_dir = modules_dir
-        self._lock_modules = lock.get("modules", {})
         self._archives: dict[str, CandidateArchive] = {}
 
     def _archive_for(self, entry: CatalogEntry) -> CandidateArchive:
         if entry.source in self._archives:
             return self._archives[entry.source]
 
-        pin = self._lock_modules.get(entry.key)
-        if pin is None:
-            raise ModuleSourceUnavailable(f"{entry.key}: not pinned in system/data/modules.lock")
         try:
             data = read_archive(
                 self._modules_dir,
                 entry.source,
-                pin.get("revision") or "unknown",
-                pin.get("archive_sha256") or "",
+                entry.version.revision or "unknown",
+                entry.version.archive_sha256 or "",
             )
         except ArchiveStoreError as exc:
             raise ModuleSourceUnavailable(f"{entry.key}: {exc}") from exc

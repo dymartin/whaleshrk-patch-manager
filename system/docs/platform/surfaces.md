@@ -163,7 +163,7 @@ sudo mount -o remount,ro /
 reboot; `start` alone does not. Revert with `systemctl disable --now
 avahi-daemon` followed by `mask`.
 
-**If the hardware check ever reports underruns, disabling avahi is the first
+**If underruns are ever observed on hardware, disabling avahi is the first
 experiment** — one command, decisive.
 
 A DHCP reservation avoids the question entirely: the address stops moving,

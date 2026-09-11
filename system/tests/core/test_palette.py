@@ -18,7 +18,7 @@ from typer.testing import CliRunner
 
 import rig.cli as cli
 from rig.catalog.entry import CatalogEntry, VersionInfo
-from rig.catalog.io import write_catalog, write_lock
+from rig.catalog.io import write_catalog
 from rig.catalog.params import ParamSpec
 from rig.catalog.store import write_archive
 from rig.cli import app
@@ -76,7 +76,6 @@ def _community(display: str, source: str) -> tuple[CatalogEntry, bytes]:
 
 def _seed(entries: list[CatalogEntry]) -> None:
     write_catalog(entries, Path("system/data/catalog.json"))
-    write_lock(entries, Path("system/data/modules.lock"))
 
 
 def _store(entry: CatalogEntry, data: bytes) -> None:
@@ -103,18 +102,10 @@ def test_compatible_drops_builtin_shadowers_and_keeps_the_rest(repo):
         warble,
         converb,
     ]
-    lock = {"modules": {warble.key: {}, converb.key: {}}}
 
-    kept = {e.key for e in compatible_community_entries(catalog, lock)}
+    kept = {e.key for e in compatible_community_entries(catalog)}
 
     assert kept == {"converb@converb"}  # warble dropped: a built-in already owns its path
-
-
-def test_compatible_skips_unlocked_modules(repo):
-    warble, _ = _community("Warble", "warble")
-    catalog = [_builtin("instruments/synth/synth"), warble]
-
-    assert compatible_community_entries(catalog, {"modules": {}}) == []
 
 
 # --- install -----------------------------------------------------------------

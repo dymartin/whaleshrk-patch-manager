@@ -14,8 +14,3 @@ template. Capture a freshly placed instance of each module on hardware, save the
 preset, and inspect the emitted files. Until then, inventing defaults would make
 compiled presets nondeterministic.
 
-## Hardware thresholds
-
-There is not enough measurement history to justify absolute CPU or load-time
-limits. Existing per-device baselines can reveal regressions; add absolute
-limits only after real measurements establish useful bounds.
