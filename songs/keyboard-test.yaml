@@ -4,6 +4,8 @@ keyboard: keys
 
 chains:
   - name: keys
+    midi:
+      channel: 1
     modules:
       - braids@orhack
       - chorus@orhack

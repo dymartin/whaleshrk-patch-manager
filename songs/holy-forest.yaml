@@ -1,9 +1,12 @@
 song: Holy Forest
 program: 2
+keyboard: lead_2
 
 chains:
-  - name: lead
+  - name: lead_1
     input: { guitar: false }
+    midi:
+      channel: 1
     modules:
       - braids-plus@orhack:
           resonance: 4
@@ -19,8 +22,32 @@ chains:
           dry-wet: 60
           depth: 60
 
+  - name: lead_2
+    input: { guitar: false }
+    midi:
+      channel: 2
+    modules:
+      - braids-plus@orhack:
+          resonance: 2
+          cutoff: 35
+          timbre: 40
+          colour: 30
+          noise: 10
+          volume: 80
+      - plateverb@orhack:
+          audio-thru-gain: 0
+          decay: 95
+          amount: 100
+          diffusion: 1
+          size: 4
+          modulation: 40
+          high-cut: 8000
+          lo-cut: 200
+
   - name: pluck
     input: { guitar: false }
+    midi:
+      channel: 3
     modules:
       - 4wave@4wave-2:
           sine: 0
@@ -30,6 +57,8 @@ chains:
 
   - name: pad
     input: { guitar: true }
+    midi:
+      channel: 4
     modules:
       - spectral-gate@orhack:
           gate: 0

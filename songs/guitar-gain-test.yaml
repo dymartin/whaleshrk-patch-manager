@@ -4,6 +4,8 @@ program: 3
 chains:
   - name: gain-test
     input: { guitar: true }
+    midi:
+      channel: 1
     modules:
       - cvin-audio@orhack:
           l-gain: 100

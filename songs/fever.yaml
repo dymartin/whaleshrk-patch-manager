@@ -9,6 +9,8 @@ sends:
 chains:
   - name: reverse-guitar
     input: { guitar: true }
+    midi:
+      channel: 1
     modules:
       - spectral-gate@orhack:
           gate: 0
@@ -30,6 +32,8 @@ chains:
 
   - name: reverse-synth
     input: { guitar: false }
+    midi:
+      channel: 2
     modules:
       - braids-plus@orhack
       - spiraldelay@orhack:
@@ -44,6 +48,8 @@ chains:
 
   - name: owow
     input: { guitar: false }
+    midi:
+      channel: 3
     modules:
       - braids-plus@orhack:
           resonance: 3
