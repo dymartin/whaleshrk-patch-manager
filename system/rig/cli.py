@@ -181,17 +181,27 @@ def _read_catalog_lock_kits(command: str) -> tuple[list[CatalogEntry], dict, Kit
 
 
 def _lint_findings(
-    songs: dict[str, Song], catalog: list[CatalogEntry], kits: KitsConfig, media_root: Path
+    songs: dict[str, Song],
+    catalog: list[CatalogEntry],
+    kits: KitsConfig,
+    media_root: Path,
+    selected_ids: Optional[Iterable[str]] = None,
 ) -> tuple[list[str], list[str]]:
     """(error lines, warning lines) -- every line already prefixed with the
-    song id where one applies, ready to print."""
+    song id where one applies, ready to print.
+
+    Cross-song checks always run against every song in `songs`; per-song
+    checks are scoped to `selected_ids` (default: every song) -- `rig lint`
+    can narrow the latter to a subset while `push`/`hardware-check` never
+    narrow either."""
     errors: list[str] = []
     warnings: list[str] = []
 
     cross = validate_songs(list(songs.values()))
     errors += [f"{f.code}: {f.message}" for f in cross.errors]
 
-    for sid in sorted(songs):
+    ids = sorted(songs) if selected_ids is None else sorted(selected_ids)
+    for sid in ids:
         bindings = read_bindings(STATE_DIR / "chains", sid)
         result = validate_song(
             songs[sid], catalog=catalog, kits=kits, media_root=media_root, bindings=bindings
@@ -214,11 +224,6 @@ def _require_valid(
 
 
 # --- Patchstorage lookup, shared by `catalog add`, `catalog update`, `upgrade` -
-
-
-def _locked_community_slugs(catalog: list[CatalogEntry], lock: dict) -> set[str]:
-    locked_keys = set(lock.get("modules", {}))
-    return {e.source for e in catalog if e.source != "orhack" and e.key in locked_keys}
 
 
 def _fetch_sources(command: str, slugs: set[str]) -> dict[str, CandidateSource]:
@@ -475,19 +480,12 @@ def lint(
         typer.echo(f"error: MODULE_ARCHIVE: {problem}")
         has_error = True
 
-    cross = validate_songs(list(songs.values()))
-    for f in cross.errors:
-        typer.echo(f"error: {f.code}: {f.message}")
+    errors, warnings = _lint_findings(songs, catalog, kits, MEDIA_ROOT, selected_ids)
+    for line in errors:
+        typer.echo(f"error: {line}")
         has_error = True
-
-    for sid in selected_ids:
-        bindings = read_bindings(STATE_DIR / "chains", sid)
-        result = validate_song(songs[sid], catalog=catalog, kits=kits, media_root=MEDIA_ROOT, bindings=bindings)
-        for f in result.errors:
-            typer.echo(f"error: {sid}: {f.code}: {f.message}")
-            has_error = True
-        for f in result.warnings:
-            typer.echo(f"warning: {sid}: {f.code}: {f.message}")
+    for line in warnings:
+        typer.echo(f"warning: {line}")
 
     # Kits are shared, so their folder contents are checked once, not per song.
     for alias in sorted(kits.aliases):
