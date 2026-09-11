@@ -8,5 +8,4 @@ from .card import (
     resolve_card,
 )
 from .memory import InMemoryTransport
-from .ssh import SshTransport, SshTransportError
 from .usb import UsbMassStorage

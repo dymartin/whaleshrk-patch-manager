@@ -241,7 +241,7 @@ def run_transaction(
 
     `on_step`, when given, is called with a short label before each root's
     swap -- the only per-operation progress signal push has, since a single
-    root can be one or more SSH round trips with nothing else in between.
+    root can be one or more transport round trips with nothing else in between.
     """
     if not ops:
         delete_journal(transport)

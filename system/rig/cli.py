@@ -76,6 +76,7 @@ from rig.push import (
     StoredArchiveModuleSource,
     push as run_push,
 )
+from rig.reabank import build_reabank
 from rig.song import (
     KitsConfig,
     KitsError,
@@ -98,8 +99,6 @@ from rig.palette import (
 )
 from rig.transport import (
     CardDetectionError,
-    SshTransport,
-    SshTransportError,
     Transport,
     TransportPathError,
     resolve_card,
@@ -290,8 +289,6 @@ def push(
     song: Optional[list[str]] = typer.Argument(None),
     dry_run: bool = typer.Option(False, "--dry-run"),
     force: bool = typer.Option(False, "--force"),
-    transport: str = typer.Option("ssh", "--transport", help="ssh (default) or usb"),
-    host: str = typer.Option("organelle", "--host", help="OpenSSH host alias"),
 ) -> None:
     """Compile song YAML and write it to the card."""
     try:
@@ -307,10 +304,6 @@ def push(
 
     module_source = _module_source or StoredArchiveModuleSource(MODULES_DIR, lock)
 
-    if transport not in {"ssh", "usb"}:
-        _fail("push", "UNKNOWN_TRANSPORT", "--transport must be 'ssh' or 'usb'")
-    live_transport = _transport or (None if transport == "usb" or _card_roots is not None else SshTransport(host))
-
     try:
         result = run_push(
             songs=songs,
@@ -321,7 +314,7 @@ def push(
             media_root=MEDIA_ROOT,
             state_dir=STATE_DIR,
             module_source=module_source,
-            transport=live_transport,
+            transport=_transport,
             roots=_card_roots,
             force=force,
             dry_run=dry_run,
@@ -339,8 +332,6 @@ def push(
         _fail("push", exc.code, str(exc))
     except TransportPathError as exc:
         _fail("push", "TRANSPORT_PATH_ERROR", str(exc))
-    except SshTransportError as exc:
-        _fail("push", "SSH_TRANSPORT_ERROR", str(exc))
 
     _echo_push_result(result)
 
@@ -385,8 +376,6 @@ def _echo_push_result(result: PushResult) -> None:
 def pull(
     song: Optional[list[str]] = typer.Argument(None),
     dry_run: bool = typer.Option(False, "--dry-run"),
-    transport: str = typer.Option("ssh", "--transport", help="ssh (default) or usb"),
-    host: str = typer.Option("organelle", "--host", help="OpenSSH host alias"),
 ) -> None:
     """Detect card drift and open one PR per drifted song."""
     try:
@@ -397,10 +386,6 @@ def pull(
     selected = _resolve_selection("pull", song, song_docs)
     catalog, lock, kits = _read_catalog_lock_kits("pull")
 
-    if transport not in {"ssh", "usb"}:
-        _fail("pull", "UNKNOWN_TRANSPORT", "--transport must be 'ssh' or 'usb'")
-    live_transport = _transport or (None if transport == "usb" or _card_roots is not None else SshTransport(host))
-
     try:
         result = run_pull(
             song_docs=song_docs,
@@ -410,7 +395,7 @@ def pull(
             state_dir=STATE_DIR,
             repo_root=Path("."),
             selected=selected,
-            transport=live_transport,
+            transport=_transport,
             roots=_card_roots,
             git=_git,
             gh=_gh,
@@ -426,8 +411,6 @@ def pull(
         _fail("pull", "GH_ERROR", str(exc))
     except TransportPathError as exc:
         _fail("pull", "TRANSPORT_PATH_ERROR", str(exc))
-    except SshTransportError as exc:
-        _fail("pull", "SSH_TRANSPORT_ERROR", str(exc))
 
     _echo_pull_result(result)
     if result.aborted:
@@ -517,6 +500,20 @@ def lint(
         typer.echo("lint: ok")
     if has_error:
         raise typer.Exit(code=1)
+
+
+@app.command()
+def reabank(
+    output: Path = typer.Option(DATA_DIR / "orhack.reabank", "--output"),
+) -> None:
+    """Write a REAPER .reabank file listing every song's MIDI program."""
+    try:
+        song_docs = _load_all_song_docs(SONGS_DIR)
+    except SongParseError as exc:
+        _fail("reabank", "SONG_PARSE_ERROR", str(exc))
+    songs = {sid: doc.song for sid, doc in song_docs.items()}
+    write_text_atomic(output, build_reabank(songs))
+    typer.echo(f"wrote: {output}")
 
 
 def _echo_hardware_measurement(measurement: SongMeasurement) -> None:
@@ -918,23 +915,15 @@ def rename_chain(
     typer.echo(f"renamed: {song}: {old} -> {new}")
 
 
-def _palette_transport(command: str, transport: str, host: str) -> Transport:
-    """SSH by default, the USB card as the explicit fallback -- the same choice
-    `push` offers. The test seam (`_transport`) wins when set."""
-    if transport not in {"ssh", "usb"}:
-        _fail(command, "UNKNOWN_TRANSPORT", "--transport must be 'ssh' or 'usb'")
+def _palette_transport(command: str) -> Transport:
+    """The test seam (`_transport`) wins when set; otherwise the mounted USB card."""
     if _transport is not None:
         return _transport
-    if transport == "usb":
-        return resolve_card(_card_roots)
-    return SshTransport(host)
+    return resolve_card(_card_roots)
 
 
 @palette_app.command("install")
-def palette_install(
-    transport: str = typer.Option("ssh", "--transport", help="ssh (default) or usb"),
-    host: str = typer.Option("organelle", "--host", help="OpenSSH host alias"),
-) -> None:
+def palette_install() -> None:
     """Install every compatible community module to the card for auditioning.
 
     Fills the ORHACK module browser so a blank preset can be built from the full
@@ -959,23 +948,18 @@ def palette_install(
         )
 
     try:
-        live = _palette_transport("palette install", transport, host)
+        live = _palette_transport("palette install")
         installed = install_palette(live, plan.installs, on_step=lambda key: typer.echo(f"  {key}"))
     except CardDetectionError as exc:
         _fail("palette install", exc.code, str(exc))
     except OrhackIntegrityError as exc:
         _fail("palette install", exc.code, str(exc))
-    except SshTransportError as exc:
-        _fail("palette install", "SSH_TRANSPORT_ERROR", str(exc))
 
     typer.echo(f"palette install: {len(installed)} module(s) installed to media/orhack/user-modules")
 
 
 @palette_app.command("clear")
-def palette_clear(
-    transport: str = typer.Option("ssh", "--transport", help="ssh (default) or usb"),
-    host: str = typer.Option("organelle", "--host", help="OpenSSH host alias"),
-) -> None:
+def palette_clear() -> None:
     """Remove palette-installed modules from the card.
 
     Leaves modules a song owns (installed by `rig push`) untouched.
@@ -985,12 +969,10 @@ def palette_clear(
     entries = compatible_community_entries(catalog, lock)
 
     try:
-        live = _palette_transport("palette clear", transport, host)
+        live = _palette_transport("palette clear")
         removed = clear_palette(live, entries, on_step=lambda key: typer.echo(f"  {key}"))
     except CardDetectionError as exc:
         _fail("palette clear", exc.code, str(exc))
-    except SshTransportError as exc:
-        _fail("palette clear", "SSH_TRANSPORT_ERROR", str(exc))
 
     typer.echo(f"palette clear: {len(removed)} module(s) removed")
 

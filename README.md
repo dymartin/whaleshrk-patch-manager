@@ -10,13 +10,13 @@ I use the ORHACK plugin for the organelle S2 synth. This lets me chain together 
 Each chain can process line input, audio samples, midi note data, or use the device's keyboard. I can also map midi CC control for all parameters. Midi PC messages select a specific song's suite of chains.   
 
 ### Synchronisation
-The system has bidirectional sync over SSH or USB. The module's source of truth is compiled and pushed to the device remotely, recovering safely from interruptions. Pulls turn manual on-device changes into auto-generated PRs.
+The system has bidirectional sync over the mounted SD card (USB mass storage). The module's source of truth is compiled and pushed to the device, recovering safely from interruptions. Pulls turn manual on-device changes into auto-generated PRs.
 
 ### Validation
 The automated validation suite covers configuration regressions, module integrity and on-device performance benchmarking.
 
 ### Workflow
-The only user facing workflow is editing the song files in `songs/`. The underlying code handles compilation, remote connection, bidirectional sync, module maintainance, validation, diff and drift detection.
+The only user facing workflow is editing the song files in `songs/`. The underlying code handles compilation, card sync, module maintainance, validation, diff and drift detection.
 
 ### Song Schema
 Each song is declarative YAML: a MIDI program selects the song, named chains define their input and ordered modules, and module parameters use readable catalog names rather than device IDs.
