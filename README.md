@@ -53,6 +53,7 @@ chains:
 ## Architecture
 
 ```mermaid
+%%{init: {"theme": "base", "themeVariables": {"background": "#ede4fb"}}}%%
 flowchart TD
 
 subgraph group_authoring["Song Authoring"]
